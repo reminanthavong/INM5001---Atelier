@@ -8,7 +8,7 @@ L’entreprise a connu un succès fulgurant dans les dernières années et a dû
 
 ## Le logiciel
 
-Le logiciel que nous développeront servira principalement à créer des horaires hebdomadaires de façon automatique afin de sauver du temps sur cette tâche du gérant. 
+Le logiciel que nous développerons servira principalement à créer des horaires hebdomadaires de façon automatique afin de sauver du temps sur cette tâche du gérant. 
 
 Dans un premier temps, le gestionnaire devra entrer dans la base de donnée chacun de ses employés ainsi que le quart de travail attribué. Puis à toutes les semaines, selon l’ancienneté du travailler et le nombre de travailleurs nécessaires sur le plancher à chaque jour et à chaque quart de travail, l’horaire sera généré.
 
