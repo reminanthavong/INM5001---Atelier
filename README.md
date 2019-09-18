@@ -1,4 +1,4 @@
-# INM5001 - Ateler
+# INM5001 - Atelier
 
 ## Le client et ses besoins
 
