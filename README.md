@@ -1,4 +1,4 @@
-# INM5001 - Ateler
+# INM5001 - Atelier
 
 ## Le client et ses besoins
 
@@ -10,7 +10,7 @@ L’entreprise a connu un succès fulgurant dans les dernières années et a dû
 
 Le logiciel que nous développerons servira principalement à créer des horaires hebdomadaires de façon automatique afin de sauver du temps sur cette tâche du gérant. 
 
-Dans un premier temps, le gestionnaire devra entrer dans la base de donnée chacun de ses employés ainsi que le quart de travail attribué. Puis à toutes les semaines, selon l’ancienneté du travailler et le nombre de travailleurs nécessaires sur le plancher à chaque jour et à chaque quart de travail, l’horaire sera généré.
+Dans un premier temps, le gestionnaire devra entrer dans la base de données chacun de ses employés ainsi que le quart de travail qui lui est attribué. Puis à toutes les semaines, selon l’ancienneté du travailler et le nombre de travailleurs nécessaires sur le plancher à chaque jour et à chaque quart de travail, l’horaire sera généré.
 
 Dans un deuxième temps, des restrictions plus détaillées quant au nombre maximal d’heures qu’un employé peut travailler dans une semaine, une journée spécifique qu’il n’est pas disponible, des congés, des vacances, etc. seront pris en considération pour la création de l’horaire.
 
@@ -25,4 +25,4 @@ L’équipe est formé de quatre membres.
 | Rémi Nanthavong  | Propriétaire, coordonateur, dévelopeur |
 | Mourad  | Dévelopeur |
 | Kayla Louis  | Dévelopeur, rédaction de la documentation |
-| Alexandre  | Dévelopeur  |
+| Alexandre Lauzon | Dévelopeur  |
