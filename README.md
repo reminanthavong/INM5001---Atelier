@@ -22,7 +22,7 @@ L’équipe est formé de quatre membres.
 
 | Membres  | Rôles |
 | ------------- | ------------- |
-| Rémi Nanthavong  | Propriétaire, coordonateur, dévelopeur |
-| Mourad  | Dévelopeur |
-| Kayla Louis  | Dévelopeur, rédaction de la documentation |
-| Alexandre Lauzon | Dévelopeur  |
+| Rémi Nanthavong  | Propriétaire, coordonateur, développeur |
+| Mourad  Latoui | Développeur |
+| Kayla Louis  | Développeur, rédaction de la documentation |
+| Alexandre Lauzon | Développeur  |
