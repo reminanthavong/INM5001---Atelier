@@ -1,0 +1,9 @@
+Carnet de produit de l’itération
+Le KANBAN board retrouve 5 EPIC:
+          - Administration : (On retrouve les  récits/taches pour la remise du projet)
+          - Discovery + Planning : (Comment s'organiser pour completer le projet + auto-training)
+          - Development (MVP 1) : (On retrouve les récits/taches pour devoppement du projet)
+          - Testing (MVP 1) : (On retrouve les récits/taches pour tester le projet)
+          - Deployment (MVP 1) : (On retrouve les récits/taches pour le deployment projet)
+          
+Lien: https://app.asana.com/0/1140162357570269/board
