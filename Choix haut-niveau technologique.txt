@@ -1,0 +1,21 @@
+﻿Haut-niveau technologique : 
+
+
+- Langage HTML, CSS pour l’interface web 
+
+- Langage Typescript pour le traitement de données en arrière-plan 
+
+- Postgresql comme base de données relationnel 
+
+- Eclipse comme IDE avec l’ajout de plugin pour typescript 
+
+- Github comme dépôt de code 
+
+- Asana comme gestionnaire de tâche 
+
+- Heroku comme plateforme de développement en ligne 
+
+ 
+*Je n’ai pas ajouté l’API postgresql, car je ne suis pas encore certain comment m’en servir. 
+
+**N’hésitez pas à ajouter autre chose s'il en manque ! 
