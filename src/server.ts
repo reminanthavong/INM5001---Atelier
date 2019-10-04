@@ -3,9 +3,10 @@ import log from "./log";
 
 const app = express();
 
-app.get("/", (req, res) => {
-    res.json(JSON.stringify({ok: 1})).end();
-});
+app.use(express.static(path.join(__dirname, 'public')))
+app.set('views', path.join(__dirname, 'views'))
+app.set('view engine', 'ejs')
+app.get('/', (req, res) => res.render('pages/index'))
 
 app.listen(process.env.PORT || 5000, () => {
     log.info("app running");
