@@ -15,6 +15,7 @@
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.css"></script>
+		<script type="text/typescript" src="gestionEmp.ts"></script>
 		<style>
 			html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 			.w3-sidebar {
@@ -62,9 +63,23 @@
 
   			<div class="w3-row w3-padding-64">
     			<div class="w3-twothird w3-container">
-      				<h1 class="w3-text-teal">Rechercher employés</h1>
-      				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum
-        			dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      				<h1 class="w3-text-teal">Rechercher des employés</h1>
+      				<br/>
+      				<button class='btn btn-primary' style='background-color:grey; border:none' name='btnchercheremploye' value='btnchercheremploye'>Afficher</button>
+      				<br/><br/>
+      				<table class='table' id="tableEmploye">
+      					<thead>
+      					<tr>
+      						<th>Identifiant</th>
+      						<th>Nom</th>
+      						<th>Prenom</th>
+      						<th>Nombre d'heures maximum par semaine</th>
+      						<th>Date d'embauche</th>
+      					</tr>
+      					</thead>
+      					<tbody>
+      					</tbody>
+      				</table>
     			</div>
     			
   			</div>
@@ -101,8 +116,8 @@
       					</div>
       					<div class='form-row'>
       						<div class='form-group col-8'>
-      							<label for='nbheuresmax'>Veuillez créer un mot de passe:</label>
-      							<input name='prenomemploye' class='form-control form-constrol-sm' id='prenomemployeid' type='text' pattern='{1,6}' required='required'>
+      							<label for='motdepasse'>Veuillez créer un mot de passe:</label>
+      							<input name='motdepasse' class='form-control form-constrol-sm' id='motdepasse' type='text' pattern='{1,6}' required='required'>
       						</div>   						
       					</div>
       					<div class='form-row'>
@@ -185,6 +200,7 @@
       							</div>
       						</div>   						
       					</div>
+      					<button class='btn btn-primary' style='background-color:grey; border:none' name='btncreeremploye' value='btncreeremploye'>Envoyer</button>
       				</fieldset>
       				</form>
       				</div>
@@ -240,9 +256,5 @@
 		
 		
 		</script>
-		<script type="text/javascript">
-        	
-    	</script>
-
 	</body>
 </html>
