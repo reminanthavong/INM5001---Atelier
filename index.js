@@ -37,27 +37,16 @@ express()
 
       } catch (err) {
         console.error(err);
-        res.send("Error " + err);
+        res.send("Error1" + err);
       }
     })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
 //Fonctions Mourad//
 async function affichagehoraire (client) {
-        const result = await client.query(`SELECT * FROM (
-                                           	SELECT TC2.Valeur AS TypeQuart, TC3.Valeur AS JourSemaine, CONCAT(BE.NomEmploye,BE.PrenomEmploye) AS NomEmploye
-                                           	FROM TableHoraire TH
-                                           	LEFT JOIN BaseEmployes BE ON BE.IDEmploye=TH.IDEmploye
-                                           	LEFT JOIN TableCodes TC2 ON (TC2.Label='TypeQuart' AND TH.TypeQuart=TC2.Code)
-                                           	LEFT JOIN TableCodes TC3 ON (TC3.Label='JourSemaine' AND TH.JourSemaine=TC3.Code)
+        const result = await client.query(`SELECT * FROM TableHoraire
                                            	WHERE TH.IDTableHoraire='001' AND TH.IDEmployeur='Gestion3525'
-                                           )
-                                           PIVOT(
-                                           	MAX(TypeQuart)
-                                           	FOR JourSemaine IN(
-                                           		LUNDI,MARDI,MERCREDI,JEUDI,VENDREDI
-                                           	)
-                                           )`);
+                                          `);
         const results = { 'results': (result) ? result.rows : null};
 return results;
 }
