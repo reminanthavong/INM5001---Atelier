@@ -39,18 +39,20 @@ exports.__esModule = true;
 var url = "/Employe";
 var btnCreer = document.getElementById("btncreeremploye");
 var btnAfficher = document.getElementById("btnchercheremploye");
+var btnCongedier = document.getElementById("btncongediement");
 btnCreer.addEventListener("click", function (e) { return __awaiter(void 0, void 0, void 0, function () {
-    var jsonEmp, result, success;
+    var jsonEmp, nbrHeures, result, success;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 jsonEmp = {};
                 jsonEmp.IDEmploye = creerIDEmploye();
-                jsonEmp.NomEmploye = document.getElementById('nomemployeid');
-                jsonEmp.PrenomEmploye = document.getElementById('prenomemployeid');
-                jsonEmp.NBRHeuresMax = document.getElementById('nbheuresmaxid');
-                jsonEmp.DateEmbauche = document.getElementById('dateembauche');
-                jsonEmp.MotDePasse = document.getElementById('motdepasse');
+                jsonEmp.NomEmploye = document.getElementById('nomemployeid').innerText;
+                jsonEmp.PrenomEmploye = document.getElementById('prenomemployeid').innerText;
+                nbrHeures = document.getElementById('nbheuresmaxid').innerText;
+                jsonEmp.NBRHeuresMax = +nbrHeures;
+                jsonEmp.DateEmbauche = document.getElementById('dateembauche').innerText;
+                jsonEmp.MotDePasse = document.getElementById('motdepasse').innerText;
                 return [4 /*yield*/, fetch(url, { method: "POST",
                         headers: { "content-type": "application/json" }, body: JSON.stringify(jsonEmp) })];
             case 1:
@@ -58,18 +60,22 @@ btnCreer.addEventListener("click", function (e) { return __awaiter(void 0, void 
                 return [4 /*yield*/, result.json()];
             case 2:
                 success = _a.sent();
-                if (success)
-                    alert("Ajouter!");
+                if (success) {
+                    alert("L'employé a été ajouté!");
+                }
+                else {
+                    console.log("impossible d'afficher les employés");
+                }
                 return [2 /*return*/];
         }
     });
 }); });
 function creerIDEmploye() {
     var ID;
-    var nomQuatre = document.getElementById('nomemployeid').innerText;
-    nomQuatre = nomQuatre.charAt(0);
-    var prenomUn = document.getElementById('prenomemployeid').innerText;
-    prenomUn = prenomUn.substring(0, 3);
+    var nom = document.getElementById('nomemployeid').innerText;
+    var nomQuatre = nom.substring(0, 3);
+    var prenom = document.getElementById('prenomemployeid').innerText;
+    var prenomUn = prenom.charAt(0);
     ID = prenomUn.concat(nomQuatre);
     return ID;
 }
@@ -79,6 +85,7 @@ btnAfficher.addEventListener("click", function (e) { return __awaiter(void 0, vo
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 3, , 4]);
+                alert("B");
                 tableEmploye_1 = document.getElementById("tableEmploye");
                 return [4 /*yield*/, fetch(url, { method: "GET" })];
             case 1:
@@ -99,11 +106,11 @@ btnAfficher.addEventListener("click", function (e) { return __awaiter(void 0, vo
                     td4.textContent = t.NBRHeuresMax;
                     td5.textContent = t.DatEmbauche;
                     tableEmploye_1.appendChild(tr);
-                    tableEmploye_1.appendChild(td1);
-                    tableEmploye_1.appendChild(td2);
-                    tableEmploye_1.appendChild(td3);
-                    tableEmploye_1.appendChild(td4);
-                    tableEmploye_1.appendChild(td5);
+                    tr.appendChild(td1);
+                    tr.appendChild(td2);
+                    tr.appendChild(td3);
+                    tr.appendChild(td4);
+                    tr.appendChild(td5);
                 });
                 return [3 /*break*/, 4];
             case 3:
@@ -114,3 +121,6 @@ btnAfficher.addEventListener("click", function (e) { return __awaiter(void 0, vo
         }
     });
 }); });
+btnCongedier.onclick = function (event) {
+    alert("Message d'alerte");
+};

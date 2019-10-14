@@ -4,18 +4,23 @@
 	<head>	
 		<title>Gestion employés</title>
 		<meta charset="UTF-8">
+		
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 		<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 		
-		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.css"></script>
-		<script type="text/typescript" src="gestionEmp.ts"></script>
+		
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+		
+		
+		<!--    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.css"></script> -->
+		<script src="gestionEmp.js"></script>
 		<style>
 			html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 			.w3-sidebar {
@@ -65,9 +70,9 @@
     			<div class="w3-twothird w3-container">
       				<h1 class="w3-text-teal">Rechercher des employés</h1>
       				<br/>
-      				<button class='btn btn-primary' style='background-color:grey; border:none' name='btnchercheremploye' value='btnchercheremploye'>Afficher tous les employés</button>
+      				<button class='btn btn-primary' style='background-color:grey; border:none' id="btnchercheremploye" name='btnchercheremploye' value='btnchercheremploye'>Afficher tous les employés</button>
       				<br/><br/>
-      				<table class='table' id="tableEmploye">
+      				<table class='table'>
       					<thead>
       					<tr>
       						<th>Identifiant</th>
@@ -77,7 +82,7 @@
       						<th>Date d'embauche</th>
       					</tr>
       					</thead>
-      					<tbody>
+      					<tbody id="tableEmploye">
       					</tbody>
       				</table>
     			</div>
@@ -89,7 +94,7 @@
       				<h1 class="w3-text-teal">Ajouter un employé</h1>
       				<br/>
       				<div class='container'>
-      				<form enctype='multipart/form-data' method='post' action=''>
+      				<form enctype='multipart/form-data'>
       				<fieldset>
       					<div class='form-row'>
       						<div class='form-group col-6'>
@@ -200,7 +205,7 @@
       							</div>
       						</div>   						
       					</div>
-      					<button class='btn btn-primary' style='background-color:grey; border:none' name='btncreeremploye' value='btncreeremploye'>Envoyer</button>
+      					<button class='btn btn-primary' style='background-color:grey; border:none' id="btncreeremploye" name='btncreeremploye' value='btncreeremploye'>Envoyer</button>
       				</fieldset>
       				</form>
       				</div>
@@ -210,8 +215,18 @@
   			<div class="w3-row w3-padding-64">
     			<div class="w3-twothird w3-container">
       				<h1 class="w3-text-teal">Congédier un employé</h1>
-      				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum
-        			dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      				<div class='form-row'>
+      					<form enctype='multipart/form-data' >
+      					<fieldset>
+      						<div class='form-group col-12'>
+      							<label for='identifiant'>Identifiant de l'employé à congédier:</label>
+      							<input name='identifiant' class='form-control form-constrol-sm' id='identifiant' type='text' pattern='[a-zA-Z]{5}' required='required'>
+      							<br/>
+      							<button class='btn btn-primary' style='background-color:grey; border:none' id="btncongediement" name='btncongediement' value='btncongediement'>Congédier</button>
+      						</div>	
+      					</fieldset>
+      					</form>
+      				</div>
     			</div>
   			</div>
 
@@ -252,7 +267,8 @@
 		function w3_close() {
   			mySidebar.style.display = "none";
   			overlayBg.style.display = "none";
-		}				
+		}	
 		</script>
+		
 	</body>
 </html>

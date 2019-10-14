@@ -3,37 +3,46 @@ import * as _ from 'lodash';
 let url = "/Employe";
 
 
-const btnCreer = document.getElementById("btncreeremploye");
-const btnAfficher = document.getElementById("btnchercheremploye")
+const btnCreer = <HTMLButtonElement>document.getElementById("btncreeremploye");
+const btnAfficher = <HTMLButtonElement>document.getElementById("btnchercheremploye");
+const btnCongedier = document.getElementById("btncongediement"); 
 
-btnCreer.addEventListener("click", async e => {
-	const jsonEmp: any = {}
+
+btnCreer.addEventListener("click", async (e:Event) => {
+	
+	const jsonEmp: any = {};
 	jsonEmp.IDEmploye = creerIDEmploye();
-	jsonEmp.NomEmploye = document.getElementById('nomemployeid');
-	jsonEmp.PrenomEmploye = document.getElementById('prenomemployeid');
-	jsonEmp.NBRHeuresMax = document.getElementById('nbheuresmaxid');
-	jsonEmp.DateEmbauche = document.getElementById('dateembauche');
-	jsonEmp.MotDePasse = document.getElementById('motdepasse');
-        	  	
-	const result = await fetch(url, {method: "POST", 
-		headers: { "content-type": "application/json"}, body: JSON.stringify(jsonEmp) })
-	const success = await result.json();
-	if (success)
-		alert("Ajouter!");
+	jsonEmp.NomEmploye = (<HTMLInputElement>document.getElementById('nomemployeid')).innerText;
+	jsonEmp.PrenomEmploye = (<HTMLInputElement>document.getElementById('prenomemployeid')).innerText;
+	let nbrHeures = (<HTMLInputElement>document.getElementById('nbheuresmaxid')).innerText;
+	jsonEmp.NBRHeuresMax = +nbrHeures;
+	jsonEmp.DateEmbauche = (<HTMLInputElement>document.getElementById('dateembauche')).innerText;
+	jsonEmp.MotDePasse = (<HTMLInputElement>document.getElementById('motdepasse')).innerText;
+    
+      	  	
+		const result = await fetch(url, {method: "POST", 
+			headers: { "content-type": "application/json"}, body: JSON.stringify(jsonEmp) })
+		const success = await result.json();
+		if (success) {
+			alert("L'employé a été ajouté!");
+		} else {
+			console.log("impossible d'afficher les employés")
+		}	
 })
 
 function creerIDEmploye() {
 	let ID: String;
-	let nomQuatre = (<HTMLInputElement>document.getElementById('nomemployeid')).innerText;
-	nomQuatre = nomQuatre.charAt(0);
-	let prenomUn = (<HTMLInputElement>document.getElementById('prenomemployeid')).innerText;
-	prenomUn = prenomUn.substring(0,3);
+	let nom = (<HTMLInputElement>document.getElementById('nomemployeid')).innerText;
+	let nomQuatre = nom.substring(0,3);
+	let prenom = (<HTMLInputElement>document.getElementById('prenomemployeid')).innerText;
+	let prenomUn = prenom.charAt(0);
 	ID = prenomUn.concat(nomQuatre);
 	return ID;
 }		
 
-btnAfficher.addEventListener("click", async e => {
+btnAfficher.addEventListener("click", async (e:Event) => {
     try {
+    	alert("B");
 		const tableEmploye = document.getElementById("tableEmploye");
 		const resultat = await fetch(url, {method: "GET"});
 		const employes = await resultat.json();
@@ -50,14 +59,20 @@ btnAfficher.addEventListener("click", async e => {
 			td4.textContent = t.NBRHeuresMax;
 			td5.textContent = t.DatEmbauche;
 			tableEmploye.appendChild(tr);
-			tableEmploye.appendChild(td1);
-			tableEmploye.appendChild(td2);
-			tableEmploye.appendChild(td3);
-			tableEmploye.appendChild(td4);
-			tableEmploye.appendChild(td5);
+			tr.appendChild(td1);
+			tr.appendChild(td2);
+			tr.appendChild(td3);
+			tr.appendChild(td4);
+			tr.appendChild(td5);
 		})
     }catch (e) {
   		console.log("Impossible d'afficher les employes");
     }
 });	
-			
+
+
+btnCongedier.onclick = function(event) {
+	alert("Message d'alerte");
+}
+
+		
