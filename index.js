@@ -32,7 +32,7 @@ express()
       const client = await pool.connect()
       const result = await affichagehoraire(client);
       const results = { 'results': (result) ? result.rows : null};
-      res.render('pages/AfficherHoraire', results );
+      res.render('pages/AffichageHoraire', results );
       client.release();
     } catch (err) {
       console.error(err);
