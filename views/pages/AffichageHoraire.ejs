@@ -9,7 +9,11 @@
 <div class="container">
 
 <h2>Choix parametres</h2>
-
+<select>
+   <% choix.forEach(function(r) { %>
+          <option value="Choix semaine"><%= r.idtablehoraire %></option>
+      <% }); %>
+</select>
 
 
 
