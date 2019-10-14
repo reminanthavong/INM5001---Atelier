@@ -33,6 +33,7 @@ express()
         const client = await pool.connect()
         const results = await affichagehoraire(client);
         const choix = await choixsemaine(client);
+        const choixsemaine = { 'choixsemaine': (choix) ? result.rows : null};
         res.render('pages/AffichageHoraire', results, choix );
         client.release();
 
