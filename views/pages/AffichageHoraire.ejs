@@ -10,7 +10,7 @@
 
 <h2>Choix parametres</h2>
 <select>
-   <% results.forEach(function(r) { %>
+   <% getHoraires.forEach(function(r) { %>
           <option value="Choix semaine"><%= r.idtablehoraire %></option>
       <% }); %>
 </select>
@@ -23,7 +23,7 @@
 
 <ul>
 
-    <% results.forEach(function(r) { %>
+    <% getHoraires.forEach(function(r) { %>
         <li><%= r.typequart %> - <%= r.joursemaine %> - <%= r.nomemploye%></li>
     <% }); %>
 </ul>
