@@ -12,6 +12,7 @@
 <ul>
 
     <% results.forEach(function(r) { %>
+        <%= Object.keys(r) %>
         <%= JSON.parse(r) %>
         <li><%= r.nomemploye %> - <%= r.prenomemploye %></li>
     <% }); %>
