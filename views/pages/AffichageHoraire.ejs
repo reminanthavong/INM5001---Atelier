@@ -7,6 +7,18 @@
 
 
 <div class="container">
+
+<h2>Choix parametres</h2>
+<select>
+   <% choix.forEach(function(r) { %>
+          <option><%= r.idtablehoraire %></option>
+      <% }); %>
+</select>
+
+
+
+
+
 <h2>Horaire</h2>
 
 <ul>

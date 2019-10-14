@@ -32,7 +32,8 @@ express()
       try {
         const client = await pool.connect()
         const results = await affichagehoraire(client);
-        res.render('pages/AffichageHoraire', results );
+        const choix = await choixsemaine(client);
+        res.render('pages/AffichageHoraire', results, choix );
         client.release();
 
 
@@ -55,6 +56,11 @@ async function affichagehoraire (client) {
                                                                                       	WHERE TH.IDTableHoraire='001' AND TH.IDEmployeur='Gestion3525'
                                                                                       ) AS SourceTable
                                            `);
+        const results = { 'results': (result) ? result.rows : null};
+return results;
+}
+async function choixsemaine (client) {
+        const result = await client.query(`SELECT DISTINCT IDTableHoraire FROM TableHoraire;`);
         const results = { 'results': (result) ? result.rows : null};
 return results;
 }
