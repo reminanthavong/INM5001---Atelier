@@ -52,7 +52,7 @@ async function affichagehoraire (client) {
                                            	LEFT JOIN TableCodes TC2 ON (TC2.Label='TypeQuart' AND TH.TypeQuart=TC2.Code)
                                            	LEFT JOIN TableCodes TC3 ON (TC3.Label='JourSemaine' AND TH.JourSemaine=TC3.Code)
                                            	WHERE TH.IDTableHoraire='001' AND TH.IDEmployeur='Gestion3525'
-                                           )`);
+                                           )A`);
         const results = { 'results': (result) ? result.rows : null};
 return results;
 }
