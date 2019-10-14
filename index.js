@@ -48,5 +48,20 @@ express()
   })
 
   //Page Mourad//
-  
+  .get('/AffichageHoraire', async (req, res) => {
+      try {
+        const client = await pool.connect()
+        const results = await affichagehoraire(client);
+        const choix = await choixsemaine(client);
+        const choixsemaine = { 'choixsemaine': (choix) ? result.rows : null};
+        res.render('pages/AffichageHoraire', results, choix );
+        client.release();
+
+
+      } catch (err) {
+        console.error(err);
+        res.send("Error1" + err);
+      }
+    })
+
 .listen(PORT, () => console.log(`Listening on ${ PORT }`))
