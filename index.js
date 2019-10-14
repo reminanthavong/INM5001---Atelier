@@ -4,8 +4,8 @@ const PORT = process.env.PORT || 5000
 
 const { Pool } = require('pg');
 const pool = new Pool({
-  connectionString: 'postgres://moura:27051989.mL@localhost:53081/',
-   //connectionString: process.env.DATABASE_URL,
+  //connectionString: 'postgres://moura:27051989.mL@localhost:53081/',
+   connectionString: process.env.DATABASE_URL,
   ssl: true
 });
 
