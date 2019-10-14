@@ -54,11 +54,7 @@ async function affichagehoraire (client) {
                                                                                       	LEFT JOIN TableCodes TC3 ON (TC3.Label='JourSemaine' AND TH.JourSemaine=TC3.Code)
                                                                                       	WHERE TH.IDTableHoraire='001' AND TH.IDEmployeur='Gestion3525'
                                                                                       ) AS SourceTable
-                                           PIVOT
-                                           (
-                                           MAX(TypeQuart)
-                                           FOR JourSemaine IN ([LUNDI],[MARDI],[MERCREDI],[JEUDI],[VENDREDI])
-                                           ) AS PivotTable; `);
+                                           `);
         const results = { 'results': (result) ? result.rows : null};
 return results;
 }
