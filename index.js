@@ -44,7 +44,7 @@ express()
 
 //Fonctions Mourad//
 async function affichagehoraire (client) {
-        const result = await client.query(`SELECT * FROM TableHoraire
+        const result = await client.query(`SELECT * FROM TableHoraire TH
                                            	WHERE TH.IDTableHoraire='001' AND TH.IDEmployeur='Gestion3525'
                                           `);
         const results = { 'results': (result) ? result.rows : null};
