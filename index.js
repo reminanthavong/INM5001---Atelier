@@ -29,7 +29,7 @@ express()
    
   .get('/AffichageHoraire', async (req, res) => {
     try {
-      const client = await pool.connect()
+      /*const client = await pool.connect()
       const getHoraire = await client.query(`SELECT *
                                            FROM
                                            (SELECT TC2.Valeur AS TypeQuart, TC3.Valeur AS JourSemaine, CONCAT(BE.NomEmploye,BE.PrenomEmploye) AS NomEmploye
@@ -45,9 +45,9 @@ express()
       
       const choixSemaine = await client.query(`SELECT DISTINCT IDTableHoraire FROM TableHoraire;`);
       const choixSemaines = { 'choixSemaines': (choixSemaine) ? choixSemaine.rows : null};
-      
-      res.render('pages/AffichageHoraire', getHoraires );
-      client.release();
+      */
+      res.render('pages/AffichageHoraire.html' /*, getHoraires */);
+      /*client.release();*/
     } catch (err) {
       console.error(err);
       res.send("Error " + err);
