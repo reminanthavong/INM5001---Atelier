@@ -46,7 +46,7 @@ express()
       const choixSemaine = await client.query(`SELECT DISTINCT IDTableHoraire FROM TableHoraire;`);
       const choixSemaines = { 'choixSemaines': (choixSemaine) ? choixSemaine.rows : null};
       */
-      res.render('pages/AffichageHoraire.html' /*, getHoraires */);
+      res.sendFile('pages/AffichageHoraire.html' /*, getHoraires */);
       /*client.release();*/
     } catch (err) {
       console.error(err);
