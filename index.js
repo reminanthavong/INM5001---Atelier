@@ -29,14 +29,14 @@ express()
    .get('/api/v1/semaines', async (req, res) => {
         try {
             const client = await pool.connect()
+            const choixSemaine = await client.query(`SELECT DISTINCT IDTableHoraire FROM TableHoraire;`);
+            const choixSemaines = { 'choixSemaines': (choixSemaine) ? choixSemaine.rows : null};
+            res.json({ choixSemaines });
             client.release();
           } catch (err) {
             console.error(err);
             res.send("Erreur appel client " + err);
           }
-        const choixSemaine = await client.query(`SELECT DISTINCT IDTableHoraire FROM TableHoraire;`);
-        const choixSemaines = { 'choixSemaines': (choixSemaine) ? choixSemaine.rows : null};
-        res.json({ choixSemaines });
    })
 
   .get('/AffichageHoraire', async (req, res) => {
