@@ -26,7 +26,12 @@ express()
   })
 
    //Page Mourad//
-   
+   .get('/api/v1/semaines', async (req, res) => {
+        const choixSemaine = await client.query(`SELECT DISTINCT IDTableHoraire FROM TableHoraire;`);
+        const choixSemaines = { 'choixSemaines': (choixSemaine) ? choixSemaine.rows : null};
+        res.json({ choixSemaines });
+   }
+   }
   .get('/AffichageHoraire', async (req, res) => {
     try {
       /*const client = await pool.connect()
@@ -43,8 +48,7 @@ express()
       const getHoraires = { 'getHoraires': (getHoraire) ? getHoraire.rows : null};
       
       
-      const choixSemaine = await client.query(`SELECT DISTINCT IDTableHoraire FROM TableHoraire;`);
-      const choixSemaines = { 'choixSemaines': (choixSemaine) ? choixSemaine.rows : null};
+
       */
       res.sendFile(path.join(__dirname+'/views/pages/AffichageHoraire.html' /*, getHoraires */));
       /*client.release();*/
