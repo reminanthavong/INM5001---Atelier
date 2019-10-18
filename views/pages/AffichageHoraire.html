@@ -33,7 +33,7 @@ async function chercherListeSemaine(){
 }
 
 (async () => {
-  const resp=await chercherListeSemaine();
+  const resp= chercherListeSemaine();
 console.log(resp);
 const selectListeSemaines=document.getElementById("listeSemaines");
 const listeSemainesbis= resp.choixSemaines.map((semaine, index) => {
