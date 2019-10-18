@@ -53,7 +53,7 @@ console.log(event)
 const resp=await chercherListeSemaine();
 console.log(resp);
 const selectListeSemaines=document.getElementById("listeSemaines");
-selectListeSemaine.addEventListener("change", async (event) => handleSelectChange(event));
+selectListeSemaines.addEventListener("change", async (event) => handleSelectChange(event));
 
 const choix = resp.choixSemaines;
 let options='';
