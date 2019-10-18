@@ -31,7 +31,7 @@ express()
             const client = await pool.connect()
             const choixSemaine = await client.query(`SELECT DISTINCT IDTableHoraire FROM TableHoraire;`);
             const choixSemaines = { 'choixSemaines': (choixSemaine) ? choixSemaine.rows : null};
-            res.json({ choixSemaines });
+            res.json( choixSemaines );
             client.release();
           } catch (err) {
             console.error(err);

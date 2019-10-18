@@ -22,7 +22,7 @@
     return  await fetch('https://testcalendrier.herokuapp.com/api/v1/semaines');
 }
 (async () => {
-  const {semaines}=await chercherListeSemaine();
+  const {choixSemaines}=await chercherListeSemaine();
 console.log(semaines);
 const selectListeSemaines=document.getElementById("listeSemaines");
 const listeSemainesbis= semaines.map((semaine, index) => {
