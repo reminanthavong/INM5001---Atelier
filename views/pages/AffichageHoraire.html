@@ -19,21 +19,16 @@
 
 <script>
 async function chercherListeSemaine(){
-   fetch('https://testcalendrier.herokuapp.com/api/v1/semaines')
-  .then(response => {
-    return response.json()
-  })
-  .then(data => {
-    // Work with JSON data here
-    return data;
-  })
-  .catch(err => {
-    console.log(err)
-  })
+    try {
+        const resp=await fetch('https://testcalendrier.herokuapp.com/api/v1/semaines');
+        const donnee = await resp.json();
+        return JSON.stringify(donnee);
+    } catch (err) {
+        console.log(err);
+    }
 }
-
 (async () => {
-  const resp= chercherListeSemaine();
+  const resp=await chercherListeSemaine();
 console.log(resp);
 const selectListeSemaines=document.getElementById("listeSemaines");
 const listeSemainesbis= resp.choixSemaines.map((semaine, index) => {
