@@ -1,7 +1,5 @@
 const express = require('express')
 const path = require('path')
-//const bodyParser = require('body-parser');
-
 const PORT = process.env.PORT || 5000
 const { Pool } = require('pg');
 const pool = new Pool({
@@ -10,8 +8,6 @@ const pool = new Pool({
 });
 
 express()
-    //.use(bodyParser.json()); // support json encoded bodies
-    //.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
   .use(express.static(path.join(__dirname, 'public')))
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
@@ -57,7 +53,7 @@ express()
                                                                                                     	WHERE TH.IDTableHoraire='001' AND TH.IDEmployeur='{$employeur}'
                                                                                                     ) AS SourceTable;
                                                          `);
-               const horaires = { 'horaires': (horaires) ? horaires.rows : null};
+               //const horaires = { 'horaires': (horaires) ? choixSemaine.rows : null};
                res.json( horaires );
                client.release();
              } catch (err) {
