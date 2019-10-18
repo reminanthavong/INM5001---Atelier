@@ -38,31 +38,31 @@ express()
             res.send("Erreur appel client " + err);
           }
    })
+    .post('/api/v1/horaires', async (req, res) => {
+        const {choixsemaine} = req.body;
+        const employeur = 'Gestion3525'
+         try {
+              const client = await pool.connect()
+               const horaires = await client.query(`SELECT *
+                                                         FROM
+                                                         (SELECT TC2.Valeur AS TypeQuart, TC3.Valeur AS JourSemaine, CONCAT(BE.NomEmploye,BE.PrenomEmploye) AS NomEmploye
+                                                                                                    	FROM TableHoraire TH
+                                                                                                    	LEFT JOIN BaseEmployes BE ON BE.IDEmploye=TH.IDEmploye
+                                                                                                    	LEFT JOIN TableCodes TC2 ON (TC2.Label='TypeQuart' AND TH.TypeQuart=TC2.Code)
+                                                                                                    	LEFT JOIN TableCodes TC3 ON (TC3.Label='JourSemaine' AND TH.JourSemaine=TC3.Code)
+                                                                                                    	WHERE TH.IDTableHoraire='{$choixsemaine}' AND TH.IDEmployeur='{$employeur}'
+                                                                                                    ) AS SourceTable
+                                                         `);
+               res.json( horaires );
+               client.release();
+             } catch (err) {
+               console.error(err);
+               res.send("Erreur appel client " + err);
+             }
+      })
 
   .get('/AffichageHoraire', async (req, res) => {
-    try {
-      /*const client = await pool.connect()
-      const getHoraire = await client.query(`SELECT *
-                                           FROM
-                                           (SELECT TC2.Valeur AS TypeQuart, TC3.Valeur AS JourSemaine, CONCAT(BE.NomEmploye,BE.PrenomEmploye) AS NomEmploye
-                                                                                      	FROM TableHoraire TH
-                                                                                      	LEFT JOIN BaseEmployes BE ON BE.IDEmploye=TH.IDEmploye
-                                                                                      	LEFT JOIN TableCodes TC2 ON (TC2.Label='TypeQuart' AND TH.TypeQuart=TC2.Code)
-                                                                                      	LEFT JOIN TableCodes TC3 ON (TC3.Label='JourSemaine' AND TH.JourSemaine=TC3.Code)
-                                                                                      	WHERE TH.IDTableHoraire='001' AND TH.IDEmployeur='Gestion3525'
-                                                                                      ) AS SourceTable
-                                           `);
-      const getHoraires = { 'getHoraires': (getHoraire) ? getHoraire.rows : null};
-      
-      
-
-      */
       res.sendFile(path.join(__dirname+'/views/pages/AffichageHoraire.html' /*, getHoraires */));
-      /*client.release();*/
-    } catch (err) {
-      console.error(err);
-      res.send("Error " + err);
-    }
   })
    
 

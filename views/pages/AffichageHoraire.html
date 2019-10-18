@@ -27,20 +27,40 @@ async function chercherListeSemaine(){
         console.log(err);
     }
 }
+
+async function chercherHoraire(choixsemaine){
+    try {
+        const resp=await fetch('https://testcalendrier.herokuapp.com/api/v1/semaines',
+          {
+            method: 'POST',
+            body: formData
+           }
+        );
+        const donnee = await resp.json();
+        return JSON.parse(JSON.stringify(donnee));
+    } catch (err) {
+        console.log(err);
+    }
+}
+async function handleSelectChange(event) {
+console.log(event)
+    const resp = await chercherHoraire(event.target);
+    console.log(resp);
+}
+
 (async () => {
-  const resp=await chercherListeSemaine();
+
+const resp=await chercherListeSemaine();
 console.log(resp);
 const selectListeSemaines=document.getElementById("listeSemaines");
+selectListeSemaine.addEventListener("change", async (event) => handleSelectChange(event));
+
 const choix = resp.choixSemaines;
 let options='';
 for(const c of choix) {
     const nvelleOption = `<option value="0">${c['idtablehoraire']}</option>`;
-
     options = options + nvelleOption;
 }
-//const listeSemainesbis= choix.map((semaine, index) => {
-//   `<option value="${index}">${semaine.idtablehoraire}</option>`
-//})
 console.log(options);
 selectListeSemaines.innerHTML = options;
 })()
