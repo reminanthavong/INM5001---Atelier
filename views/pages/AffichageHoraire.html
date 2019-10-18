@@ -20,8 +20,8 @@
 <script>
     async function chercherListeSemaine(){
     const resp=await fetch('https://testcalendrier.herokuapp.com/api/v1/semaines');
-    console.log(resp.json());
-    const donnee = await resp.json();
+    console.log(resp);
+    const donnee = await resp.clone().json();
     return donnee;
 }
 (async () => {
