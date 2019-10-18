@@ -1,6 +1,6 @@
 const express = require('express')
 const path = require('path')
-const bodyParser = require('body-parser');
+//const bodyParser = require('body-parser');
 
 const PORT = process.env.PORT || 5000
 const { Pool } = require('pg');
@@ -10,8 +10,8 @@ const pool = new Pool({
 });
 
 express()
-  .use(bodyParser.json()); // support json encoded bodies
-  .use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+    //.use(bodyParser.json()); // support json encoded bodies
+    //.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
   .use(express.static(path.join(__dirname, 'public')))
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
@@ -43,7 +43,7 @@ express()
           }
    })
     .post('/api/v1/horaires', async (req, res) => {
-        const {choixsemaine} = req.body; //{$choixsemaine}
+        //const {choixsemaine} = req.body; //{$choixsemaine}
         const employeur = 'Gestion3525'
          try {
             const client = await pool.connect()
