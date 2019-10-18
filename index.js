@@ -39,11 +39,11 @@ express()
           }
    })
     .post('/api/v1/horaires', async (req, res) => {
-        const {choixsemaine} = req.body; //{$choixsemaine}
+        //const {choixsemaine} = req.body; //{$choixsemaine}
         const employeur = 'Gestion3525'
          try {
-              const client = await pool.connect()
-               const horaires = await client.query(`SELECT *
+            const client = await pool.connect()
+            const horaires = await client.query(`SELECT *
                                                          FROM
                                                          (SELECT TC2.Valeur AS TypeQuart, TC3.Valeur AS JourSemaine, CONCAT(BE.NomEmploye,BE.PrenomEmploye) AS NomEmploye
                                                                                                     	FROM TableHoraire TH
