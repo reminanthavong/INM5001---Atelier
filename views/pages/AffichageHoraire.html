@@ -18,13 +18,20 @@
 
 
 <script>
-    async function chercherListeSemaine(){
-    const resp=await fetch('https://testcalendrier.herokuapp.com/api/v1/semaines');
-    console.log(resp);
-    // const donnee = await resp.body.json();
-    const donnee = 'a';
-    return donnee;
+async function chercherListeSemaine(){
+   fetch('https://testcalendrier.herokuapp.com/api/v1/semaines')
+  .then(response => {
+    return response.json()
+  })
+  .then(data => {
+    // Work with JSON data here
+    return data;
+  })
+  .catch(err => {
+    console.log(err)
+  })
 }
+
 (async () => {
   const resp=await chercherListeSemaine();
 console.log(resp);
