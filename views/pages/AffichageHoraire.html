@@ -31,8 +31,8 @@ async function chercherListeSemaine(){
   const resp=await chercherListeSemaine();
 console.log(resp);
 const selectListeSemaines=document.getElementById("listeSemaines");
-const listeSemainesbis= resp.choixSemaines.map((semaine, index) => {
-    `<option value="${index}">${semaine}</option>`
+const listeSemainesbis= resp['choixSemaines'].map((semaine, index) => {
+    `<option value="${index}">${semaine['idtablehoraire']}</option>`
 })
 selectListeSemaines.innerHTML = listeSemainesbis;
 console.log(listeSemainesbis)
