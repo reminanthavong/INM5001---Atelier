@@ -21,8 +21,8 @@
     async function chercherListeSemaine(){
     return  await fetch('https://testcalendrier.herokuapp.com/api/v1/semaines');
 }
-
-const {semaines}=await chercherListeSemaine();
+(async () => {
+  const {semaines}=await chercherListeSemaine();
 console.log(semaines);
 const selectListeSemaines=document.getElementById("listeSemaines");
 const listeSemainesbis= semaines.map((semaine, index) => {
@@ -30,6 +30,8 @@ const listeSemainesbis= semaines.map((semaine, index) => {
 })
 selectListeSemaines.innerHTML = listeSemainesbis;
 console.log(listeSemainesbis)
+})()
+
 </script>
 
 
