@@ -56,11 +56,12 @@ const selectListeSemaines=document.getElementById("listeSemaines");
 selectListeSemaines.addEventListener("change", async (event) => handleSelectChange(event));
 
 const choix = resp.choixSemaines;
-let options='';
+let options=`<option value="0">000</option>`;
 for(const c of choix) {
-    const nvelleOption = `<option value="0">${c['idtablehoraire']}</option>`;
+    const nvelleOption = `<option value="1">${c['idtablehoraire']}</option>`;
     options = options + nvelleOption;
 }
+
 console.log(options);
 selectListeSemaines.innerHTML = options;
 })()
