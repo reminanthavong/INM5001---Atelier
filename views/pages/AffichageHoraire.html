@@ -35,7 +35,8 @@ const choix = resp.choixSemaines;
 let options='';
 for(const c of choix) {
     const nvelleOption = `<option value="0">${c['idtablehoraire']}</option>`;
-    options.concat(nvelleOption);
+
+    options = options + nvelleOption;
 }
 //const listeSemainesbis= choix.map((semaine, index) => {
 //   `<option value="${index}">${semaine.idtablehoraire}</option>`
