@@ -21,7 +21,7 @@
     async function chercherListeSemaine(){
     const resp=await fetch('https://testcalendrier.herokuapp.com/api/v1/semaines');
     console.log(resp.json());
-    return resp.json();
+    return await resp.json();
 }
 (async () => {
   const resp=await chercherListeSemaine();
