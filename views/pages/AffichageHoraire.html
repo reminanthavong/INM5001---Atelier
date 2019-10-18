@@ -34,16 +34,16 @@ const selectListeSemaines=document.getElementById("listeSemaines");
 const choix = resp.choixSemaines;
 console.log(Object.keys(resp));
 console.log(choix);
-let options;
-for(const c of choix) {
-    const nvelleOption = `<option value="0">${c['idtablehoraire']}</option>`;
-    options.concat(nvelleOption);
-}
-//const listeSemainesbis= choix.map((semaine, index) => {
-//   `<option value="${index}">${semaine['idtablehoraire']}</option>`
-//})
+//let options;
+//for(const c of choix) {
+//    const nvelleOption = `<option value="0">${c['idtablehoraire']}</option>`;
+//    options.concat(nvelleOption);
+//}
+const listeSemainesbis= choix.map((semaine, index) => {
+   `<option value="${index}">${semaine['idtablehoraire']}</option>`
+})
 console.log(listeSemainesbis);
-selectListeSemaines.innerHTML = options;
+selectListeSemaines.innerHTML = listeSemainesbis;
 })()
 
 </script>
