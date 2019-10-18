@@ -23,9 +23,9 @@
 }
 (async () => {
   const {choixSemaines}=await chercherListeSemaine();
-console.log(semaines);
+console.log(choixSemaines);
 const selectListeSemaines=document.getElementById("listeSemaines");
-const listeSemainesbis= semaines.map((semaine, index) => {
+const listeSemainesbis= choixSemaines.map((semaine, index) => {
     `<option value="${index}">${semaine}</option>`
 })
 selectListeSemaines.innerHTML = listeSemainesbis;
