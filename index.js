@@ -10,8 +10,8 @@ const pool = new Pool({
 });
 
 express()
-.use(bodyParser.json()); // support json encoded bodies
-.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+  .use(bodyParser.json()); // support json encoded bodies
+  .use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
   .use(express.static(path.join(__dirname, 'public')))
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
