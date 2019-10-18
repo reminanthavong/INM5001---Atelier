@@ -31,7 +31,7 @@ async function chercherListeSemaine(){
   const resp=await chercherListeSemaine();
 console.log(resp);
 const selectListeSemaines=document.getElementById("listeSemaines");
-const choix = resp.choixSemaines;
+const choix = resp['choixSemaines'];
 console.log(choix);
 let options;
 for(const c of choix) {
