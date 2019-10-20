@@ -2,17 +2,19 @@ const express = require('express')
 const path = require('path')
 const PORT = process.env.PORT || 5000
 const { Pool } = require('pg');
+const app = express();
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: true
 });
 
-express()
-  .use(express.static(path.join(__dirname, 'public')))
-  .set('views', path.join(__dirname, 'views'))
-  .set('view engine', 'ejs')
-  .get('/', (req, res) => res.render('pages/index'))
-  .get('/db', async (req, res) => {
+
+app.use(express.static(path.join(__dirname, 'public')))
+app.set('views', path.join(__dirname, 'views'))
+app.set('view engine', 'ejs')
+app.get('/', (req, res) => res.render('pages/gestionEmploye'))
+
+app.get('/db', async (req, res) => {
     try {
       const client = await pool.connect()
       const result = await client.query('SELECT * FROM test_table');
@@ -27,6 +29,11 @@ express()
 
    //Page Mourad//
    .get('/api/v1/semaines', async (req, res) => {
+ 
+  
+
+   //Page Mourad//
+   app.get('/api/v1/semaines', async (req, res) => {
         try {
             const client = await pool.connect()
             const choixSemaine = await client.query(`SELECT DISTINCT IDTableHoraire FROM TableHoraire;`);
@@ -38,7 +45,7 @@ express()
             res.send("Erreur appel client " + err);
           }
    })
-    .post('/api/v1/horaires', async (req, res) => {
+    app.post('/api/v1/horaires', async (req, res) => {
         //const {choixsemaine} = req.body; //{$choixsemaine}
         const employeur = 'Gestion3525'
          try {
@@ -62,11 +69,90 @@ express()
              }
       })
 
-  .get('/AffichageHoraire', async (req, res) => {
+  app.get('/AffichageHoraire', async (req, res) => {
       res.sendFile(path.join(__dirname+'/views/pages/AffichageHoraire.html' /*, getHoraires */));
   })
    
 
 
 
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
+  app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
+  app.get('/AffichageHoraire', async (req, res) => {
+      res.sendFile(path.join(__dirname+'/views/pages/AffichageHoraire.html' /*, getHoraires */));
+  })
+  //fin page Mourad//
+  
+  //Page Kayla//
+  app.get('/Employe', async (req, res) => {	
+	  const rows = await afficherEmployes();
+	  res.setHeader("content-type", "application/json")
+	  res.send(JSON.stringify(rows))	
+  })
+
+  app.post('/Employe', async (req, res) => {
+	  let result = {}
+	  try{	
+		  const reqJson = req.body;
+		  await ajoutEmploye(reqJson.idemploye, reqJson.nomemploye, reqJson.prenomemploye, reqJson.nbrheuresmax, reqJson.dateembauche, reqJson.motdepasse);
+		  result.success = true;
+	  } catch (e) {
+		  result.success = false;
+	  } finally {
+		  res.setHeader("content-type", "application/json")
+		  res.send(JSON.stringify(result))
+	  }	
+  })
+
+  app.delete('/Employe', async (req, res) => {
+	  let result = {}
+	  try{	
+		  const reqJson = req.body;
+		  await deleteEmploye(reqJson.idemploye);
+		  result.success = true;		
+	  } catch (e) {
+		  result.success = false;
+	  } finally {
+		  res.setHeader("content-type", "application/json")
+		  res.send(JSON.stringify(result))
+	  }	
+	})
+	
+	async function ajoutEmploye(idemploye, nomemploye, prenomemploye, nbrheuresmax, dateembauche, motdepasse) {
+		try {
+			const client = await pool.connect();
+			await client.query("insert into BaseEmployes(idemployeur, idemploye, nomemploye, prenomemploye, nbrheuresmax, dateembauche) values ($1, $2, $3, $4, $5, $6)", ['Gestion0001', idemploye, nomemploye, prenomemploye, nbrheuresmax, dateembauche]);
+			//await client.query("insert into BaseIdentification values ($1, $2, $3)", [idemploye, motdepasse, '0'])
+			//await pool.query("insert into #BaseQuartsEmploye values ($1, $2, $3, $4, $5, $6, $7)", [IDEmployeur, IDEmploye, IDTableHoraire, TypeQuart, JourSemaine, Disponibilite])
+			client.release(); 
+			return true;
+		} catch(e){
+			return false;
+		}		
+	}
+
+	async function afficherEmployes() {
+		try {
+			const client = await pool.connect();
+			const results = await client.query("select IDEmploye, NomEmploye, PrenomEmploye, NBRHeuresMax, DateEmbauche from BaseEmployes")
+			client.release();
+			return results.rows
+		} catch(e) {
+			return [];
+		}
+	}
+
+	async function deleteEmploye(idemploye) {
+		try {
+			const client = await pool.connect();
+			await client.query("delete from BaseEmployes where IDEmploye = $1", [idemploye])
+			client.release();
+			return true
+		} catch(e) {
+			return false;
+			console.error(e);
+		}
+	}
+//Fin page Kayla//
+
+  app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
+  
