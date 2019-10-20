@@ -87,13 +87,9 @@ app.get('/db', async (req, res) => {
 	  let result = {}
 	  try{	
 		  const reqJson = req.body;
+		  console.log(reqJson);
 		  await ajoutEmploye(reqJson.idemploye, reqJson.nomemploye, reqJson.prenomemploye, reqJson.nbrheuresmax, reqJson.dateembauche, reqJson.motdepasse);
-		  console.log(reqJson.idemploye)
-		console.log(reqJson.nomemploye)
-		console.log(reqJson.prenomemploye)
-		console.log(reqJson.nbrheuresmax)
-		console.log(reqJson.dateembauche)
-		console.log(reqJson.motdepasse)
+		  
 		  result.success = true;
 	  } catch (e) {
 		  result.success = false;
@@ -122,7 +118,7 @@ app.get('/db', async (req, res) => {
 		
 		try {
 			const client = await pool.connect();
-			await client.query("insert into BaseEmployes(idemployeur, idemploye, nomemploye, prenomemploye, nbrheuresmax, dateembauche) values ($1, $2, $3, $4, $5, $6)", ['Gestion0001', idemploye, nomemploye, prenomemploye, nbrheuresmax, dateembauche]);
+			await client.query('INSERT INTO BaseEmployes(idemployeur, idemploye, nomemploye, prenomemploye, nbrheuresmax, dateembauche) values ($1, $2, $3, $4, $5, $6)', ['Gestion0001', idemploye, nomemploye, prenomemploye, nbrheuresmax, dateembauche]);
 			//await client.query("insert into BaseIdentification values ($1, $2, $3)", [idemploye, motdepasse, '0'])
 			//await pool.query("insert into #BaseQuartsEmploye values ($1, $2, $3, $4, $5, $6, $7)", [IDEmployeur, IDEmploye, IDTableHoraire, TypeQuart, JourSemaine, Disponibilite])
 			client.release(); 
