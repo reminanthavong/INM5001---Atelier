@@ -28,7 +28,8 @@ app.get('/db', async (req, res) => {
   })
 
    //Page Mourad//
-   .get('/api/v1/semaines', async (req, res) => {
+   app.get('/api/v1/semaines', async (req, res) => {
+
  
   
 
@@ -76,7 +77,6 @@ app.get('/db', async (req, res) => {
 
 
 
-  app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
   app.get('/AffichageHoraire', async (req, res) => {
       res.sendFile(path.join(__dirname+'/views/pages/AffichageHoraire.html' /*, getHoraires */));
   })
