@@ -12,7 +12,7 @@ const pool = new Pool({
 app.use(express.static(path.join(__dirname, 'public')))
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
-app.get('/', (req, res) => res.render('pages/index'))
+app.get('/', (req, res) => res.render('pages/gestionEmploye'))
 
 app.get('/db', async (req, res) => {
     try {
@@ -78,7 +78,6 @@ app.get('/db', async (req, res) => {
   
   //Page Kayla//
   app.get('/Employe', async (req, res) => {
-	  res.sendFile(path.join(__dirname+'/views/pages/gestionEmploye.ejs' /*, getHoraires */));
 	  const rows = await afficherEmployes();
 	  res.setHeader("content-type", "application/json")
 	  res.send(JSON.stringify(rows))
