@@ -10,17 +10,10 @@
 		<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-		
-		
 		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>		
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-		
-		
-		<!--    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.css"></script> -->
-		<script src="gestionEmp.js"></script>
 		<style>
 			html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 			.w3-sidebar {
@@ -78,11 +71,12 @@
       						<th>Identifiant</th>
       						<th>Nom</th>
       						<th>Prenom</th>
-      						<th>Nombre d'heures maximum par semaine</th>
+      						<th>Heures maximum par semaine</th>
       						<th>Date d'embauche</th>
       					</tr>
       					</thead>
       					<tbody id="tableEmploye">
+      					
       					</tbody>
       				</table>
     			</div>
@@ -122,7 +116,7 @@
       					<div class='form-row'>
       						<div class='form-group col-8'>
       							<label for='motdepasse'>Veuillez créer un mot de passe:</label>
-      							<input name='motdepasse' class='form-control form-constrol-sm' id='motdepasse' type='text' pattern='{1,6}' required='required'>
+      							<input name='motdepasse' class='form-control form-constrol-sm' id='motdepasse' type='text' pattern='[a-zA-Z0-9]{1,6}' required='required'>
       						</div>   						
       					</div>
       					<div class='form-row'>
@@ -267,8 +261,88 @@
 		function w3_close() {
   			mySidebar.style.display = "none";
   			overlayBg.style.display = "none";
-		}	
-		</script>
+		}
 		
+		//FONCTIONS POUR ACCEDER À LA BASE DE DONNÉES
+		const url = "/Employe";
+		
+		const btnCreer = document.getElementById("btncreeremploye");
+		const btnAfficher = document.getElementById("btnchercheremploye");
+		const btnCongedier = document.getElementById("btncongediement"); 
+		
+		btnAfficher.addEventListener("click", async e => {
+		    try {
+				const tableEmploye = document.getElementById("tableEmploye");
+				while(tableEmploye.firstChild) tableEmploye.removeChild(tableEmploye.firstChild);
+				const resultat = await fetch(url, {method: "GET"});
+				const employes = await resultat.json();
+				console.log(employes)
+				employes.forEach(t => {
+					const tr = document.createElement("tr");
+					const td1 = document.createElement("td");
+					const td2 = document.createElement("td");
+					const td3 = document.createElement("td");
+					const td4 = document.createElement("td");
+					const td5 = document.createElement("td");
+					td1.textContent = t.idemploye;
+					td2.textContent = t.nomemploye;
+					td3.textContent = t.prenomemploye;
+					td4.textContent = t.nbrheuresmax;
+					td5.textContent = t.dateembauche.substring(0,10);					
+					tableEmploye.appendChild(tr);
+					tr.appendChild(td1);
+					tr.appendChild(td2);
+					tr.appendChild(td3);
+					tr.appendChild(td4);
+					tr.appendChild(td5);
+				})
+		    }catch (e) {
+		  		console.log("Impossible d'afficher les employes");
+		    }
+		});	
+		
+		btnCreer.addEventListener("click", async e => {	
+			try {
+				const jsonEmp = {};			
+				jsonEmp.nomemploye =  document.getElementById('nomemployeid').value;					
+				jsonEmp.prenomemploye = document.getElementById('prenomemployeid').value;
+				jsonEmp.idemploye = creerIDEmploye(jsonEmp.nomemploye, jsonEmp.prenomemploye);
+				var heures = document.getElementById('nbheuresmaxid').value;
+				jsonEmp.nbrheuresmax = parseInt(heures, 10);				
+				var date = document.getElementById('dateembauche').value
+				alert(date);
+				jsonEmp.dateembauche = new Date(date);
+				jsonEmp.motdepasse = document.getElementById('motdepasse').value;
+				console.log(jsonEmp)
+				const result = await fetch(url, {method: "POST", 
+					headers: { "content-type": "application/json"}, body: JSON.stringify(jsonEmp) })
+				const success = await result.json();
+				alert(success.success);
+			} catch (e) {
+				console.log("Impossible d'ajouter un employe");
+			}
+		})
+
+		function creerIDEmploye(nom, prenom) {
+			let nomUn = nom.charAt(0);
+			let prenomQuatre = prenom.substring(0,4);
+			let ID = nomUn.concat(prenomQuatre);
+			return ID;
+		}
+		
+		btnCongedier.addEventListener("click", async e => {
+			const jsonRequest = {}
+			jsonRequest.idemploye = document.getElementById('identifiant').value;
+			console.log(jsonRequest)
+			const resultat = await fetch(url, {method: "DELETE", 
+        		headers: { "content-type": "application/json"}, body: JSON.stringify(jsonRequest) })
+        	const success = await resultat.json();
+			if(success.success) {
+				alert("Effacé!");
+			} else {
+				alert("Echec");
+			}
+		})		
+		</script>		
 	</body>
 </html>
