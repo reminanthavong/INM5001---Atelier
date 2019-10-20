@@ -319,7 +319,7 @@
 					'Accept': 'application/json',
       					'Content-Type': 'application/json'
 					}, 
-					body: JSON.stringify(jsonEmp) })
+					body: jsonEmp })
 				const success = await result.json();
 				alert(success.success);
 			} catch (e) {
