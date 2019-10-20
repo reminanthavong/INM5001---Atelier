@@ -77,11 +77,12 @@ app.get('/db', async (req, res) => {
   //fin page Mourad//
   
   //Page Kayla//
-  app.get('/Employe', async (req, res) => {	
+  app.get('/Employe', async (req, res) => {
+	  res.render('pages/gestionEmploye.');
 	  const rows = await afficherEmployes();
 	  res.setHeader("content-type", "application/json")
 	  res.send(JSON.stringify(rows))
-	  res.render('pages/gestionEmploye.');
+	  
   })
 
   app.post('/Employe', async (req, res) => {
@@ -99,7 +100,7 @@ app.get('/db', async (req, res) => {
 		  res.setHeader("content-type", "application/json")
 		  res.send(JSON.stringify(result))
 	  }
-	  res.render('pages/gestionEmploye.');
+	  
   })
 
   app.delete('/Employe', async (req, res) => {
@@ -114,7 +115,7 @@ app.get('/db', async (req, res) => {
 		  res.setHeader("content-type", "application/json")
 		  res.send(JSON.stringify(result))
 	  }
-	  res.render('pages/gestionEmploye.');
+	  
 	})
 	
 	async function ajoutEmploye(idemploye, nomemploye, prenomemploye, nbrheuresmax, dateembauche, motdepasse) {
