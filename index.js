@@ -12,7 +12,7 @@ const pool = new Pool({
 app.use(express.static(path.join(__dirname, 'public')))
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
-app.get('/', (req, res) => res.render('pages/gestionEmploye'))
+app.get('/', (req, res) => res.render('pages/index'))
 
 app.get('/db', async (req, res) => {
     try {
@@ -80,7 +80,8 @@ app.get('/db', async (req, res) => {
   app.get('/Employe', async (req, res) => {	
 	  const rows = await afficherEmployes();
 	  res.setHeader("content-type", "application/json")
-	  res.send(JSON.stringify(rows))	
+	  res.send(JSON.stringify(rows))
+	  res.render('pages/gestionEmploye.');
   })
 
   app.post('/Employe', async (req, res) => {
@@ -97,7 +98,8 @@ app.get('/db', async (req, res) => {
 	  } finally {
 		  res.setHeader("content-type", "application/json")
 		  res.send(JSON.stringify(result))
-	  }	
+	  }
+	  res.render('pages/gestionEmploye.');
   })
 
   app.delete('/Employe', async (req, res) => {
@@ -111,7 +113,8 @@ app.get('/db', async (req, res) => {
 	  } finally {
 		  res.setHeader("content-type", "application/json")
 		  res.send(JSON.stringify(result))
-	  }	
+	  }
+	  res.render('pages/gestionEmploye.');
 	})
 	
 	async function ajoutEmploye(idemploye, nomemploye, prenomemploye, nbrheuresmax, dateembauche, motdepasse) {
