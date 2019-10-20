@@ -313,7 +313,7 @@
 				jsonEmp.dateembauche = new Date(date);
 				jsonEmp.motdepasse = document.getElementById('motdepasse').value;
 				console.log(jsonEmp)
-				const result = await fetch('https://testpostgrest-calendrier.herokuapp.com/baseemployes', {method: "POST", 
+				const result = await fetch('/Employe', {method: "POST", 
 					headers: { 
 					'Accept': 'application/json',
       					'Content-Type': 'application/json'
