@@ -78,7 +78,7 @@ app.get('/db', async (req, res) => {
   
   //Page Kayla//
   app.get('/Employe', async (req, res) => {
-	  res.render('pages/gestionEmploye.');
+	  res.sendFile(path.join(__dirname+'/views/pages/gestionEmploye' /*, getHoraires */));
 	  const rows = await afficherEmployes();
 	  res.setHeader("content-type", "application/json")
 	  res.send(JSON.stringify(rows))
