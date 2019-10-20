@@ -29,12 +29,6 @@ app.get('/db', async (req, res) => {
 
    //Page Mourad//
    app.get('/api/v1/semaines', async (req, res) => {
-
- 
-  
-
-   //Page Mourad//
-   app.get('/api/v1/semaines', async (req, res) => {
         try {
             const client = await pool.connect()
             const choixSemaine = await client.query(`SELECT DISTINCT IDTableHoraire FROM TableHoraire;`);
