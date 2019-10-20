@@ -85,9 +85,9 @@ app.get('/db', async (req, res) => {
 
   app.post('/Employe', async (req, res) => {
 	  let result = {}
-	  try{	
-		  const reqJson = req.body;
+	  const reqJson = req.body;
 		  console.log(reqJson);
+	  try{	
 		  await ajoutEmploye(reqJson.idemploye, reqJson.nomemploye, reqJson.prenomemploye, reqJson.nbrheuresmax, reqJson.dateembauche, reqJson.motdepasse);
 		  
 		  result.success = true;
