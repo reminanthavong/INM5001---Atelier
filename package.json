@@ -5,16 +5,16 @@
   "engines": {
     "node": "10.x"
   },
-  "main": "gestionEmploye.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node gestionEmploye.js",
-    "node": "node gestionEmploye.js",
+    "start": "node index.js",
     "test": "node test.js"
   },
   "dependencies": {
     "@types/es6-promise": "^3.3.0",
     "@types/node": "^12.7.12",
-    "ejs": "^2.5.6",
+    "date-and-time": "^0.10.0",
+    "ejs": "^2.7.1",
     "express": "^4.15.2",
     "install": "^0.13.0",
     "lodash": "^4.17.15",
