@@ -310,7 +310,6 @@
 				var heures = document.getElementById('nbheuresmaxid').value;
 				jsonEmp.nbrheuresmax = parseInt(heures, 10);				
 				var date = document.getElementById('dateembauche').value
-				alert(date);
 				jsonEmp.dateembauche = new Date(date);
 				jsonEmp.motdepasse = document.getElementById('motdepasse').value;
 				console.log(jsonEmp)
@@ -333,12 +332,11 @@
 		btnCongedier.addEventListener("click", async e => {
 			const jsonRequest = {}
 			jsonRequest.idemploye = document.getElementById('identifiant').value;
-			console.log(jsonRequest)
 			const resultat = await fetch(url, {method: "DELETE", 
         		headers: { "content-type": "application/json"}, body: JSON.stringify(jsonRequest) })
         	const success = await resultat.json();
 			if(success.success) {
-				alert("Effacé!");
+				alert("Employé congédié!");
 			} else {
 				alert("Echec");
 			}
