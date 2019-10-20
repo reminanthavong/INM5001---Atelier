@@ -112,6 +112,14 @@ app.get('/db', async (req, res) => {
 	})
 	
 	async function ajoutEmploye(idemploye, nomemploye, prenomemploye, nbrheuresmax, dateembauche, motdepasse) {
+		
+		console.log(idemploye)
+		console.log(nomemploye)
+		console.log(prenomemploye)
+		console.log(nbrheuresmax)
+		console.log(dateembauche)
+		console.log(motdepasse)
+		
 		try {
 			const client = await pool.connect();
 			await client.query("insert into BaseEmployes(idemployeur, idemploye, nomemploye, prenomemploye, nbrheuresmax, dateembauche) values ($1, $2, $3, $4, $5, $6)", ['Gestion0001', idemploye, nomemploye, prenomemploye, nbrheuresmax, dateembauche]);
