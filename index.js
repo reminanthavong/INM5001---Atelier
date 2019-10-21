@@ -57,14 +57,14 @@ express()
   })
 // Fonction GestionEmploye
 .get('/GestionEmploye', async (req, res) => {
-      res.sendFile(path.join(__dirname+'pages/gestionEmploye'));
+      res.render('pages/gestionEmploye');
   })
 .get('/Employe',gestionemploye.fafficherEmployes)
 .post('/Employe',gestionemploye.fajouterEmploye )
 .delete('/Employe',gestionemploye.fenleverEmploye )
 // Fonction GestionHoraire
-.get('/GestionEmploye', async (req, res) => {
-      res.sendFile(path.join(__dirname+'pages/gestionHoraire'));
+.get('/GestionHoraire', async (req, res) => {
+      res.render('pages/gestionHoraire');
   })
 .get('/Employe',gestionhoraire.afficherHoraire)
 .post('/Employe',gestionhoraire.ajouterHoraire )
