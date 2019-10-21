@@ -50,3 +50,9 @@ const fonctions3  = async (req, res) => {
 const fonctions4  = async (req, res) => {
   res.sendFile(path.join(__dirname+'/views/pages/AffichageHoraire.html' /*, getHoraires */));
 }
+module.exports = {
+  fonctions1,
+  fonctions2,
+  fonctions3,
+  fonctions4
+}
