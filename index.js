@@ -1,166 +1,66 @@
 const express = require('express')
+const session = require('express-session');
 const bodyParser = require('body-parser')
 const path = require('path')
 const PORT = process.env.PORT || 5000
+const request = require('request');
 const { Pool } = require('pg');
-const app = express();
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: true
 });
+// Linker queries.js
+const afficherhoraire = require('./afficherhoraire')
+const login = require('./login')
+const gestionemploye = require('./gestionemploye')
+const gestionhoraire = require('./gestionhoraire')
 
- app.use(bodyParser.json())
-app.use(bodyParser.text())
-app.use(
+express()
+  .use(express.static(path.join(__dirname, 'public')))
+ .use(bodyParser.json())
+.use(bodyParser.text())
+.use(
   bodyParser.urlencoded({
     extended: true,
   })
 )
-
-app.use(express.static(path.join(__dirname, 'public')))
-app.set('views', path.join(__dirname, 'views'))
-app.set('view engine', 'ejs')
-app.get('/', (req, res) => res.render('pages/gestionEmploye'))
-
-app.get('/db', async (req, res) => {
-    try {
-      const client = await pool.connect()
-      const result = await client.query('SELECT * FROM test_table');
-      const results = { 'results': (result) ? result.rows : null};
-      res.render('pages/db', results );
-      client.release();
-    } catch (err) {
-      console.error(err);
-      res.send("Error " + err);
-    }
-  })
-
-   //Page Mourad//
-   app.get('/api/v1/semaines', async (req, res) => {
-        try {
-            const client = await pool.connect()
-            const choixSemaine = await client.query(`SELECT DISTINCT IDTableHoraire FROM TableHoraire;`);
-            const choixSemaines = { 'choixSemaines': (choixSemaine) ? choixSemaine.rows : null};
-            res.json( choixSemaines );
-            client.release();
-          } catch (err) {
-            console.error(err);
-            res.send("Erreur appel client " + err);
-          }
-   })
-    app.post('/api/v1/horaires', async (req, res) => {
-        //const {choixsemaine} = req.body; //{$choixsemaine}
-        const employeur = 'Gestion3525'
-         try {
-            const client = await pool.connect()
-            const horaires = await client.query(`SELECT *
-                                                         FROM
-                                                         (SELECT TC2.Valeur AS TypeQuart, TC3.Valeur AS JourSemaine, CONCAT(BE.NomEmploye,BE.PrenomEmploye) AS NomEmploye
-                                                                                                    	FROM TableHoraire TH
-                                                                                                    	LEFT JOIN BaseEmployes BE ON BE.IDEmploye=TH.IDEmploye
-                                                                                                    	LEFT JOIN TableCodes TC2 ON (TC2.Label='TypeQuart' AND TH.TypeQuart=TC2.Code)
-                                                                                                    	LEFT JOIN TableCodes TC3 ON (TC3.Label='JourSemaine' AND TH.JourSemaine=TC3.Code)
-                                                                                                    	WHERE TH.IDTableHoraire='001' AND TH.IDEmployeur='{$employeur}'
-                                                                                                    ) AS SourceTable;
-                                                         `);
-               //const horaires = { 'horaires': (horaires) ? choixSemaine.rows : null};
-               res.json( horaires );
-               client.release();
-             } catch (err) {
-               console.error(err);
-               res.send("Erreur appel client " + err);
-             }
-      })
-
-  app.get('/AffichageHoraire', async (req, res) => {
-      res.sendFile(path.join(__dirname+'/views/pages/AffichageHoraire.html' /*, getHoraires */));
-  })
-   
-
-
-
-  app.get('/AffichageHoraire', async (req, res) => {
-      res.sendFile(path.join(__dirname+'/views/pages/AffichageHoraire.html' /*, getHoraires */));
-  })
-  //fin page Mourad//
-  
-  //Page Kayla//
-  app.get('/Employe', async (req, res) => {
-	  const rows = await afficherEmployes();
-	  res.setHeader("content-type", "application/json")
-	  res.send(JSON.stringify(rows))
-	  
-  })
-
-  app.post('/Employe', async (req, res) => {
-	  let result = {}
-	  const reqJson = req.body;
-	  try{	
-		  await ajoutEmploye(reqJson.idemploye, reqJson.nomemploye, reqJson.prenomemploye, reqJson.nbrheuresmax, reqJson.dateembauche, reqJson.motdepasse);
-		  
-		  result.success = true;
-	  } catch (e) {
-		  result.success = false;
-	  } finally {
-		  res.setHeader("content-type", "application/json")
-		  res.send(JSON.stringify(result))
-	  }
-	  
-  })
-
-  app.delete('/Employe', async (req, res) => {
-	  let result = {}
-	  try{	
-		  const reqJson = req.body;
-		  await deleteEmploye(reqJson.idemploye);
-		  result.success = true;		
-	  } catch (e) {
-		  result.success = false;
-	  } finally {
-		  res.setHeader("content-type", "application/json")
-		  res.send(JSON.stringify(result))
-	  }
-	  
-	})
+.use(session({
+	secret: 'secret',
+	resave: true,
+	saveUninitialized: true
+}))
+  .set('views', path.join(__dirname, 'views'))
+  .set('view engine', 'ejs')
+  .get('/', function(request, response) {
+	response.sendFile(path.join(__dirname + '/views/pages/login.html'));
+})
+// Fonction Login
+.post('/auth', login.loginAPI)
+.get('/home', function(request, response) {
 	
-	async function ajoutEmploye(idemploye, nomemploye, prenomemploye, nbrheuresmax, dateembauche, motdepasse) {
-		
-		
-		try {
-			const client = await pool.connect();
-			await client.query('INSERT INTO BaseEmployes(idemployeur, idemploye, nomemploye, prenomemploye, nbrheuresmax, dateembauche) values ($1, $2, $3, $4, $5, $6)', ['Gestion0001', idemploye, nomemploye, prenomemploye, nbrheuresmax, dateembauche]);
-			//await client.query("insert into BaseIdentification values ($1, $2, $3)", [idemploye, motdepasse, '0'])
-			//await pool.query("insert into #BaseQuartsEmploye values ($1, $2, $3, $4, $5, $6, $7)", [IDEmployeur, IDEmploye, IDTableHoraire, TypeQuart, JourSemaine, Disponibilite])
-			client.release(); 
-			return true;
-		} catch(e){
-			return false;
-		}		
+	if (request.session.loggedin) {
+		response.render('pages/index');
+		//response.send('Welcome back, ' + request.session.username + '!');
+	} else {
+		response.send('Please login to view this page!');
 	}
+	response.end();
+})
+// Fonction AfficherHoraire
+.get('/api/v1/semaines',afficherhoraire.fonctions1 )
+.post('/api/v1/horaires',afficherhoraire.fonctions2 )
+.get('/AffichageHoraire',afficherhoraire.fonctions3 )
+.get('/AffichageHoraire',afficherhoraire.fonctions4 )	
+// Fonction GestionEmploye
+.get('/GestionEmploye',gestionemploye.pageWeb)
+.get('/Employe',gestionemploye.afficherEmploye)
+.post('/Employe',gestionemploye.ajouterEmploye )
+.delete('/Employe',gestionemploye.enleverEmploye )
+// Fonction GestionHoraire
+.get('/GestionEmploye',gestionhoraire.pageWeb)
+.get('/Employe',gestionhoraire.afficherHoraire)
+.post('/Employe',gestionhoraire.ajouterHoraire )
+.delete('/Employe',gestionhoraire.enleverEHoraire )
 
-	async function afficherEmployes() {
-		try {
-			const client = await pool.connect();
-			const results = await client.query("select IDEmploye, NomEmploye, PrenomEmploye, NBRHeuresMax, DateEmbauche from BaseEmployes")
-			client.release();
-			return results.rows
-		} catch(e) {
-			return [];
-		}
-	}
-
-	async function deleteEmploye(idemploye) {
-		try {
-			const client = await pool.connect();
-			await client.query("delete from BaseEmployes where IDEmploye = $1", [idemploye])
-			client.release();
-			return true
-		} catch(e) {
-			return false;
-			console.error(e);
-		}
-	}
-//Fin page Kayla//
-
-  app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
+ .listen(PORT, () => console.log(`Listening on ${ PORT }`))
   
