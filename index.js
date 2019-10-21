@@ -49,15 +49,23 @@ express()
 // Fonction AfficherHoraire
 .get('/api/v1/semaines',afficherhoraire.fonctions1 )
 .post('/api/v1/horaires',afficherhoraire.fonctions2 )
-.get('/AffichageHoraire',afficherhoraire.fonctions3 )
-.get('/AffichageHoraire',afficherhoraire.fonctions4 )	
+.get('/AffichageHoraire', async (req, res) => {
+      res.sendFile(path.join(__dirname+'/views/pages/AffichageHoraire.html' /*, getHoraires */));
+  })
+.get('/AffichageHoraire', async (req, res) => {
+      res.sendFile(path.join(__dirname+'/views/pages/AffichageHoraire.html' /*, getHoraires */));
+  })
 // Fonction GestionEmploye
-.get('/GestionEmploye',gestionemploye.fpageWeb)
+.get('/GestionEmploye', async (req, res) => {
+      res.sendFile(path.join(__dirname+'pages/gestionEmploye'));
+  })
 .get('/Employe',gestionemploye.fafficherEmployes)
 .post('/Employe',gestionemploye.fajouterEmploye )
 .delete('/Employe',gestionemploye.fenleverEmploye )
 // Fonction GestionHoraire
-.get('/GestionEmploye',gestionhoraire.pageWeb)
+.get('/GestionEmploye', async (req, res) => {
+      res.sendFile(path.join(__dirname+'pages/gestionHoraire'));
+  })
 .get('/Employe',gestionhoraire.afficherHoraire)
 .post('/Employe',gestionhoraire.ajouterHoraire )
 .delete('/Employe',gestionhoraire.enleverHoraire )
