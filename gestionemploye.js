@@ -8,7 +8,7 @@ const fpageWeb  = async (req, res) => {
 response.sendFile(path.join(__dirname + '/views/pages/gestionEmploye.ejs'));
 }
 
-const fafficherEmploye  = async (req, res) => {
+const fafficherEmployes  = async (req, res) => {
 	  const rows = await afficherEmployes();
 	  res.setHeader("content-type", "application/json")
 	  res.send(JSON.stringify(rows))
