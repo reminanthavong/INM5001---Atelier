@@ -77,7 +77,7 @@
       						<th>Identifiant</th>
       						<th>Nom</th>
       						<th>Prenom</th>
-      						<th>Heures maximum par semaine</th>
+      						<th>Heures maximales par semaine</th>
       						<th>Date d'embauche</th>
       					</tr>
       					</thead>
@@ -275,7 +275,7 @@
 		const btnCreer = document.getElementById("btncreeremploye");
 		const btnAfficher = document.getElementById("btnchercheremploye");
 		const btnCongedier = document.getElementById("btncongediement"); 
-		const btnCacher = document.getElementById("btnCacherListe")
+		const btnCacher = document.getElementById("btncacherliste")
 		
 		btnAfficher.addEventListener("click", async e => {
 		    try {
@@ -309,10 +309,9 @@
 		});	
 		
 		btnCacher.addEventListener("click", function() {
+			const tableEmploye = document.getElementById("tableEmploye");
 			while(tableEmploye.firstChild) tableEmploye.removeChild(tableEmploye.firstChild);
 		}) 
-			
-		}
 		
 		btnCreer.addEventListener("click", async e => {	
 			try {
