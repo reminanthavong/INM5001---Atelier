@@ -87,5 +87,5 @@ const fenleverEmploye   = async (req, res) => {
   fpageWeb,
   fajouterEmploye,
   fafficherEmployes,
-  fdeleteEmploye
+  fenleverEmploye
 }
