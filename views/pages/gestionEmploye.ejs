@@ -60,7 +60,16 @@
     			<div class="w3-twothird w3-container">
       				<h1 class="w3-text-teal">Rechercher des employés</h1>
       				<br/>
-      				<button class='btn btn-primary' style='background-color:grey; border:none' id="btnchercheremploye" name='btnchercheremploye' value='btnchercheremploye'>Afficher tous les employés</button>
+      				<div class='container'>
+      					<div class='row>'>
+      						<div class='col-4'>
+      							<button class='btn btn-primary' style='background-color:grey; border:none' id="btnchercheremploye" name='btnchercheremploye' value='btnchercheremploye'>Afficher tous les employés</button>
+      						</div>
+      						<div class='col-4'>
+      							<button class='btn btn-primary' style='background-color:grey; border:none' id="btncacherliste" name='btncacherliste' value='btncacherlliste'>Dissimuler la liste des employés</button>
+      						</div>
+      					</div>
+      				</div>
       				<br/><br/>
       				<table class='table'>
       					<thead>
@@ -266,6 +275,7 @@
 		const btnCreer = document.getElementById("btncreeremploye");
 		const btnAfficher = document.getElementById("btnchercheremploye");
 		const btnCongedier = document.getElementById("btncongediement"); 
+		const btnCacher = document.getElementById("btnCacherListe")
 		
 		btnAfficher.addEventListener("click", async e => {
 		    try {
@@ -297,6 +307,12 @@
 		  		console.log("Impossible d'afficher les employes");
 		    }
 		});	
+		
+		btnCacher.addEventListener("click", function() {
+			while(tableEmploye.firstChild) tableEmploye.removeChild(tableEmploye.firstChild);
+		}) 
+			
+		}
 		
 		btnCreer.addEventListener("click", async e => {	
 			try {
