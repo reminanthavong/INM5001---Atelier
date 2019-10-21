@@ -53,7 +53,7 @@ express()
 .get('/AffichageHoraire',afficherhoraire.fonctions4 )	
 // Fonction GestionEmploye
 .get('/GestionEmploye',gestionemploye.fpageWeb)
-.get('/Employe',gestionemploye.fafficherEmploye)
+.get('/Employe',gestionemploye.fafficherEmployes)
 .post('/Employe',gestionemploye.fajouterEmploye )
 .delete('/Employe',gestionemploye.fenleverEmploye )
 // Fonction GestionHoraire
