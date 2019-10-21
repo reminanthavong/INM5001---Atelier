@@ -95,8 +95,6 @@ app.get('/db', async (req, res) => {
   app.post('/Employe', async (req, res) => {
 	  let result = {}
 	  const reqJson = req.body;
-		  console.log(reqJson.idemploye);
-	  console.log(reqJson.nomemploye);
 	  try{	
 		  await ajoutEmploye(reqJson.idemploye, reqJson.nomemploye, reqJson.prenomemploye, reqJson.nbrheuresmax, reqJson.dateembauche, reqJson.motdepasse);
 		  
