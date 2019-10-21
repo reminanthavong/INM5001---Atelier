@@ -52,15 +52,15 @@ express()
 .get('/AffichageHoraire',afficherhoraire.fonctions3 )
 .get('/AffichageHoraire',afficherhoraire.fonctions4 )	
 // Fonction GestionEmploye
-.get('/GestionEmploye',gestionemploye.pageWeb)
-.get('/Employe',gestionemploye.afficherEmploye)
-.post('/Employe',gestionemploye.ajouterEmploye )
-.delete('/Employe',gestionemploye.enleverEmploye )
+.get('/GestionEmploye',gestionemploye.fpageWeb)
+.get('/Employe',gestionemploye.fafficherEmploye)
+.post('/Employe',gestionemploye.fajouterEmploye )
+.delete('/Employe',gestionemploye.fenleverEmploye )
 // Fonction GestionHoraire
 .get('/GestionEmploye',gestionhoraire.pageWeb)
 .get('/Employe',gestionhoraire.afficherHoraire)
 .post('/Employe',gestionhoraire.ajouterHoraire )
-.delete('/Employe',gestionhoraire.enleverEHoraire )
+.delete('/Employe',gestionhoraire.enleverHoraire )
 
  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
   
