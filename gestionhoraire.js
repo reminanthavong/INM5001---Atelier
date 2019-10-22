@@ -13,6 +13,7 @@ response.sendFile(path.join(__dirname + '/views/pages/gestionHoraire.ejs'));
 
 const afficherHoraire  = async (req, res) => {
 sessEmployeur = req.session.username;
+console.log(sessEmployeur);
 res.end();
 }
    
