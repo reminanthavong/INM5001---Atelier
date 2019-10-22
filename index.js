@@ -66,9 +66,9 @@ express()
 .get('/GestionHoraire', async (req, res) => {
       res.render('pages/gestionHoraire');
   })
-.get('/Employe',gestionhoraire.afficherHoraire)
-.post('/Employe',gestionhoraire.ajouterHoraire )
-.delete('/Employe',gestionhoraire.enleverHoraire )
+.get('/Horaire',gestionhoraire.afficherHoraire)
+.post('/Horaire',gestionhoraire.ajouterHoraire )
+.delete('/Horaire',gestionhoraire.enleverHoraire )
 
  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
   
