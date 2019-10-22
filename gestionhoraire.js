@@ -14,7 +14,8 @@ response.sendFile(path.join(__dirname + '/views/pages/gestionHoraire.ejs'));
 }
 
 const afficherHoraire  = async (req, res) => {
-
+sess = req.session;
+console.log(sess);
 res.end();
 }
    
