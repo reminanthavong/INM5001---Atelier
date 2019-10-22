@@ -8,14 +8,12 @@ const pool = new Pool({
 var sess;
 
 const pageWeb  = async (req, res) => {
-sess = req.session;
-console.log(sess);
 response.sendFile(path.join(__dirname + '/views/pages/gestionHoraire.ejs'));
 }
 
 const afficherHoraire  = async (req, res) => {
 sess = req.session;
-console.log(sess);
+console.log(sess.username);
 res.end();
 }
    
