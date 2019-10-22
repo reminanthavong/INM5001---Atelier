@@ -26,3 +26,22 @@ L’équipe est formé de quatre membres.
 | Mourad  Latoui | Développeur |
 | Kayla Louis  | Développeur, rédaction de la documentation |
 | Alexandre Lauzon | Développeur  |
+
+## Installation IDE
+
+Vous devez installer les applications suivante: 
+
+Eclipse : https://www.eclipse.org/downloads/
+NodeJS: https://nodejs.org/en/download/
+npm: https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
+Oracle JDK: https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+Heroku CLI: https://devcenter.heroku.com/articles/heroku-cli#download-and-install
+PostgreSQL: https://www.postgresql.org/download/
+
+Une fois le tout installer, il faudra installer le plugin nodejs dans eclipse:
+                            1) Ouvrir Eclipse
+                            2) Allez dans Help
+                            3) Vouz trouveriez Eclipse Marketplace
+                            4) Recherchez et installez  Enide (Studio) 2015 - Node.js, JavaScript, Java and Web Tools
+                            
+Vous etes maintenant prêt à programmer!     
