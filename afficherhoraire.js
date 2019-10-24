@@ -20,8 +20,8 @@ const fonctions1  = async (req, res) => {
 
 const fonctions2  = async (req, res) => {
 
-        //const resp = req.body; //{$choixsemaine}
-        const resp = { choixSemaine: '001'};
+        const resp = req.body; //{$choixsemaine}
+        //const resp = { choixSemaine: '001'};
         const employeur = 'Gestion3525'
          try {
             const client = await pool.connect()
@@ -35,8 +35,8 @@ const fonctions2  = async (req, res) => {
                                                                                                     	WHERE TH.IDTableHoraire='${resp.choixsemaine}' AND TH.IDEmployeur='${employeur}'
                                                                                                     ) AS SourceTable;
                                                          `);
-               //const horaires = { 'horaires': (horaires) ? horaires.rows : null};
-               res.json( horaires );
+               const horairesRecu = { 'horaires': (horaires) ? horaires.rows : null};
+               res.json( horairesRecu );
                client.release();
              } catch (err) {
                console.error(err);
