@@ -57,7 +57,7 @@ express()
   })
 // Fonction GestionEmploye
 .get('/GestionEmploye', async (req, res) => {
-	if (request.session.typeutilisateur == 1){
+	if (req.session.typeutilisateur == 1){
       res.render('pages/gestionEmploye');
 	} else {
 	  res.send('Vous devez être une Administrateur pour acceder à cette page!');	
@@ -68,7 +68,7 @@ express()
 .delete('/Employe',gestionemploye.fenleverEmploye )
 // Fonction GestionHoraire
 .get('/GestionHoraire', async (req, res) => {
-	if (request.session.typeutilisateur == 1){
+	if (req.session.typeutilisateur == 1){
       res.render('pages/gestionHoraire');
 		} else {
 	  res.send('Vous devez être une Administrateur pour acceder à cette page!');	
