@@ -15,8 +15,18 @@ const loginAPI = async (request, response) => {	// Nom de la fonction
 		 
 		 // Si le JSON n'est pas vide et le mot de passe est valide
       if ( checkUsername.length > 0 && checkUsername[0].motdepasse == password ) {
-	                        
-	      const infoUser = await getIDgestion(username); // Allez chercher les informations du utilisateur
+	                      if (checkUsername[0].typeutilisateur == 1){
+			         // Ajout dans JSON Session
+	      			request.session.loggedin = true; // Utilisateur est logger
+				request.session.username = username; // Valeur utilisateur
+	      			request.session.idgestion = username; // Valeur IDgestion
+	                        request.session.nom = username; // Valeur nom de l'employe
+	                        request.session.prenom = 'Administrateur'; // Valeur prenom de l'employe
+	                        request.session.typeutilisateur = checkUsername[0].typeutilisateur; // Si utilisateur est admin
+ 				response.redirect('/home'); // Redigirer veurs index.ejs
+			      
+			      }  else {
+	                        const infoUser = await getIDgestion(username); // Allez chercher les informations du utilisateur   
 				// Ajout dans JSON Session
 	      			request.session.loggedin = true; // Utilisateur est logger
 				request.session.username = username; // Valeur utilisateur
@@ -24,7 +34,9 @@ const loginAPI = async (request, response) => {	// Nom de la fonction
 	                        request.session.nom = infoUser[0].nomemploye; // Valeur nom de l'employe
 	                        request.session.prenom = infoUser[0].prenomemploye; // Valeur prenom de l'employe
 	                        request.session.typeutilisateur = checkUsername[0].typeutilisateur; // Si utilisateur est admin
- 				response.redirect('/home'); // Redigirer veurs index.ejs
+ 				response.redirect('/home'); // Redigirer veurs index.ejs 
+			      }
+	      
 			} else {
 				response.send('Incorrect Username and/or Password!'); // Si les informations est invalide
 			}			
