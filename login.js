@@ -1,27 +1,73 @@
+// Module ou Variable requis pour le fonctionnement des fonctions
 var data = require('request');
+const session = require('express-session');	
+const bodyParser = require('body-parser')
+var PostgREST = require('postgrest-client')
+var Api = new PostgREST ('http://testpostgrest-calendrier.herokuapp.com')
 
-const loginAPI = (request, response) => {
-	const username = request.body.username;
-	const password = request.body.password;
-	var url = 'https://testpostgrest-calendrier.herokuapp.com/baseidentification';
-	var url2 = url + '?idutilisateur=eq.' + username + '&motdepasse=eq.' + password;
-	data(url2, function(err, res, body) {
-        
-	data2 = JSON.parse(body);	
-		if (data2.length > 0) {
-				request.session.loggedin = true;
-				request.session.username = username;
-				response.redirect('/home');
-			} else {
-				response.send('Incorrect Username and/or Password!');
-			}			
-			response.end();
-});
+// Fonction pour verifier si les valeurs entrez dans le formulaire login est valides.
+const loginAPI = async (request, response) => {	// Nom de la fonction
+	const username = request.body.username; // Input username dans login.html
+	const password = request.body.password; // Input password dans login.html
 	
-
+	 try {
+      const checkUsername = await verifierUser(username); // Allez chercher le JSON dans la fonction verifierUser
+		 
+		 // Si le JSON n'est pas vide et le mot de passe est valide
+      if ( checkUsername.length > 0 && checkUsername[0].motdepasse == password ) {
+	                        
+	      const infoUser = await getIDgestion(username); // Allez chercher les informations du utilisateur
+				// Ajout dans JSON Session
+	      			request.session.loggedin = true; // Utilisateur est logger
+				request.session.username = username; // Valeur utilisateur
+	      			request.session.idgestion = infoUser[0].idemployeur; // Valeur IDgestion
+	                        request.session.nom = infoUser[0].nomemploye; // Valeur nom de l'employe
+	                        request.session.prenom = infoUser[0].prenomemploye; // Valeur prenom de l'employe
+	                        request.session.typeutilisateur = checkUsername[0].typeutilisateur; // Si utilisateur est admin
+ 				response.redirect('/home'); // Redigirer veurs index.ejs
+			} else {
+				response.send('Incorrect Username and/or Password!'); // Si les informations est invalide
+			}			
+			response.end(); // Fin de la fonction
+    } catch (err) { // Si erreur essaye de l'attraper
+      console.error(err);
+      response.send("Error " + err);
+    }
+	
 }
 
+// Fonction qui fait une requete vers API pour chercher utlisateur
+async function verifierUser(user) {
+ return await Api.get('/baseidentification').eq('idutilisateur', user)
+}
 
+// Fonction qui fait une requete vers API pour chercher IDgestion
+async function getIDgestion(user) {
+	const checkUsername = await verifierUser(user);
+	var typeUtilisateur = null;
+	// Verifie si utilisateur existe et allez chercher typeUtilisateur
+	if ( checkUsername.length > 0 ){
+		
+	typeUtilisateur = checkUsername[0].typeutilisateur
+		
+	}
+	// Sinon
+	else {
+	
+		return null
+	}
+	// Si utilisateur est un gestionnaire, alors son IDgestion = Utilisateur dans table BaseIdentification
+	if (typeUtilisateur == 1){
+	
+		return user
+		}
+	else {  //Sinon faire request table baseEmployes
+		return await Api.get('/baseemployes').eq('idemploye', user)
+		
+		}
+	
+}
+// Pour lier a index.js
 module.exports = {
   loginAPI
 }
