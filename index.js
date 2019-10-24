@@ -57,14 +57,22 @@ express()
   })
 // Fonction GestionEmploye
 .get('/GestionEmploye', async (req, res) => {
+	if (request.session.typeutilisateur == 1){
       res.render('pages/gestionEmploye');
+	} else {
+	  res.send('Vous devez être une Administrateur pour acceder à cette page!');	
+	}
   })
 .get('/Employe',gestionemploye.fafficherEmployes)
 .post('/Employe',gestionemploye.fajouterEmploye )
 .delete('/Employe',gestionemploye.fenleverEmploye )
 // Fonction GestionHoraire
 .get('/GestionHoraire', async (req, res) => {
+	if (request.session.typeutilisateur == 1){
       res.render('pages/gestionHoraire');
+		} else {
+	  res.send('Vous devez être une Administrateur pour acceder à cette page!');	
+	}
   })
 .get('/Horaire',gestionhoraire.afficherHoraire)
 .post('/Horaire',gestionhoraire.ajouterHoraire )
