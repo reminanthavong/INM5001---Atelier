@@ -35,7 +35,7 @@ const fonctions2  = async (req, res) => {
                                                                                                     	WHERE TH.IDTableHoraire='${resp.choixsemaine}' AND TH.IDEmployeur='${employeur}'
                                                                                                     ) AS SourceTable;
                                                          `);
-               const horaires = { 'horaires': (horaires) ? horaires.rows : null};
+               //const horaires = { 'horaires': (horaires) ? horaires.rows : null};
                res.json( horaires );
                client.release();
              } catch (err) {
