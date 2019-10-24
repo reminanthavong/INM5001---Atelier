@@ -35,14 +35,14 @@ express()
 	response.sendFile(path.join(__dirname + '/views/pages/login.html'));
 })
 // Fonction Login
-.post('/auth', login.loginAPI)
+.post('/auth', login.loginAPI) // Validation des entrez dans login.html
 .get('/home', function(request, response) {
-	
-	if (request.session.loggedin) {
-		response.render('pages/index');
-		//response.send('Welcome back, ' + request.session.username + '!');
+	// Si validation passe
+	if (request.session.loggedin) { // Si 'True'
+	const results = request.session; // Prendre les informations dans le JSON Session	
+		response.render('pages/index',results); // Afficher index.ejs
 	} else {
-		response.send('Please login to view this page!');
+		response.send('Please login to view this page!'); // Sinon
 	}
 	response.end();
 })
