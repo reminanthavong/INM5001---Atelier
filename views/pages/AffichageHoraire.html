@@ -43,12 +43,21 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 <h2>Choix parametres</h2>
 <select id="listeSemaines"></select>
 
+<div id="tabledesHoraire"></div>
+
+
+
+
+
+
+
    </div>
  
   </div>
    
 
   </div>
+  
 
   <footer id="myFooter">
     <div class="w3-container w3-theme-l2 w3-padding-32">
@@ -113,6 +122,8 @@ async function handleSelectChange(event) {
     console.log(event)
     const resp = await chercherHoraire(event.target.value);
     console.log(resp);
+    const tabledesresultats=document.getElementById("tabledesHoraire");
+    stabledesresultats.innerHTML = resp;
 }
 (async () => {
 const resp=await chercherListeSemaine();
