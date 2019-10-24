@@ -39,21 +39,38 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 
   <div class="w3-row w3-padding-64">
     <div class="w3-twothird w3-container">
-      <h1 class="w3-text-teal">Heading</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum
-        dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    </div>
- 
-  </div>
-
-  <div class="w3-row">
-    <div class="w3-twothird w3-container">
-      <h1 class="w3-text-teal">Heading</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum
-        dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    </div>
-
-  </div>
+      <div class="w3-row">
+        <div class="w3-twothird w3-container">
+            <h1 class="w3-text-teal">Générer un horaire:</h1>
+            <br/>
+            <div class='container'>
+            <form enctype='multipart/form-data'>
+            <fieldset>
+              <div class='form-row'>
+                <div class='form-group col-8'>
+                  <label for='employejour'>Nombre d'employés de jour:</label>
+                  <input name='employejour' class='form-control form-constrol-sm' id='employejourid' type='text' pattern='[0-9]' required='required'>
+                </div>
+    
+              <div class='form-row'>
+                <div class='form-group col-8'>
+                  <label for='employesoir'>Nombre d'employés de soir:</label>
+                  <input name='employesoir' class='form-control form-constrol-sm' id='employesoirid' type='text' pattern='[0-9]' required='required'>
+                </div>
+              </div>	
+              
+              <div class='form-row'>
+                <div class='form-group col-8'>
+                  <label for='employenuit'>Nombre d'employés de nuit:</label>
+                  <input name='employenuit' class='form-control form-constrol-sm' id='employenuitid' type='text' pattern='[0-9]' required='required'>
+                </div>   						
+              </div>
+              <button class='btn btn-primary' style='background-color:grey; border:none' id="btncreeremploye" name='btncreeremploye' value='btncreeremploye'>Envoyer</button>
+            </fieldset>
+            </form>
+            </div>
+        </div>    		
+      </div>
 
   <div class="w3-row w3-padding-64">
     <div class="w3-twothird w3-container">
