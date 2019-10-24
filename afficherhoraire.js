@@ -20,7 +20,7 @@ const fonctions1  = async (req, res) => {
 
 const fonctions2  = async (req, res) => {
 
-    const resp = req.body; //{$choixsemaine}
+        const resp = req.body; //{$choixsemaine}
         const employeur = 'Gestion3525'
          try {
             const client = await pool.connect()
@@ -31,7 +31,7 @@ const fonctions2  = async (req, res) => {
                                                                                                     	LEFT JOIN BaseEmployes BE ON BE.IDEmploye=TH.IDEmploye
                                                                                                     	LEFT JOIN TableCodes TC2 ON (TC2.Label='TypeQuart' AND TH.TypeQuart=TC2.Code)
                                                                                                     	LEFT JOIN TableCodes TC3 ON (TC3.Label='JourSemaine' AND TH.JourSemaine=TC3.Code)
-                                                                                                    	WHERE TH.IDTableHoraire='{$resp.choixsemaine}' AND TH.IDEmployeur='{$employeur}'
+                                                                                                    	WHERE TH.IDTableHoraire='${resp.choixsemaine}' AND TH.IDEmployeur='${employeur}'
                                                                                                     ) AS SourceTable;
                                                          `);
                const horaires = { 'horaires': (horaires) ? horaires.rows : null};
