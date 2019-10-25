@@ -511,8 +511,8 @@
 			jsonDispo.dispo = dispo;
 			const result = await fetch('/Disponibilite', {
 		        method: 'POST', 
-			headers: { 
-			'Accept': 'application/json',
+				headers: { 
+				'Accept': 'application/json',
 					'Content-Type': 'application/json'
 			}, 
 			body: JSON.stringify(jsonDispo) })
