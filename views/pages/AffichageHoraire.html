@@ -123,7 +123,7 @@ async function handleSelectChange(event) {
     const resp = await chercherHoraire(event.target.value);
     console.log(resp);
     const tabledesresultats=document.getElementById("tabledesHoraire");
-    tabledesresultats.innerHTML = resp;
+    tabledesresultats.innerHTML = JSON.stringify(resp);
 }
 (async () => {
 const resp=await chercherListeSemaine();
