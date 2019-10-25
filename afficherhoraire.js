@@ -35,11 +35,8 @@ const fonctions2  = async (req, res) => {
                                                                                                     	LEFT JOIN TableCodes TC2 ON (TC2.Label='TypeQuart' AND TH.TypeQuart=TC2.Code)
                                                                                                     	LEFT JOIN TableCodes TC3 ON (TC3.Label='JourSemaine' AND TH.JourSemaine=TC3.Code)
                                                                                                     	WHERE TH.IDTableHoraire='${choix}' AND TH.IDEmployeur='${employeur}'
-                                                                                                    ) PIVOT(
-                                                                                                      	MAX(TypeQuart)
-                                                                                                      	FOR JourSemaine IN(
-                                                                                                      		LUNDI,MARDI,MERCREDI,JEUDI,VENDREDI
-                                                                                                      	);
+                                                                                                    ) AS SourceTable;
+
                                                          `);
                const horairesRecu = { 'horaires': (horaires) ? horaires.rows : null};
                res.json( horairesRecu );
