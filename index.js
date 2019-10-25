@@ -62,7 +62,8 @@ if (req.session.typeutilisateur == 1){
   })
 // Fonction GestionEmploye
 .get('/GestionEmploye', async (req, res) => {
-	if (req.session.typeutilisateur == 1){
+	console.log(err)
+	if (req.session.typeutilisateur == 1) {
       res.render('pages/gestionEmploye');
 	} else {
 	  res.send('Vous devez être une Administrateur pour acceder à cette page!');	
