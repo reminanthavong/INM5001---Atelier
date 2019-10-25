@@ -15,7 +15,8 @@ const pool = new Pool({
     password: "e669132b12a9be74fc1c2d60d357928740f17fc9e2b84c1d4b30199b3bb1bd14",
     host: "ec2-54-243-208-234.compute-1.amazonaws.com",
     port: 5432,
-    database: "d181pdml81daoa"
+    database: "d181pdml81daoa",
+    ssl: true
 });
 
 // Linker queries.js
@@ -70,6 +71,7 @@ express()
   })
 .get('/Employe',gestionemploye.fafficherEmployes)
 .post('/Employe',gestionemploye.fajouterEmploye )
+.post('Disponibilite', gestionemploye.fajouterDisponibilite)
 .delete('/Employe',gestionemploye.fenleverEmploye )
 // Fonction GestionHoraire
 .get('/GestionHoraire', async (req, res) => {

@@ -1,8 +1,17 @@
 const { Pool } = require('pg');
 const session = require('express-session');
+//const pool = new Pool({
+  //connectionString: process.env.DATABASE_URL,
+  //ssl: true
+//});
+
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: true
+    user: "nvgnyxzoglgozi",
+    password: "e669132b12a9be74fc1c2d60d357928740f17fc9e2b84c1d4b30199b3bb1bd14",
+    host: "ec2-54-243-208-234.compute-1.amazonaws.com",
+    port: 5432,
+    database: "d181pdml81daoa",
+    ssl: true
 });
 
 const fpageWeb  = async (req, res) => {
@@ -19,8 +28,9 @@ const fafficherEmployes  = async (req, res) => {
 const fajouterEmploye   = async (req, res) => {
 	  let result = {}
 	  const reqJson = req.body;
+	  var sessEmployeur = req.session.username;
 	  try{	
-		  await ajoutEmploye(reqJson.idemploye, reqJson.nomemploye, reqJson.prenomemploye, reqJson.nbrheuresmax, reqJson.dateembauche, reqJson.motdepasse);
+		  await ajoutEmploye(sessEmployeur, reqJson.idemploye, reqJson.nomemploye, reqJson.prenomemploye, reqJson.nbrheuresmax, reqJson.dateembauche, reqJson.motdepasse);
 		  
 		  result.success = true;
 	  } catch (e) {
@@ -35,7 +45,8 @@ const fenleverEmploye   = async (req, res) => {
 	  let result = {}
 	  try{	
 		  const reqJson = req.body;
-		  await deleteEmploye(reqJson.idemploye);
+		  var sessEmployeur = req.session.username;
+		  await deleteEmploye(reqJson.idemploye, sessEmployeur);
 		  result.success = true;		
 	  } catch (e) {
 		  result.success = false;
@@ -46,15 +57,29 @@ const fenleverEmploye   = async (req, res) => {
 	  
 }
 
-	async function ajoutEmploye(idemploye, nomemploye, prenomemploye, nbrheuresmax, dateembauche, motdepasse) {
+const fajouterDisponibilite = async(req, res) => {
+	let result = {}
+	const reqjson = req.body;
+	var sessEmployeur = req.session.username;
+	var idtablehoraire = sessEmployeur.concat("00000000");
+	try{	
+		  await ajoutDispo(sessEmployeur, reqJson.idemploye, idtablehoraire, reqJson.typequart, req.joursemaine, req.dispo);		  
+		  result.success = true;
+	  } catch (e) {
+		  result.success = false;
+	  } finally {
+		  res.setHeader("content-type", "application/json")
+		  res.send(JSON.stringify(result))
+	  }
+}
+
+	async function ajoutEmploye(idemployeur, idemploye, nomemploye, prenomemploye, nbrheuresmax, dateembauche, motdepasse) {
 		
 		
 		try {
 			const client = await pool.connect();
-			var sessEmployeur = req.session.username;
-			await client.query('INSERT INTO BaseEmployes(idemployeur, idemploye, nomemploye, prenomemploye, nbrheuresmax, dateembauche) values ($1, $2, $3, $4, $5, $6)', [sessEmployeur, idemploye, nomemploye, prenomemploye, nbrheuresmax, dateembauche]);
-			//await client.query("insert into BaseIdentification values ($1, $2, $3)", [idemploye, motdepasse, '0'])
-			//await pool.query("insert into #BaseQuartsEmploye values ($1, $2, $3, $4, $5, $6, $7)", [IDEmployeur, IDEmploye, IDTableHoraire, TypeQuart, JourSemaine, Disponibilite])
+			await client.query('INSERT INTO BaseEmployes(idemployeur, idemploye, nomemploye, prenomemploye, nbrheuresmax, dateembauche) values ($1, $2, $3, $4, $5, $6)', [idemployeur, idemploye, nomemploye, prenomemploye, nbrheuresmax, dateembauche]);
+			await client.query("insert into BaseIdentification values ($1, $2, $3)", [idemploye, motdepasse, '0'])
 			client.release(); 
 			return true;
 		} catch(e){
@@ -65,7 +90,7 @@ const fenleverEmploye   = async (req, res) => {
 	async function afficherEmployes(idemployeur) {
 		try {
 			const client = await pool.connect();
-			const results = await client.query("select IDEmploye, NomEmploye, PrenomEmploye, NBRHeuresMax, DateEmbauche from BaseEmployes where IDEmployeur = 'idemployeur'")
+			const results = await client.query('select IDEmploye, NomEmploye, PrenomEmploye, NBRHeuresMax, DateEmbauche from BaseEmployes where IDEmployeur = $1',[idemployeur])
 			client.release();
 			return results.rows
 		} catch(e) {
@@ -73,16 +98,27 @@ const fenleverEmploye   = async (req, res) => {
 		}
 	}
 
-	async function deleteEmploye(idemploye) {
+	async function deleteEmploye(idemploye, idemployeur) {
 		try {
 			const client = await pool.connect();
-			await client.query("delete from BaseEmployes where IDEmploye = $1", [idemploye])
+			await client.query("delete from BaseEmployes where IDEmploye = $1 and IDEmployeur = $2", [idemploye, idemployeur])
 			client.release();
 			return true
 		} catch(e) {
 			return false;
 			console.error(e);
 		}
+	}
+	
+	async function ajoutDispo(idemployeur, idemploye, idtablehoraire, typequart, joursemaine, disponibilite) {		
+		try {
+			const client = await pool.connect();
+			await pool.query("insert into baseQuartsEmploye values ($1, $2, $3, $4, $5, $6, $7)", [idemployeur, idemploye, idtableHoraire, TypeQuart, JourSemaine, Disponibilite, "1"]);
+			client.release(); 
+			return true;
+		} catch(e){
+			return false;
+		}		
 	}
   
   
