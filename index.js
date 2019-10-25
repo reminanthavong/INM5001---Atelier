@@ -54,9 +54,9 @@ express()
   })
 .get('/AffichageHoraire', async (req, res) => {
 if (req.session.typeutilisateur == 1){
-      res.render('pages/gestionEmploye');
+      res.render('pages/AffichageHoraire');
 	} else {
-      res.sendFile(path.join(__dirname+'/views/pages/AffichageHoraire.html' /*, getHoraires */));
+	  res.send('Vous devez être une Administrateur pour acceder à cette page!');
 	}
   })
 // Fonction GestionEmploye
