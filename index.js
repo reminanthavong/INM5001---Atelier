@@ -2,14 +2,9 @@ const express = require('express')
 const session = require('express-session');
 const bodyParser = require('body-parser')
 const path = require('path')
-//const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 5000
 const request = require('request');
 const { Pool } = require('pg');
-//const pool = new Pool({
-  //connectionString: process.env.DATABASE_URL,
-  //ssl: true
-//});
-
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: true
