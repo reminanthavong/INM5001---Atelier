@@ -63,6 +63,7 @@ express()
 .get('/Employe',gestionemploye.fafficherEmployes)
 .post('/Employe',gestionemploye.fajouterEmploye )
 .post('/Disponibilite', gestionemploye.fajouterDisponibilite)
+.post('/InfoEmploye', gestionemploye.fmodidierEmploye)
 .delete('/Employe',gestionemploye.fenleverEmploye )
 // Fonction GestionHoraire
 .get('/GestionHoraire', async (req, res) => {

@@ -65,6 +65,21 @@ const fajouterDisponibilite = async(req, res) => {
 	  }
 }
 
+const fmodierEmploye   = async (req, res) => {
+	  let result = {}
+	  const reqJson = req.body;
+	  var sessEmployeur = req.session.username;
+	  try{	
+		  await modierEmploye(sessEmployeur, reqJson.idemploye, reqJson.nomemploye, reqJson.prenomemploye, reqJson.nbrheuresmax, reqJson.dateembauche);		  
+		  result.success = true;
+	  } catch (e) {
+		  result.success = false;
+	  } finally {
+		  res.setHeader("content-type", "application/json")
+		  res.send(JSON.stringify(result))
+	  }
+}
+
 	async function ajoutEmploye(idemployeur, idemploye, nomemploye, prenomemploye, nbrheuresmax, dateembauche, motdepasse) {
 		
 		
@@ -113,6 +128,18 @@ const fajouterDisponibilite = async(req, res) => {
 		} catch(e){
 			return false;
 		}		
+	}
+	
+	async function modifierEmploye(idemployeur, idemploye, nomemploye, prenomemploye, nbrheuresmax, dateembauche) {
+		try {
+			const client = await pool.connect();
+			await client.query("update baseEmployes set nomemploye = $1, prenomemploye = $2, nbrheuresmax = $3, dateembauche = $4 where idemploye = $5 and idemployeur = $6", [nomemploye, prenomemploye, nbrheuresmax, dateembauche, idemploye, idemployeur])
+			client.release();
+			return true;
+		} catch (e) {
+			return false;
+			console.error(e);
+		}
 	}
   
   
