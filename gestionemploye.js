@@ -5,15 +5,6 @@ const pool = new Pool({
   ssl: true
 });
 
-//const pool = new Pool({
-    //user: "nvgnyxzoglgozi",
-    //password: "e669132b12a9be74fc1c2d60d357928740f17fc9e2b84c1d4b30199b3bb1bd14",
-    //host: "ec2-54-243-208-234.compute-1.amazonaws.com",
-    //port: 5432,
-    //database: "d181pdml81daoa",
-    //ssl: true
-//});
-
 const fpageWeb  = async (req, res) => {
 response.sendFile(path.join(__dirname + '/views/pages/gestionEmploye.ejs'));
 }
