@@ -318,11 +318,13 @@
 					
 					td2.addEventListener("click", async e=> {
 						var nom = prompt("Veuillez entrer le nouveau nom de " + t.prenomemploye + " " + t.nomemploye)
+						nom = nom.tpUpperCase()
 						changerInfoEmploye(t.idemploye, nom, t.prenomemploye, t.nbrheuresmax, t.dateembauche)
 					})
 					
 					td3.addEventListener("click", async e=> {
 						var prenom = prompt("Veuillez entrer le nouveau prenom de " + t.prenomemploye + " " + t.nomemploye)
+						prenom = prenom.toUpperCase()
 						changerInfoEmploye(t.idemploye, t.nomemploye, prenom, t.nbrheuresmax, t.dateembauche)
 					})
 					
@@ -365,7 +367,6 @@
 			}	
 		}
 			
-		}
 		
 		btnCacher.addEventListener("click", function() {
 			const tableEmploye = document.getElementById("tableEmploye");
@@ -379,8 +380,9 @@
 			const employes = await resultat.json();
 			console.log(employes)
 			const dropDown = document.getElementById("selectionRecherche");
-			const recherchePar = e.options[e.selectedIndex].value;
-			const inputRecherche = document.getElementById("").text
+			const recherchePar = dropDown.options[dropDown.selectedIndex].value;
+			const inputRecherche = document.getElementById("nomouprenom").text
+			inputRecherche = inputRecherche.toUpperCase();
 			if (rechercherPar = "nom") {
 				employes.forEach(t => {
 					if (t.nomemploye = inputRecherche)	{				
@@ -432,8 +434,10 @@
 		btnCreer.addEventListener("click", async e => {	
 			try {
 				const jsonEmp = {};			
-				jsonEmp.nomemploye =  document.getElementById('nomemployeid').value;					
-				jsonEmp.prenomemploye = document.getElementById('prenomemployeid').value;
+				var nomEmp =  document.getElementById('nomemployeid').value;	
+				jsonEmp.nomemploye = nomEmp.toUpperCase();				
+				var prenomEmp = document.getElementById('prenomemployeid').value;
+				jsonEmp.prenomemploye = prenomEmp.toUpperCase();
 				jsonEmp.idemploye = creerIDEmploye(jsonEmp.nomemploye, jsonEmp.prenomemploye);
 				var heures = document.getElementById('nbheuresmaxid').value;
 				jsonEmp.nbrheuresmax = parseInt(heures, 10);				
@@ -561,7 +565,8 @@
 		
 		btnCongedier.addEventListener("click", async e => {
 			const jsonRequest = {}
-			jsonRequest.idemploye = document.getElementById('identifiant').value;
+			var ID = document.getElementById('identifiant').value;
+			jsonRequest.idemploye = ID.toUpperCase();
 			const resultat = await fetch(url, {method: "DELETE", 
         		headers: { "content-type": "application/json"}, body: JSON.stringify(jsonRequest) })
         	const success = await resultat.json();
