@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "@types/lodash": "^4.14.144",
+    "mocha": "^6.2.2",
     "request": "^2.81.0",
     "tape": "^4.7.0"
   },
