@@ -53,7 +53,11 @@ express()
       res.sendFile(path.join(__dirname+'/views/pages/AffichageHoraire.html' /*, getHoraires */));
   })
 .get('/AffichageHoraire', async (req, res) => {
+if (req.session.typeutilisateur == 1){
+      res.render('pages/gestionEmploye');
+	} else {
       res.sendFile(path.join(__dirname+'/views/pages/AffichageHoraire.html' /*, getHoraires */));
+	}
   })
 // Fonction GestionEmploye
 .get('/GestionEmploye', async (req, res) => {
