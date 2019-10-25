@@ -50,7 +50,30 @@
     			<div class="w3-twothird w3-container">
       				<h1 class="w3-text-teal">Rechercher des employés</h1>
       				<br/>
-      				<button class='btn btn-primary' style='background-color:grey; border:none' id="btnchercheremploye" name='btnchercheremploye' value='btnchercheremploye'>Afficher tous les employés</button>
+      				<div class='container'>
+      					<div class='row'>
+      						<div class='col-5'>
+      							<button class='btn btn-primary' style='background-color:grey; border:none' id="btnchercheremploye" name='btnchercheremploye' value='btnchercheremploye'>Afficher tous les employés</button>
+      						</div>
+      						<div class='col-1'></div>
+      						<div class='col-5'>
+      							<button class='btn btn-primary' style='background-color:grey; border:none' id="btncacherliste" name='btncacherliste' value='btncacherlliste'>Dissimuler la liste des employés</button>
+      						</div>
+      					</div>
+      					<br/>
+      					<div class='form-row'>
+      						<div class='col-3'>
+      							<label for='recherche'>Rechercher d'employés</label>	
+      							<select id="selectionRecherche" class="form-control">
+        							<option>Nom</option>
+        							<option>Prenom</option>
+      							</select>
+      						</div>
+      						<div class='col-3'>
+      							<input name='nomouprenom' class='form-control form-constrol-sm' id='nomouprenom' type='text' pattern='[a-zA-Z]{4,20}'>
+      						</div>
+      					</div>
+      				</div>
       				<br/><br/>
       				<table class='table'>
       					<thead>
@@ -58,7 +81,7 @@
       						<th>Identifiant</th>
       						<th>Nom</th>
       						<th>Prenom</th>
-      						<th>Heures maximum par semaine</th>
+      						<th>Heures maximales par semaine</th>
       						<th>Date d'embauche</th>
       					</tr>
       					</thead>
@@ -256,6 +279,7 @@
 		const btnCreer = document.getElementById("btncreeremploye");
 		const btnAfficher = document.getElementById("btnchercheremploye");
 		const btnCongedier = document.getElementById("btncongediement"); 
+		const btnCacher = document.getElementById("btncacherliste")
 		
 		btnAfficher.addEventListener("click", async e => {
 		    try {
@@ -287,6 +311,11 @@
 		  		console.log("Impossible d'afficher les employes");
 		    }
 		});	
+		
+		btnCacher.addEventListener("click", function() {
+			const tableEmploye = document.getElementById("tableEmploye");
+			while(tableEmploye.firstChild) tableEmploye.removeChild(tableEmploye.firstChild);
+		}) 
 		
 		btnCreer.addEventListener("click", async e => {	
 			try {
