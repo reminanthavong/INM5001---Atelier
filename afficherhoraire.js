@@ -23,6 +23,7 @@ const fonctions2  = async (req, res) => {
         //const resp = { choixSemaine: '001'};
         const choix = resp.choixsemaine
         console.log(req.body)
+             console.log(choix)
         const employeur = 'Gestion3525'
          try {
             const client = await pool.connect()
