@@ -131,6 +131,7 @@ async function handleSelectChange(event) {
     const ligne = `<tr><td>${c.nomemploye}</td><td>${c.typequart}</td><td>${c.joursemaine}</td></tr>`;
     lignes = lignes + ligne;
   }
+  console.log(options);
   tabledesHoraire.innerHTML = lignes;
 
 }
