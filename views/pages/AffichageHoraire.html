@@ -126,12 +126,12 @@ async function handleSelectChange(event) {
     //tabledesresultats.innerHTML = JSON.stringify(resp);
 
 
-    const lignes=''
+    let lignes=''
     for(const c of JSON.stringify(resp.horaires)) {
     const ligne = `<tr><td>${c.nomemploye}</td><td>${c.typequart}</td><td>${c.joursemaine}</td></tr>`;
     lignes = lignes + ligne;
   }
-  console.log(options);
+  console.log(lignes);
   tabledesHoraire.innerHTML = lignes;
 
 }
