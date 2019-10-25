@@ -127,7 +127,7 @@ async function handleSelectChange(event) {
 
 
     let lignes=''
-    for(const c of JSON.stringify(resp.horaires)) {
+    for(const c of resp.horaires) {
     const ligne = `<tr><td>${c.nomemploye}</td><td>${c.typequart}</td><td>${c.joursemaine}</td></tr>`;
     lignes = lignes + ligne;
   }
