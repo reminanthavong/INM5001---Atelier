@@ -37,7 +37,8 @@ const fenleverEmploye   = async (req, res) => {
 	  try{	
 		  const reqJson = req.body;
 		  var sessEmployeur = req.session.username;
-		  await deleteEmploye(reqJson.idemploye, sessEmployeur);
+		  var idtablehoraire = sessEmployeur.concat("00000000");
+		  await deleteEmploye(reqJson.idemploye, sessEmployeur, idtablehoraire);
 		  result.success = true;		
 	  } catch (e) {
 		  result.success = false;
@@ -89,10 +90,12 @@ const fajouterDisponibilite = async(req, res) => {
 		}
 	}
 
-	async function deleteEmploye(idemploye, idemployeur) {
+	async function deleteEmploye(idemploye, idemployeur, idtablehoraire) {
 		try {
 			const client = await pool.connect();
 			await client.query("delete from BaseEmployes where IDEmploye = $1 and IDEmployeur = $2", [idemploye, idemployeur])
+			await client.query("delete from BaseIdentification where idutilisateur = $1 and IDEmployeur = $2", [idemploye])
+			await client.query("update baseQuartsEmploye set disponiblite = $1 where idemploye = $2 and idtablehoraire = $3", ['0', idemploye, idtablehoraire])
 			client.release();
 			return true
 		} catch(e) {
