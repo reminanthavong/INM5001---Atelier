@@ -11,6 +11,7 @@ response.sendFile(path.join(__dirname + '/views/pages/gestionEmploye.ejs'));
 
 const fafficherEmployes  = async (req, res) => {
 	  var sessEmployeur = req.session.username;
+	  console.log(sessEmployeur)
 	  const rows = await afficherEmployes(sessEmployeur);
 	  res.setHeader("content-type", "application/json")
 	  res.send(JSON.stringify(rows))
