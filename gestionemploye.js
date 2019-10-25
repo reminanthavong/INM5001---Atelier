@@ -1,4 +1,5 @@
 const { Pool } = require('pg');
+const session = require('express-session');
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: true
@@ -9,7 +10,8 @@ response.sendFile(path.join(__dirname + '/views/pages/gestionEmploye.ejs'));
 }
 
 const fafficherEmployes  = async (req, res) => {
-	  const rows = await afficherEmployes();
+	  var sessEmployeur = req.session.username;
+	  const rows = await afficherEmployes(sessEmployeur);
 	  res.setHeader("content-type", "application/json")
 	  res.send(JSON.stringify(rows))
 }
@@ -49,7 +51,8 @@ const fenleverEmploye   = async (req, res) => {
 		
 		try {
 			const client = await pool.connect();
-			await client.query('INSERT INTO BaseEmployes(idemployeur, idemploye, nomemploye, prenomemploye, nbrheuresmax, dateembauche) values ($1, $2, $3, $4, $5, $6)', ['Gestion0001', idemploye, nomemploye, prenomemploye, nbrheuresmax, dateembauche]);
+			var sessEmployeur = req.session.username;
+			await client.query('INSERT INTO BaseEmployes(idemployeur, idemploye, nomemploye, prenomemploye, nbrheuresmax, dateembauche) values ($1, $2, $3, $4, $5, $6)', [sessEmployeur, idemploye, nomemploye, prenomemploye, nbrheuresmax, dateembauche]);
 			//await client.query("insert into BaseIdentification values ($1, $2, $3)", [idemploye, motdepasse, '0'])
 			//await pool.query("insert into #BaseQuartsEmploye values ($1, $2, $3, $4, $5, $6, $7)", [IDEmployeur, IDEmploye, IDTableHoraire, TypeQuart, JourSemaine, Disponibilite])
 			client.release(); 
@@ -59,10 +62,10 @@ const fenleverEmploye   = async (req, res) => {
 		}		
 	}
 
-	async function afficherEmployes() {
+	async function afficherEmployes(idemployeur) {
 		try {
 			const client = await pool.connect();
-			const results = await client.query("select IDEmploye, NomEmploye, PrenomEmploye, NBRHeuresMax, DateEmbauche from BaseEmployes")
+			const results = await client.query("select IDEmploye, NomEmploye, PrenomEmploye, NBRHeuresMax, DateEmbauche from BaseEmployes where IDEmployeur = 'idemployeur'")
 			client.release();
 			return results.rows
 		} catch(e) {

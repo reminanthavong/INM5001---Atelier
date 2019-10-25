@@ -62,12 +62,25 @@
       				<br/>
       				<div class='container'>
       					<div class='row'>
-      						<div class='col-4'>
+      						<div class='col-5'>
       							<button class='btn btn-primary' style='background-color:grey; border:none' id="btnchercheremploye" name='btnchercheremploye' value='btnchercheremploye'>Afficher tous les employés</button>
       						</div>
       						<div class='col-1'></div>
-      						<div class='col-4'>
+      						<div class='col-5'>
       							<button class='btn btn-primary' style='background-color:grey; border:none' id="btncacherliste" name='btncacherliste' value='btncacherlliste'>Dissimuler la liste des employés</button>
+      						</div>
+      					</div>
+      					<br/>
+      					<div class='form-row'>
+      						<div class='col-3'>
+      							<label for='recherche'>Rechercher d'employés</label>	
+      							<select id="selectionRecherche" class="form-control">
+        							<option>Nom</option>
+        							<option>Prenom</option>
+      							</select>
+      						</div>
+      						<div class='col-3'>
+      							<input name='nomouprenom' class='form-control form-constrol-sm' id='nomouprenom' type='text' pattern='[a-zA-Z]{4,20}'>
       						</div>
       					</div>
       				</div>
