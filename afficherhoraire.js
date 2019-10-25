@@ -19,7 +19,7 @@ const fonctions1  = async (req, res) => {
 }
 
 const fonctions2  = async (req, res) => {
-        const resp = req.body; //{$choixsemaine}
+        const resp = JSON.parse(req.body); //{$choixsemaine}
         //const resp = { choixSemaine: '001'};
         const choix = resp['choixsemaine']
         console.log(req.body)
