@@ -66,7 +66,7 @@ const fenleverEmploye   = async (req, res) => {
 	async function afficherEmployes(idemployeur) {
 		try {
 			const client = await pool.connect();
-			const results = await client.query("select IDEmploye, NomEmploye, PrenomEmploye, NBRHeuresMax, DateEmbauche from BaseEmployes where IDEmployeur = 'idemployeur'")
+			const results = await client.query('select IDEmploye, NomEmploye, PrenomEmploye, NBRHeuresMax, DateEmbauche from BaseEmployes where IDEmployeur = $1',[idemployeur])
 			client.release();
 			return results.rows
 		} catch(e) {
