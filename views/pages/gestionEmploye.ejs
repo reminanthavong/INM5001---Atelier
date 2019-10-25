@@ -88,7 +88,8 @@
       						</div>
       					</div>
       				</div>
-      				<br/><br/>
+      				<br/>
+      				<p> Veuillez cliquer sur le nom, prénom ou le nombre d'heures d'un employé pour le modifier.</p>
       				<table class='table'>
       					<thead>
       					<tr>
@@ -338,7 +339,7 @@
 					
 					td4.addEventListener("click", async e=> {
 						var heures = prompt("Veuillez entrer le nouveau nombre d'heures maximum de " + t.prenomemploye + " " + t.nomemploye);
-						if (heures != null && heures != "") {
+						if (heures != null && heures != "" && !isNaN(heures)) {
 							changerInfoEmploye(t.idemploye, t.nomemploye, t.prenomemploye, heures, t.dateembauche);
 						} else {
 							alert("Aucune modification n'a été faite")
