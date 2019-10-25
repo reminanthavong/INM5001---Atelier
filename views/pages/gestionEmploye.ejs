@@ -317,20 +317,32 @@
 					td5.textContent = t.dateembauche.substring(0,10);
 					
 					td2.addEventListener("click", async e=> {
-						var nom = prompt("Veuillez entrer le nouveau nom de " + t.prenomemploye + " " + t.nomemploye)
-						nom = nom.tpUpperCase()
-						changerInfoEmploye(t.idemploye, nom, t.prenomemploye, t.nbrheuresmax, t.dateembauche)
+						var nom = prompt("Veuillez entrer le nouveau nom de " + t.prenomemploye + " " + t.nomemploye);
+						if (nom != null and nom != "") {
+							nom = nom.toUpperCase();
+							changerInfoEmploye(t.idemploye, nom, t.prenomemploye, t.nbrheuresmax, t.dateembauche);
+						} else {
+							alert("Aucune modification n'a été faite")
+						}
 					})
 					
 					td3.addEventListener("click", async e=> {
-						var prenom = prompt("Veuillez entrer le nouveau prenom de " + t.prenomemploye + " " + t.nomemploye)
-						prenom = prenom.toUpperCase()
-						changerInfoEmploye(t.idemploye, t.nomemploye, prenom, t.nbrheuresmax, t.dateembauche)
+						var prenom = prompt("Veuillez entrer le nouveau prenom de " + t.prenomemploye + " " + t.nomemploye);
+						if (nom != null and nom != "") {
+							prenom = prenom.toUpperCase();
+							changerInfoEmploye(t.idemploye, t.nomemploye, prenom, t.nbrheuresmax, t.dateembauche);
+						} else {
+							alert("Aucune modification n'a été faite")
+						}
 					})
 					
 					td4.addEventListener("click", async e=> {
-						var heures = prompt("Veuillez entrer le nouveau nombre d'heures maximum de " + t.prenomemploye + " " + t.nomemploye)
-						changerInfoEmploye(t.idemploye, t.nomemploye, t.prenomemploye, heures, t.dateembauche)
+						var heures = prompt("Veuillez entrer le nouveau nombre d'heures maximum de " + t.prenomemploye + " " + t.nomemploye);
+						if (nom != null and nom != "") {
+							changerInfoEmploye(t.idemploye, t.nomemploye, t.prenomemploye, heures, t.dateembauche);
+						} else {
+							alert("Aucune modification n'a été faite")
+						}
 					})
 					
 					tableEmploye.appendChild(tr);
@@ -383,9 +395,9 @@
 			const recherchePar = dropDown.options[dropDown.selectedIndex].value;
 			const inputRecherche = document.getElementById("nomouprenom").text
 			inputRecherche = inputRecherche.toUpperCase();
-			if (rechercherPar = "nom") {
+			if (rechercherPar == "nom") {
 				employes.forEach(t => {
-					if (t.nomemploye = inputRecherche)	{				
+					if (t.nomemploye == inputRecherche)	{				
 						const tr = document.createElement("tr");
 						const td1 = document.createElement("td");
 						const td2 = document.createElement("td");
@@ -405,9 +417,9 @@
 						tr.appendChild(td5);
 					}
 				})
-			}else if (rechercherPar = "prenom") {
+			}else if (rechercherPar == "prenom") {
 				employes.forEach(t => {
-					if (t.prenomemploye = inputRecherche)	{				
+					if (t.prenomemploye == inputRecherche)	{				
 						const tr = document.createElement("tr");
 						const td1 = document.createElement("td");
 						const td2 = document.createElement("td");
