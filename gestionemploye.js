@@ -84,6 +84,9 @@ const fmodifierEmploye   = async (req, res) => {
 }
 
 	async function ajoutEmploye(idemployeur, idemploye, nomemploye, prenomemploye, nbrheuresmax, dateembauche, motdepasse) {	
+		console.log(nomemploye)
+		console.log(dateembauche)
+		
 		try {
 			const client = await pool.connect();
 			await client.query('INSERT INTO BaseEmployes(idemployeur, idemploye, nomemploye, prenomemploye, nbrheuresmax, dateembauche) values ($1, $2, $3, $4, $5, $6)', [idemployeur, idemploye, nomemploye, prenomemploye, nbrheuresmax, dateembauche]);
