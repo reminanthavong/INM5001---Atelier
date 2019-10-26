@@ -311,7 +311,7 @@
 						var nom = prompt("Veuillez entrer le nouveau nom de " + t.prenomemploye + " " + t.nomemploye);
 						if (nom != null && nom != "") {
 							nom = nom.toUpperCase();
-							changerInfoEmploye(t.idemploye, nom, t.prenomemploye, t.nbrheuresmax, t.dateembauche);
+							changerInfoEmploye(t.idemploye, nom, t.prenomemploye, t.nbrheuresmax);
 						} else {
 							alert("Aucune modification n'a été faite")
 						}
@@ -321,7 +321,7 @@
 						var prenom = prompt("Veuillez entrer le nouveau prenom de " + t.prenomemploye + " " + t.nomemploye);
 						if (prenom != null && prenom != "") {
 							prenom = prenom.toUpperCase();
-							changerInfoEmploye(t.idemploye, t.nomemploye, prenom, t.nbrheuresmax, t.dateembauche);
+							changerInfoEmploye(t.idemploye, t.nomemploye, prenom, t.nbrheuresmax);
 						} else {
 							alert("Aucune modification n'a été faite")
 						}
@@ -330,7 +330,7 @@
 					td4.addEventListener("click", async e=> {
 						var heures = prompt("Veuillez entrer le nouveau nombre d'heures maximum de " + t.prenomemploye + " " + t.nomemploye);
 						if (heures != null && heures != "" && !isNaN(heures)) {
-							changerInfoEmploye(t.idemploye, t.nomemploye, t.prenomemploye, heures, t.dateembauche);
+							changerInfoEmploye(t.idemploye, t.nomemploye, t.prenomemploye, heures);
 						} else {
 							alert("Aucune modification n'a été faite")
 						}
@@ -348,14 +348,13 @@
 		    }
 		});	
 		
-		async function changerInfoEmploye(idemploye, nomemploye, prenomemploye, nbrheuresmax, dateembauche) {
+		async function changerInfoEmploye(idemploye, nomemploye, prenomemploye, nbrheuresmax) {
 			const jsonEmp = {};
 			jsonEmp.idemploye = idemploye;
 			jsonEmp.nomEmploye = nomemploye;
 			jsonEmp.prenomEmploye = prenomemploye;
 			jsonEmp.nbrheuresmax = nbrheuresmax;
-			jsonEmp.dateembauche = dateembauche;
-			const result = await fetch("/InfoEmploye", {
+			const result = await fetch('/InfoEmploye', {
 		        method: 'POST', 
 				headers: { 
 				'Accept': 'application/json',
@@ -384,11 +383,11 @@
 			console.log(employes)
 			const dropDown = document.getElementById("selectionRecherche");
 			const recherchePar = dropDown.options[dropDown.selectedIndex].value;
-			const inputRecherche = document.getElementById("nomouprenom").text
-			inputRecherche = inputRecherche.toUpperCase();
-			if (rechercherPar == "nom") {
+			const inputRecherche = document.getElementById("nomouprenom").value;
+			const input = inputRecherche.toUpperCase();
+			if (recherchePar == "nom") {
 				employes.forEach(t => {
-					if (t.nomemploye == inputRecherche)	{				
+					if (t.nomemploye == input)	{				
 						const tr = document.createElement("tr");
 						const td1 = document.createElement("td");
 						const td2 = document.createElement("td");
@@ -399,7 +398,37 @@
 						td2.textContent = t.nomemploye;
 						td3.textContent = t.prenomemploye;
 						td4.textContent = t.nbrheuresmax;
-						td5.textContent = t.dateembauche.substring(0,10);					
+						td5.textContent = t.dateembauche.substring(0,10);	
+						
+						td2.addEventListener("click", async e => {
+							var nomEmp = prompt("Veuillez entrer le nouveau nom de " + t.prenomemploye + " " + t.nomemploye);
+							if (nomEmp != null && nomEmp != "") {
+								const nom = nomEmp.toUpperCase();
+								changerInfoEmploye(t.idemploye, nom, t.prenomemploye, t.nbrheuresmax);
+							} else {
+								alert("Aucune modification n'a été faite")
+							}
+						})
+						
+						td3.addEventListener("click", async e => {
+							var prenomEmp = prompt("Veuillez entrer le nouveau prenom de " + t.prenomemploye + " " + t.nomemploye);
+							if (prenomEmp != null && prenomEmp != "") {
+								var prenom = prenomEmp.toUpperCase();
+								changerInfoEmploye(t.idemploye, t.nomemploye, prenom, t.nbrheuresmax);
+							} else {
+								alert("Aucune modification n'a été faite")
+							}
+						})
+						
+						td4.addEventListener("click", async e => {
+							var heures = prompt("Veuillez entrer le nouveau nombre d'heures maximum de " + t.prenomemploye + " " + t.nomemploye);
+							if (heures != null && heures != "" && !isNaN(heures)) {
+								changerInfoEmploye(t.idemploye, t.nomemploye, t.prenomemploye, heures);
+							} else {
+								alert("Aucune modification n'a été faite")
+							}
+						})
+						
 						tableEmploye.appendChild(tr);
 						tr.appendChild(td1);
 						tr.appendChild(td2);
@@ -408,9 +437,9 @@
 						tr.appendChild(td5);
 					}
 				})
-			}else if (rechercherPar == "prenom") {
+			}else if (recherchePar == "prenom") {
 				employes.forEach(t => {
-					if (t.prenomemploye == inputRecherche)	{				
+					if (t.prenomemploye == input)	{				
 						const tr = document.createElement("tr");
 						const td1 = document.createElement("td");
 						const td2 = document.createElement("td");

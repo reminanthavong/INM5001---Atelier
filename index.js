@@ -2,12 +2,21 @@ const express = require('express')
 const session = require('express-session');
 const bodyParser = require('body-parser')
 const path = require('path')
-const PORT = process.env.PORT || 5000
+//const PORT = process.env.PORT || 5000
 const request = require('request');
 const { Pool } = require('pg');
+//const pool = new Pool({
+  //connectionString: process.env.DATABASE_URL,
+  //ssl: true
+//});
+
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: true
+    user: "nvgnyxzoglgozi",
+    password: "e669132b12a9be74fc1c2d60d357928740f17fc9e2b84c1d4b30199b3bb1bd14",
+    host: "ec2-54-243-208-234.compute-1.amazonaws.com",
+    port: 5432,
+    database: "d181pdml81daoa",
+    ssl: true
 });
 
 // Linker queries.js
@@ -71,8 +80,13 @@ if (req.session.typeutilisateur == 1){
 
 .get('/Employe',gestionemploye.fafficherEmployes)
 .post('/Employe',gestionemploye.fajouterEmploye )
+
+.get('/Disponibilite', gestionemploye.fajouterDisponibilite)
 .post('/Disponibilite', gestionemploye.fajouterDisponibilite)
+
+.get('/InfoEmploye', gestionemploye.fmodifierEmploye)
 .post('/InfoEmploye', gestionemploye.fmodifierEmploye)
+
 .delete('/Employe',gestionemploye.fenleverEmploye )
 
 // Fonction GestionHoraire
@@ -87,4 +101,5 @@ if (req.session.typeutilisateur == 1){
 .post('/Horaire',gestionhoraire.ajouterHoraire )
 .delete('/Horaire',gestionhoraire.enleverHoraire )
 
- .listen(PORT, () => console.log(`Listening on ${ PORT }`))
+.listen (8080, () => {console.log('we are live on port 8080')})
+ //.listen(PORT, () => console.log(`Listening on ${ PORT }`))

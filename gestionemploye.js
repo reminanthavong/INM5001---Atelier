@@ -1,8 +1,17 @@
 const { Pool } = require('pg');
 const session = require('express-session');
+//const pool = new Pool({
+  //connectionString: process.env.DATABASE_URL,
+  //ssl: true
+//});
+
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: true
+    user: "nvgnyxzoglgozi",
+    password: "e669132b12a9be74fc1c2d60d357928740f17fc9e2b84c1d4b30199b3bb1bd14",
+    host: "ec2-54-243-208-234.compute-1.amazonaws.com",
+    port: 5432,
+    database: "d181pdml81daoa",
+    ssl: true
 });
 
 const fpageWeb  = async (req, res) => {
@@ -68,15 +77,15 @@ const fajouterDisponibilite = async(req, res) => {
 	  }
 }
 
-const fmodifierEmploye   = async (req, res) => {
+const fmodifierEmploye = async (req, res) => {
 	  let result = {}
 	  const reqJson = req.body;
 	  var sessEmployeur = req.session.username;
 	  try{	
-		  await modierEmploye(sessEmployeur, reqJson.idemploye, reqJson.nomemploye, reqJson.prenomemploye, reqJson.nbrheuresmax, reqJson.dateembauche);		  
+		  await modierEmploye(sessEmployeur, reqJson.idemploye, reqJson.nomemploye, reqJson.prenomemploye, reqJson.nbrheuresmax);		  
 		  result.success = true;
 	  } catch (e) {
-		  result.success = false;
+		  result.success = false;		  
 	  } finally {
 		  res.setHeader("content-type", "application/json")
 		  res.send(JSON.stringify(result))
@@ -135,10 +144,10 @@ const fmodifierEmploye   = async (req, res) => {
 		}		
 	}
 	
-	async function modifierEmploye(idemployeur, idemploye, nomemploye, prenomemploye, nbrheuresmax, dateembauche) {
+	async function modifierEmploye(idemployeur, idemploye, nomemploye, prenomemploye, nbrheuresmax) {
 		try {
 			const client = await pool.connect();
-			await client.query("update baseEmployes set nomemploye = $1, prenomemploye = $2, nbrheuresmax = $3, dateembauche = $4 where idemploye = $5 and idemployeur = $6", [nomemploye, prenomemploye, nbrheuresmax, dateembauche, idemploye, idemployeur])
+			await client.query("update baseEmployes set nomemploye = $1, prenomemploye = $2, nbrheuresmax = $3 where idemploye = $4 and idemployeur = $5", [nomemploye, prenomemploye, nbrheuresmax, idemploye, idemployeur])
 			client.release();
 			return true;
 		} catch (e) {
