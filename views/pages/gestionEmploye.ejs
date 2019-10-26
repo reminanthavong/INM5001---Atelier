@@ -447,7 +447,7 @@
 				var date = document.getElementById('dateembauche').value
 				jsonEmp.dateembauche = new Date(date);
 				jsonEmp.motdepasse = document.getElementById('motdepasse').value;
-				console.log(jsonEmp.nomemploye)
+				console.log(jsonEmp)
 				
 				if (document.getElementById("J1").checked) {
 					insererDisponibilite(jsonEmp.idemploye, 'J', '1', '1');
