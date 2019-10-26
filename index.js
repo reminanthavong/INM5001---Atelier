@@ -36,14 +36,14 @@ express()
 	response.sendFile(path.join(__dirname + '/views/pages/login.html'));
 })
 // Fonction Login
-.post('/auth', login.loginAPI)
+.post('/auth', login.loginAPI) // Validation des entrez dans login.html
 .get('/home', function(request, response) {
-	
-	if (request.session.loggedin) {
-		response.render('pages/index');
-		//response.send('Welcome back, ' + request.session.username + '!');
+	// Si validation passe
+	if (request.session.loggedin) { // Si 'True'
+	const results = request.session; // Prendre les informations dans le JSON Session	
+		response.render('pages/index',results); // Afficher index.ejs
 	} else {
-		response.send('Please login to view this page!');
+		response.send('Please login to view this page!'); // Sinon
 	}
 	response.end();
 })
@@ -54,26 +54,32 @@ express()
       res.sendFile(path.join(__dirname+'/views/pages/AffichageHoraire.html' /*, getHoraires */));
   })
 .get('/AffichageHoraire', async (req, res) => {
-      res.sendFile(path.join(__dirname+'/views/pages/AffichageHoraire.html' /*, getHoraires */));
+if (req.session.typeutilisateur == 1){
+      res.render('pages/AffichageHoraire');
+	} else {
+	  res.send('Vous devez être une Administrateur pour acceder à cette page!');
+	}
   })
 // Fonction GestionEmploye
 .get('/GestionEmploye', async (req, res) => {
+	if (req.session.typeutilisateur == 1){
       res.render('pages/gestionEmploye');
+		} else {
+	  res.send('Vous devez être une Administrateur pour acceder à cette page!');	
+	}
   })
+
 .get('/Employe',gestionemploye.fafficherEmployes)
 .post('/Employe',gestionemploye.fajouterEmploye )
 .post('/Disponibilite', gestionemploye.fajouterDisponibilite)
 .post('/InfoEmploye', gestionemploye.fmodidierEmploye)
 .delete('/Employe',gestionemploye.fenleverEmploye )
+
 // Fonction GestionHoraire
 .get('/GestionHoraire', async (req, res) => {
+	if (req.session.typeutilisateur == 1){
       res.render('pages/gestionHoraire');
+		} else {
+	  res.send('Vous devez être une Administrateur pour acceder à cette page!');	
+	}
   })
-.get('/Employe',gestionhoraire.afficherHoraire)
-.post('/Employe',gestionhoraire.ajouterHoraire )
-.delete('/Employe',gestionhoraire.enleverHoraire )
-
- .listen(PORT, () => console.log(`Listening on ${ PORT }`))
-
-
-  

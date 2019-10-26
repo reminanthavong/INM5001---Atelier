@@ -19,8 +19,11 @@ const fonctions1  = async (req, res) => {
 }
 
 const fonctions2  = async (req, res) => {
-
-    //const {choixsemaine} = req.body; //{$choixsemaine}
+        const resp = JSON.parse(req.body); //{$choixsemaine}
+        //const resp = { choixSemaine: '001'};
+        const choix = resp['choixsemaine']
+        console.log(req.body)
+             console.log(choix)
         const employeur = 'Gestion3525'
          try {
             const client = await pool.connect()
@@ -31,11 +34,12 @@ const fonctions2  = async (req, res) => {
                                                                                                     	LEFT JOIN BaseEmployes BE ON BE.IDEmploye=TH.IDEmploye
                                                                                                     	LEFT JOIN TableCodes TC2 ON (TC2.Label='TypeQuart' AND TH.TypeQuart=TC2.Code)
                                                                                                     	LEFT JOIN TableCodes TC3 ON (TC3.Label='JourSemaine' AND TH.JourSemaine=TC3.Code)
-                                                                                                    	WHERE TH.IDTableHoraire='001' AND TH.IDEmployeur='{$employeur}'
+                                                                                                    	WHERE TH.IDTableHoraire='${choix}' AND TH.IDEmployeur='${employeur}'
                                                                                                     ) AS SourceTable;
+
                                                          `);
-               //const horaires = { 'horaires': (horaires) ? choixSemaine.rows : null};
-               res.json( horaires );
+               const horairesRecu = { 'horaires': (horaires) ? horaires.rows : null};
+               res.json( horairesRecu );
                client.release();
              } catch (err) {
                console.error(err);
