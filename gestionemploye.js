@@ -66,7 +66,7 @@ const fajouterDisponibilite = async(req, res) => {
 	  }
 }
 
-const fmodierEmploye   = async (req, res) => {
+const fmodifierEmploye   = async (req, res) => {
 	  let result = {}
 	  const reqJson = req.body;
 	  var sessEmployeur = req.session.username;
@@ -148,5 +148,5 @@ const fmodierEmploye   = async (req, res) => {
   fafficherEmployes,
   fenleverEmploye,
   fajouterDisponibilite,
-  fmodierEmploye
+  fmodifierEmploye
 }
