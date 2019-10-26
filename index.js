@@ -72,7 +72,7 @@ if (req.session.typeutilisateur == 1){
 .get('/Employe',gestionemploye.fafficherEmployes)
 .post('/Employe',gestionemploye.fajouterEmploye )
 .post('/Disponibilite', gestionemploye.fajouterDisponibilite)
-.post('/InfoEmploye', gestionemploye.fmodidierEmploye)
+.post('/InfoEmploye', gestionemploye.fmodifierEmploye)
 .delete('/Employe',gestionemploye.fenleverEmploye )
 
 // Fonction GestionHoraire
