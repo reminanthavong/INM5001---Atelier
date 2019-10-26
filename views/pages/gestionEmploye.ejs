@@ -351,8 +351,8 @@
 		async function changerInfoEmploye(idemploye, nomemploye, prenomemploye, nbrheuresmax) {
 			const jsonEmp = {};
 			jsonEmp.idemploye = idemploye;
-			jsonEmp.nomEmploye = nomemploye;
-			jsonEmp.prenomEmploye = prenomemploye;
+			jsonEmp.nomemploye = nomemploye;
+			jsonEmp.prenomemploye = prenomemploye;
 			jsonEmp.nbrheuresmax = nbrheuresmax;
 			const result = await fetch('/InfoEmploye', {
 		        method: 'POST', 
@@ -368,7 +368,6 @@
 				alert("Echec");
 			}	
 		}
-			
 		
 		btnCacher.addEventListener("click", function() {
 			const tableEmploye = document.getElementById("tableEmploye");
@@ -585,6 +584,7 @@
 			jsonDispo.typequart = typequart;
 			jsonDispo.joursemaine = joursemaine;
 			jsonDispo.dispo = dispo;
+			console.log(jsonDispo)
 			const result = await fetch('/Disponibilite', {
 		        method: 'POST', 
 				headers: { 
@@ -593,6 +593,11 @@
 			}, 
 			body: JSON.stringify(jsonDispo) })
 			const success = await result.json();
+			if (!success.success){
+				alert("Impossible d'entrer les disponiblités de l'employé dans la base de données")
+			} else {
+				alert("Les disponibilités ont été entrées")
+			}
 		}		
 		
 		btnCongedier.addEventListener("click", async e => {
