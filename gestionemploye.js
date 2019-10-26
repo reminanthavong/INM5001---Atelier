@@ -146,5 +146,7 @@ const fmodierEmploye   = async (req, res) => {
   fpageWeb,
   fajouterEmploye,
   fafficherEmployes,
-  fenleverEmploye
+  fenleverEmploye,
+  fajouterDisponibilite,
+  fmodierEmploye
 }
