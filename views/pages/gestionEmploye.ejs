@@ -52,29 +52,34 @@
       				<br/>
       				<div class='container'>
       					<div class='row'>
-      						<div class='col-5'>
+      						<div class='col-4'>
       							<button class='btn btn-primary' style='background-color:grey; border:none' id="btnchercheremploye" name='btnchercheremploye' value='btnchercheremploye'>Afficher tous les employés</button>
       						</div>
       						<div class='col-1'></div>
-      						<div class='col-5'>
+      						<div class='col-4'>
       							<button class='btn btn-primary' style='background-color:grey; border:none' id="btncacherliste" name='btncacherliste' value='btncacherlliste'>Dissimuler la liste des employés</button>
       						</div>
       					</div>
       					<br/>
       					<div class='form-row'>
       						<div class='col-3'>
-      							<label for='recherche'>Rechercher d'employés</label>	
+      							<label for='recherche'>Recherche d'employés</label>	
+      							<label for='recherche'>Rechercher par:</label>
+      						</div>
+      						<div class='col-4'>
+      							<input name='nomouprenom' class='form-control form-constrol-sm' id='nomouprenom' type='text' pattern='[a-zA-Z]{4,20}'>
       							<select id="selectionRecherche" class="form-control">
-        							<option>Nom</option>
-        							<option>Prenom</option>
+        							<option value="nom">Nom</option>
+        							<option value ="prenom">Prenom</option>
       							</select>
       						</div>
-      						<div class='col-3'>
-      							<input name='nomouprenom' class='form-control form-constrol-sm' id='nomouprenom' type='text' pattern='[a-zA-Z]{4,20}'>
+      						<div class='col-4'>
+      							<button class='btn btn-primary' style='background-color:grey; border:none' id="btnrecherche" name='btnrecherche' value='btnrecherche'>Rechercher</button>
       						</div>
       					</div>
       				</div>
-      				<br/><br/>
+      				<br/>
+      				<p> Veuillez cliquer sur le nom, prénom ou le nombre d'heures d'un employé pour le modifier.</p>
       				<table class='table'>
       					<thead>
       					<tr>
@@ -280,6 +285,7 @@
 		const btnAfficher = document.getElementById("btnchercheremploye");
 		const btnCongedier = document.getElementById("btncongediement"); 
 		const btnCacher = document.getElementById("btncacherliste")
+		const btnChercher = document.getElementById("btnrecherche")
 		
 		btnAfficher.addEventListener("click", async e => {
 		    try {
@@ -299,7 +305,37 @@
 					td2.textContent = t.nomemploye;
 					td3.textContent = t.prenomemploye;
 					td4.textContent = t.nbrheuresmax;
-					td5.textContent = t.dateembauche.substring(0,10);					
+					td5.textContent = t.dateembauche.substring(0,10);
+					
+					td2.addEventListener("click", async e=> {
+						var nom = prompt("Veuillez entrer le nouveau nom de " + t.prenomemploye + " " + t.nomemploye);
+						if (nom != null && nom != "") {
+							nom = nom.toUpperCase();
+							changerInfoEmploye(t.idemploye, nom, t.prenomemploye, t.nbrheuresmax, t.dateembauche);
+						} else {
+							alert("Aucune modification n'a été faite")
+						}
+					})
+					
+					td3.addEventListener("click", async e=> {
+						var prenom = prompt("Veuillez entrer le nouveau prenom de " + t.prenomemploye + " " + t.nomemploye);
+						if (prenom != null && prenom != "") {
+							prenom = prenom.toUpperCase();
+							changerInfoEmploye(t.idemploye, t.nomemploye, prenom, t.nbrheuresmax, t.dateembauche);
+						} else {
+							alert("Aucune modification n'a été faite")
+						}
+					})
+					
+					td4.addEventListener("click", async e=> {
+						var heures = prompt("Veuillez entrer le nouveau nombre d'heures maximum de " + t.prenomemploye + " " + t.nomemploye);
+						if (heures != null && heures != "" && !isNaN(heures)) {
+							changerInfoEmploye(t.idemploye, t.nomemploye, t.prenomemploye, heures, t.dateembauche);
+						} else {
+							alert("Aucune modification n'a été faite")
+						}
+					})
+					
 					tableEmploye.appendChild(tr);
 					tr.appendChild(td1);
 					tr.appendChild(td2);
@@ -312,16 +348,99 @@
 		    }
 		});	
 		
+		async function changerInfoEmploye(idemploye, nomemploye, prenomemploye, nbrheuresmax, dateembauche) {
+			const jsonEmp = {};
+			jsonEmp.idemploye = idemploye;
+			jsonEmp.nomEmploye = nomemploye;
+			jsonEmp.prenomEmploye = prenomemploye;
+			jsonEmp.nbrheuresmax = nbrheuresmax;
+			jsonEmp.dateembauche = dateembauche;
+			const result = await fetch("/InfoEmploye", {
+		        method: 'POST', 
+				headers: { 
+				'Accept': 'application/json',
+					'Content-Type': 'application/json'
+				}, 
+				body: JSON.stringify(jsonEmp) })
+			const success = await result.json();
+			if(success.success) {
+				alert("Les informations de l'employé ont été changé avec succès!");
+			} else {
+				alert("Echec");
+			}	
+		}
+			
+		
 		btnCacher.addEventListener("click", function() {
 			const tableEmploye = document.getElementById("tableEmploye");
 			while(tableEmploye.firstChild) tableEmploye.removeChild(tableEmploye.firstChild);
 		}) 
 		
+		btnChercher.addEventListener("click", async e => {
+			const tableEmploye = document.getElementById("tableEmploye");
+			while(tableEmploye.firstChild) tableEmploye.removeChild(tableEmploye.firstChild);
+			const resultat = await fetch(url, {method: "GET"});
+			const employes = await resultat.json();
+			console.log(employes)
+			const dropDown = document.getElementById("selectionRecherche");
+			const recherchePar = dropDown.options[dropDown.selectedIndex].value;
+			const inputRecherche = document.getElementById("nomouprenom").text
+			inputRecherche = inputRecherche.toUpperCase();
+			if (rechercherPar == "nom") {
+				employes.forEach(t => {
+					if (t.nomemploye == inputRecherche)	{				
+						const tr = document.createElement("tr");
+						const td1 = document.createElement("td");
+						const td2 = document.createElement("td");
+						const td3 = document.createElement("td");
+						const td4 = document.createElement("td");
+						const td5 = document.createElement("td");
+						td1.textContent = t.idemploye;
+						td2.textContent = t.nomemploye;
+						td3.textContent = t.prenomemploye;
+						td4.textContent = t.nbrheuresmax;
+						td5.textContent = t.dateembauche.substring(0,10);					
+						tableEmploye.appendChild(tr);
+						tr.appendChild(td1);
+						tr.appendChild(td2);
+						tr.appendChild(td3);
+						tr.appendChild(td4);
+						tr.appendChild(td5);
+					}
+				})
+			}else if (rechercherPar == "prenom") {
+				employes.forEach(t => {
+					if (t.prenomemploye == inputRecherche)	{				
+						const tr = document.createElement("tr");
+						const td1 = document.createElement("td");
+						const td2 = document.createElement("td");
+						const td3 = document.createElement("td");
+						const td4 = document.createElement("td");
+						const td5 = document.createElement("td");
+						td1.textContent = t.idemploye;
+						td2.textContent = t.nomemploye;
+						td3.textContent = t.prenomemploye;
+						td4.textContent = t.nbrheuresmax;
+						td5.textContent = t.dateembauche.substring(0,10);					
+						tableEmploye.appendChild(tr);
+						tr.appendChild(td1);
+						tr.appendChild(td2);
+						tr.appendChild(td3);
+						tr.appendChild(td4);
+						tr.appendChild(td5);
+					}
+				})
+			}
+			
+		})
+		
 		btnCreer.addEventListener("click", async e => {	
 			try {
 				const jsonEmp = {};			
-				jsonEmp.nomemploye =  document.getElementById('nomemployeid').value;					
-				jsonEmp.prenomemploye = document.getElementById('prenomemployeid').value;
+				var nomEmp =  document.getElementById('nomemployeid').value;	
+				jsonEmp.nomemploye = nomEmp.toUpperCase();				
+				var prenomEmp = document.getElementById('prenomemployeid').value;
+				jsonEmp.prenomemploye = prenomEmp.toUpperCase();
 				jsonEmp.idemploye = creerIDEmploye(jsonEmp.nomemploye, jsonEmp.prenomemploye);
 				var heures = document.getElementById('nbheuresmaxid').value;
 				jsonEmp.nbrheuresmax = parseInt(heures, 10);				
@@ -329,6 +448,83 @@
 				jsonEmp.dateembauche = new Date(date);
 				jsonEmp.motdepasse = document.getElementById('motdepasse').value;
 				console.log(jsonEmp.nomemploye)
+				
+				if (document.getElementById("J1").checked) {
+					insererDisponibilite(jsonEmp.idemploye, 'J', '1', '1');
+				}else {
+					insererDisponibilite(jsonEmp.idemploye, 'J', '1', '0');
+				}				
+				if (document.getElementById("S1").checked) {
+					insererDisponibilite(jsonEmp.idemploye, 'S', '1', '1');
+				}else {
+					insererDisponibilite(jsonEmp.idemploye, 'S', '1', '0');
+				}				
+				if (document.getElementById("N1").checked) {
+					insererDisponibilite(jsonEmp.idemploye, 'N', '1', '1');
+				}else {
+					insererDisponibilite(jsonEmp.idemploye, 'N', '1', '0');
+				}				
+				if (document.getElementById("J2").checked) {
+					insererDisponibilite(jsonEmp.idemploye, 'J', '2', '1');
+				}else {
+					insererDisponibilite(jsonEmp.idemploye, 'J', '2', '0');
+				}				
+				if (document.getElementById("S2").checked) {
+					insererDisponibilite(jsonEmp.idemploye, 'S', '2', '1');
+				}else {
+					insererDisponibilite(jsonEmp.idemploye, 'S', '2', '0');
+				}				
+				if (document.getElementById("N2").checked) {
+					insererDisponibilite(jsonEmp.idemploye, 'N', '2', '1');
+				}else {
+					insererDisponibilite(jsonEmp.idemploye, 'N', '2', '0');
+				}				
+				if (document.getElementById("J3").checked) {
+					insererDisponibilite(jsonEmp.idemploye, 'J', '3', '1');
+				}else {
+					insererDisponibilite(jsonEmp.idemploye, 'J', '3', '0');
+				}	
+				if (document.getElementById("S3").checked) {
+					insererDisponibilite(jsonEmp.idemploye, 'S', '3', '1');
+				}else {
+					insererDisponibilite(jsonEmp.idemploye, 'S', '3', '0');
+				}
+				if (document.getElementById("N3").checked) {
+					insererDisponibilite(jsonEmp.idemploye, 'N', '3', '1');
+				}else {
+					insererDisponibilite(jsonEmp.idemploye, 'N', '3', '0');
+				}				
+				if (document.getElementById("J4").checked) {
+					insererDisponibilite(jsonEmp.idemploye, 'J', '4', '1');
+				}else {
+					insererDisponibilite(jsonEmp.idemploye, 'J', '4', '0');
+				}				
+				if (document.getElementById("S4").checked) {
+					insererDisponibilite(jsonEmp.idemploye, 'S', '4', '1');
+				}else {
+					insererDisponibilite(jsonEmp.idemploye, 'S', '4', '0');
+				}				
+				if (document.getElementById("N4").checked) {
+					insererDisponibilite(jsonEmp.idemploye, 'N', '4', '1');
+				}else {
+					insererDisponibilite(jsonEmp.idemploye, 'N', '4', '0');
+				}				
+				if (document.getElementById("J5").checked) {
+					insererDisponibilite(jsonEmp.idemploye, 'J', '5', '1');
+				}else {
+					insererDisponibilite(jsonEmp.idemploye, 'J', '5', '0');
+				}
+				if (document.getElementById("S5").checked) {
+					insererDisponibilite(jsonEmp.idemploye, 'S', '5', '1');
+				}else {
+					insererDisponibilite(jsonEmp.idemploye, 'S', '5', '0');
+				}				
+				if (document.getElementById("N5").checked) {
+					insererDisponibilite(jsonEmp.idemploye, 'N', '5', '1');
+				}else {
+					insererDisponibilite(jsonEmp.idemploye, 'N', '5', '0');
+				}
+				
 				const result = await fetch(url, {
 				        method: 'POST', 
 					headers: { 
@@ -337,7 +533,11 @@
 					}, 
 					body: JSON.stringify(jsonEmp) })
 				const success = await result.json();
-				alert(success.success);
+				if(success.success) {
+					alert("Employé créé avec succès!");
+				} else {
+					alert("Echec");
+				}
 			} catch (e) {
 				console.log("Impossible d'ajouter un employe");
 			}
@@ -350,14 +550,31 @@
 			return ID;
 		}
 		
+		async function insererDisponibilite(idemploye, typequart, joursemaine, dispo) {
+			const jsonDispo = {};	
+			jsonDispo.idemploye = idemploye;
+			jsonDispo.typequart = typequart;
+			jsonDispo.joursemaine = joursemaine;
+			jsonDispo.dispo = dispo;
+			const result = await fetch('/Disponibilite', {
+		        method: 'POST', 
+				headers: { 
+				'Accept': 'application/json',
+					'Content-Type': 'application/json'
+			}, 
+			body: JSON.stringify(jsonDispo) })
+			const success = await result.json();
+		}		
+		
 		btnCongedier.addEventListener("click", async e => {
 			const jsonRequest = {}
-			jsonRequest.idemploye = document.getElementById('identifiant').value;
+			var ID = document.getElementById('identifiant').value;
+			jsonRequest.idemploye = ID.toUpperCase();
 			const resultat = await fetch(url, {method: "DELETE", 
         		headers: { "content-type": "application/json"}, body: JSON.stringify(jsonRequest) })
         	const success = await resultat.json();
 			if(success.success) {
-				alert("Employé congédié!");
+				alert("Employé congédié avec succès!");
 			} else {
 				alert("Echec");
 			}

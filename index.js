@@ -71,6 +71,8 @@ if (req.session.typeutilisateur == 1){
 
 .get('/Employe',gestionemploye.fafficherEmployes)
 .post('/Employe',gestionemploye.fajouterEmploye )
+.post('/Disponibilite', gestionemploye.fajouterDisponibilite)
+.post('/InfoEmploye', gestionemploye.fmodidierEmploye)
 .delete('/Employe',gestionemploye.fenleverEmploye )
 
 // Fonction GestionHoraire
@@ -81,10 +83,3 @@ if (req.session.typeutilisateur == 1){
 	  res.send('Vous devez être une Administrateur pour acceder à cette page!');	
 	}
   })
-.get('/Horaire',gestionhoraire.afficherHoraire)
-.post('/Horaire',gestionhoraire.ajouterHoraire )
-.delete('/Horaire',gestionhoraire.enleverHoraire )
-
- .listen(PORT, () => console.log(`Listening on ${ PORT }`))
-
-  
