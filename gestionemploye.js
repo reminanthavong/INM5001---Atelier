@@ -20,6 +20,8 @@ const fafficherEmployes  = async (req, res) => {
 const fajouterEmploye   = async (req, res) => {
 	  let result = {}
 	  const reqJson = req.body;
+	console.log(reqJson)
+	console.log(reqJson.idemploye)
 	  var sessEmployeur = req.session.username;
 	  try{	
 		  await ajoutEmploye(sessEmployeur, reqJson.idemploye, reqJson.nomemploye, reqJson.prenomemploye, reqJson.nbrheuresmax, reqJson.dateembauche, reqJson.motdepasse);
