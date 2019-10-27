@@ -110,7 +110,7 @@ const fmodifierEmploye = async (req, res) => {
 			const client = await pool.connect();
 			await client.query('delete from BaseEmployes where IDEmploye = $1', [idemploye])
 			await client.query('delete from BaseIdentification where idutilisateur = $1', [idemploye])
-			await client.query('update baseQuartsEmploye set disponibilite = $1 where idemploye = $2', ['0', idemploye])
+			await client.query('update baseQuartsEmploye set disponibilite = $1 where idemploye = $2', ['0', idemploye]);
 			client.release();
 			return true
 		} catch(e) {
