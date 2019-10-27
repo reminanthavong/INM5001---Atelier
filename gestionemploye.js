@@ -141,7 +141,7 @@ const fmodifierEmploye = async (req, res) => {
 		console.log("fonction modifierEmploye");
 		try {
 			const client = await pool.connect();
-			await client.query('update baseEmployes set nomemploye = $1, prenomemploye = $2, nbrheuresmax = $3 where idemploye = $4', [nomemploye, prenomemploye, nbrheuresmax, idemploye])
+			await client.query('update baseEmployes set nomemploye = $1, prenomemploye = $2, nbrheuresmax = $3 where idemploye = $4', [nomemploye, prenomemploye, 40, idemploye])
 			client.release();
 			return true;
 		} catch (e) {
