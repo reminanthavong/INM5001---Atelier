@@ -22,9 +22,9 @@ const fonctions2  = async (req, res) => {
         const resp = JSON.parse(req.body); //{$choixsemaine}
         //const resp = { choixSemaine: '001'};
         const choix = resp['choixsemaine']
-        console.log(req.body)
+        console.log(req)
              console.log(choix)
-        const employeur = 'Gestion3525'
+        const employeur = req.session.username//'Gestion3525'
          try {
             const client = await pool.connect()
             const horaires = await client.query(`SELECT *
