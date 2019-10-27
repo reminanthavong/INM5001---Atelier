@@ -7,9 +7,6 @@ const pool = new Pool({
 
 var sess;
 
-const pageWeb  = async (req, res) => {
-response.sendFile(path.join(__dirname + '/views/pages/gestionHoraire.ejs'));
-}
 
 const afficherHoraire  = async (req, res) => {
 sessEmployeur = req.session.username;
@@ -18,9 +15,12 @@ res.end();
 }
    
 const ajouterHoraire   = async (req, res) => {
+	
+	const reqJson = req.body;
+	console.log(reqJson);
 	  try{	
 		  await ajoutHoraire(reqJson.employejour, reqJson.employesoir, reqJson.employenuit, reqJson.datehoraire);
-		  const reqJson = req.body;
+		  
 		  result.success = true;
 	  } catch (e) {
 		  result.success = false;
@@ -96,7 +96,6 @@ async function ajoutHoraire(employejour, employesoir, employenuit, datehoraire) 
 }
 
 module.exports = {
-  pageWeb,
   afficherHoraire,
   ajouterHoraire ,
   enleverHoraire 
