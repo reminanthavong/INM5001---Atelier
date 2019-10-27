@@ -17,8 +17,9 @@ res.end();
 const ajouterHoraire   = async (req, res) => {
 	let result = {}
 	const reqJson = req.body;
-	console.log(reqJson);
+	
 	  try{	
+		  console.log(reqJson);
 		  await ajoutHoraire(reqJson.employejour, reqJson.employesoir, reqJson.employenuit, reqJson.datehoraire);
 		  
 		  result.success = true;
