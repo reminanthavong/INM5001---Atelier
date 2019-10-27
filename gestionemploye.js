@@ -128,7 +128,7 @@ const fmodifierEmploye = async (req, res) => {
 	async function ajoutDispo(idemployeur, idemploye, typequart, joursemaine, disponibilite) {		
 		try {
 			const client = await pool.connect();
-			await pool.query("insert into baseQuartsEmploye values ($1, $2, $3, $4, $5, $6, $7)", [idemployeur, idemploye, '000', typequart, joursemaine, disponibilite, '1']);
+			await pool.query('insert into baseQuartsEmploye values ($1, $2, $3, $4, $5, $6, $7)', [idemployeur, idemploye, '000', typequart, joursemaine, disponibilite, '1']);
 			client.release(); 
 			return true;
 		} catch(e){
