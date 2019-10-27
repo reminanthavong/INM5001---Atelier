@@ -134,6 +134,7 @@ btnGenerer.addEventListener("click", async e => {
         jsonEmp.employenuit =  document.getElementById('employenuit').value;
 				var date = document.getElementById('datehoraire').value
 				jsonEmp.datehoraire = new Date(date);
+				console.log(jsonEmp);
 				const result = await fetch(url, {
 				        method: 'POST', 
 					headers: { 
