@@ -56,7 +56,7 @@ const fajouterDisponibilite = async(req, res) => {
 	console.log(result)
 	//var idtablehoraire = sessEmployeur.concat("00000000");
 	try{	
-		  await ajoutDispo(sessEmployeur, reqJson.idemploye, reqJson.typequart, req.joursemaine, req.dispo);		  
+		  await ajoutDispo(sessEmployeur, reqjson.idemploye, reqjson.typequart, reqjson.joursemaine, reqjson.dispo);		  
 		  result.success = true;
 	  } catch (e) {
 		  result.success = false;
