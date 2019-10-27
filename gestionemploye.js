@@ -71,9 +71,10 @@ const fmodifierEmploye = async (req, res) => {
 	  let result = {}
 	  const reqJson = req.body;
 	  var sessEmployeur = req.session.username;
+	  var nbHeure = parseInt(reqJson.nbrheuresmax);
 	  console.log(reqJson)
 	  try{	
-		  await modierEmploye(reqJson.idemploye, reqJson.nomemploye, reqJson.prenomemploye, reqJson.nbrheuresmax);		  
+		  await modierEmploye(reqJson.idemploye, reqJson.nomemploye, reqJson.prenomemploye, nbHeure);		  
 		  result.success = true;
 	  } catch (e) {
 		  result.success = false;
