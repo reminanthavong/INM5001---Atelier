@@ -1,0 +1,13 @@
+REMI
+
+Décrire où vous êtes (état de la situation)
+Ma partie est de crée la page identification, ce qui permet aux usagers l’accès à l’application. Dans l’ensemble la page est complétée. Il restera à encrypter le mot de passe dans l’échange http.
+
+Décrire les difficultés rencontrées
+Pour ma part, je n’ai pas beaucoup d’expérience en programmation. La grosse difficulté était d’apprendre les environnements qu’on utilise pour réaliser le projet en si peu de temps.
+
+Solutions trouvées aux difficultés
+De mettre beaucoup de temps et d’effort pour apprendre le tout.
+
+Si c’était à refaire, que feriez-vous différemment
+Rien du tout, je crois que j’ai pris le bon moyen pour être capable de réaliser le projet livrable.
