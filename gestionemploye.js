@@ -36,7 +36,6 @@ const fenleverEmploye   = async (req, res) => {
 	  try{	
 		  const reqJson = req.body;
 		  var sessEmployeur = req.session.username;
-		  //var idtablehoraire = sessEmployeur.concat("00000000");
 		  await deleteEmploye(reqJson.idemploye);
 		  result.success = true;		
 	  } catch (e) {
@@ -44,17 +43,13 @@ const fenleverEmploye   = async (req, res) => {
 	  } finally {
 		  res.setHeader("content-type", "application/json")
 		  res.send(JSON.stringify(result))
-	  }
-	  
+	  }	  
 }
 
 const fajouterDisponibilite = async(req, res) => {
 	let result = {}
 	const reqjson = req.body;
 	var sessEmployeur = req.session.username;
-	console.log(reqjson)
-	console.log(result)
-	//var idtablehoraire = sessEmployeur.concat("00000000");
 	try{	
 		  await ajoutDispo(sessEmployeur, reqjson.idemploye, reqjson.typequart, reqjson.joursemaine, reqjson.dispo);		  
 		  result.success = true;
@@ -72,10 +67,6 @@ const fmodifierEmploye = async (req, res) => {
 	  const reqJson = req.body;
 	  var sessEmployeur = req.session.username;
 	  var nbHeure = parseInt(reqJson.nbrheuresmax);
-	  console.log(reqJson.idemploye)
-	console.log(reqJson.nomemploye)
-	console.log(reqJson.prenomemploye)
-	console.log(reqJson.nbrheuresmax)
 	  try{	
 		  await modifierEmploye(reqJson.idemploye, reqJson.nomemploye, reqJson.prenomemploye, nbHeure);		  
 		  result.success = true;
@@ -119,7 +110,7 @@ const fmodifierEmploye = async (req, res) => {
 			const client = await pool.connect();
 			await client.query('delete from BaseEmployes where IDEmploye = $1', [idemploye])
 			await client.query('delete from BaseIdentification where idutilisateur = $1', [idemploye])
-			await client.query('delete from baseQuartsEmploye where idemploye = $1', [idemploye])
+			await client.query('update baseQuartsEmploye set disponibilite = $1 where idemploye = $2', ['0', idemploye])
 			client.release();
 			return true
 		} catch(e) {
@@ -139,9 +130,7 @@ const fmodifierEmploye = async (req, res) => {
 		}		
 	}
 	
-	async function modifierEmploye(idemploye, nomemploye, prenomemploye, nbrheuresmax) {
-		
-		console.log("fonction modifierEmploye");
+	async function modifierEmploye(idemploye, nomemploye, prenomemploye, nbrheuresmax) {		
 		try {
 			const client = await pool.connect();
 			await client.query('update baseEmployes set nomemploye = $1, prenomemploye = $2, nbrheuresmax = $3 where idemploye = $4', [nomemploye, prenomemploye, nbrheuresmax, idemploye])
