@@ -72,7 +72,10 @@ const fmodifierEmploye = async (req, res) => {
 	  const reqJson = req.body;
 	  var sessEmployeur = req.session.username;
 	  var nbHeure = parseInt(reqJson.nbrheuresmax);
-	  console.log(reqJson)
+	  console.log(reqJson.idemploye)
+	console.log(reqJson.nomemploye)
+	console.log(reqJson.prenomemploye)
+	console.log(reqJson.nbrheuresmax)
 	  try{	
 		  await modierEmploye(reqJson.idemploye, reqJson.nomemploye, reqJson.prenomemploye, nbHeure);		  
 		  result.success = true;
@@ -141,7 +144,7 @@ const fmodifierEmploye = async (req, res) => {
 		console.log("fonction modifierEmploye");
 		try {
 			const client = await pool.connect();
-			await client.query('update baseEmployes set nomemploye = $1, prenomemploye = $2, nbrheuresmax = $3 where idemploye = $4', [nomemploye, prenomemploye, 40, idemploye])
+			await client.query('update baseEmployes set nomemploye = $1, prenomemploye = $2, nbrheuresmax = $3 where idemploye = $4', [nomemploye, prenomemploye, nbrheuresmax, idemploye])
 			client.release();
 			return true;
 		} catch (e) {
