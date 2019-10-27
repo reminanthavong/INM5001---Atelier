@@ -114,9 +114,9 @@ const fmodifierEmploye = async (req, res) => {
 	async function deleteEmploye(idemploye, idemployeur) {
 		try {
 			const client = await pool.connect();
-			await client.query("delete from BaseEmployes where IDEmploye = $1 and IDEmployeur = $2", [idemploye, idemployeur])
-			await client.query("delete from BaseIdentification where idutilisateur = $1", [idemploye])
-			await client.query("update baseQuartsEmploye set disponiblite = $1 where idemploye = $2 and idtablehoraire = $3", ['0', idemploye, '000'])
+			await client.query('delete from BaseEmployes where IDEmploye = $1 and IDEmployeur = $2', [idemploye, idemployeur])
+			await client.query('delete from BaseIdentification where idutilisateur = $1', [idemploye])
+			await client.query('delete from baseQuartsEmploye where idemploye = $1', [idemploye])
 			client.release();
 			return true
 		} catch(e) {
@@ -128,7 +128,7 @@ const fmodifierEmploye = async (req, res) => {
 	async function ajoutDispo(idemployeur, idemploye, typequart, joursemaine, disponibilite) {		
 		try {
 			const client = await pool.connect();
-			await pool.query("insert into baseQuartsEmploye values ($1, $2, $3, $4, $5, $6, $7)", [idemployeur, idemploye, '000', TypeQuart, JourSemaine, Disponibilite, '1']);
+			await pool.query("insert into baseQuartsEmploye values ($1, $2, $3, $4, $5, $6, $7)", [idemployeur, idemploye, '000', typequart, joursemaine, disponibilite, '1']);
 			client.release(); 
 			return true;
 		} catch(e){
