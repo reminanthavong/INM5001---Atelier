@@ -24,8 +24,7 @@ const fajouterEmploye   = async (req, res) => {
 	console.log(reqJson.idemploye)
 	  var sessEmployeur = req.session.username;
 	  try{	
-		  await ajoutEmploye(sessEmployeur, reqJson.idemploye, reqJson.nomemploye, reqJson.prenomemploye, reqJson.nbrheuresmax, reqJson.dateembauche, reqJson.motdepasse);
-		  
+		  await ajoutEmploye(sessEmployeur, reqJson.idemploye, reqJson.nomemploye, reqJson.prenomemploye, reqJson.nbrheuresmax, reqJson.dateembauche, reqJson.motdepasse);		  
 		  result.success = true;
 	  } catch (e) {
 		  result.success = false;
@@ -40,7 +39,7 @@ const fenleverEmploye   = async (req, res) => {
 	  try{	
 		  const reqJson = req.body;
 		  var sessEmployeur = req.session.username;
-		  var idtablehoraire = sessEmployeur.concat("00000000");
+		  //var idtablehoraire = sessEmployeur.concat("00000000");
 		  await deleteEmploye(reqJson.idemploye, sessEmployeur, idtablehoraire);
 		  result.success = true;		
 	  } catch (e) {
@@ -56,9 +55,9 @@ const fajouterDisponibilite = async(req, res) => {
 	let result = {}
 	const reqjson = req.body;
 	var sessEmployeur = req.session.username;
-	var idtablehoraire = sessEmployeur.concat("00000000");
+	//var idtablehoraire = sessEmployeur.concat("00000000");
 	try{	
-		  await ajoutDispo(sessEmployeur, reqJson.idemploye, idtablehoraire, reqJson.typequart, req.joursemaine, req.dispo);		  
+		  await ajoutDispo(sessEmployeur, reqJson.idemploye, reqJson.typequart, req.joursemaine, req.dispo);		  
 		  result.success = true;
 	  } catch (e) {
 		  result.success = false;
@@ -68,12 +67,14 @@ const fajouterDisponibilite = async(req, res) => {
 	  }
 }
 
-const fmodifierEmploye   = async (req, res) => {
+const fmodifierEmploye = async (req, res) => {	
+	console.log("fonction fmodifierEmploye");
 	  let result = {}
 	  const reqJson = req.body;
 	  var sessEmployeur = req.session.username;
+	  console.log(reqJson)
 	  try{	
-		  await modierEmploye(sessEmployeur, reqJson.idemploye, reqJson.nomemploye, reqJson.prenomemploye, reqJson.nbrheuresmax, reqJson.dateembauche);		  
+		  await modierEmploye(sessEmployeur, reqJson.idemploye, reqJson.nomemploye, reqJson.prenomemploye, reqJson.nbrheuresmax);		  
 		  result.success = true;
 	  } catch (e) {
 		  result.success = false;
@@ -90,7 +91,7 @@ const fmodifierEmploye   = async (req, res) => {
 		try {
 			const client = await pool.connect();
 			await client.query('INSERT INTO BaseEmployes(idemployeur, idemploye, nomemploye, prenomemploye, nbrheuresmax, dateembauche) values ($1, $2, $3, $4, $5, $6)', [idemployeur, idemploye, nomemploye, prenomemploye, nbrheuresmax, dateembauche]);
-			await client.query("insert into BaseIdentification values ($1, $2, $3)", [idemploye, motdepasse, '0'])
+			await client.query('insert into BaseIdentification values ($1, $2, $3)', [idemploye, motdepasse, '0'])
 			client.release(); 
 			return true;
 		} catch(e){
@@ -110,12 +111,12 @@ const fmodifierEmploye   = async (req, res) => {
 		}
 	}
 
-	async function deleteEmploye(idemploye, idemployeur, idtablehoraire) {
+	async function deleteEmploye(idemploye, idemployeur) {
 		try {
 			const client = await pool.connect();
-			await client.query("delete from BaseEmployes where IDEmploye = $1 and IDEmployeur = $2", [idemploye, idemployeur])
-			await client.query("delete from BaseIdentification where idutilisateur = $1 and IDEmployeur = $2", [idemploye])
-			await client.query("update baseQuartsEmploye set disponiblite = $1 where idemploye = $2 and idtablehoraire = $3", ['0', idemploye, idtablehoraire])
+			await client.query('delete from BaseEmployes where IDEmploye = $1 and IDEmployeur = $2', [idemploye, idemployeur])
+			await client.query('delete from BaseIdentification where idutilisateur = $1', [idemploye])
+			await client.query('delete from baseQuartsEmploye where idemploye = $1', [idemploye])
 			client.release();
 			return true
 		} catch(e) {
@@ -124,10 +125,10 @@ const fmodifierEmploye   = async (req, res) => {
 		}
 	}
 	
-	async function ajoutDispo(idemployeur, idemploye, idtablehoraire, typequart, joursemaine, disponibilite) {		
+	async function ajoutDispo(idemployeur, idemploye, typequart, joursemaine, disponibilite) {		
 		try {
 			const client = await pool.connect();
-			await pool.query("insert into baseQuartsEmploye values ($1, $2, $3, $4, $5, $6, $7)", [idemployeur, idemploye, idtableHoraire, TypeQuart, JourSemaine, Disponibilite, "1"]);
+			await pool.query('insert into baseQuartsEmploye values ($1, $2, $3, $4, $5, $6, $7)', [idemployeur, idemploye, '000', typequart, joursemaine, disponibilite, '1']);
 			client.release(); 
 			return true;
 		} catch(e){
@@ -135,10 +136,12 @@ const fmodifierEmploye   = async (req, res) => {
 		}		
 	}
 	
-	async function modifierEmploye(idemployeur, idemploye, nomemploye, prenomemploye, nbrheuresmax, dateembauche) {
+	async function modifierEmploye(idemployeur, idemploye, nomemploye, prenomemploye, nbrheuresmax) {
+		
+		console.log("fonction modifierEmploye");
 		try {
 			const client = await pool.connect();
-			await client.query("update baseEmployes set nomemploye = $1, prenomemploye = $2, nbrheuresmax = $3, dateembauche = $4 where idemploye = $5 and idemployeur = $6", [nomemploye, prenomemploye, nbrheuresmax, dateembauche, idemploye, idemployeur])
+			await client.query('update baseEmployes set nomemploye = $1, prenomemploye = $2, nbrheuresmax = $3 where idemploye = $4 and idemployeur = $5', [nomemploye, prenomemploye, nbrheuresmax, idemploye, idemployeur])
 			client.release();
 			return true;
 		} catch (e) {
