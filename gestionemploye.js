@@ -73,7 +73,7 @@ const fmodifierEmploye = async (req, res) => {
 	  var sessEmployeur = req.session.username;
 	  console.log(reqJson)
 	  try{	
-		  await modierEmploye(sessEmployeur, reqJson.idemploye, reqJson.nomemploye, reqJson.prenomemploye, reqJson.nbrheuresmax);		  
+		  await modierEmploye(reqJson.idemploye, reqJson.nomemploye, reqJson.prenomemploye, reqJson.nbrheuresmax);		  
 		  result.success = true;
 	  } catch (e) {
 		  result.success = false;
@@ -135,12 +135,12 @@ const fmodifierEmploye = async (req, res) => {
 		}		
 	}
 	
-	async function modifierEmploye(idemployeur, idemploye, nomemploye, prenomemploye, nbrheuresmax) {
+	async function modifierEmploye(idemploye, nomemploye, prenomemploye, nbrheuresmax) {
 		
 		console.log("fonction modifierEmploye");
 		try {
 			const client = await pool.connect();
-			await client.query('update baseEmployes set nomemploye = $1, prenomemploye = $2, nbrheuresmax = $3 where idemploye = $4 and idemployeur = $5', [nomemploye, prenomemploye, nbrheuresmax, idemploye, idemployeur])
+			await client.query('update baseEmployes set nomemploye = $1, prenomemploye = $2, nbrheuresmax = $3 where idemploye = $4', [nomemploye, prenomemploye, nbrheuresmax, idemploye])
 			client.release();
 			return true;
 		} catch (e) {
