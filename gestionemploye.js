@@ -77,7 +77,7 @@ const fmodifierEmploye = async (req, res) => {
 	console.log(reqJson.prenomemploye)
 	console.log(reqJson.nbrheuresmax)
 	  try{	
-		  await modierEmploye(reqJson.idemploye, reqJson.nomemploye, reqJson.prenomemploye, nbHeure);		  
+		  await modifierEmploye(reqJson.idemploye, reqJson.nomemploye, reqJson.prenomemploye, nbHeure);		  
 		  result.success = true;
 	  } catch (e) {
 		  result.success = false;
