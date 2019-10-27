@@ -17,10 +17,12 @@ res.end();
 const ajouterHoraire   = async (req, res) => {
 	let result = {}
 	const reqJson = req.body;
-	
+	var employejour = parseInt(req.body.employejour);
+	var employesoir  = parseInt(req.body.employesoir);
+	var employenuit  = parseInt(req.body.employenuit);
 	  try{	
 		  console.log(reqJson);
-		  await ajoutHoraire(reqJson.employejour, reqJson.employesoir, reqJson.employenuit, reqJson.datehoraire);
+		  await ajoutHoraire(employejour, employesoir, employenuit, reqJson.datehoraire);
 		  
 		  result.success = true;
 	  } catch (e) {
@@ -46,8 +48,8 @@ async function ajoutHoraire(employejour, employesoir, employenuit, datehoraire) 
     const client1 = await pool.connect();
     idHoraire = await client.query('SELECT MAX(Idtablehoraire) FROM TableHoraire');
     console.log(idHoraire);
-	  idHoraire = idHoraire+1;
-	  console.log(idHoraire);
+    idHoraire = parseInt(idHoraire)+1;
+    console.log(idHoraire);
     client1.release();
   } catch(e){
     return false
