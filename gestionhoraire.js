@@ -43,7 +43,10 @@ async function ajoutHoraire(employejour, employesoir, employenuit, datehoraire) 
   var idHoraire;
   try{
     const client1 = await pool.connect();
-    idHoraire = await client.query('SELECT MAX(Idtablehoraire) FROM TableHoraire') + 1;
+    idHoraire = await client.query('SELECT MAX(Idtablehoraire) FROM TableHoraire');
+    console.log(idHoraire);
+	  idHoraire = idHoraire+1;
+	  console.log(idHoraire);
     client1.release();
   } catch(e){
     return false
