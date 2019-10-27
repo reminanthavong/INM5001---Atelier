@@ -11,7 +11,6 @@ response.sendFile(path.join(__dirname + '/views/pages/gestionEmploye.ejs'));
 
 const fafficherEmployes  = async (req, res) => {
 	  var sessEmployeur = req.session.username;
-	  console.log(sessEmployeur)
 	  const rows = await afficherEmployes(sessEmployeur);
 	  res.setHeader("content-type", "application/json")
 	  res.send(JSON.stringify(rows))
@@ -20,8 +19,6 @@ const fafficherEmployes  = async (req, res) => {
 const fajouterEmploye   = async (req, res) => {
 	  let result = {}
 	  const reqJson = req.body;
-	console.log(reqJson)
-	console.log(reqJson.idemploye)
 	  var sessEmployeur = req.session.username;
 	  try{	
 		  await ajoutEmploye(sessEmployeur, reqJson.idemploye, reqJson.nomemploye, reqJson.prenomemploye, reqJson.nbrheuresmax, reqJson.dateembauche, reqJson.motdepasse);		  
@@ -40,7 +37,7 @@ const fenleverEmploye   = async (req, res) => {
 		  const reqJson = req.body;
 		  var sessEmployeur = req.session.username;
 		  //var idtablehoraire = sessEmployeur.concat("00000000");
-		  await deleteEmploye(reqJson.idemploye, sessEmployeur, idtablehoraire);
+		  await deleteEmploye(reqJson.idemploye);
 		  result.success = true;		
 	  } catch (e) {
 		  result.success = false;
@@ -55,6 +52,8 @@ const fajouterDisponibilite = async(req, res) => {
 	let result = {}
 	const reqjson = req.body;
 	var sessEmployeur = req.session.username;
+	console.log(reqjson)
+	console.log(result)
 	//var idtablehoraire = sessEmployeur.concat("00000000");
 	try{	
 		  await ajoutDispo(sessEmployeur, reqJson.idemploye, reqJson.typequart, req.joursemaine, req.dispo);		  
@@ -111,10 +110,10 @@ const fmodifierEmploye = async (req, res) => {
 		}
 	}
 
-	async function deleteEmploye(idemploye, idemployeur) {
+	async function deleteEmploye(idemploye) {
 		try {
 			const client = await pool.connect();
-			await client.query('delete from BaseEmployes where IDEmploye = $1 and IDEmployeur = $2', [idemploye, idemployeur])
+			await client.query('delete from BaseEmployes where IDEmploye = $1, [idemploye])
 			await client.query('delete from BaseIdentification where idutilisateur = $1', [idemploye])
 			await client.query('delete from baseQuartsEmploye where idemploye = $1', [idemploye])
 			client.release();
