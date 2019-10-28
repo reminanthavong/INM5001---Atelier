@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <style>
 html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 .w3-sidebar {
@@ -36,41 +37,186 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 
 <!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
 <div class="w3-main" style="margin-left:250px">
-      <div class="w3-row">
+    <div class="w3-row w3-padding-64">
         <div class="w3-twothird w3-container">
-            <h1 class="w3-text-teal">Générer un horaire:</h1>
-            <br/>
-            <div class='container'>
-            <form enctype='multipart/form-data'>
-            <fieldset>
-              <div class='form-row'>
-                <div class='form-group col-3'>
-                  <label for='lundijour'>Jour:</label>
-                  <input name='lundijour' class='form-control form-constrol-sm' id='lundijour' type='text' pattern='[0-9]' required='required'>
-                </div>
-                <div class='form-group col-3'>
-                  <label for='lundisoir'>Soir:</label>
-                  <input name='lundisoir' class='form-control form-constrol-sm' id='lundisoir' type='text' pattern='[0-9]' required='required'>
-                </div>
-                <div class='form-group col-3'>
-                    <label for='lundinuit'>Soir:</label>
-                    <input name='lundinuit' class='form-control form-constrol-sm' id='lundinuit' type='text' pattern='[0-9]' required='required'>
-                </div>
-                <div class='form-group col-3'>
-                    <label for='nbheuresmax'>Date:</label>
-      							<input type='date' id='datelundi' class='form-control'>
-                  </div>
-              </div>
-              
-              
-              <button class='btn btn-primary' style='background-color:grey; border:none' id="btncreeremploye" name='btncreeremploye' value='btncreeremploye'>Envoyer</button>
-            </fieldset>
-            </form>
-            </div>
-        </div>    		
-      </div>
+          <div class="w3-row">
+            <div class="w3-twothird w3-container">
+                <h1 class="w3-text-teal">Générer un horaire:</h1>
+                <br/>
+                <div class="container">
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <label for="jour">Lundi:</label> 
+                          </div>
+                          <br/> 
+                        <div class="form-group">
+                            <label for="lundijour">Jour:</label>
+                            <input type="text" class="form-control" id="lundijour" name="lundijour">  
+                          </div>
+                      <div class="form-group">
+                          <label for="lundisoir">Soir:</label>
+                          <input type="text" class="form-control" id="lundisoir" name="lundisoir">  
+                        </div>
+                        <div class="form-group">
+                            <label for="lundinuit">Nuit:</label>
+                            <input type="text" class="form-control" id="lundinuit" name="lundinuit">  
+                        </div>
 
-  <!-- A modifier plus tard pour ajout de contenue
+                        <div class="form-group">
+                          <label for='lundidate'>Date:</label>
+      							      <input type='date' id='lundidate' class='form-control'>
+                        </div>
+                        <br/><br/>
+                        
+                        <div class="form-group">
+                            <label for="jour">Mardi:</label> 
+                          </div>
+                          <br/> 
+                        <div class="form-group">
+                            <label for="mardijour">Jour:</label>
+                            <input type="text" class="form-control" id="mardijour" name="mardijour">  
+                          </div>
+                      <div class="form-group">
+                          <label for="mardisoir">Soir:</label>
+                          <input type="text" class="form-control" id="mardisoir" name="mardisoir">  
+                        </div>
+                        <div class="form-group">
+                            <label for="mardinuit">Nuit:</label>
+                            <input type="text" class="form-control" id="mardinuit" name="mardinuit">  
+                        </div>
+
+                        <div class="form-group">
+                            <label for='mardidate'>Date:</label>
+      						<input type='date' id=mardidate' class='form-control'>
+                        </div>
+                        
+                        <br/><br/>
+                        
+                        <div class="form-group">
+                            <label for="jour">Mercredi:</label> 
+                          </div>
+                          <br/> 
+                        <div class="form-group">
+                            <label for="mercredijour">Jour:</label>
+                            <input type="text" class="form-control" id="mercredijour" name="mercredijour">  
+                          </div>
+                      <div class="form-group">
+                          <label for="mercredisoir">Soir:</label>
+                          <input type="text" class="form-control" id="mercredisoir" name="mercredisoir">  
+                        </div>
+                        <div class="form-group">
+                            <label for="mercredinuit">Nuit:</label>
+                            <input type="text" class="form-control" id="mercredinuit" name="mercredinuit">  
+                        </div>
+
+                        <div class="form-group">
+                            <label for='mercredidate'>Date:</label>
+      					          	<input type='date' id=mercredidate' class='form-control'>
+                        </div>
+                        
+                        <br/><br/>
+                        
+                        <div class="form-group">
+                            <label for="jour">Jeudi:</label> 
+                          </div>
+                          <br/> 
+                        <div class="form-group">
+                            <label for="jeudijour">Jour:</label>
+                            <input type="text" class="form-control" id="jeudijour" name="jeudijour">  
+                          </div>
+                      <div class="form-group">
+                          <label for="jeudisoir">Soir:</label>
+                          <input type="text" class="form-control" id="jeudisoir" name="jeudisoir">  
+                        </div>
+                        <div class="form-group">
+                            <label for="jeudinuit">Nuit:</label>
+                            <input type="text" class="form-control" id="jeudinuit" name="jeudinuit">  
+                        </div>
+
+                        <div class="form-group">
+                            <label for='jeudidate'>Date:</label>
+      					          	<input type='date' id=jeudidate' class='form-control'>
+                        </div>
+                        
+                        <br/><br/>
+                        
+                        <div class="form-group">
+                            <label for="jour">Vendredi:</label> 
+                          </div>
+                          <br/> 
+                        <div class="form-group">
+                            <label for="vendredijour">Jour:</label>
+                            <input type="text" class="form-control" id="vendredijour" name="vendredijour">  
+                          </div>
+                      <div class="form-group">
+                          <label for="vendredisoir">Soir:</label>
+                          <input type="text" class="form-control" id="vendredisoir" name="vendredisoir">  
+                        </div>
+                        <div class="form-group">
+                            <label for="vendredinuit">Nuit:</label>
+                            <input type="text" class="form-control" id="vendredinuit" name="vendredinuit">  
+                        </div>
+
+                        <div class="form-group">
+                            <label for='vendredidate'>Date:</label>
+      					          	<input type='date' id=vendredidate' class='form-control'>
+                        </div>
+
+                        <br/><br/>
+                        
+                        <div class="form-group">
+                            <label for="jour">Samedi:</label> 
+                          </div>
+                          <br/> 
+                        <div class="form-group">
+                            <label for="samedijour">Jour:</label>
+                            <input type="text" class="form-control" id="samedijour" name="samedijour">  
+                          </div>
+                      <div class="form-group">
+                          <label for="samedisoir">Soir:</label>
+                          <input type="text" class="form-control" id="samedisoir" name="samedisoir">  
+                        </div>
+                        <div class="form-group">
+                            <label for="samedisoir">Nuit:</label>
+                            <input type="text" class="form-control" id="samedisoir" name="samedisoir">  
+                        </div>
+
+                        <div class="form-group">
+                            <label for='samedidate'>Date:</label>
+      					          	<input type='date' id=samedidate' class='form-control'>
+                        </div>
+
+                        <br/><br/>
+                        
+                        <div class="form-group">
+                            <label for="jour">Dimanche:</label> 
+                          </div>
+                          <br/> 
+                        <div class="form-group">
+                            <label for="dimanchejour">Jour:</label>
+                            <input type="text" class="form-control" id="dimanchejour" name="dimanchejour">  
+                          </div>
+                      <div class="form-group">
+                          <label for="dimanchesoir">Soir:</label>
+                          <input type="text" class="form-control" id="dimanchesoir" name="dimanchesoir">  
+                        </div>
+                        <div class="form-group">
+                            <label for="dimanchenuit">Nuit:</label>
+                            <input type="text" class="form-control" id="dimanchenuit" name="dimanchenuit">  
+                        </div>
+
+                        <div class="form-group">
+                            <label for='dimanchedate'>Date:</label>
+      					          	<input type='date' id=dimanchedate' class='form-control'>
+                        </div>
+                        <br/><br/>
+                        <button class='btn btn-primary' style='background-color:grey; border:none' id="btngenererhoraire" name='btngenererhoraire' value='btngenererhoraire'>Générer</button>
+                    </form>
+                  </div>
+            </div>    		
+          </div>
+
+  
   <div class="w3-row w3-padding-64">
     <div class="w3-twothird w3-container">
       <h1 class="w3-text-teal">Heading</h1>
@@ -79,7 +225,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
     </div>
 
   </div>
--->
+
 
   <footer id="myFooter">
     <div class="w3-container w3-theme-l2 w3-padding-32">
