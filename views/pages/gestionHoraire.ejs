@@ -44,6 +44,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
                 <h1 class="w3-text-teal">Générer un horaire:</h1>
                 <br/>
                 <div class="container">
+                    <h4> Entrer le nombre d'employé nécessaire par quart de travail: </h4><br/>
                     <form class="form-inline">
                         <div class="form-group">
                             <label for="jour">Lundi:</label> 
@@ -51,20 +52,20 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
                           <br/> 
                         <div class="form-group">
                             <label for="lundijour">Jour:</label>
-                            <input type="text" class="form-control" id="lundijour" name="lundijour">  
+                            <input type="text" class="form-control" id="lundijour" name="lundijour" pattern='[0-9]' required='required'>  
                           </div>
                       <div class="form-group">
                           <label for="lundisoir">Soir:</label>
-                          <input type="text" class="form-control" id="lundisoir" name="lundisoir">  
+                          <input type="text" class="form-control" id="lundisoir" name="lundisoir" pattern='[0-9]' required='required'>  
                         </div>
                         <div class="form-group">
                             <label for="lundinuit">Nuit:</label>
-                            <input type="text" class="form-control" id="lundinuit" name="lundinuit">  
+                            <input type="text" class="form-control" id="lundinuit" name="lundinuit" pattern='[0-9]' required='required'>  
                         </div>
 
                         <div class="form-group">
                           <label for='lundidate'>Date:</label>
-      							      <input type='date' id='lundidate' class='form-control'>
+      							      <input type='date' id='lundidate' class='form-control' required='required'>
                         </div>
                         <br/><br/>
                         
@@ -74,20 +75,20 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
                           <br/> 
                         <div class="form-group">
                             <label for="mardijour">Jour:</label>
-                            <input type="text" class="form-control" id="mardijour" name="mardijour">  
+                            <input type="text" class="form-control" id="mardijour" name="mardijour" pattern='[0-9]' required='required'>  
                           </div>
                       <div class="form-group">
                           <label for="mardisoir">Soir:</label>
-                          <input type="text" class="form-control" id="mardisoir" name="mardisoir">  
+                          <input type="text" class="form-control" id="mardisoir" name="mardisoir" pattern='[0-9]' required='required'>  
                         </div>
                         <div class="form-group">
                             <label for="mardinuit">Nuit:</label>
-                            <input type="text" class="form-control" id="mardinuit" name="mardinuit">  
+                            <input type="text" class="form-control" id="mardinuit" name="mardinuit" pattern='[0-9]' required='required'>  
                         </div>
 
                         <div class="form-group">
                             <label for='mardidate'>Date:</label>
-      						<input type='date' id=mardidate' class='form-control'>
+      						          <input type='date' id=mardidate' class='form-control' required='required'>
                         </div>
                         
                         <br/><br/>
@@ -98,20 +99,20 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
                           <br/> 
                         <div class="form-group">
                             <label for="mercredijour">Jour:</label>
-                            <input type="text" class="form-control" id="mercredijour" name="mercredijour">  
+                            <input type="text" class="form-control" id="mercredijour" name="mercredijour" pattern='[0-9]' required='required'>  
                           </div>
                       <div class="form-group">
                           <label for="mercredisoir">Soir:</label>
-                          <input type="text" class="form-control" id="mercredisoir" name="mercredisoir">  
+                          <input type="text" class="form-control" id="mercredisoir" name="mercredisoir" pattern='[0-9]' required='required'>  
                         </div>
                         <div class="form-group">
                             <label for="mercredinuit">Nuit:</label>
-                            <input type="text" class="form-control" id="mercredinuit" name="mercredinuit">  
+                            <input type="text" class="form-control" id="mercredinuit" name="mercredinuit" pattern='[0-9]' required='required'>  
                         </div>
 
                         <div class="form-group">
                             <label for='mercredidate'>Date:</label>
-      					          	<input type='date' id=mercredidate' class='form-control'>
+      					          	<input type='date' id=mercredidate' class='form-control' required='required'>
                         </div>
                         
                         <br/><br/>
@@ -122,20 +123,20 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
                           <br/> 
                         <div class="form-group">
                             <label for="jeudijour">Jour:</label>
-                            <input type="text" class="form-control" id="jeudijour" name="jeudijour">  
+                            <input type="text" class="form-control" id="jeudijour" name="jeudijour" pattern='[0-9]' required='required'>  
                           </div>
                       <div class="form-group">
                           <label for="jeudisoir">Soir:</label>
-                          <input type="text" class="form-control" id="jeudisoir" name="jeudisoir">  
+                          <input type="text" class="form-control" id="jeudisoir" name="jeudisoir" pattern='[0-9]' required='required'>   
                         </div>
                         <div class="form-group">
                             <label for="jeudinuit">Nuit:</label>
-                            <input type="text" class="form-control" id="jeudinuit" name="jeudinuit">  
+                            <input type="text" class="form-control" id="jeudinuit" name="jeudinuit" pattern='[0-9]' required='required'>  
                         </div>
 
                         <div class="form-group">
                             <label for='jeudidate'>Date:</label>
-      					          	<input type='date' id=jeudidate' class='form-control'>
+      					          	<input type='date' id=jeudidate' class='form-control' required='required'>
                         </div>
                         
                         <br/><br/>
@@ -146,20 +147,20 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
                           <br/> 
                         <div class="form-group">
                             <label for="vendredijour">Jour:</label>
-                            <input type="text" class="form-control" id="vendredijour" name="vendredijour">  
+                            <input type="text" class="form-control" id="vendredijour" name="vendredijour" pattern='[0-9]' required='required'>  
                           </div>
                       <div class="form-group">
                           <label for="vendredisoir">Soir:</label>
-                          <input type="text" class="form-control" id="vendredisoir" name="vendredisoir">  
+                          <input type="text" class="form-control" id="vendredisoir" name="vendredisoir" pattern='[0-9]' required='required'>  
                         </div>
                         <div class="form-group">
                             <label for="vendredinuit">Nuit:</label>
-                            <input type="text" class="form-control" id="vendredinuit" name="vendredinuit">  
+                            <input type="text" class="form-control" id="vendredinuit" name="vendredinuit" pattern='[0-9]' required='required'>  
                         </div>
 
                         <div class="form-group">
                             <label for='vendredidate'>Date:</label>
-      					          	<input type='date' id=vendredidate' class='form-control'>
+      					          	<input type='date' id=vendredidate' class='form-control' required='required'>
                         </div>
 
                         <br/><br/>
@@ -170,20 +171,20 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
                           <br/> 
                         <div class="form-group">
                             <label for="samedijour">Jour:</label>
-                            <input type="text" class="form-control" id="samedijour" name="samedijour">  
+                            <input type="text" class="form-control" id="samedijour" name="samedijour" pattern='[0-9]' required='required'>  
                           </div>
                       <div class="form-group">
                           <label for="samedisoir">Soir:</label>
-                          <input type="text" class="form-control" id="samedisoir" name="samedisoir">  
+                          <input type="text" class="form-control" id="samedisoir" name="samedisoir" pattern='[0-9]' required='required'>  
                         </div>
                         <div class="form-group">
                             <label for="samedisoir">Nuit:</label>
-                            <input type="text" class="form-control" id="samedisoir" name="samedisoir">  
+                            <input type="text" class="form-control" id="samedisoir" name="samedisoir" pattern='[0-9]' required='required'>  
                         </div>
 
                         <div class="form-group">
                             <label for='samedidate'>Date:</label>
-      					          	<input type='date' id=samedidate' class='form-control'>
+      					          	<input type='date' id=samedidate' class='form-control' required='required'>
                         </div>
 
                         <br/><br/>
@@ -194,20 +195,20 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
                           <br/> 
                         <div class="form-group">
                             <label for="dimanchejour">Jour:</label>
-                            <input type="text" class="form-control" id="dimanchejour" name="dimanchejour">  
+                            <input type="text" class="form-control" id="dimanchejour" name="dimanchejour" pattern='[0-9]' required='required'>  
                           </div>
                       <div class="form-group">
                           <label for="dimanchesoir">Soir:</label>
-                          <input type="text" class="form-control" id="dimanchesoir" name="dimanchesoir">  
+                          <input type="text" class="form-control" id="dimanchesoir" name="dimanchesoir" pattern='[0-9]' required='required'>  
                         </div>
                         <div class="form-group">
                             <label for="dimanchenuit">Nuit:</label>
-                            <input type="text" class="form-control" id="dimanchenuit" name="dimanchenuit">  
+                            <input type="text" class="form-control" id="dimanchenuit" name="dimanchenuit" pattern='[0-9]' required='required'>  
                         </div>
 
                         <div class="form-group">
                             <label for='dimanchedate'>Date:</label>
-      					          	<input type='date' id=dimanchedate' class='form-control'>
+      					          	<input type='date' id=dimanchedate' class='form-control' required='required'>
                         </div>
                         <br/><br/>
                         <button class='btn btn-primary' style='background-color:grey; border:none' id="btngenererhoraire" name='btngenererhoraire' value='btngenererhoraire'>Générer</button>
