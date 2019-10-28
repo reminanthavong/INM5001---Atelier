@@ -36,9 +36,6 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 
 <!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
 <div class="w3-main" style="margin-left:250px">
-
-  <div class="w3-row w3-padding-64">
-    <div class="w3-twothird w3-container">
       <div class="w3-row">
         <div class="w3-twothird w3-container">
             <h1 class="w3-text-teal">Générer un horaire:</h1>
@@ -47,38 +44,33 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
             <form enctype='multipart/form-data'>
             <fieldset>
               <div class='form-row'>
-                    <div class='form-group col-8'>
-                      <label for='nbheuresmax'>Date de la création:</label>
-                      <input type='date' id='datehoraire' class='form-control'>
-                      
-                    </div>
+                <div class='form-group col-3'>
+                  <label for='lundijour'>Jour:</label>
+                  <input name='lundijour' class='form-control form-constrol-sm' id='lundijour' type='text' pattern='[0-9]' required='required'>
                 </div>
-              <div class='form-row'>
-                <div class='form-group col-8'>
-                  <label for='employejour'>Nombre d'employés de jour:</label>
-                  <input name='employejour' class='form-control form-constrol-sm' id='employejourid' type='text' pattern='[0-9]' required='required'>
+                <div class='form-group col-3'>
+                  <label for='lundisoir'>Soir:</label>
+                  <input name='lundisoir' class='form-control form-constrol-sm' id='lundisoir' type='text' pattern='[0-9]' required='required'>
                 </div>
-    
-              <div class='form-row'>
-                <div class='form-group col-8'>
-                  <label for='employesoir'>Nombre d'employés de soir:</label>
-                  <input name='employesoir' class='form-control form-constrol-sm' id='employesoirid' type='text' pattern='[0-9]' required='required'>
+                <div class='form-group col-3'>
+                    <label for='lundinuit'>Soir:</label>
+                    <input name='lundinuit' class='form-control form-constrol-sm' id='lundinuit' type='text' pattern='[0-9]' required='required'>
                 </div>
-              </div>	
-              
-              <div class='form-row'>
-                <div class='form-group col-8'>
-                  <label for='employenuit'>Nombre d'employés de nuit:</label>
-                  <input name='employenuit' class='form-control form-constrol-sm' id='employenuitid' type='text' pattern='[0-9]' required='required'>
-                </div>   						
+                <div class='form-group col-3'>
+                    <label for='nbheuresmax'>Date:</label>
+      							<input type='date' id='datelundi' class='form-control'>
+                  </div>
               </div>
-              <button class='btn btn-primary' style='background-color:grey; border:none' id="btngenererhoraire" name='btngenererhoraire' value='btngenererhoraire'>Générer</button>
+              
+              
+              <button class='btn btn-primary' style='background-color:grey; border:none' id="btncreeremploye" name='btncreeremploye' value='btncreeremploye'>Envoyer</button>
             </fieldset>
             </form>
             </div>
         </div>    		
       </div>
 
+  <!-- A modifier plus tard pour ajout de contenue
   <div class="w3-row w3-padding-64">
     <div class="w3-twothird w3-container">
       <h1 class="w3-text-teal">Heading</h1>
@@ -87,6 +79,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
     </div>
 
   </div>
+-->
 
   <footer id="myFooter">
     <div class="w3-container w3-theme-l2 w3-padding-32">
@@ -129,12 +122,11 @@ const btnGenerer = document.getElementById("btngenererhoraire");
 btnGenerer.addEventListener("click", async e => {	
 			try {
 				const jsonEmp = {};								
-        jsonEmp.employejour = document.getElementById('employejourid').value;
-        jsonEmp.employesoir =  document.getElementById('employesoirid').value;
-        jsonEmp.employenuit =  document.getElementById('employenuitid').value;
+        jsonEmp.employejour = document.getElementById('employejour').value;
+        jsonEmp.employesoir =  document.getElementById('employesoir').value;
+        jsonEmp.employenuit =  document.getElementById('employenuit').value;
 				var date = document.getElementById('datehoraire').value
 				jsonEmp.datehoraire = new Date(date);
-				console.log(jsonEmp);
 				const result = await fetch(url, {
 				        method: 'POST', 
 					headers: { 
