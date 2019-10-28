@@ -62,7 +62,6 @@ const fajouterDisponibilite = async(req, res) => {
 }
 
 const fmodifierEmploye = async (req, res) => {	
-	console.log("fonction fmodifierEmploye");
 	  let result = {}
 	  const reqJson = req.body;
 	  var sessEmployeur = req.session.username;
@@ -79,8 +78,6 @@ const fmodifierEmploye = async (req, res) => {
 }
 
 	async function ajoutEmploye(idemployeur, idemploye, nomemploye, prenomemploye, nbrheuresmax, dateembauche, motdepasse) {	
-		console.log(nomemploye)
-		console.log(dateembauche)
 		
 		try {
 			const client = await pool.connect();
@@ -110,7 +107,7 @@ const fmodifierEmploye = async (req, res) => {
 			const client = await pool.connect();
 			await client.query('delete from BaseEmployes where IDEmploye = $1', [idemploye])
 			await client.query('delete from BaseIdentification where idutilisateur = $1', [idemploye])
-			await client.query('update baseQuartsEmploye set disponibilite = $1 where idemploye = $2', ['0', idemploye]);
+			await client.query('delete from baseQuartsEmploye idemploye = $1', [idemploye])
 			client.release();
 			return true
 		} catch(e) {
