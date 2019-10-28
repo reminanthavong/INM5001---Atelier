@@ -11,3 +11,22 @@ De mettre beaucoup de temps et d’effort pour apprendre le tout.
 
 Si c’était à refaire, que feriez-vous différemment
 Rien du tout, je crois que j’ai pris le bon moyen pour être capable de réaliser le projet livrable.
+
+KAYLA
+
+Décrire ou vous en etes:
+Ma partie était de créer la page gestion des employé, ce qui permet au gestionnaire de voir la liste de ses employés, en ajouter ou en enlever. La page est complete, il reste à créer les tests unitaires.
+
+Décrire les difficultés rencontrées
+Apprendre le nouvel environnement de travail dans lequel on travail.
+J'ai aussi passé beaucoup de temps à essayer d'apprendre et d'utiliser typescript et ce, sans succes.
+Il a aussi été difficile de connecter le front end et la back end. 
+
+Solutions trouvées aux difficultés
+Demande de l'aide à mes co-équipiers.
+Regarder des vidéos youtubes.
+Passer beaucoupe de temps à faire de la recherche.
+
+Si c'était à refaire, que feriez-vous différemment
+J'aurais utilisé directement javascript et pas typescript.
+J'aurais demandé de l'aide beaucoup plus rapidement à mes co-équipiers, plutot que de m'acharner seule dans mon coin.
