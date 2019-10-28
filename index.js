@@ -35,6 +35,12 @@ express()
   .get('/', function(request, response) {
 	response.sendFile(path.join(__dirname + '/views/pages/login.html'));
 })
+
+// Verification key pour Loader.io
+.get('/loaderio-ea729398c3aaad4977cc2f95746edf2a', async (req, res) => {
+      res.send('loaderio-ea729398c3aaad4977cc2f95746edf2a');
+  })
+
 // Fonction Login
 .post('/auth', login.loginAPI) // Validation des entrez dans login.html
 .get('/home', function(request, response) {
