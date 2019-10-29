@@ -1,0 +1,52 @@
+État de la situation
+
+Au niveau de la planification
+
+Selon les objectifs de ce sprint, nous sommes pas mal en phase. Nous avons beaucoup avancé, mais certaines tâches devront être remis au sprint suivant, dont les tests unitaires, l’uniformisation des fonctions et le refactoring.
+
+Sinon, toutes les semaines, nous nous rencontrons, discutons de ce que chacun a fait et de ce qui reste à faire. Le gestionnaire de tâches est mis à jour régulièrement.
+
+Au niveau du développement
+
+Pour ce sprint, il y avait cinq grands axes à développer.
+
+Le premier axe est la mise en place de la base de données. Cela a été complété dans les premiers jours de ce sprint. Elle est fonctionnelle.
+
+Le deuxième axe est la page d’identification, ce qui donne accès aux usagers à l’application. Dans l’ensemble la page est complété, il ne restera qu’à encrypter le mot de passe dans l’échange http.
+
+Le troisième axe est la page de gestion des employés. Cette page permet au gestionnaire de voir la liste de ses employés, de les rechercher, d’en ajouter et de les congédier. Cette page est complète.
+
+Le quatrième axe est la page d’affichage des horaires. Celle-ci est bien avancée.
+
+Le cinquième axe est la page de gestion des horaires. Cette page permet au gestionnaire de créer un nouvel horaire ou de modifier un horaire déjà existant. Le front-end est presque achevé, mais pas le back-end. L’entrée des données liées aux horaires ne se fait pas encore dans la base de données. L’algorithme n’a pas été encore écrit, mais non savions que cela allait être ambitieux que de le faire pour ce sprint-ci.
+
+De plus, toutes les pages ont été « routées » ensemble.
+
+Finalement, il va falloir mettre les tests unitaires au prochain sprint. Quelques tests de charge, de performance et de stress ont toutefois étés faits.
+
+Difficultés rencontrées
+
+Au niveau technique
+
+Dans l’ensemble, ce qui a été difficile, c’est de se familiariser avec un nouvel environnement de travail., de nouvelles librairies et de nouveaux outils. Aucun de nous n’avions travaillés avec nodejs. Cela a été tout un apprentissage. Nous manquons tous d’expérience.
+
+Nous avons également perdu beaucoup de temps à tenter d’utiliser typescript pour ce projet, langage qu’aucun de nous ne connaissions. Pour nous faciliter le travail, nous avons finalement décider d’utiliser javascript.
+
+Au niveau organisationnel
+
+Nous avons une bonne communication. Nous n’avons pas rencontré de problème organisationnel.
+
+Solution trouvées aux difficultés
+
+Chacun de nous avions une partie spécifique à travailler. Ce qui nous aide est travailler en équipe et de demander de l’aide aux autres membres lorsque nous sommes bloqués. 
+
+Nous avons également chacun mis beaucoup de temps et d’effort. Chacun de nous à dû faire de la recherche, lire des exemples et écouter des tutoriels sur youtube pour apprendre.
+
+Leçons apprises
+
+Chacun de nous a appris des leçons différentes. Un des membres aurait commencé tout de suite à utiliser javascript pour ne pas perdre de temps avec typescript. Un autre a manqué de temps et aurait dû commencer à travailler plus tôt au lieu d’essayer de tout comprendre avant de s’y mettre. 
+
+Conclusion
+
+Nous avons pris du retard sur les tests unitaires, mais les développements structurels et les fonctionnalités sont en place.
+La communication au sein de l’équipe se passe très bien. Le logiciel avance à bon rythme et nous sommes confiant de pouvoir livrer une application complète et fonctionnelle.
