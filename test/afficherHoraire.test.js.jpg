@@ -1,0 +1,19 @@
+const chai = require('chai');
+const sinon = require('sinon');
+const { Pool }  = require('pg');
+const { fonctions1 }  = require('../afficherhoraire');
+const { mockReq, mockRes } = require('sinon-express-mock');
+
+const  assert = chai.assert;
+
+describe('fonctions1', function() {
+  it('devrait retourner une erreur', async function() {
+    const req = mockReq();
+    const res = mockRes();
+
+    await fonctions1(req, res);
+    sinon.assert.calledOnce(res.send);
+    const erreur = 'Erreur appel client Error: connect ECONNREFUSED 127.0.0.1:5432'
+    sinon.assert.calledWithExactly(res.send, erreur);
+  });
+});

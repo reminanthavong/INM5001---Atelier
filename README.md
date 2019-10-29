@@ -54,4 +54,8 @@ Une fois le tout installer, il faudra installer le plugin nodejs dans eclipse
  4) Recherchez et installez  Enide (Studio) 2015 - Node.js, JavaScript, Java and Web Tools
                             
                             
+<<<<<<< HEAD
+Vous etes maintenant prêt à programmer!     
+=======
 Vous etes maintenant prêt à programmer!    
+>>>>>>> master
