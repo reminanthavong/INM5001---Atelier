@@ -37,8 +37,8 @@ express()
 })
 
 // Verification key pour Loader.io
-.get('/loaderio-ea729398c3aaad4977cc2f95746edf2a', async (req, res) => {
-      res.send('loaderio-ea729398c3aaad4977cc2f95746edf2a');
+.get('/loaderio-59933bf6aeb3d010d23fa39a006ec516', async (req, res) => {
+      res.send('loaderio-59933bf6aeb3d010d23fa39a006ec516');
   })
 
 // Fonction Login
