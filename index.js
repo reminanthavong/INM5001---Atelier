@@ -36,7 +36,12 @@ express()
 	response.sendFile(path.join(__dirname + '/views/pages/login.html'));
 })
 
-// Verification key pour Loader.io
+// Verification key pour Loader.io PROD
+.get('/loaderio-59933bf6aeb3d010d23fa39a006ec516', async (req, res) => {
+      res.send('loaderio-59933bf6aeb3d010d23fa39a006ec516');
+  })
+
+// Verification key pour Loader.io TEST
 .get('/loaderio-59933bf6aeb3d010d23fa39a006ec516', async (req, res) => {
       res.send('loaderio-59933bf6aeb3d010d23fa39a006ec516');
   })
