@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+	<html lang="fr">
+	
+	<head>	
+		<title>Gestion employés</title>
+		<meta charset="UTF-8">
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+		<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>		
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+		<style>
+			html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
+			.w3-sidebar {
+  			z-index: 3;
+  			width: 250px;
+  			top: 43px;
+  			bottom: 0;
+  			height: inherit;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<!-- Navbar -->
+		<div class="w3-top">
+  <div class="w3-bar w3-theme w3-top w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
+    <a href="/home" class="w3-bar-item w3-button w3-theme-l1">Home</a>
+    <a href="/AffichageHoraire" class="w3-bar-item w3-button w3-theme-l1">Affichage Horaire</a>
+    <a href="/GestionEmploye" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Gestion Employe</a>
+    <a href="/GestionHoraire" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Gestion Horaire</a>
+  </div>
+</div>
+
+		<!-- Overlay effect when opening sidebar on small screens -->
+		<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+		<!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
+		<div class="w3-main" style="margin-left:250px">
+
+  			<div class="w3-row w3-padding-64">
+    			<div class="w3-twothird w3-container">
+      				<h1 class="w3-text-teal">Mes disponibilités par défaut</h1>
+    			</div>   			
+  			</div>
+
+  			<div class="w3-row">
+    			<div class="w3-twothird w3-container">
+      				<h1 class="w3-text-teal">Modifier mes disponibilités par défaut</h1>
+      				<br/>
+      				<div class='container'>
+      				<form enctype='multipart/form-data'>
+      				<fieldset>
+      					<div class='form-row'>
+      						<div class='form-group col-12'>
+      							<label for='nbheuresmax'>Veuillez cocher les disponibilités de l'employé:</label>
+      							<div class='form-group col-12'>
+      								<p>Lundi</p>
+      								<div class='form-check form-check-inline'>
+      									<input class='form-check-input' type='checkbox' id='J1' value='J1'>
+      									<label class='form-check-label' for='J1'> Jour </label>
+      								</div>
+      								<div class='form-check form-check-inline'>
+      									<input class='form-check-input' type='checkbox' id='S1' value='S1'>
+      									<label class='form-check-label' for='S1'> Soir </label>
+      								</div>
+      								<div class='form-check form-check-inline'>
+      									<input class='form-check-input' type='checkbox' id='N1' value='N1'>
+      									<label class='form-check-label' for='N1'> Nuit </label>
+      								</div>
+      							</div>
+      							<div class='form-group col-12'>
+      								<p>Mardi</p>
+      								<div class='form-check form-check-inline'>
+      									<input class='form-check-input' type='checkbox' id='J2' value='J2'>
+      									<label class='form-check-label' for='J2'> Jour </label>
+      								</div>
+      								<div class='form-check form-check-inline'>
+      									<input class='form-check-input' type='checkbox' id='S2' value='S2'>
+      									<label class='form-check-label' for='S2'> Soir </label>
+      								</div>
+      								<div class='form-check form-check-inline'>
+      									<input class='form-check-input' type='checkbox' id='N2' value='N2'>
+      									<label class='form-check-label' for='N2'> Nuit </label>
+      								</div>
+      							</div>
+      							<div class='form-group col-12'>
+      								<p>Mercredi</p>
+      								<div class='form-check form-check-inline'>
+      									<input class='form-check-input' type='checkbox' id='J3' value='J3'>
+      									<label class='form-check-label' for='J3'> Jour </label>
+      								</div>
+      								<div class='form-check form-check-inline'>
+      									<input class='form-check-input' type='checkbox' id='S3' value='S3'>
+      									<label class='form-check-label' for='S3'> Soir </label>
+      								</div>
+      								<div class='form-check form-check-inline'>
+      									<input class='form-check-input' type='checkbox' id='N3' value='N3'>
+      									<label class='form-check-label' for='N3'> Nuit </label>
+      								</div>
+      							</div>
+      							<div class='form-group col-12'>
+      								<p>Jeudi</p>
+      								<div class='form-check form-check-inline'>
+      									<input class='form-check-input' type='checkbox' id='J4' value='J4'>
+      									<label class='form-check-label' for='J4'> Jour </label>
+      								</div>
+      								<div class='form-check form-check-inline'>
+      									<input class='form-check-input' type='checkbox' id='S4' value='S4'>
+      									<label class='form-check-label' for='S4'> Soir </label>
+      								</div>
+      								<div class='form-check form-check-inline'>
+      									<input class='form-check-input' type='checkbox' id='N4' value='N4'>
+      									<label class='form-check-label' for='N4'> Nuit </label>
+      								</div>
+      							</div>
+      							<div class='form-group col-12'>
+      								<p>Vendredi</p>
+      								<div class='form-check form-check-inline'>
+      									<input class='form-check-input' type='checkbox' id='J5' value='J5'>
+      									<label class='form-check-label' for='J5'> Jour </label>
+      								</div>
+      								<div class='form-check form-check-inline'>
+      									<input class='form-check-input' type='checkbox' id='S5' value='S5'>
+      									<label class='form-check-label' for='S5'> Soir </label>
+      								</div>
+      								<div class='form-check form-check-inline'>
+      									<input class='form-check-input' type='checkbox' id='N5' value='N5'>
+      									<label class='form-check-label' for='N5'> Nuit </label>
+      								</div>
+      							</div>
+      						</div>   						
+      					</div>
+      					<button class='btn btn-primary' style='background-color:grey; border:none' id="modifdispo" name='modifdispo' value='modifdispo'>Changer mes disponiblités</button>
+      				</fieldset>
+      				</form>
+      				</div>
+    			</div>    		
+  			</div>
+
+  			<div class="w3-row w3-padding-64">
+    			<div class="w3-twothird w3-container">
+      				<h1 class="w3-text-teal">Demander un congé</h1>
+      				<div class='form-row'>
+      					<form enctype='multipart/form-data' >
+      					<fieldset>
+      						<div class='form-row'>
+      								<div class='form-group col-8'>
+      									<label for='nbheuresmax'>Choisir une date:</label>
+      									<input type='date' id='dateembauche' class='form-control'>   							
+      								</div>
+      						</div>	
+      						<div class='form-row'>
+      							<div class='form-group col-12'>
+      								<p>Veuillez cocher le(s) quart(s) pour lequel(lesquels) vous n'êtes pas disponible cette date-là.</p>
+      								<div class='form-check form-check-inline'>
+      									<input class='form-check-input' type='checkbox' id='J1' value='J1'>
+      									<label class='form-check-label' for='J1'> Jour </label>
+      								</div>
+      								<div class='form-check form-check-inline'>
+      									<input class='form-check-input' type='checkbox' id='S1' value='S1'>
+      									<label class='form-check-label' for='S1'> Soir </label>
+      								</div>
+      								<div class='form-check form-check-inline'>
+      									<input class='form-check-input' type='checkbox' id='N1' value='N1'>
+      									<label class='form-check-label' for='N1'> Nuit </label>
+      								</div>
+      							</div>
+      						</div>
+      						<button class='btn btn-primary' style='background-color:grey; border:none' id="conge" name='conge' value='conge'>Demander le congé</button>
+      					</fieldset>
+      					</form>
+      				</div>
+    			</div>
+  			</div>
+
+  
+  			<footer id="myFooter">
+    			<div class="w3-container w3-theme-l2 w3-padding-32">
+      				<h4>Footer</h4>
+    			</div>
+
+    			<div class="w3-container w3-theme-l1">
+      				<p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+    			</div>
+  			</footer>
+
+		<!-- END MAIN -->
+		</div>
+
+		<script>
+		// Get the Sidebar
+		var mySidebar = document.getElementById("mySidebar");
+
+		// Get the DIV with overlay effect
+		var overlayBg = document.getElementById("myOverlay");
+
+		// Toggle between showing and hiding the sidebar, and add overlay effect
+		function w3_open() {
+  			if (mySidebar.style.display === 'block') {
+    			mySidebar.style.display = 'none';
+    			overlayBg.style.display = "none";
+  			} else {
+    			mySidebar.style.display = 'block';
+    			overlayBg.style.display = "block";
+  			}
+		}
+
+		// Close the sidebar with the close button
+		function w3_close() {
+  			mySidebar.style.display = "none";
+  			overlayBg.style.display = "none";
+		}
+		
+		//FONCTIONS POUR ACCEDER À LA BASE DE DONNÉES
+		const url = "/DispoEmploye";
+		
+		const btnModifDispo = document.getElementById("modifdispo");
+		const btnConge = document.getElementById("conge");
+
+		btnModifDispo.addEventListener("click", async e => {
+			if (document.getElementById("J1").checked) {
+					modifierDisponibilite('J', '1', '1');
+				}else {
+					modifierDisponibilite('J', '1', '0');
+				}				
+				if (document.getElementById("S1").checked) {
+					modifierDisponibilite('S', '1', '1');
+				}else {
+					modifierDisponibilite('S', '1', '0');
+				}				
+				if (document.getElementById("N1").checked) {
+					modifierDisponibilite('N', '1', '1');
+				}else {
+					modifierDisponibilite('N', '1', '0');
+				}				
+				if (document.getElementById("J2").checked) {
+					modifierDisponibilite('J', '2', '1');
+				}else {
+					modifierDisponibilite('J', '2', '0');
+				}				
+				if (document.getElementById("S2").checked) {
+					modifierDisponibilite('S', '2', '1');
+				}else {
+					modifierDisponibilite('S', '2', '0');
+				}				
+				if (document.getElementById("N2").checked) {
+					modifierDisponibilite('N', '2', '1');
+				}else {
+					modifierDisponibilite('N', '2', '0');
+				}				
+				if (document.getElementById("J3").checked) {
+					modifierDisponibilite('J', '3', '1');
+				}else {
+					modifierDisponibilite('J', '3', '0');
+				}	
+				if (document.getElementById("S3").checked) {
+					modifierDisponibilite('S', '3', '1');
+				}else {
+					modifierDisponibilite('S', '3', '0');
+				}
+				if (document.getElementById("N3").checked) {
+					modifierDisponibilite('N', '3', '1');
+				}else {
+					modifierDisponibilite('N', '3', '0');
+				}				
+				if (document.getElementById("J4").checked) {
+					modifierDisponibilite('J', '4', '1');
+				}else {
+					modifierDisponibilite('J', '4', '0');
+				}				
+				if (document.getElementById("S4").checked) {
+					modifierDisponibilite('S', '4', '1');
+				}else {
+					modifierDisponibilite('S', '4', '0');
+				}				
+				if (document.getElementById("N4").checked) {
+					modifierDisponibilite('N', '4', '1');
+				}else {
+					modifierDisponibilite('N', '4', '0');
+				}				
+				if (document.getElementById("J5").checked) {
+					modifierDisponibilite('J', '5', '1');
+				}else {
+					modifierDisponibilite('J', '5', '0');
+				}
+				if (document.getElementById("S5").checked) {
+					modifierDisponibilite('S', '5', '1');
+				}else {
+					modifierDisponibilite('S', '5', '0');
+				}				
+				if (document.getElementById("N5").checked) {
+					modifierDisponibilite('N', '5', '1');
+				}else {
+					modifierDisponibilite('N', '5', '0');
+				}
+		}
+	
+		async function modifierDisponibilite(typequart, joursemaine, dispo) {
+			const jsonDispo = {};	
+			jsonDispo.typequart = typequart;
+			jsonDispo.joursemaine = joursemaine;
+			jsonDispo.dispo = dispo;
+			console.log(jsonDispo)
+			const result = await fetch(url, {
+		        method: 'POST', 
+				headers: { 
+				'Accept': 'application/json',
+					'Content-Type': 'application/json'
+			}, 
+			body: JSON.stringify(jsonDispo) })
+			const success = await result.json();
+			if (!success.success){
+				alert("Impossible d'entrer les disponiblités de l'employé dans la base de données")
+			} else {
+				alert("Les disponibilités ont été entrées")
+			}
+		}	
+		
+		btnConge.addEventListener("click", async e => {		
+			var date = document.getElementById('dateembauche').value;
+		}
+		</script>		
+	</body>
+</html>

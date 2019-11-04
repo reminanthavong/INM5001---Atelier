@@ -15,6 +15,7 @@ const afficherhoraire = require('./afficherhoraire')
 const login = require('./login')
 const gestionemploye = require('./gestionemploye')
 const gestionhoraire = require('./gestionhoraire')
+const pageemploye = require('./pageemploye')
 
 express()
   .use(express.static(path.join(__dirname, 'public')))
@@ -97,6 +98,17 @@ if (req.session.typeutilisateur == 1){
 .get('/Horaire',gestionhoraire.afficherHoraire)
 .post('/Horaire',gestionhoraire.ajouterHoraire )
 .delete('/Horaire',gestionhoraire.enleverHoraire )
+
+// Fonction PageEmploye
+.get('/PageEmploye', async (req, res) => {
+	if (req.session.typeutilisateur == 0){
+      res.render('pages/pageEmploye');
+		} else {
+	  res.send('Vous devez être un Employe pour acceder à cette page!');	
+	}
+  })
+  .get('/DispoEmploye',gestionhoraire.afficherDisponibilites)
+  .post('/DispoEmploye',gestionhoraire.modifierDisponibilites )
 
 
  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
