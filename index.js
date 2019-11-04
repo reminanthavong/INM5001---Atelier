@@ -107,8 +107,8 @@ if (req.session.typeutilisateur == 1){
 	  res.send('Vous devez être un Employe pour acceder à cette page!');	
 	}
   })
-  .get('/DispoEmploye',gestionemploye.fajouterDisponibilite)
-  .post('/DispoEmploye',gestionemploye.fmodifierEmploye )
+  .get('/DispoEmploye',pageemploye.afficherDisponibilites)
+  .post('/DispoEmploye',pageemploye.modifierDisponibilites  )
 
 
  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
