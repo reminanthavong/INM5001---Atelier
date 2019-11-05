@@ -5,6 +5,7 @@ const pool = new Pool({
   ssl: true
 });
 
+
 const fpageWeb  = async (req, res) => {
 response.sendFile(path.join(__dirname + '/views/pages/gestionEmploye.ejs'));
 }

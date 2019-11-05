@@ -108,7 +108,8 @@ if (req.session.typeutilisateur == 1){
 	}
   })
   .get('/DispoEmploye',pageemploye.afficherDisponibilites)
-  .post('/DispoEmploye',pageemploye.modifierDisponibilites  )
+  .post('/DispoEmploye',pageemploye.modifierDisponibilites)
+  .post('/Conge', pageemploye.ajouterConge)
 
 
  .listen(PORT, () => console.log(`Listening on ${ PORT }`))

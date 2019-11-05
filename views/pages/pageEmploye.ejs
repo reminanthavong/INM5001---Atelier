@@ -2,7 +2,7 @@
 	<html lang="fr">
 	
 	<head>	
-		<title>Gestion employés</title>
+		<title>Zone employé</title>
 		<meta charset="UTF-8">
 		
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -47,20 +47,65 @@
 
   			<div class="w3-row w3-padding-64">
     			<div class="w3-twothird w3-container">
-      				<h1 class="w3-text-teal">Mes disponibilités par défaut</h1>
+      				<h1 class="w3-text-teal">Mes disponibilités</h1>
+      				<br/>
+      				<div class='container'>
+      					<table class='table'>
+      					<thead>
+      					<tr>
+      						<th>Quart</th>
+      						<th>Jour</th>
+      						<th>Soir</th>
+      						<th>Nuit</th>
+      					</tr>
+      					</thead>
+      					<tbody id="tableDeDispo">
+      						<tr>
+      							<th>Lundi</th>
+      							<th id="dispoJ1"></th>
+      							<th id="dispoS1"></th>
+      							<th id="dispoN1"></th>
+      						</tr>
+      						<tr>
+      							<th>Mardi</th>
+      							<th id="dispoJ2"></th>
+      							<th id="dispoS2"></th>
+      							<th id="dispoN2"></th>
+      						</tr>
+      						<tr>
+      							<th>Mercredi</th>
+      							<th id="dispoJ3"></th>
+      							<th id="dispoS3"></th>
+      							<th id="dispoN3"></th>
+      						</tr>
+      						<tr>
+      							<th>Jeudi</th>
+      							<th id="dispoJ4"></th>
+      							<th id="dispoS4"></th>
+      							<th id="dispoN4"></th>
+      						</tr>
+      						<tr>
+      							<th>Vendredi</th>
+      							<th id="dispoJ5"></th>
+      							<th id="dispoS5"></th>
+      							<th id="dispoN5"></th>
+      						</tr>
+      					</tbody>
+      				</table>
+      				</div>
     			</div>   			
   			</div>
 
   			<div class="w3-row">
     			<div class="w3-twothird w3-container">
-      				<h1 class="w3-text-teal">Modifier mes disponibilités par défaut</h1>
+      				<h1 class="w3-text-teal">Modifier mes disponibilités</h1>
       				<br/>
       				<div class='container'>
       				<form enctype='multipart/form-data'>
       				<fieldset>
       					<div class='form-row'>
       						<div class='form-group col-12'>
-      							<label for='nbheuresmax'>Veuillez cocher les disponibilités de l'employé:</label>
+      							<label for='nbheuresmax'>Veuillez cocher vos nouvelles disponibilités:</label>
       							<div class='form-group col-12'>
       								<p>Lundi</p>
       								<div class='form-check form-check-inline'>
@@ -154,22 +199,22 @@
       						<div class='form-row'>
       								<div class='form-group col-8'>
       									<label for='nbheuresmax'>Choisir une date:</label>
-      									<input type='date' id='dateembauche' class='form-control'>   							
+      									<input type='date' id='dateconge' class='form-control'>   							
       								</div>
       						</div>	
       						<div class='form-row'>
       							<div class='form-group col-12'>
       								<p>Veuillez cocher le(s) quart(s) pour lequel(lesquels) vous n'êtes pas disponible cette date-là.</p>
       								<div class='form-check form-check-inline'>
-      									<input class='form-check-input' type='checkbox' id='J1' value='J1'>
+      									<input class='form-check-input' type='checkbox' id='congeJ' value='J1'>
       									<label class='form-check-label' for='J1'> Jour </label>
       								</div>
       								<div class='form-check form-check-inline'>
-      									<input class='form-check-input' type='checkbox' id='S1' value='S1'>
+      									<input class='form-check-input' type='checkbox' id='congeS' value='S1'>
       									<label class='form-check-label' for='S1'> Soir </label>
       								</div>
       								<div class='form-check form-check-inline'>
-      									<input class='form-check-input' type='checkbox' id='N1' value='N1'>
+      									<input class='form-check-input' type='checkbox' id='congeN' value='N1'>
       									<label class='form-check-label' for='N1'> Nuit </label>
       								</div>
       							</div>
@@ -224,6 +269,141 @@
 		
 		const btnModifDispo = document.getElementById("modifdispo");
 		const btnConge = document.getElementById("conge");
+		
+		afficherDisponibilites();
+		
+		async function afficherDisponibilites(){
+			try{
+				const tableDeDispo = document.getElementById("tableDeDispo");
+				const resultat = await fetch(url, {method: "GET"});
+				const dispo = await resultat.json();
+				console.log(dispo);
+				dispo.forEach(t => {
+					typequart = t.typequart;
+					joursemaine = t.joursemaine;
+					disponible = t.disponibilite;
+					
+					if(joursemaine == 1){
+						if(typequart == 'J'){
+							var cellule = document.getElementById("dispoJ1");
+							if(disponible == 1){
+								cellule.textContent = 'Oui';
+							}else{
+								cellule.textContent = 'Non';
+							}
+						}else if(typequart == 'S'){
+							var cellule = document.getElementById("dispoS1");
+							if(disponible == 1){
+								cellule.textContent = 'Oui';
+							}else{
+								cellule.textContent = 'Non';
+							}
+						}else if(typequart == 'N'){
+							var cellule = document.getElementById("dispoN1");
+							if(disponible == 1){
+								cellule.textContent = 'Oui';
+							}else{
+								cellule.textContent = 'Non';
+							}
+						}
+					}else if(joursemaine == 2){
+						if(typequart == 'J'){
+							var cellule = document.getElementById("dispoJ2");
+							if(disponible == 1){
+								cellule.textContent = 'Oui';
+							}else{
+								cellule.textContent = 'Non';
+							}
+						}else if(typequart == 'S'){
+							var cellule = document.getElementById("dispoS2");
+							if(disponible == 1){
+								cellule.textContent = 'Oui';
+							}else{
+								cellule.textContent = 'Non';
+							}
+						}else if(typequart == 'N'){
+							var cellule = document.getElementById("dispoN2");
+							if(disponible == 1){
+								cellule.textContent = 'Oui';
+							}else{
+								cellule.textContent = 'Non';
+							}
+						}
+					}else if(joursemaine == 3){
+						if(typequart == 'J'){
+							var cellule = document.getElementById("dispoJ3");
+							if(disponible == 1){
+								cellule.textContent = 'Oui';
+							}else{
+								cellule.textContent = 'Non';
+							}
+						}else if(typequart == 'S'){
+							var cellule = document.getElementById("dispoS3");
+							if(disponible == 1){
+								cellule.textContent = 'Oui';
+							}else{
+								cellule.textContent = 'Non';
+							}
+						}else if(typequart == 'N'){
+							var cellule = document.getElementById("dispoN3");
+							if(disponible == 1){
+								cellule.textContent = 'Oui';
+							}else{
+								cellule.textContent = 'Non';
+							}
+						}
+					}else if(joursemaine == 4){
+						if(typequart == 'J'){
+							var cellule = document.getElementById("dispoJ4");
+							if(disponible == 1){
+								cellule.textContent = 'Oui';
+							}else{
+								cellule.textContent = 'Non';
+							}
+						}else if(typequart == 'S'){
+							var cellule = document.getElementById("dispoS4");
+							if(disponible == 1){
+								cellule.textContent = 'Oui';
+							}else{
+								cellule.textContent = 'Non';
+							}
+						}else if(typequart == 'N'){
+							var cellule = document.getElementById("dispoN4");
+							if(disponible == 1){
+								cellule.textContent = 'Oui';
+							}else{
+								cellule.textContent = 'Non';
+							}
+						}
+					}else if(joursemaine == 5){
+						if(typequart == 'J'){
+							var cellule = document.getElementById("dispoJ5");
+							if(disponible == 1){
+								cellule.textContent = 'Oui';
+							}else{
+								cellule.textContent = 'Non';
+							}
+						}else if(typequart == 'S'){
+							var cellule = document.getElementById("dispoS5");
+							if(disponible == 1){
+								cellule.textContent = 'Oui';
+							}else{
+								cellule.textContent = 'Non';
+							}
+						}else if(typequart == 'N'){
+							var cellule = document.getElementById("dispoN5");
+							if(disponible == 1){
+								cellule.textContent = 'Oui';
+							}else{
+								cellule.textContent = 'Non';
+							}
+						}
+					}
+				});
+			} catch(e) {
+				console.log("Impossible d'afficher les disponibilites");
+			}	
+		}
 
 		btnModifDispo.addEventListener("click", async e => {
 			if (document.getElementById("J1").checked) {
@@ -301,7 +481,7 @@
 				}else {
 					modifierDisponibilite('N', '5', '0');
 				}
-		}
+		});
 	
 		async function modifierDisponibilite(typequart, joursemaine, dispo) {
 			const jsonDispo = {};	
@@ -325,7 +505,90 @@
 		}	
 		
 		btnConge.addEventListener("click", async e => {		
-			var date = document.getElementById('dateembauche').value;
+			var date = document.getElementById('dateconge').value; 
+			var dateConge = new Date(date);
+			if(dateConge.getDay() == 1){
+				alert("1");
+				if(document.getElementById("congeJ").checked){
+					ajouterConge(dateConge, '1', 'J');
+				}
+				if(document.getElementById("congeS").checked){
+					ajouterConge(dateConge, '1', 'S');
+				}
+				if(document.getElementById("congeN").checked){
+					ajouterConge(dateConge, '1', 'N');
+				}				
+			}else if(dateConge.getDay() == 2){
+				dateAjuste = new Date(dateConge); 
+				dateAjuste.setDate(dateAjuste.getDate() - 1);
+				if(document.getElementById("congeJ").checked){
+					ajouterConge(dateAjuste, '2', 'J');
+				}
+				if(document.getElementById("congeS").checked){
+					ajouterConge(dateAjuste, '2', 'S');
+				}
+				if(document.getElementById("congeN").checked){
+					ajouterConge(dateAjuste, '2', 'N');
+				}
+			}else if(dateConge.getDay() == 3){
+				dateAjuste = new Date(dateConge); 
+				dateAjuste.setDate(dateAjuste.getDate() - 2);
+				if(document.getElementById("congeJ").checked){
+					ajouterConge(dateAjuste, '3', 'J');
+				}
+				if(document.getElementById("congeS").checked){
+					ajouterConge(dateAjuste, '3', 'S');
+				}
+				if(document.getElementById("congeN").checked){
+					ajouterConge(dateAjuste, '3', 'N');
+				}
+			}else if(dateConge.getDay() == 4){
+				dateAjuste = new Date(dateConge); 
+				dateAjuste.setDate(dateAjuste.getDate() - 3);
+				if(document.getElementById("congeJ").checked){
+					ajouterConge(dateAjuste, '4', 'J');
+				}
+				if(document.getElementById("congeS").checked){
+					ajouterConge(dateAjuste, '4', 'S');
+				}
+				if(document.getElementById("congeN").checked){
+					ajouterConge(dateAjuste, '4', 'N');
+				}
+			}else if(dateConge.getDay() == 5){
+				dateAjuste = new Date(dateConge); 
+				dateAjuste.setDate(dateAjuste.getDate() - 4);
+				if(document.getElementById("congeJ").checked){
+					ajouterConge(dateAjuste, '5', 'J');
+				}
+				if(document.getElementById("congeS").checked){
+					ajouterConge(dateAjuste, '5', 'S');
+				}
+				if(document.getElementById("congeN").checked){
+					ajouterConge(dateAjuste, '5', 'N');
+				}
+			}
+		});
+		
+		async function ajouterConge(date, joursemaine, typequart){
+			const jsonConge = {};
+			console.log(jsonConge);
+			jsonConge.dateconges = date;
+			jsonConge.joursemaine = joursemaine;
+			jsonConge.typequart = typequart;
+			
+			const result = await fetch('/Conge', {
+		        method: 'POST', 
+				headers: { 
+				'Accept': 'application/json',
+					'Content-Type': 'application/json'
+			}, 
+			body: JSON.stringify(jsonConge) })
+			const success = await result.json();
+			if (!success.success){
+				alert("Impossible d'entrer le congé dans la base de données")
+			} else {
+				alert("Le congé a été entré avec succès!")
+			}
 		}
 		</script>		
 	</body>

@@ -31,10 +31,26 @@ const modifierDisponibilites   = async (req, res) => {
 	  }
 }
 
+const ajouterConge = async (req, res) => {
+	 let result = {}
+	 const reqjson = req.body;
+	 var utilisateur = req.session.username;
+	 try{	
+		  await ajoutConge(utilisateur, reqJson.dateconges, reqJson.joursemaine, reqJson.typequart);		  
+		  result.success = true;
+	  } catch (e) {
+		  result.success = false;
+	  } finally {
+		  res.setHeader("content-type", "application/json")
+		  res.send(JSON.stringify(result))
+	  }
+}
+}
+
 async function getDisponibilites(utilisateur) {
 	try {
 		const client = await pool.connect();
-		const results = await client.query('select TypeQuart, JourSemaine, Disponibilite from BaseQuartsEmploye where IDEmploye = $1 and TypeParam = $2',[utilisateur, '1'])
+		const results = await client.query('select TypeQuart, JourSemaine, Disponibilite from BaseQuartsEmploye where IDEmploye = $1 and paramtype = $2',[utilisateur, '1'])
 		client.release();
 		return results.rows
 	} catch(e) {
@@ -54,9 +70,20 @@ async function modifierDispo(utilisateur, typequart, joursemaine, disponibilite)
 	}		
 }
 
+async function ajoutConge(utilisateur, dateconge, joursemaine, typequart){
+	try {
+		const client = await pool.connect();
+		await client.query('insert into tableconges values ($1, $2, $3, $4)', [utilisateur, dateconge, joursemaine, typequart];)
+		client.release(); 
+		return true;
+	} catch(e){
+		return false;
+	}
+}
+
 module.exports = {
 		  pageWeb,
 		  afficherDisponibilites,
-		  modifierDisponibilites 
-		  
+		  modifierDisponibilites, 
+		  ajouterConge
 		}
