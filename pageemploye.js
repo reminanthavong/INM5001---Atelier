@@ -72,7 +72,7 @@ async function modifierDispo(utilisateur, typequart, joursemaine, disponibilite)
 async function ajoutConge(utilisateur, dateconge, joursemaine, typequart){
 	try {
 		const client = await pool.connect();
-		await client.query('insert into tableconges values ($1, $2, $3, $4)', [utilisateur, dateconge, joursemaine, typequart];)
+		await client.query('insert into tableconges values ($1, $2, $3, $4)', [utilisateur, dateconge, joursemaine, typequart]);
 		client.release(); 
 		return true;
 	} catch(e){
