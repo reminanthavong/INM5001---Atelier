@@ -45,7 +45,6 @@ const ajouterConge = async (req, res) => {
 		  res.send(JSON.stringify(result))
 	  }
 }
-}
 
 async function getDisponibilites(utilisateur) {
 	try {
