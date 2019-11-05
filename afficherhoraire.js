@@ -24,7 +24,7 @@ const fonctions2  = async (req, res) => {
         const choix = resp['choixsemaine']
         console.log(req)
              console.log(choix)
-        const employeur = req.session.username//'Gestion3525'
+        const employeur = 'Gestion3525' //req.session.username//
          try {
             const client = await pool.connect()
             const horaires = await client.query(`SELECT *
@@ -34,7 +34,8 @@ const fonctions2  = async (req, res) => {
                                                                                                     	LEFT JOIN BaseEmployes BE ON BE.IDEmploye=TH.IDEmploye
                                                                                                     	LEFT JOIN TableCodes TC2 ON (TC2.Label='TypeQuart' AND TH.TypeQuart=TC2.Code)
                                                                                                     	LEFT JOIN TableCodes TC3 ON (TC3.Label='JourSemaine' AND TH.JourSemaine=TC3.Code)
-                                                                                                    	WHERE TH.IDTableHoraire='${choix}'AND TH.IDEmployeur='${employeur}' 
+                                                                                                    	WHERE TH.IDTableHoraire='${choix}'
+AND (TH.IDEmployeur='${employeur}' OR TH.IDEmployeur=(SELECT DISTINCT IDEmployeur FROM TableHoraire WHERE IDEmploye = '${employeur}') )
                                                                                                     ) AS SourceTable;
 
                                                          `);
