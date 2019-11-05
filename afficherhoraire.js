@@ -24,7 +24,7 @@ const fonctions2  = async (req, res) => {
         const choix = resp['choixsemaine']
         console.log(req)
              console.log(choix)
-        const employeur = 'JNASH' //req.session.username//'Gestion3525' //
+        const employeur = 'Gestion3525' //'JNASH' //req.session.username//
          try {
             const client = await pool.connect()
             const horaires = await client.query(`SELECT *
