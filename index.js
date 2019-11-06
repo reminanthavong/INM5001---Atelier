@@ -15,6 +15,7 @@ const afficherhoraire = require('./afficherhoraire')
 const login = require('./login')
 const gestionemploye = require('./gestionemploye')
 const gestionhoraire = require('./gestionhoraire')
+const pageemploye = require('./pageemploye')
 
 express()
   .use(express.static(path.join(__dirname, 'public')))
@@ -35,6 +36,17 @@ express()
   .get('/', function(request, response) {
 	response.sendFile(path.join(__dirname + '/views/pages/login.html'));
 })
+
+// Verification key pour Loader.io PROD
+.get('/loaderio-59933bf6aeb3d010d23fa39a006ec516', async (req, res) => {
+      res.send('loaderio-59933bf6aeb3d010d23fa39a006ec516');
+  })
+
+// Verification key pour Loader.io TEST
+.get('/loaderio-ea729398c3aaad4977cc2f95746edf2a', async (req, res) => {
+      res.send('loaderio-ea729398c3aaad4977cc2f95746edf2a');
+  })
+
 // Fonction Login
 .post('/auth', login.loginAPI) // Validation des entrez dans login.html
 .get('/home', function(request, response) {
@@ -86,6 +98,18 @@ if (req.session.typeutilisateur == 1){
 .get('/Horaire',gestionhoraire.afficherHoraire)
 .post('/Horaire',gestionhoraire.ajouterHoraire )
 .delete('/Horaire',gestionhoraire.enleverHoraire )
+
+// Fonction PageEmploye
+.get('/PageEmploye', async (req, res) => {
+	if (req.session.typeutilisateur == 0){
+      res.render('pages/pageEmploye');
+		} else {
+	  res.send('Vous devez être un Employe pour acceder à cette page!');	
+	}
+  })
+  .get('/DispoEmploye',pageemploye.afficherDisponibilites)
+  .post('/DispoEmploye',pageemploye.modifierDisponibilites)
+  .post('/Conge', pageemploye.ajouterConge)
 
 
  .listen(PORT, () => console.log(`Listening on ${ PORT }`))

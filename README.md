@@ -55,3 +55,21 @@ Une fois le tout installer, il faudra installer le plugin nodejs dans eclipse
                             
                             
 Vous etes maintenant prêt à programmer!     
+
+## HOW TO
+
+Application WEB
+
+Allez sur https://prodcalendrier.herokuapp.com/
+
+Exemple d'un usager Gestionnaire:
+
+Username: Gestion et Password: ABC123
+
+Les gestionnaire ont droits d'accèder à les pages: Gestion Employe (Fonctionnelle) - Gestion Horaire (Non Fonctionnelle) - Affichage Horaire ( Dependence Gestion Horaire).
+
+Exemple d'un usager Employé:
+
+Username: TREIK et Password: ABC934
+
+Les employés n'ont access à aucune pages pour l'instant.
