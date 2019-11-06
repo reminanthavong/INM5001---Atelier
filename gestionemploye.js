@@ -5,6 +5,7 @@ const pool = new Pool({
   ssl: true
 });
 
+
 const fpageWeb  = async (req, res) => {
 response.sendFile(path.join(__dirname + '/views/pages/gestionEmploye.ejs'));
 }
@@ -62,7 +63,6 @@ const fajouterDisponibilite = async(req, res) => {
 }
 
 const fmodifierEmploye = async (req, res) => {	
-	console.log("fonction fmodifierEmploye");
 	  let result = {}
 	  const reqJson = req.body;
 	  var sessEmployeur = req.session.username;
@@ -79,8 +79,6 @@ const fmodifierEmploye = async (req, res) => {
 }
 
 	async function ajoutEmploye(idemployeur, idemploye, nomemploye, prenomemploye, nbrheuresmax, dateembauche, motdepasse) {	
-		console.log(nomemploye)
-		console.log(dateembauche)
 		
 		try {
 			const client = await pool.connect();
