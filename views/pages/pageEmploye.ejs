@@ -571,11 +571,10 @@
 		
 		async function ajouterConge(date, joursemaine, typequart){
 			const jsonConge = {};
-			console.log(jsonConge);
 			jsonConge.dateconges = date;
 			jsonConge.joursemaine = joursemaine;
 			jsonConge.typequart = typequart;
-			
+			console.log(jsonConge);
 			const result = await fetch('/Conge', {
 		        method: 'POST', 
 				headers: { 
@@ -590,6 +589,7 @@
 				alert("Le congé a été entré avec succès!")
 			}
 		}
+		
 		</script>		
 	</body>
 </html>

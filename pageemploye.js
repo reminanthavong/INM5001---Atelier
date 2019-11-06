@@ -33,13 +33,15 @@ const modifierDisponibilites   = async (req, res) => {
 
 const ajouterConge = async (req, res) => {
 	 let result = {}
-	 const reqjson = req.body;
+	 const reqJson = req.body;
+	 console.log(reqJson);
 	 var utilisateur = req.session.username;
 	 try{	
 		  await ajoutConge(utilisateur, reqJson.dateconges, reqJson.joursemaine, reqJson.typequart);		  
 		  result.success = true;
 	  } catch (e) {
 		  result.success = false;
+		  console.log(e);
 	  } finally {
 		  res.setHeader("content-type", "application/json")
 		  res.send(JSON.stringify(result))
@@ -69,10 +71,10 @@ async function modifierDispo(utilisateur, typequart, joursemaine, disponibilite)
 	}		
 }
 
-async function ajoutConge(utilisateur, dateconge, joursemaine, typequart){
+async function ajoutConge(utilisateur, dateconges, joursemaine, typequart){
 	try {
 		const client = await pool.connect();
-		await client.query('insert into tableconges values ($1, $2, $3, $4)', [utilisateur, dateconge, joursemaine, typequart]);
+		await client.query('insert into tableconges(idemploye, dateconges, joursemaine, typequart) values ($1, $2, $3, $4)', [utilisateur, dateconges, joursemaine, typequart]);
 		client.release(); 
 		return true;
 	} catch(e){
