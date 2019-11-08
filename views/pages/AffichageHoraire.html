@@ -137,10 +137,18 @@ async function handleSelectChange(event) {
     console.log(event)
     const resp = await chercherHoraire(event.target.value);
     console.log(resp);
-    const tabledesresultats=document.getElementById("tabledesHoraire");
-    //tabledesresultats.innerHTML = JSON.stringify(resp);
+    construiretableau(resp)
+}
+  
+ async function handleSelectChange2(event) {
+    console.log(event)
+    const resp = await chercherHoraire2(event.target.value);
+    console.log(resp);
+    construiretableau(resp)
+} 
 
-
+function construiretableau(resp){
+   const tabledesresultats=document.getElementById("tabledesHoraire");
     let lignes=''
     for(const c of resp.horaires) {
     const ligne = `<tr><td>${c.nomemploye}</td><td>${c.typequart}</td><td>${c.joursemaine}</td></tr>`;
@@ -148,8 +156,28 @@ async function handleSelectChange(event) {
   }
   console.log(lignes);
   tabledesHoraire.innerHTML = lignes;
-
-}
+}  
+  
+  
+async function chercherHoraire2(choixdate){
+    console.log(choixdate)
+    try {
+        const resp=await fetch('https://testcalendrier.herokuapp.com/api/v1/horaires',
+          {
+            method: 'POST',
+            body: JSON.stringify({choixdate})
+           }
+        );
+        const donnee = await resp.json();
+        return JSON.parse(JSON.stringify(donnee));
+    } catch (err) {
+        console.log(err);
+    }
+} 
+  
+  
+  
+  
 (async () => {
 const resp=await chercherListeSemaine();
 console.log(resp);
@@ -161,9 +189,16 @@ for(const c of choix) {
     const nvelleOption = `<option value="${c['idtablehoraire']}">${c['idtablehoraire']}</option>`;
     options = options + nvelleOption;
 }
+const selectDateSemaine=document.getElementById("datesemaine");
+selectDateSemaine.addEventListener("change", async (event) => handleSelectChange(event));
+  
+  
+  
+  
 console.log(options);
 selectListeSemaines.innerHTML = options;
 })()
+
 </script>
 
 </body>
