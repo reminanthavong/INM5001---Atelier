@@ -108,7 +108,7 @@ if (req.session.typeutilisateur == 1){
 	}
   })
   .get('/DispoEmploye',pageemploye.afficherDisponibilites)
-  .post('/DispoEmploye',pageemploye.modifierDisponibilites)
+  .put('/DispoEmploye',pageemploye.modifierDisponibilites)
   .post('/Conge', pageemploye.ajouterConge)
 
 

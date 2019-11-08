@@ -474,7 +474,9 @@
 				var heures = document.getElementById('nbheuresmaxid').value;
 				jsonEmp.nbrheuresmax = parseInt(heures, 10);				
 				var date = document.getElementById('dateembauche').value
-				jsonEmp.dateembauche = new Date(date);
+				var dateAjustee = new Date(date);
+				dateAjustee.setMinutes(dateAjustee.getMinutes() + dateAjustee.getTimezoneOffset()); //Permet d'avoir la bonne date enregistrée 
+				jsonEmp.dateembauche = dateAjustee;
 				jsonEmp.motdepasse = document.getElementById('motdepasse').value;
 				console.log(jsonEmp)
 				
