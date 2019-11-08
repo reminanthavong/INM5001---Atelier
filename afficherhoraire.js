@@ -21,8 +21,9 @@ const fonctions1  = async (req, res) => {
 const fonctions2  = async (req, res) => {
         const resp = JSON.parse(req.body); //{$choixsemaine}
         //const resp = { choixSemaine: '001'};
-        const choixsemaine = resp['choixsemaine']
-        const choixdate = resp['choixdate']
+  
+        const choixsemaine = resp['choixsemaine'] || '000';
+        const choixdate = resp['choixdate'] || '01/01/1899';      
         console.log(req)
              console.log(choixsemaine)
                console.log(choixdate)
