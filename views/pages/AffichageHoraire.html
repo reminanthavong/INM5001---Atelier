@@ -31,7 +31,6 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 </style>
 <body>
 
-<!-- Navbar -->
 <div class="w3-top">
   <div class="w3-bar w3-theme w3-top w3-left-align w3-large">
     <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
@@ -39,64 +38,54 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
     <a href="/AffichageHoraire" class="w3-bar-item w3-button w3-theme-l1">Affichage Horaire</a>
     <a href="/GestionEmploye" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Gestion Employe</a>
     <a href="/GestionHoraire" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Gestion Horaire</a>
-    <a href="/PageEmploye" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Zone Employe</a>
   </div>
 </div>
-
-
-<!-- Overlay effect when opening sidebar on small screens -->
 <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
-
-<!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
 <div class="w3-main" style="margin-left:250px">
-
-  <div class="w3-row w3-padding-64">
-    <div class="w3-twothird w3-container">
-      <h1 class="w3-text-teal">Heading</h1>
-<h4>Choix de la semaine</h4>
+<div class="w3-row w3-padding-64">
+<div class="w3-twothird w3-container">
 
 
-<select id="listeSemaines"></select>
-      </br>  </br>
+<h1 class="w3-text-teal">Affichage de L'horaire</h1></br>
+<h3>Choisissez l'horaire a afficher selon :</h3></br>
 
-
-        <label for='datehoraire'> Date de l'horaire:</label>
-	      	  <input type="date" id="datesemaine" width="312" />
-
-	
-	
-
-
-      <table id="tabledesHoraire"></table>
+<table id="choixpourafficherhoraire" style="width:100%">
+  <tr>
+    <th>Nom de l'horaire:</th>
+    <th>Date de l'horaire:</th>
+  </tr>
+  <tr>
+    <td><select id="listeSemaines"></select></td>
+    <td><input type="date" id='datesemaine' width="120"></td>
+  </tr>
+</table>
 
 
 
 
-   </div>
+<table id="tabledesHoraire"></table>
+
+
+
+
+</div></div></div>
  
-  </div>
-   
-
-  </div>
-  
-
-  <footer id="myFooter">
-    <div class="w3-container w3-theme-l2 w3-padding-32">
-      <h4>Footer</h4>
+<footer id="myFooter">
+	<div class="w3-container w3-theme-l2 w3-padding-32">
+	<h4>Footer</h4>
+	</div>
+	<div class="w3-container w3-theme-l1">
+	<p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
     </div>
+</footer>
 
-    <div class="w3-container w3-theme-l1">
-      <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
-    </div>
-  </footer>
 
-<!-- END MAIN -->
 </div>
 
 <script>
-	
-	 $('#datesemaine').datepicker({
-	format: 'yyyy-mm-dd',
+
+//Datepicker avec Lundis disponibles seulement
+    $('#datesemaine').datepicker({
         disableDaysOfWeek: [0, 2, 3, 4, 5, 6]
     });
 // Get the Sidebar
@@ -144,38 +133,14 @@ async function chercherHoraire(choixsemaine){
         console.log(err);
     }
 }
-  
-  async function chercherHoraire2(choixdate){
-    console.log(choixdate)
-    try {
-        const resp=await fetch('https://testcalendrier.herokuapp.com/api/v1/horaires',
-          {
-            method: 'POST',
-            body: JSON.stringify({choixdate})
-           }
-        );
-        const donnee = await resp.json();
-        return JSON.parse(JSON.stringify(donnee));
-    } catch (err) {
-        console.log(err);
-    }
-}
 async function handleSelectChange(event) {
     console.log(event)
     const resp = await chercherHoraire(event.target.value);
     console.log(resp);
-    construiretableau(resp)
-}
-  
- async function handleSelectChange2(event) {
-    console.log(event)
-    const resp = await chercherHoraire2(event.target.value);
-    console.log(resp);
-    construiretableau(resp)
-} 
+    const tabledesresultats=document.getElementById("tabledesHoraire");
+    //tabledesresultats.innerHTML = JSON.stringify(resp);
 
-function construiretableau(resp){
-   const tabledesresultats=document.getElementById("tabledesHoraire");
+
     let lignes=''
     for(const c of resp.horaires) {
     const ligne = `<tr><td>${c.nomemploye}</td><td>${c.typequart}</td><td>${c.joursemaine}</td></tr>`;
@@ -183,14 +148,8 @@ function construiretableau(resp){
   }
   console.log(lignes);
   tabledesHoraire.innerHTML = lignes;
-}  
-  
-  
- 
-  
-  
-  
-  
+
+}
 (async () => {
 const resp=await chercherListeSemaine();
 console.log(resp);
@@ -202,16 +161,9 @@ for(const c of choix) {
     const nvelleOption = `<option value="${c['idtablehoraire']}">${c['idtablehoraire']}</option>`;
     options = options + nvelleOption;
 }
-const selectDateSemaine=document.getElementById("datesemaine");
-selectDateSemaine.addEventListener("change", async (event) => handleSelectChange2(event));
-  
-  
-  
-  
 console.log(options);
 selectListeSemaines.innerHTML = options;
 })()
-
 </script>
 
 </body>
