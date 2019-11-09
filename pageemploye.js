@@ -58,8 +58,7 @@ async function modifierDispo(utilisateur, typequart, joursemaine, disponibilite,
 			.eq('idemploye', utilisateur)
 			.eq('typequart', typequart)
 			.eq('joursemaine', joursemaine)
-			.eq('paramtype', '1')
-			.send({idemployeur: gestionnaire, idemploye:utilisateur, idtablehoraire: '000', typequart: typequart, joursemaine: joursemaine, disponibilite: disponiblite, paramtype: '1'})		
+			.send({idemployeur: gestionnaire, idemploye:utilisateur, idtablehoraire: '000', typequart: typequart, joursemaine: joursemaine, disponibilite: disponibilite, paramtype: '1'})
 }
 
 async function ajoutConge(utilisateur, dateconges, joursemaine, typequart){
