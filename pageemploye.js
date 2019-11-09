@@ -20,6 +20,9 @@ const ajouterDisponibilites   = async (req, res) => {
 	 const reqjson = req.body;
 	 var utilisateur = req.session.username;
 	 var gestionnaire = req.session.idgestion;
+	 console.log(reqjson);
+	 console.log(utilisateur);
+	 console.log(gestionnaire);
 	 try{	
 		  await ajoutDispo(utilisateur, reqjson.typequart, reqjson.joursemaine, reqjson.dispo, gestionnaire);		  
 		  result.success = true;

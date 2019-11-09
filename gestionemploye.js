@@ -9,9 +9,9 @@ const fpageWeb  = async (req, res) => {
 response.sendFile(path.join(__dirname + '/views/pages/gestionEmploye.ejs'));
 }
 
-const fafficherEmployes  = async (req, res) => {
+const afficherEmployes  = async (req, res) => {
 	  var sessEmployeur = req.session.username;
-	  const rows = await afficherEmployes(sessEmployeur);
+	  const rows = await getEmployes(sessEmployeur);
 	  res.setHeader("content-type", "application/json")
 	  res.send(JSON.stringify(rows))
 }
@@ -21,7 +21,7 @@ const fajouterEmploye   = async (req, res) => {
 	  const reqJson = req.body;
 	  var sessEmployeur = req.session.username;
 	  try{	
-		  await ajoutEmploye(sessEmployeur, reqJson.idemploye, reqJson.nomemploye, reqJson.prenomemploye, reqJson.nbrheuresmax, reqJson.dateembauche);		  
+		  await ajoutEmploye(sessEmployeur, reqJson.idemploye, reqJson.nomemploye, reqJson.prenomemploye, reqJson.nbrheuresmax);		  
 		  await ajoutIdentification(idemploye, reqJson.motdepasse)
 		  result.success = true;
 	  } catch (e) {
@@ -78,7 +78,7 @@ const fmodifierEmploye = async (req, res) => {
 	  }
 }
 
-	async function ajoutEmploye(idemployeur, idemploye, nomemploye, prenomemploye, nbrheuresmax, dateembauche, motdepasse) {	
+	async function ajoutEmploye(idemployeur, idemploye, nomemploye, prenomemploye, nbrheuresmax, dateembauche) {	
 		await Api
 			.post('/baseemployes')
 			.send({idemployeur:idemployeur, idemploye: idemploye, nomemploye: nomemploye, prenomemploye: prenomemploye, nbrheuresmax: nbrheuresmax, dateembauche: dateembauche});	
@@ -87,10 +87,10 @@ const fmodifierEmploye = async (req, res) => {
 	async function ajoutIdentification(idemploye, motdepasse){
 		await Api
 		.post('/baseidentification')
-		.send({idutilisateuer: idemploye, motdepasse: motdepasse, typeutilisateur: '0'});		
+		.send({idutilisateur: idemploye, motdepasse: motdepasse, typeutilisateur: '0'});		
 	}
 
-	async function afficherEmployes(idemployeur) {
+	async function getEmployes(idemployeur) {
 		return await Api.get('/baseemployes').eq('idemployeur', idemployeur);
 
 	}
@@ -112,7 +112,7 @@ const fmodifierEmploye = async (req, res) => {
 	async function ajoutDispo(idemployeur, idemploye, typequart, joursemaine, disponibilite) {		
 		await Api
 		.post('/basequartsemploye')
-		.send({idemployeur:idemployeur, idemploye: idemploye, typequart: typequart, joursemaine: joursemaine, disponiblite: disponibilite, paramtype: '1'});		
+		.send({idemployeur:idemployeur, idemploye: idemploye, typequart: typequart, joursemaine: joursemaine, disponibilite: disponibilite, paramtype: '1'});		
 	}
 	
 	async function modifierEmploye(idemploye, nomemploye, prenomemploye, nbrheuresmax) {		
@@ -130,7 +130,7 @@ const fmodifierEmploye = async (req, res) => {
   module.exports = {
   fpageWeb,
   fajouterEmploye,
-  fafficherEmployes,
+  afficherEmployes,
   fenleverEmploye,
   fajouterDisponibilite,
   fmodifierEmploye

@@ -279,7 +279,7 @@
 				const dispo = await resultat.json();
 				console.log(dispo);
 				dispo.forEach(t => {
-					if(t.paramtype == 1) {
+					if(t.paramtype == 1) { //Seules les disponibilités par défaut sont affichées
 					typequart = t.typequart;
 					joursemaine = t.joursemaine;
 					disponible = t.disponibilite;
@@ -407,93 +407,97 @@
 			}	
 		}
 
-		btnModifDispo.addEventListener("click", async e => {
+		btnModifDispo.addEventListener("click", async e => {	
+			supprimerDisponibilites();	//Les anciennes disponibilités par défaut sont supprimées
+			
+			//Les nouvelles disponibilité par défaut sont entrées dans la base de données
+			if (document.getElementById("J1").checked) {
+				modifierDisponibilite('J', '1', '1');
+			}else {
+				modifierDisponibilite('J', '1', '0');
+			}				
+			if (document.getElementById("S1").checked) {
+				modifierDisponibilite('S', '1', '1');
+			}else {
+				modifierDisponibilite('S', '1', '0');
+			}				
+			if (document.getElementById("N1").checked) {
+				modifierDisponibilite('N', '1', '1');
+			}else {
+				modifierDisponibilite('N', '1', '0');
+			}				
+			if (document.getElementById("J2").checked) {
+				modifierDisponibilite('J', '2', '1');
+			}else {
+				modifierDisponibilite('J', '2', '0');
+			}				
+			if (document.getElementById("S2").checked) {
+				modifierDisponibilite('S', '2', '1');
+			}else {
+				modifierDisponibilite('S', '2', '0');
+			}				
+			if (document.getElementById("N2").checked) {
+				modifierDisponibilite('N', '2', '1');
+			}else {
+				modifierDisponibilite('N', '2', '0');
+			}				
+			if (document.getElementById("J3").checked) {
+				modifierDisponibilite('J', '3', '1');
+			}else {
+				modifierDisponibilite('J', '3', '0');
+			}	
+			if (document.getElementById("S3").checked) {
+				modifierDisponibilite('S', '3', '1');
+			}else {
+				modifierDisponibilite('S', '3', '0');
+			}
+			if (document.getElementById("N3").checked) {
+			modifierDisponibilite('N', '3', '1');
+			}else {
+				modifierDisponibilite('N', '3', '0');
+			}				
+			if (document.getElementById("J4").checked) {
+				modifierDisponibilite('J', '4', '1');
+			}else {
+				modifierDisponibilite('J', '4', '0');
+			}				
+			if (document.getElementById("S4").checked) {
+				modifierDisponibilite('S', '4', '1');
+			}else {
+				modifierDisponibilite('S', '4', '0');
+			}				
+			if (document.getElementById("N4").checked) {
+				modifierDisponibilite('N', '4', '1');
+			}else {
+				modifierDisponibilite('N', '4', '0');
+			}				
+			if (document.getElementById("J5").checked) {
+				modifierDisponibilite('J', '5', '1');
+			}else {
+				modifierDisponibilite('J', '5', '0');
+			}
+			if (document.getElementById("S5").checked) {
+				modifierDisponibilite('S', '5', '1');
+			}else {
+				modifierDisponibilite('S', '5', '0');
+			}				
+			if (document.getElementById("N5").checked) {
+				modifierDisponibilite('N', '5', '1');
+			}else {
+				modifierDisponibilite('N', '5', '0');
+			}
+		});
 		
+		async function supprimerDisponibilites(){
 			const resultat = await fetch(url, {method: "DELETE", 
-        		headers: { "content-type": "application/json"} });
+        		headers: { "content-type": "application/json"} }); 
         	const success = await resultat.json();
 			if(success.success) {
-				alert("Disponibilités supprimés avec succès!");
+				alert("Disponibilités supprimées avec succès!");
 			} else {
 				alert("Echec supression disponiblités");
 			}
-		
-			if (document.getElementById("J1").checked) {
-					modifierDisponibilite('J', '1', '1');
-				}else {
-					modifierDisponibilite('J', '1', '0');
-				}				
-				if (document.getElementById("S1").checked) {
-					modifierDisponibilite('S', '1', '1');
-				}else {
-					modifierDisponibilite('S', '1', '0');
-				}				
-				if (document.getElementById("N1").checked) {
-					modifierDisponibilite('N', '1', '1');
-				}else {
-					modifierDisponibilite('N', '1', '0');
-				}				
-				if (document.getElementById("J2").checked) {
-					modifierDisponibilite('J', '2', '1');
-				}else {
-					modifierDisponibilite('J', '2', '0');
-				}				
-				if (document.getElementById("S2").checked) {
-					modifierDisponibilite('S', '2', '1');
-				}else {
-					modifierDisponibilite('S', '2', '0');
-				}				
-				if (document.getElementById("N2").checked) {
-					modifierDisponibilite('N', '2', '1');
-				}else {
-					modifierDisponibilite('N', '2', '0');
-				}				
-				if (document.getElementById("J3").checked) {
-					modifierDisponibilite('J', '3', '1');
-				}else {
-					modifierDisponibilite('J', '3', '0');
-				}	
-				if (document.getElementById("S3").checked) {
-					modifierDisponibilite('S', '3', '1');
-				}else {
-					modifierDisponibilite('S', '3', '0');
-				}
-				if (document.getElementById("N3").checked) {
-					modifierDisponibilite('N', '3', '1');
-				}else {
-					modifierDisponibilite('N', '3', '0');
-				}				
-				if (document.getElementById("J4").checked) {
-					modifierDisponibilite('J', '4', '1');
-				}else {
-					modifierDisponibilite('J', '4', '0');
-				}				
-				if (document.getElementById("S4").checked) {
-					modifierDisponibilite('S', '4', '1');
-				}else {
-					modifierDisponibilite('S', '4', '0');
-				}				
-				if (document.getElementById("N4").checked) {
-					modifierDisponibilite('N', '4', '1');
-				}else {
-					modifierDisponibilite('N', '4', '0');
-				}				
-				if (document.getElementById("J5").checked) {
-					modifierDisponibilite('J', '5', '1');
-				}else {
-					modifierDisponibilite('J', '5', '0');
-				}
-				if (document.getElementById("S5").checked) {
-					modifierDisponibilite('S', '5', '1');
-				}else {
-					modifierDisponibilite('S', '5', '0');
-				}				
-				if (document.getElementById("N5").checked) {
-					modifierDisponibilite('N', '5', '1');
-				}else {
-					modifierDisponibilite('N', '5', '0');
-				}
-		});
+		}
 	
 		async function modifierDisponibilite(typequart, joursemaine, dispo) {
 			const jsonDispo = {};	
