@@ -58,6 +58,9 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
     <td><select id="listeSemaines"></select></td>
     <td><input type="date" id='datesemaine' width="150"></td>
   </tr>
+  <tr>
+    <td><input id='datesemaineessai' width="150"></td>
+  </tr>
 </table>
 
 
@@ -85,7 +88,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 <script>
 
 //Datepicker avec Lundis disponibles seulement
-    $('#datesemaine').datepicker({
+    $('#datesemaineessai').datepicker({
         disableDaysOfWeek: [0, 2, 3, 4, 5, 6],
 	format: 'yyyy-mm-dd'
     });
