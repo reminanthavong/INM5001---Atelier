@@ -1,9 +1,8 @@
 const { Pool } = require('pg');
 const session = require('express-session');
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: true
-});
+const bodyParser = require('body-parser')
+var PostgREST = require('postgrest-client')
+var Api = new PostgREST ('http://testpostgrest-calendrier.herokuapp.com')
 
 const pageWeb  = async (req, res) => {
 response.sendFile(path.join(__dirname + '/views/pages/pageEmploye.ejs'));
@@ -20,8 +19,9 @@ const modifierDisponibilites   = async (req, res) => {
 	 let result = {}
 	 const reqjson = req.body;
 	 var utilisateur = req.session.username;
+	 var gestionnaire = req.session.idgestion;
 	 try{	
-		  await modifierDispo(utilisateur, reqjson.typequart, reqjson.joursemaine, reqjson.dispo);		  
+		  await modifierDispo(utilisateur, reqjson.typequart, reqjson.joursemaine, reqjson.dispo, gestionnaire);		  
 		  result.success = true;
 	  } catch (e) {
 		  result.success = false;
@@ -49,37 +49,22 @@ const ajouterConge = async (req, res) => {
 }
 
 async function getDisponibilites(utilisateur) {
-	try {
-		const client = await pool.connect();
-		const results = await client.query('select TypeQuart, JourSemaine, Disponibilite from BaseQuartsEmploye where IDEmploye = $1 and paramtype = $2',[utilisateur, '1'])
-		client.release();
-		return results.rows
-	} catch(e) {
-		console.error(e);
-		return [];
-	}
+	return await Api.get('/basequartsemploye').eq('idemploye', utilisateur)
 }
 
-async function modifierDispo(utilisateur, typequart, joursemaine, disponibilite) {		
-	try {
-		const client = await pool.connect();
-		await pool.query('update baseQuartsEmploye set disponibilite = $1 where idemploye = $2 and typequart = $3 and joursemaine = $4', [disponibilite, utilisateur, typequart, joursemaine]);
-		client.release(); 
-		return true;
-	} catch(e){
-		return false;
-	}		
+async function modifierDispo(utilisateur, typequart, joursemaine, disponibilite, gestionnaire) {		
+	await Api
+			.put('/basequartsemploye')
+			.eq('idemploye', utilisateur)
+			.eq('typequart', typequart)
+			.eq('joursemaine', joursemaine)
+			.send({idemployeur: gestionnaire, idemploye:utilisateur, idtablehoraire: '000', typequart: typequart, joursemaine: joursemaine, disponibilite: disponibilite, paramtype: '1'})
 }
 
 async function ajoutConge(utilisateur, dateconges, joursemaine, typequart){
-	try {
-		const client = await pool.connect();
-		await client.query('insert into tableconges(idemploye, dateconges, joursemaine, typequart) values ($1, $2, $3, $4)', [utilisateur, dateconges, joursemaine, typequart]);
-		client.release(); 
-		return true;
-	} catch(e){
-		return false;
-	}
+	await Api
+		.post('/tableconges')
+		.send({idemploye: utilisateur, dateconges: dateconges, joursemaine: joursemaine, typequart: typequart});
 }
 
 module.exports = {

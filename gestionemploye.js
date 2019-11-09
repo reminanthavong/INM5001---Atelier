@@ -1,9 +1,8 @@
 const { Pool } = require('pg');
 const session = require('express-session');
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: true
-});
+const bodyParser = require('body-parser')
+var PostgREST = require('postgrest-client')
+var Api = new PostgREST ('http://testpostgrest-calendrier.herokuapp.com')
 
 
 const fpageWeb  = async (req, res) => {
@@ -22,7 +21,8 @@ const fajouterEmploye   = async (req, res) => {
 	  const reqJson = req.body;
 	  var sessEmployeur = req.session.username;
 	  try{	
-		  await ajoutEmploye(sessEmployeur, reqJson.idemploye, reqJson.nomemploye, reqJson.prenomemploye, reqJson.nbrheuresmax, reqJson.dateembauche, reqJson.motdepasse);		  
+		  await ajoutEmploye(sessEmployeur, reqJson.idemploye, reqJson.nomemploye, reqJson.prenomemploye, reqJson.nbrheuresmax, reqJson.dateembauche);		  
+		  await ajoutIdentification(idemploye, reqJson.motdepasse)
 		  result.success = true;
 	  } catch (e) {
 		  result.success = false;
@@ -79,28 +79,20 @@ const fmodifierEmploye = async (req, res) => {
 }
 
 	async function ajoutEmploye(idemployeur, idemploye, nomemploye, prenomemploye, nbrheuresmax, dateembauche, motdepasse) {	
-		
-		try {
-			const client = await pool.connect();
-			await client.query('INSERT INTO BaseEmployes(idemployeur, idemploye, nomemploye, prenomemploye, nbrheuresmax, dateembauche) values ($1, $2, $3, $4, $5, $6)', [idemployeur, idemploye, nomemploye, prenomemploye, nbrheuresmax, dateembauche]);
-			await client.query('insert into BaseIdentification values ($1, $2, $3)', [idemploye, motdepasse, '0'])
-			client.release(); 
-			return true;
-		} catch(e){
-			return false;
-		}		
+		await Api
+			.post('/baseemployes')
+			.send({idemployeur:idemployeur, idemploye: idemploye, nomemploye: nomemploye, prenomemploye: prenomemploye, nbrheuresmax: nbrheuresmax, dateembauche: dateembauche});	
+	}
+	
+	async function ajoutIdentification(idemploye, motdepasse){
+		await Api
+		.post('/baseidentification')
+		.send({idutilisateuer: idemploye, motdepasse: motdepasse, typeutilisateur: '0'});		
 	}
 
 	async function afficherEmployes(idemployeur) {
-		try {
-			const client = await pool.connect();
-			const results = await client.query('select IDEmploye, NomEmploye, PrenomEmploye, NBRHeuresMax, DateEmbauche from BaseEmployes where IDEmployeur = $1',[idemployeur])
-			client.release();
-			return results.rows
-		} catch(e) {
-			console.error(e);
-			return [];
-		}
+		return await Api.get('/baseemployes').eq('idemployeur', idemployeur);
+
 	}
 
 	async function deleteEmploye(idemploye) {
@@ -118,14 +110,9 @@ const fmodifierEmploye = async (req, res) => {
 	}
 	
 	async function ajoutDispo(idemployeur, idemploye, typequart, joursemaine, disponibilite) {		
-		try {
-			const client = await pool.connect();
-			await pool.query('insert into baseQuartsEmploye values ($1, $2, $3, $4, $5, $6, $7)', [idemployeur, idemploye, '000', typequart, joursemaine, disponibilite, '1']);
-			client.release(); 
-			return true;
-		} catch(e){
-			return false;
-		}		
+		await Api
+		.post('/basequartsemploye')
+		.send({idemployeur:idemployeur, idemploye: idemploye, typequart: typequart, joursemaine: joursemaine, disponiblite: disponibilite, paramtype: '1');		
 	}
 	
 	async function modifierEmploye(idemploye, nomemploye, prenomemploye, nbrheuresmax) {		
