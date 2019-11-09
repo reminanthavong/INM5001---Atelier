@@ -14,6 +14,16 @@
 	<script src="jquery/jquery-1.10.2.js" type="text/javascript"></script>
 	<script src="bootstrap3/js/bootstrap.js" type="text/javascript"></script>
     <script src="assets/js/bootstrap-datepicker.js"></script>
+	
+	    
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+<link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+	
+	
+	
+	
+	
 <style>
 html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 .w3-sidebar {
@@ -63,6 +73,24 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
         </div>
       </div>
 
+	
+	
+<h1 class="w3-text-teal">Affichage de L'horaire</h1></br>
+<h3>Choisissez l'horaire a afficher selon :</h3></br>
+
+<table id="choixpourafficherhoraire" style="width:100%">
+  <tr>
+    <th>Nom de l'horaire:</th>
+    <th>Date de l'horaire:</th>
+  </tr>
+  <tr>
+    <td><select id="listeSemaines"></select></td>
+    <td><input id='datesemaine' width="120"></td>
+  </tr>
+</table>
+	
+	
+	
 
       <table id="tabledesHoraire"></table>
 
@@ -91,6 +119,13 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 </div>
 
 <script>
+//Datepicker avec Lundis disponibles seulement
+    $('#datesemaine').datepicker({
+        disableDaysOfWeek: [0, 2, 3, 4, 5, 6]
+    });	
+	
+	
+	
 // Get the Sidebar
 var mySidebar = document.getElementById("mySidebar");
 // Get the DIV with overlay effect
