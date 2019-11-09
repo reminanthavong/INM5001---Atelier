@@ -112,7 +112,7 @@ const fmodifierEmploye = async (req, res) => {
 	async function ajoutDispo(idemployeur, idemploye, typequart, joursemaine, disponibilite) {		
 		await Api
 		.post('/basequartsemploye')
-		.send({idemployeur:idemployeur, idemploye: idemploye, typequart: typequart, joursemaine: joursemaine, disponiblite: disponibilite, paramtype: '1');		
+		.send({idemployeur:idemployeur, idemploye: idemploye, typequart: typequart, joursemaine: joursemaine, disponiblite: disponibilite, paramtype: '1'});		
 	}
 	
 	async function modifierEmploye(idemploye, nomemploye, prenomemploye, nbrheuresmax) {		
