@@ -279,6 +279,7 @@
 				const dispo = await resultat.json();
 				console.log(dispo);
 				dispo.forEach(t => {
+					if(t.paramtype == 1) {
 					typequart = t.typequart;
 					joursemaine = t.joursemaine;
 					disponible = t.disponibilite;
@@ -399,6 +400,7 @@
 							}
 						}
 					}
+					}
 				});
 			} catch(e) {
 				console.log("Impossible d'afficher les disponibilites");
@@ -406,6 +408,16 @@
 		}
 
 		btnModifDispo.addEventListener("click", async e => {
+		
+			const resultat = await fetch(url, {method: "DELETE", 
+        		headers: { "content-type": "application/json"} });
+        	const success = await resultat.json();
+			if(success.success) {
+				alert("Disponibilités supprimés avec succès!");
+			} else {
+				alert("Echec supression disponiblités");
+			}
+		
 			if (document.getElementById("J1").checked) {
 					modifierDisponibilite('J', '1', '1');
 				}else {
@@ -490,7 +502,7 @@
 			jsonDispo.dispo = dispo;
 			console.log(jsonDispo)
 			const result = await fetch(url, {
-		        method: 'PUT', 
+		        method: 'POST', 
 				headers: { 
 				'Accept': 'application/json',
 					'Content-Type': 'application/json'

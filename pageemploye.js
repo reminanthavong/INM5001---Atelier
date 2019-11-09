@@ -15,13 +15,13 @@ const afficherDisponibilites  = async (req, res) => {
 	  res.send(JSON.stringify(rows))
 }
 
-const modifierDisponibilites   = async (req, res) => {
+const ajouterDisponibilites   = async (req, res) => {
 	 let result = {}
 	 const reqjson = req.body;
 	 var utilisateur = req.session.username;
 	 var gestionnaire = req.session.idgestion;
 	 try{	
-		  await modifierDispo(utilisateur, reqjson.typequart, reqjson.joursemaine, reqjson.dispo, gestionnaire);		  
+		  await ajoutDispo(utilisateur, reqjson.typequart, reqjson.joursemaine, reqjson.dispo, gestionnaire);		  
 		  result.success = true;
 	  } catch (e) {
 		  result.success = false;
@@ -48,16 +48,27 @@ const ajouterConge = async (req, res) => {
 	  }
 }
 
+const supprimerDisponibilites   = async (req, res) => {
+	  let result = {}
+	  try{	
+		  var utilisateur = req.session.username;
+		  await supprimerDispo(utilisateur);
+		  result.success = true;		
+	  } catch (e) {
+		  result.success = false;
+	  } finally {
+		  res.setHeader("content-type", "application/json")
+		  res.send(JSON.stringify(result))
+	  }	  
+}
+
 async function getDisponibilites(utilisateur) {
 	return await Api.get('/basequartsemploye').eq('idemploye', utilisateur)
 }
 
-async function modifierDispo(utilisateur, typequart, joursemaine, disponibilite, gestionnaire) {		
+async function ajoutDispo(utilisateur, typequart, joursemaine, disponibilite, gestionnaire) {		
 	await Api
-			.put('/basequartsemploye')
-			.eq('idemploye', utilisateur)
-			.eq('typequart', typequart)
-			.eq('joursemaine', joursemaine)
+			.post('/basequartsemploye')
 			.send({idemployeur: gestionnaire, idemploye:utilisateur, idtablehoraire: '000', typequart: typequart, joursemaine: joursemaine, disponibilite: disponibilite, paramtype: '1'})
 }
 
@@ -67,9 +78,17 @@ async function ajoutConge(utilisateur, dateconges, joursemaine, typequart){
 		.send({idemploye: utilisateur, dateconges: dateconges, joursemaine: joursemaine, typequart: typequart});
 }
 
+async function supprimerDispo(utilisateur) {
+	await Api
+			.delete('/basequartsemploye')
+			.eq('idemploye', utilisateur)
+			.eq('paramtype', '1')
+}
+
 module.exports = {
 		  pageWeb,
 		  afficherDisponibilites,
-		  modifierDisponibilites, 
-		  ajouterConge
+		  ajouterDisponibilites, 
+		  ajouterConge,
+		  supprimerDisponibilites
 		}
