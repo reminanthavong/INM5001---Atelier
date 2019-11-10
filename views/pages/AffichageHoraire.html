@@ -182,7 +182,7 @@ let lignes=`<tr>
     <td>Soir</td>
 	<td>Nuit</td>
   </tr>`
-for(const d of donnees){
+for(const d of donnees.horaires){
 	lignes=lignes+`<tr><td>${d.nomemploye}</td>`
 	for(const t of trametableau){	
 	if(t===d.joursemaine+d.typequart){
