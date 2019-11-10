@@ -145,13 +145,13 @@ async function handleSelectChange(event) {
     console.log(event)
     const resp = await chercherHoraire(event.target.value);
     console.log(resp);
-    construiretableau(resp)
+    GenerationTableau(resp)
 }
  async function handleSelectChange2(event) {
     console.log(event)
     const resp = await chercherHoraire2(event.target.value);
     console.log(resp);
-    construiretableau(resp)
+    GenerationTableau(resp)
 } 
 //Fonction de generation du tableau	
 function GenerationTableau(donnees) {
