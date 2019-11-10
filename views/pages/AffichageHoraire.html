@@ -204,7 +204,7 @@ for(const c of choix) {
     const nvelleOption = `<option value="${c['idtablehoraire']}">${c['idtablehoraire']}</option>`;
     options = options + nvelleOption;
 }
-const selectDateSemaine=document.getElementByClassName("datesemaine");
+const selectDateSemaine=document.getElementsByClassName("datesemaine");
 selectDateSemaine.addEventListener("change", async (event) => handleSelectChange2(event));
   
   
