@@ -68,7 +68,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 
 	
 	
-	  <input id="datepicker" width="312" />
+	  <input id="datepicker" class='datesemaine' width="312" />
 
       <table id="tabledesHoraire"></table>
 
@@ -204,7 +204,7 @@ for(const c of choix) {
     const nvelleOption = `<option value="${c['idtablehoraire']}">${c['idtablehoraire']}</option>`;
     options = options + nvelleOption;
 }
-const selectDateSemaine=document.getElementById("datesemaine");
+const selectDateSemaine=document.getElementByClassName("datesemaine");
 selectDateSemaine.addEventListener("change", async (event) => handleSelectChange2(event));
   
   
