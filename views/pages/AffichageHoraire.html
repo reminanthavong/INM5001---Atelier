@@ -50,14 +50,24 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 
   <div class="w3-row w3-padding-64">
     <div class="w3-twothird w3-container">
-      <h1 class="w3-text-teal">Heading</h1>
-<h4>Choix de la semaine</h4>
 
+	    
+	    <h1 class="w3-text-teal">Affichage de L'horaire</h1></br>
+<h3>Choisissez l'horaire a afficher selon :</h3></br>
 
-<select id="listeSemaines"></select>
-      </br>  </br>
-	
-	  <input id="datesemaine" width="312" />
+<table id="choixpourafficherhoraire" style="width:100%">
+  <tr>
+    <th>Nom de l'horaire:</th>
+    <th>Date de l'horaire:</th>
+  </tr>
+  <tr>
+    <td><select id="listeSemaines"></select></td>
+    <td><input id='datesemaine' width="120"></td>
+  </tr>
+</table>
+	    
+	    
+	    
 
       <table id="tabledesHoraire"></table>
 
