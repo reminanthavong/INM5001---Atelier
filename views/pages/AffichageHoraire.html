@@ -155,7 +155,10 @@ async function handleSelectChange(event) {
 } 
 //Fonction de generation du tableau	
 function GenerationTableau(donnees) {
-if (donnees.horaires.length === 0) return;
+if (donnees.horaires.length === 0) {
+	tabledesHoraire.innerHTML = ''; 
+	return
+}
 const tabledesHoraire=document.getElementById("tabledesHoraire");
 const trametableau=['LundiJour','LundiSoir','LundiNuit','MardiJour','MardiSoir','MardiNuit','MercrediJour','MercrediSoir','MercrediNuit','JeudiJour','JeudiSoir','JeudiNuit','VendrediJour','VendrediSoir','VendrediNuit']
 let lignes=`<tr>
@@ -167,6 +170,7 @@ let lignes=`<tr>
 	<th colspan="3">Vendredi</th>
   </tr>
   <tr>
+    <td>/td>
     <td>Jour</td>
     <td>Soir</td>
 	<td>Nuit</td>
