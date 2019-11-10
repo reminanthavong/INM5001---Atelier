@@ -56,17 +56,6 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 
 <select id="listeSemaines"></select>
       </br>  </br>
-
-      <div class='container'>
-        <div class='form-row'>
-      <div class='form-group col-8'>
-        <label for='datehoraire'> Date de l'horaire:</label>
-        <input type='date' id='datesemaine' class='form-control'>
-      </div>
-        </div>
-      </div>
-
-	
 	
 	  <input id="datesemaine" width="312" />
 
@@ -99,7 +88,8 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 <script>
 	
 	 $('#datesemaine').datepicker({
-        disableDaysOfWeek: [0, 2, 3, 4, 5, 6]
+        disableDaysOfWeek: [0, 2, 3, 4, 5, 6],
+	format: 'yyyy-mm-dd'
     });
 	
 $('#datesemaine').change(async (event) => handleSelectChange2(event));
