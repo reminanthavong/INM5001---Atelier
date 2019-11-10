@@ -151,7 +151,7 @@ async function handleSelectChange(event) {
     console.log(event)
     const resp = await chercherHoraire2(event.target.value);
     console.log(resp);
-    GenerationTableau(resp)
+    construiretableau(resp)
 } 
 //Fonction de generation du tableau	
 function GenerationTableau(donnees) {
