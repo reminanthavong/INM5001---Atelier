@@ -492,11 +492,6 @@
 			const resultat = await fetch(url, {method: "DELETE", 
         		headers: { "content-type": "application/json"} }); 
         	const success = await resultat.json();
-			if(success.success) {
-				alert("Disponibilités supprimées avec succès!");
-			} else {
-				alert("Echec supression disponiblités");
-			}
 		}
 	
 		async function modifierDisponibilite(typequart, joursemaine, dispo) {
@@ -513,17 +508,12 @@
 			}, 
 			body: JSON.stringify(jsonDispo) })
 			const success = await result.json();
-			if (!success.success){
-				alert("Impossible d'entrer les disponiblités de l'employé dans la base de données")
-			} else {
-				alert("Les disponibilités ont été entrées")
-			}
 		}	
 		
 		btnConge.addEventListener("click", async e => {		
 			var date = document.getElementById('dateconge').value; 
 			var dateConge = new Date(date);
-			dateConge.setMinutes(dateConge.getMinutes() + dateConge.getTimezoneOffset()); //Permet d'avoir la bonne date enregistrée 
+			dateConge.setMinutes(dateConge.getMinutes() + dateConge.getTimezoneOffset()); //Permet d'avoir la bonne date sans influence du fuseau horaire 
 			jourDeLaSemaine = dateConge.getDay();
 			if(jourDeLaSemaine == 0 || jourDeLaSemaine == 6){
 				alert("Impossible de demander un congé pour un jour de fin de semaine");
@@ -541,7 +531,7 @@
 					}				
 				}else if(dateConge.getDay() == 2){
 					dateAjuste = new Date(dateConge); 
-					dateAjuste.setDate(dateAjuste.getDate() - 1);
+					dateAjuste.setDate(dateAjuste.getDate() - 1); //La date enregistrée est toujours le lundi de cette semaines là
 					if(document.getElementById("congeJ").checked){
 					ajouterConge(dateAjuste, '2', 'J');
 					}
@@ -553,7 +543,7 @@
 					}
 				}else if(dateConge.getDay() == 3){
 					dateAjuste = new Date(dateConge); 
-					dateAjuste.setDate(dateAjuste.getDate() - 2);
+					dateAjuste.setDate(dateAjuste.getDate() - 2); //La date enregistrée est toujours le lundi de cette semaines là
 					if(document.getElementById("congeJ").checked){
 						ajouterConge(dateAjuste, '3', 'J');
 					}
@@ -565,7 +555,7 @@
 					}
 				}else if(dateConge.getDay() == 4){
 					dateAjuste = new Date(dateConge); 
-					dateAjuste.setDate(dateAjuste.getDate() - 3);
+					dateAjuste.setDate(dateAjuste.getDate() - 3); //La date enregistrée est toujours le lundi de cette semaines là
 					if(document.getElementById("congeJ").checked){
 						ajouterConge(dateAjuste, '4', 'J');
 					}
@@ -577,7 +567,7 @@
 					}
 				}else if(dateConge.getDay() == 5){
 					dateAjuste = new Date(dateConge); 
-					dateAjuste.setDate(dateAjuste.getDate() - 4);
+					dateAjuste.setDate(dateAjuste.getDate() - 4); //La date enregistrée est toujours le lundi de cette semaines là
 					if(document.getElementById("congeJ").checked){
 						ajouterConge(dateAjuste, '5', 'J');
 					}
@@ -605,11 +595,6 @@
 			}, 
 			body: JSON.stringify(jsonConge) })
 			const success = await result.json();
-			if (!success.success){
-				alert("Impossible d'entrer le congé dans la base de données")
-			} else {
-				alert("Le congé a été entré avec succès!")
-			}
 		}
 		
 		</script>		

@@ -123,7 +123,7 @@ const supprimerIdentification   = async (req, res) => {
 		await Api
 		.delete('/baseemployes')
 		.eq('idemploye', idemploye)
-		.eq('idemployeur', gestionnaire)
+		.eq('idemployeur', gestionnaire);
 	}
 	
 	async function ajoutDispo(idemployeur, idemploye, typequart, joursemaine, disponibilite) {		
@@ -136,7 +136,7 @@ const supprimerIdentification   = async (req, res) => {
 		await Api
 		.delete('/basequartsemploye')
 		.eq('idemploye', idemploye)
-		.eq('paramtype', '1')
+		.eq('paramtype', '1');
 	}
 	
 	async function ajoutIdentification(idutilisateur, motdepasse){
