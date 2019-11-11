@@ -129,9 +129,6 @@ const supprimerIdentification   = async (req, res) => {
 	async function ajoutDispo(idemployeur, idemploye, typequart, joursemaine, disponibilite) {		
 		await Api
 		.post('/basequartsemploye')
-<<<<<<< HEAD
-		.send({idemployeur:idemployeur, idemploye: idemploye, typequart: typequart, joursemaine: joursemaine, disponiblite: disponibilite, paramtype: '1'});		
-=======
 		.send({idemployeur:idemployeur, idemploye: idemploye, idtablehoraire: '000', typequart: typequart, joursemaine: joursemaine, disponibilite: disponibilite, paramtype: '1'});		
 	}
 	
@@ -146,7 +143,6 @@ const supprimerIdentification   = async (req, res) => {
 		await Api
 		.post('/baseidentification')
 		.send({idutilisateur: idutilisateur, motdepasse: motdepasse, typeutilisateur: '0'});
->>>>>>> testGestionEmploye
 	}
 	
 	async function suppressionIdentification(idutilisateur){
