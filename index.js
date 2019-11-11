@@ -81,11 +81,13 @@ if (req.session.typeutilisateur == 1){
 	}
   })
 
-.get('/Employe',gestionemploye.fafficherEmployes)
-.post('/Employe',gestionemploye.fajouterEmploye )
-.post('/Disponibilite',gestionemploye.fajouterDisponibilite)
-.post('/InfoEmploye',gestionemploye.fmodifierEmploye)
-.delete('/Employe',gestionemploye.fenleverEmploye )
+.get('/Employe',gestionemploye.afficherEmployes) 
+.post('/Employe',gestionemploye.ajouterEmploye) 
+.post('/Disponibilite',gestionemploye.ajouterDisponibilite) 
+.delete('/Employe',gestionemploye.enleverEmploye) 
+.post('/Identification', gestionemploye.ajouterIdentification) 
+.delete('/Identification', gestionemploye.supprimerIdentification)
+.delete('/Disponibilite', gestionemploye.supprimerDisponibilite) 
 
 // Fonction GestionHoraire
 .get('/GestionHoraire', async (req, res) => {
@@ -108,8 +110,8 @@ if (req.session.typeutilisateur == 1){
 	}
   })
   .get('/DispoEmploye',pageemploye.afficherDisponibilites)
-  .put('/DispoEmploye',pageemploye.modifierDisponibilites)
+  .post('/DispoEmploye',pageemploye.ajouterDisponibilites)
+  .delete('/DispoEmploye', pageemploye.supprimerDisponibilites)
   .post('/Conge', pageemploye.ajouterConge)
-
 
  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
