@@ -312,7 +312,7 @@
 						var nom = prompt("Veuillez entrer le nouveau nom de " + t.prenomemploye + " " + t.nomemploye);
 						if (nom != null && nom != "") {
 							nom = nom.toUpperCase();
-							changerInfoEmploye(t.idemploye, nom, t.prenomemploye, t.nbrheuresmax);
+							changerInfoEmploye(t.idemploye, nom, t.prenomemploye, t.nbrheuresmax, t.dateembauche);
 						} else {
 							alert("Aucune modification n'a été faite")
 						}
@@ -322,7 +322,7 @@
 						var prenom = prompt("Veuillez entrer le nouveau prenom de " + t.prenomemploye + " " + t.nomemploye);
 						if (prenom != null && prenom != "") {
 							prenom = prenom.toUpperCase();
-							changerInfoEmploye(t.idemploye, t.nomemploye, prenom, t.nbrheuresmax);
+							changerInfoEmploye(t.idemploye, t.nomemploye, prenom, t.nbrheuresmax, t.dateembauche);
 						} else {
 							alert("Aucune modification n'a été faite")
 						}
@@ -331,7 +331,7 @@
 					td4.addEventListener("click", async e=> {
 						var heures = prompt("Veuillez entrer le nouveau nombre d'heures maximum de " + t.prenomemploye + " " + t.nomemploye);
 						if (heures != null && heures != "" && !isNaN(heures)) {
-							changerInfoEmploye(t.idemploye, t.nomemploye, t.prenomemploye, heures);
+							changerInfoEmploye(t.idemploye, t.nomemploye, t.prenomemploye, heures, t.dateembauche);
 						} else {
 							alert("Aucune modification n'a été faite")
 						}
@@ -349,25 +349,18 @@
 		    }
 		});	
 		
-		async function changerInfoEmploye(idemploye, nomemploye, prenomemploye, nbrheuresmax) {
+		async function changerInfoEmploye(idemploye, nomemploye, prenomemploye, nbrheuresmax, dateembauche) {
+			supprimerEmploye(idemploye);
+			
+			alert(dateembauche);
 			const jsonEmp = {};
 			jsonEmp.idemploye = idemploye;
 			jsonEmp.nomemploye = nomemploye;
 			jsonEmp.prenomemploye = prenomemploye;
 			jsonEmp.nbrheuresmax = nbrheuresmax;
-			const result = await fetch('/InfoEmploye', {
-		        method: 'POST', 
-				headers: { 
-				'Accept': 'application/json',
-					'Content-Type': 'application/json'
-				}, 
-				body: JSON.stringify(jsonEmp) })
-			const success = await result.json();
-			if(success.success) {
-				alert("Les informations de l'employé ont été changé avec succès!");
-			} else {
-				alert("Echec");
-			}	
+			jsonEmp.dateembauche = dateembauche;
+			
+			ajouterEmploye(jsonEmp)
 		}
 		
 		btnCacher.addEventListener("click", function() {
@@ -404,7 +397,7 @@
 							var nomEmp = prompt("Veuillez entrer le nouveau nom de " + t.prenomemploye + " " + t.nomemploye);
 							if (nomEmp != null && nomEmp != "") {
 								const nom = nomEmp.toUpperCase();
-								changerInfoEmploye(t.idemploye, nom, t.prenomemploye, t.nbrheuresmax);
+								changerInfoEmploye(t.idemploye, nom, t.prenomemploye, t.nbrheuresmax, t.dateembauche);
 							} else {
 								alert("Aucune modification n'a été faite")
 							}
@@ -414,7 +407,7 @@
 							var prenomEmp = prompt("Veuillez entrer le nouveau prenom de " + t.prenomemploye + " " + t.nomemploye);
 							if (prenomEmp != null && prenomEmp != "") {
 								var prenom = prenomEmp.toUpperCase();
-								changerInfoEmploye(t.idemploye, t.nomemploye, prenom, t.nbrheuresmax);
+								changerInfoEmploye(t.idemploye, t.nomemploye, prenom, t.nbrheuresmax, t.dateembauche);
 							} else {
 								alert("Aucune modification n'a été faite")
 							}
@@ -423,7 +416,7 @@
 						td4.addEventListener("click", async e => {
 							var heures = prompt("Veuillez entrer le nouveau nombre d'heures maximum de " + t.prenomemploye + " " + t.nomemploye);
 							if (heures != null && heures != "" && !isNaN(heures)) {
-								changerInfoEmploye(t.idemploye, t.nomemploye, t.prenomemploye, heures);
+								changerInfoEmploye(t.idemploye, t.nomemploye, t.prenomemploye, heures, t.dateembauche);
 							} else {
 								alert("Aucune modification n'a été faite")
 							}
@@ -450,7 +443,37 @@
 						td2.textContent = t.nomemploye;
 						td3.textContent = t.prenomemploye;
 						td4.textContent = t.nbrheuresmax;
-						td5.textContent = t.dateembauche.substring(0,10);					
+						td5.textContent = t.dateembauche.substring(0,10);
+						
+						td2.addEventListener("click", async e => {
+							var nomEmp = prompt("Veuillez entrer le nouveau nom de " + t.prenomemploye + " " + t.nomemploye);
+							if (nomEmp != null && nomEmp != "") {
+								const nom = nomEmp.toUpperCase();
+								changerInfoEmploye(t.idemploye, nom, t.prenomemploye, t.nbrheuresmax, t.dateembauche);
+							} else {
+								alert("Aucune modification n'a été faite")
+							}
+						})
+						
+						td3.addEventListener("click", async e => {
+							var prenomEmp = prompt("Veuillez entrer le nouveau prenom de " + t.prenomemploye + " " + t.nomemploye);
+							if (prenomEmp != null && prenomEmp != "") {
+								var prenom = prenomEmp.toUpperCase();
+								changerInfoEmploye(t.idemploye, t.nomemploye, prenom, t.nbrheuresmax, t.dateembauche);
+							} else {
+								alert("Aucune modification n'a été faite")
+							}
+						})
+						
+						td4.addEventListener("click", async e => {
+							var heures = prompt("Veuillez entrer le nouveau nombre d'heures maximum de " + t.prenomemploye + " " + t.nomemploye);
+							if (heures != null && heures != "" && !isNaN(heures)) {
+								changerInfoEmploye(t.idemploye, t.nomemploye, t.prenomemploye, heures, t.dateembauche);
+							} else {
+								alert("Aucune modification n'a été faite")
+							}
+						})
+						
 						tableEmploye.appendChild(tr);
 						tr.appendChild(td1);
 						tr.appendChild(td2);
@@ -465,20 +488,27 @@
 		
 		btnCreer.addEventListener("click", async e => {	
 			try {
-				const jsonEmp = {};			
+				const jsonEmp = {};	
+				const jsonIdentification = {};
+				
 				var nomEmp =  document.getElementById('nomemployeid').value;	
 				jsonEmp.nomemploye = nomEmp.toUpperCase();				
 				var prenomEmp = document.getElementById('prenomemployeid').value;
 				jsonEmp.prenomemploye = prenomEmp.toUpperCase();
-				jsonEmp.idemploye = creerIDEmploye(jsonEmp.nomemploye, jsonEmp.prenomemploye);
+				var ID = creerIDEmploye(jsonEmp.nomemploye, jsonEmp.prenomemploye);
+				jsonEmp.idemploye = ID;
 				var heures = document.getElementById('nbheuresmaxid').value;
 				jsonEmp.nbrheuresmax = parseInt(heures, 10);				
 				var date = document.getElementById('dateembauche').value
 				var dateAjustee = new Date(date);
 				dateAjustee.setMinutes(dateAjustee.getMinutes() + dateAjustee.getTimezoneOffset()); //Permet d'avoir la bonne date enregistrée 
 				jsonEmp.dateembauche = dateAjustee;
-				jsonEmp.motdepasse = document.getElementById('motdepasse').value;
-				console.log(jsonEmp)
+				
+				jsonIdentification.idutilisateur = ID;
+				jsonIdentification.motdepasse = document.getElementById('motdepasse').value;
+				
+				ajouterEmploye(jsonEmp);				
+				ajouterIdentification(jsonIdentification);
 				
 				if (document.getElementById("J1").checked) {
 					insererDisponibilite(jsonEmp.idemploye, 'J', '1', '1');
@@ -555,20 +585,6 @@
 				}else {
 					insererDisponibilite(jsonEmp.idemploye, 'N', '5', '0');
 				}
-				
-				const result = await fetch(url, {
-				        method: 'POST', 
-					headers: { 
-					'Accept': 'application/json',
-      					'Content-Type': 'application/json'
-					}, 
-					body: JSON.stringify(jsonEmp) })
-				const success = await result.json();
-				if(success.success) {
-					alert("Employé créé avec succès!");
-				} else {
-					alert("Echec");
-				}
 			} catch (e) {
 				console.log("Impossible d'ajouter un employe");
 			}
@@ -604,18 +620,75 @@
 		}		
 		
 		btnCongedier.addEventListener("click", async e => {
-			const jsonRequest = {}
 			var ID = document.getElementById('identifiant').value;
-			jsonRequest.idemploye = ID.toUpperCase();
+			
+			supprimerEmploye(ID);
+			supprimerIdentificationEmploye(ID);
+			changerDispoEmploye(ID);
+		})	
+		
+		async function ajouterEmploye(jsonEmp){
+			const result = await fetch(url, {
+		        method: 'POST', 
+			headers: { 
+			'Accept': 'application/json',
+					'Content-Type': 'application/json'
+			}, 
+			body: JSON.stringify(jsonEmp) })
+		}
+		
+		async function ajouterIdentification(jsonIdentification){
+			const result = await fetch('/Identification', {
+		        method: 'POST', 
+			headers: { 
+			'Accept': 'application/json',
+					'Content-Type': 'application/json'
+			}, 
+			body: JSON.stringify(jsonIdentification) })
+		}
+		
+		async function supprimerEmploye(employe){
+			const jsonRequest = {}
+			employe = employe.toUpperCase();
+			jsonRequest.idemploye = employe;
 			const resultat = await fetch(url, {method: "DELETE", 
         		headers: { "content-type": "application/json"}, body: JSON.stringify(jsonRequest) })
+		}
+		
+		async function supprimerIdentificationEmploye(idemploye){
+			const jsonRequest = {}
+			jsonRequest.idutilisateur = idemploye;
+			const resultat = await fetch('/Identification', {method: "DELETE", 
+        		headers: { "content-type": "application/json"}, body: JSON.stringify(jsonRequest) })
+		}
+		
+		async function changerDispoEmploye(idemploye){
+			supprimerDispo(idemploye); 	//Les disponibilités de l'employé sont d'abord supprimées 		
+			//Les disponibilités de l'employé sont remises dans la base de données avec comme code '0' (non disponible)
+			insererDisponibilite(idemploye, 'J', '1', '0'); 
+			insererDisponibilite(idemploye, 'S', '1', '0');
+			insererDisponibilite(idemploye, 'N', '1', '0');
+			insererDisponibilite(idemploye, 'J', '2', '0');
+			insererDisponibilite(idemploye, 'S', '2', '0');
+			insererDisponibilite(idemploye, 'N', '2', '0');
+			insererDisponibilite(idemploye, 'J', '3', '0');
+			insererDisponibilite(idemploye, 'S', '3', '0');
+			insererDisponibilite(idemploye, 'N', '3', '0');
+			insererDisponibilite(idemploye, 'J', '4', '0');
+			insererDisponibilite(idemploye, 'S', '4', '0');
+			insererDisponibilite(idemploye, 'N', '4', '0');
+			insererDisponibilite(idemploye, 'J', '5', '0');
+			insererDisponibilite(idemploye, 'S', '5', '0');
+			insererDisponibilite(idemploye, 'N', '5', '0');
+		}
+		
+		async function supprimerDispo(idemploye){
+			const jsonRequest = {};
+			jsonRequest.idemploye = idemploye;
+			const resultat = await fetch('/Disponibilite', {method: "DELETE", 
+        		headers: { "content-type": "application/json"}, body: JSON.stringify(jsonRequest) }); 
         	const success = await resultat.json();
-			if(success.success) {
-				alert("Employé congédié avec succès!");
-			} else {
-				alert("Echec");
-			}
-		})		
+		}
 		</script>		
 	</body>
 </html>
