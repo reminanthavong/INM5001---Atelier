@@ -7,7 +7,7 @@ CREATE TABLE BaseEmployes (
 	IDEmploye 		VARCHAR(5) NULL,	
 	NomEmploye 		VARCHAR(20) NULL, 
 	PrenomEmploye 	VARCHAR(20) NULL,
-	NBRHeuresMax 	INTEGER NULL,
+	NBRQuartsMax 	INTEGER NULL,
 	DateEmbauche 	DATE 
 );
 /*==============================================================*/
@@ -67,24 +67,24 @@ CREATE TABLE TableCodes
 /*==============================================================*/
 
 --------------------------------------------------------------------------------------------------------------
-INSERT INTO BaseEmployes VALUES('Gestion8768','TREIK','TARA W','REIKER','40','1977-11-18');
-INSERT INTO BaseEmployes VALUES('Gestion8768','SYACO','SIMARRON M','YACOOB','40','2000-01-17');
-INSERT INTO BaseEmployes VALUES('Gestion8768','LBRON','LEALLER D','BRONNICHE','40','1994-11-07');
-INSERT INTO BaseEmployes VALUES('Gestion8768','SGOLI','SHAHBANA R','GOLINI','40','1983-07-11');
-INSERT INTO BaseEmployes VALUES('Gestion8768','LMASA','LLYASSA C','MASAND','40','1998-02-16');
-INSERT INTO BaseEmployes VALUES('Gestion8768','DTOOM','DOURTJE','TOOMEY','40','2000-01-17');
-INSERT INTO BaseEmployes VALUES('Gestion8768','JCOOL','JOVEL M','COOLONG','40','1996-08-19');
-INSERT INTO BaseEmployes VALUES('Gestion8768','JHARV','JITWIPAR','HARVEGO','40','1986-12-08');
-INSERT INTO BaseEmployes VALUES('Gestion3525','EBECK','ELAINE R','BECKER','40','1970-04-07');
-INSERT INTO BaseEmployes VALUES('Gestion3525','JNASH','JENISSA C','NASHEL','40','1979-04-16');
-INSERT INTO BaseEmployes VALUES('Gestion3525','MSLAT','MASCHEAL','SLATTON','40','2000-04-17');
-INSERT INTO BaseEmployes VALUES('Gestion3525','DPURN','DESRI M','PURNELL','40','1984-10-16');
-INSERT INTO BaseEmployes VALUES('Gestion7196','LMEAN','LATOSHA','MEANY','40','1999-08-09');
-INSERT INTO BaseEmployes VALUES('Gestion7196','KLUND','KAUMUDEE K','LUND','40','1993-11-08');
-INSERT INTO BaseEmployes VALUES('Gestion7196','TSEAW','TINNAYA','SEAWARD','40','1999-05-10');
-INSERT INTO BaseEmployes VALUES('Gestion7196','LALTO','LYRESSA D','ALTONJI','40','1978-01-05');
-INSERT INTO BaseEmployes VALUES('Gestion7196','MALTO','MYONGHLUI I','ALTONJI','40','1981-02-16');
-INSERT INTO BaseEmployes VALUES('Gestion7196','CRETK','CATENO L','RETKWA','40','1994-06-20');
+INSERT INTO BaseEmployes VALUES('Gestion8768','TREIK','TARA W','REIKER','5','1977-11-18');
+INSERT INTO BaseEmployes VALUES('Gestion8768','SYACO','SIMARRON M','YACOOB','4','2000-01-17');
+INSERT INTO BaseEmployes VALUES('Gestion8768','LBRON','LEALLER D','BRONNICHE','3','1994-11-07');
+INSERT INTO BaseEmployes VALUES('Gestion8768','SGOLI','SHAHBANA R','GOLINI','2','1983-07-11');
+INSERT INTO BaseEmployes VALUES('Gestion8768','LMASA','LLYASSA C','MASAND','1','1998-02-16');
+INSERT INTO BaseEmployes VALUES('Gestion8768','DTOOM','DOURTJE','TOOMEY','2','2000-01-17');
+INSERT INTO BaseEmployes VALUES('Gestion8768','JCOOL','JOVEL M','COOLONG','3','1996-08-19');
+INSERT INTO BaseEmployes VALUES('Gestion8768','JHARV','JITWIPAR','HARVEGO','4','1986-12-08');
+INSERT INTO BaseEmployes VALUES('Gestion3525','EBECK','ELAINE R','BECKER','5','1970-04-07');
+INSERT INTO BaseEmployes VALUES('Gestion3525','JNASH','JENISSA C','NASHEL','4','1979-04-16');
+INSERT INTO BaseEmployes VALUES('Gestion3525','MSLAT','MASCHEAL','SLATTON','3','2000-04-17');
+INSERT INTO BaseEmployes VALUES('Gestion3525','DPURN','DESRI M','PURNELL','2','1984-10-16');
+INSERT INTO BaseEmployes VALUES('Gestion7196','LMEAN','LATOSHA','MEANY','1','1999-08-09');
+INSERT INTO BaseEmployes VALUES('Gestion7196','KLUND','KAUMUDEE K','LUND','2','1993-11-08');
+INSERT INTO BaseEmployes VALUES('Gestion7196','TSEAW','TINNAYA','SEAWARD','3','1999-05-10');
+INSERT INTO BaseEmployes VALUES('Gestion7196','LALTO','LYRESSA D','ALTONJI','4','1978-01-05');
+INSERT INTO BaseEmployes VALUES('Gestion7196','MALTO','MYONGHLUI I','ALTONJI','5','1981-02-16');
+INSERT INTO BaseEmployes VALUES('Gestion7196','CRETK','CATENO L','RETKWA','4','1994-06-20');
 --------------------------------------------------------------------------------------------------------------
 INSERT INTO BaseIdentification VALUES('Gestion8768','ABC123','1');
 INSERT INTO BaseIdentification VALUES('Gestion3525','ABC456','1');
