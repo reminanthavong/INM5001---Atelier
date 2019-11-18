@@ -62,6 +62,7 @@ const enleverEmploye   = async (req, res) => {
 const ajouterDisponibilite = async(req, res) => {
 	let result = {}
 	const reqjson = req.body;
+	console.log(reqjson);
 	var sessEmployeur = req.session.username;
 	try{	
 		  await ajoutDispo(sessEmployeur, reqjson.idemploye, reqjson.typequart, reqjson.joursemaine, reqjson.dispo);		  
