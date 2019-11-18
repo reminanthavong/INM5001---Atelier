@@ -20,7 +20,7 @@ const ajouterEmploye   = async (req, res) => {
 	  const reqJson = req.body;
 	  var sessEmployeur = req.session.username;
 	  try{	
-		  await ajoutEmploye(sessEmployeur, reqJson.idemploye, reqJson.nomemploye, reqJson.prenomemploye, reqJson.nbrheuresmax, reqJson.dateembauche);		  
+		  await ajoutEmploye(sessEmployeur, reqJson.idemploye, reqJson.nomemploye, reqJson.prenomemploye, reqJson.nbrquartsmax, reqJson.dateembauche);		  
 		  result.success = true;
 	  } catch (e) {
 		  result.success = false;
@@ -103,10 +103,10 @@ const supprimerIdentification   = async (req, res) => {
 }
 
 
-	async function ajoutEmploye(idemployeur, idemploye, nomemploye, prenomemploye, nbrheuresmax, dateembauche) {	
+	async function ajoutEmploye(idemployeur, idemploye, nomemploye, prenomemploye, nbrquartsmax, dateembauche) {	
 		await Api
 			.post('/baseemployes')
-			.send({idemployeur:idemployeur, idemploye: idemploye, nomemploye: nomemploye, prenomemploye: prenomemploye, nbrheuresmax: nbrheuresmax, dateembauche: dateembauche});	
+			.send({idemployeur:idemployeur, idemploye: idemploye, nomemploye: nomemploye, prenomemploye: prenomemploye, nbrquartsmax: nbrquartsmax, dateembauche: dateembauche});	
 	}
 	
 	async function ajoutIdentification(idemploye, motdepasse){

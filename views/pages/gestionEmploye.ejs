@@ -118,8 +118,8 @@
       					</div>
       					<div class='form-row'>
       						<div class='form-group col-8'>
-      							<label for='nbheuresmax'>Nombre d'heures de travail maximum par semaine:</label>
-      							<input name='nbheuresmax' class='form-control form-constrol-sm' id='nbheuresmaxid' placeholder="Un nombre entre 8 et 40"type='text' pattern='[0-9]{1,2}' required='required'>
+      							<label for='nbheuresmax'>Nombre de quarts de travail maximum par semaine:</label>
+      							<input name='nbheuresmax' class='form-control form-constrol-sm' id='nbquartsmaxid' placeholder="Un nombre entre 1 et 15"type='text' pattern='[0-9]{1,2}' required='required'>
       						</div>
       					</div>	
       					<div class='form-row'>
@@ -303,7 +303,7 @@
 					td1.textContent = t.idemploye;
 					td2.textContent = t.nomemploye;
 					td3.textContent = t.prenomemploye;
-					td4.textContent = t.nbrheuresmax;
+					td4.textContent = t.nbrquartsmax;
 					td5.textContent = t.dateembauche.substring(0,10);
 					
 					//Pour modifier le nom d'un employé
@@ -311,7 +311,7 @@
 						var nom = prompt("Veuillez entrer le nouveau nom de " + t.prenomemploye + " " + t.nomemploye);
 						if (nom != null && nom != "") {
 							nom = nom.toUpperCase();
-							changerInfoEmploye(t.idemploye, nom, t.prenomemploye, t.nbrheuresmax, t.dateembauche);
+							changerInfoEmploye(t.idemploye, nom, t.prenomemploye, t.nbrquartsmax, t.dateembauche);
 						} else {
 							alert("Aucune modification n'a été faite")
 						}
@@ -322,18 +322,18 @@
 						var prenom = prompt("Veuillez entrer le nouveau prenom de " + t.prenomemploye + " " + t.nomemploye);
 						if (prenom != null && prenom != "") {
 							prenom = prenom.toUpperCase();
-							changerInfoEmploye(t.idemploye, t.nomemploye, prenom, t.nbrheuresmax, t.dateembauche);
+							changerInfoEmploye(t.idemploye, t.nomemploye, prenom, t.nbrquartsmax, t.dateembauche);
 						} else {
 							alert("Aucune modification n'a été faite")
 						}
 					})
 					
-					//Pour modifier le nombre d'heures maximumque l'employé travaillera dans une semaine
+					//Pour modifier le nombre de quarts de travail maximum que l'employé travaillera dans une semaine
 					td4.addEventListener("click", async e=> {
-						var heures = prompt("Veuillez entrer le nouveau nombre d'heures maximum de " + t.prenomemploye + " " + t.nomemploye);
-						if (heures != null && heures != "" && !isNaN(heures)) {
-							heures = parseInt(heures, 10);
-							changerInfoEmploye(t.idemploye, t.nomemploye, t.prenomemploye, heures, t.dateembauche);
+						var quarts = prompt("Veuillez entrer le nouveau nombre de quarts de travail maximum de " + t.prenomemploye + " " + t.nomemploye);
+						if (quarts != null && quarts != "" && !isNaN(quarts)) {
+							quarts = parseInt(quarts, 10);
+							changerInfoEmploye(t.idemploye, t.nomemploye, t.prenomemploye, quarts, t.dateembauche);
 						} else {
 							alert("Aucune modification n'a été faite")
 						}
@@ -351,13 +351,13 @@
 		    }
 		});	
 		
-		async function changerInfoEmploye(idemploye, nomemploye, prenomemploye, nbrheuresmax, dateembauche) {
+		async function changerInfoEmploye(idemploye, nomemploye, prenomemploye, nbrquartsmax, dateembauche) {
 			supprimerEmploye(idemploye);	
 			const jsonEmp = {};
 			jsonEmp.idemploye = idemploye;
 			jsonEmp.nomemploye = nomemploye;
 			jsonEmp.prenomemploye = prenomemploye;
-			jsonEmp.nbrheuresmax = nbrheuresmax;
+			jsonEmp.nbrquartsmax = nbrquartsmax;
 			jsonEmp.dateembauche = dateembauche;
 			console.log(jsonEmp);
 			ajouterEmploye(jsonEmp)
@@ -389,14 +389,14 @@
 						td1.textContent = t.idemploye;
 						td2.textContent = t.nomemploye;
 						td3.textContent = t.prenomemploye;
-						td4.textContent = t.nbrheuresmax;
+						td4.textContent = t.nbrquartsmax;
 						td5.textContent = t.dateembauche.substring(0,10);	
 						
 						td2.addEventListener("click", async e => {
 							var nomEmp = prompt("Veuillez entrer le nouveau nom de " + t.prenomemploye + " " + t.nomemploye);
 							if (nomEmp != null && nomEmp != "") {
 								const nom = nomEmp.toUpperCase();
-								changerInfoEmploye(t.idemploye, nom, t.prenomemploye, t.nbrheuresmax, t.dateembauche);
+								changerInfoEmploye(t.idemploye, nom, t.prenomemploye, t.nbrquartsmax, t.dateembauche);
 							} else {
 								alert("Aucune modification n'a été faite")
 							}
@@ -407,17 +407,17 @@
 							if (prenomEmp != null && prenomEmp != "") {
 								var prenom = prenomEmp.toUpperCase();
 								alert(prenom);
-								changerInfoEmploye(t.idemploye, t.nomemploye, prenom, t.nbrheuresmax, t.dateembauche);
+								changerInfoEmploye(t.idemploye, t.nomemploye, prenom, t.nbrquartsmax, t.dateembauche);
 							} else {
 								alert("Aucune modification n'a été faite")
 							}
 						})
 						
 						td4.addEventListener("click", async e => {
-							var heures = prompt("Veuillez entrer le nouveau nombre d'heures maximum de " + t.prenomemploye + " " + t.nomemploye);
-							if (heures != null && heures != "" && !isNaN(heures)) {
-								heures = parseInt(heures, 10);
-								changerInfoEmploye(t.idemploye, t.nomemploye, t.prenomemploye, heures, t.dateembauche);
+							var quarts = prompt("Veuillez entrer le nouveau nombre de quarts de travail maximum de " + t.prenomemploye + " " + t.nomemploye);
+							if (quarts != null && quarts != "" && !isNaN(quarts)) {
+								quarts = parseInt(quarts, 10);
+								changerInfoEmploye(t.idemploye, t.nomemploye, t.prenomemploye, quarts, t.dateembauche);
 							} else {
 								alert("Aucune modification n'a été faite")
 							}
@@ -443,14 +443,14 @@
 						td1.textContent = t.idemploye;
 						td2.textContent = t.nomemploye;
 						td3.textContent = t.prenomemploye;
-						td4.textContent = t.nbrheuresmax;
+						td4.textContent = t.nbrquartsmax;
 						td5.textContent = t.dateembauche.substring(0,10);
 						
 						td2.addEventListener("click", async e => {
 							var nomEmp = prompt("Veuillez entrer le nouveau nom de " + t.prenomemploye + " " + t.nomemploye);
 							if (nomEmp != null && nomEmp != "") {
 								const nom = nomEmp.toUpperCase();
-								changerInfoEmploye(t.idemploye, nom, t.prenomemploye, t.nbrheuresmax, t.dateembauche);
+								changerInfoEmploye(t.idemploye, nom, t.prenomemploye, t.nbrquartsmax, t.dateembauche);
 							} else {
 								alert("Aucune modification n'a été faite")
 							}
@@ -460,17 +460,17 @@
 							var prenomEmp = prompt("Veuillez entrer le nouveau prenom de " + t.prenomemploye + " " + t.nomemploye);
 							if (prenomEmp != null && prenomEmp != "") {
 								var prenom = prenomEmp.toUpperCase();
-								changerInfoEmploye(t.idemploye, t.nomemploye, prenom, t.nbrheuresmax, t.dateembauche);
+								changerInfoEmploye(t.idemploye, t.nomemploye, prenom, t.nbrquartsmax, t.dateembauche);
 							} else {
 								alert("Aucune modification n'a été faite")
 							}
 						})
 						
 						td4.addEventListener("click", async e => {
-							var heures = prompt("Veuillez entrer le nouveau nombre d'heures maximum de " + t.prenomemploye + " " + t.nomemploye);
-							if (heures != null && heures != "" && !isNaN(heures)) {
-								heures = parseInt(heures, 10);
-								changerInfoEmploye(t.idemploye, t.nomemploye, t.prenomemploye, heures, t.dateembauche);
+							var quarts = prompt("Veuillez entrer le nouveau nombre de quarts de travail maximum de " + t.prenomemploye + " " + t.nomemploye);
+							if (quarts != null && quarts != "" && !isNaN(quarts)) {
+								quarts = parseInt(quarts, 10);
+								changerInfoEmploye(t.idemploye, t.nomemploye, t.prenomemploye, quarts, t.dateembauche);
 							} else {
 								alert("Aucune modification n'a été faite")
 							}
@@ -499,8 +499,9 @@
 				jsonEmp.prenomemploye = prenomEmp.toUpperCase();
 				var ID = creerIDEmploye(jsonEmp.nomemploye, jsonEmp.prenomemploye);
 				jsonEmp.idemploye = ID;
-				var heures = document.getElementById('nbheuresmaxid').value;
-				jsonEmp.nbrheuresmax = parseInt(heures, 10);				
+				var quarts = document.getElementById('nbquartsmaxid').value;
+				jsonEmp.nbrquartsmax = parseInt(quarts, 10);	
+				//jsonEmp.nbrquartsmax = document.getElementById('nbquartsmaxid').value;
 				var date = document.getElementById('dateembauche').value
 				var dateAjustee = new Date(date);
 				dateAjustee.setMinutes(dateAjustee.getMinutes() + dateAjustee.getTimezoneOffset()); //Permet d'avoir la bonne date sans influence du fuseau horaire
@@ -509,6 +510,7 @@
 				jsonIdentification.idutilisateur = ID;
 				jsonIdentification.motdepasse = document.getElementById('motdepasse').value;
 				
+				console.log(jsonEmp);
 				ajouterEmploye(jsonEmp);				
 				ajouterIdentification(jsonIdentification);
 				
@@ -516,77 +518,92 @@
 					insererDisponibilite(jsonEmp.idemploye, 'J', '1', '1');
 				}else {
 					insererDisponibilite(jsonEmp.idemploye, 'J', '1', '0');
-				}				
+				}	
+				
 				if (document.getElementById("S1").checked) {
 					insererDisponibilite(jsonEmp.idemploye, 'S', '1', '1');
 				}else {
 					insererDisponibilite(jsonEmp.idemploye, 'S', '1', '0');
-				}				
+				}	
+				
 				if (document.getElementById("N1").checked) {
 					insererDisponibilite(jsonEmp.idemploye, 'N', '1', '1');
 				}else {
 					insererDisponibilite(jsonEmp.idemploye, 'N', '1', '0');
-				}				
+				}	
+				
 				if (document.getElementById("J2").checked) {
 					insererDisponibilite(jsonEmp.idemploye, 'J', '2', '1');
 				}else {
 					insererDisponibilite(jsonEmp.idemploye, 'J', '2', '0');
-				}				
+				}	
+				
 				if (document.getElementById("S2").checked) {
 					insererDisponibilite(jsonEmp.idemploye, 'S', '2', '1');
 				}else {
 					insererDisponibilite(jsonEmp.idemploye, 'S', '2', '0');
-				}				
+				}	
+				
 				if (document.getElementById("N2").checked) {
 					insererDisponibilite(jsonEmp.idemploye, 'N', '2', '1');
 				}else {
 					insererDisponibilite(jsonEmp.idemploye, 'N', '2', '0');
-				}				
+				}	
+				
 				if (document.getElementById("J3").checked) {
 					insererDisponibilite(jsonEmp.idemploye, 'J', '3', '1');
 				}else {
 					insererDisponibilite(jsonEmp.idemploye, 'J', '3', '0');
 				}	
+				
 				if (document.getElementById("S3").checked) {
 					insererDisponibilite(jsonEmp.idemploye, 'S', '3', '1');
 				}else {
 					insererDisponibilite(jsonEmp.idemploye, 'S', '3', '0');
 				}
+				
 				if (document.getElementById("N3").checked) {
 					insererDisponibilite(jsonEmp.idemploye, 'N', '3', '1');
 				}else {
 					insererDisponibilite(jsonEmp.idemploye, 'N', '3', '0');
-				}				
+				}	
+				
 				if (document.getElementById("J4").checked) {
 					insererDisponibilite(jsonEmp.idemploye, 'J', '4', '1');
 				}else {
 					insererDisponibilite(jsonEmp.idemploye, 'J', '4', '0');
-				}				
+				}	
+				
 				if (document.getElementById("S4").checked) {
 					insererDisponibilite(jsonEmp.idemploye, 'S', '4', '1');
 				}else {
 					insererDisponibilite(jsonEmp.idemploye, 'S', '4', '0');
-				}				
+				}	
+				
 				if (document.getElementById("N4").checked) {
 					insererDisponibilite(jsonEmp.idemploye, 'N', '4', '1');
 				}else {
 					insererDisponibilite(jsonEmp.idemploye, 'N', '4', '0');
-				}				
+				}	
+				
 				if (document.getElementById("J5").checked) {
 					insererDisponibilite(jsonEmp.idemploye, 'J', '5', '1');
 				}else {
 					insererDisponibilite(jsonEmp.idemploye, 'J', '5', '0');
 				}
+				
 				if (document.getElementById("S5").checked) {
 					insererDisponibilite(jsonEmp.idemploye, 'S', '5', '1');
 				}else {
 					insererDisponibilite(jsonEmp.idemploye, 'S', '5', '0');
-				}				
+				}	
+				
 				if (document.getElementById("N5").checked) {
 					insererDisponibilite(jsonEmp.idemploye, 'N', '5', '1');
 				}else {
 					insererDisponibilite(jsonEmp.idemploye, 'N', '5', '0');
 				}
+				
 			} catch (e) {
 				console.log("Impossible d'ajouter un employe");
 			}
