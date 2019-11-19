@@ -78,14 +78,17 @@ const ajouterDisponibilite = async(req, res) => {
 
 const ajouterDisponibiliteV2 = async(req, res) => {
 	let result = {}
+	var jours = ["J1", "N1", "S1","J2", "N2", "S2","J3", "N3", "S3","J4", "N4", "S4","J5", "N5", "S5",];
 	var i = 0;
 	const reqjson = req.body;
-	//console.log(reqjson);
-	while (i > reqjson.length){
 	
-	console.log(reqjson[i]);
+	while ( i > jours.length){
+	
+	console.log(reqjson.jours[i]);
 	i++
+	
 	}
+
 	var sessEmployeur = req.session.username;
 	try{	
 		  await ajoutDispo(sessEmployeur, reqjson.idemploye, reqjson.typequart, reqjson.joursemaine, reqjson.dispo);		  
