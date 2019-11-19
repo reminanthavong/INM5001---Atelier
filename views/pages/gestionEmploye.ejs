@@ -352,7 +352,7 @@
 		});	
 		
 		async function changerInfoEmploye(idemploye, nomemploye, prenomemploye, nbrquartsmax, dateembauche) {
-			supprimerEmploye(idemploye);	
+			await supprimerEmploye(idemploye);	
 			const jsonEmp = {};
 			jsonEmp.idemploye = idemploye;
 			jsonEmp.nomemploye = nomemploye;
@@ -360,7 +360,7 @@
 			jsonEmp.nbrquartsmax = nbrquartsmax;
 			jsonEmp.dateembauche = dateembauche;
 			console.log(jsonEmp);
-			ajouterEmploye(jsonEmp)
+			await ajouterEmploye(jsonEmp)
 		}
 		
 		btnCacher.addEventListener("click", function() {
@@ -511,97 +511,97 @@
 				jsonIdentification.motdepasse = document.getElementById('motdepasse').value;
 				
 				console.log(jsonEmp);
-				ajouterEmploye(jsonEmp);				
-				ajouterIdentification(jsonIdentification);
+				await ajouterEmploye(jsonEmp);				
+				await ajouterIdentification(jsonIdentification);
 				
 				if (document.getElementById("J1").checked) {
-					insererDisponibilite(jsonEmp.idemploye, 'J', '1', '1');
+					await insererDisponibilite(jsonEmp.idemploye, 'J', '1', '1');
 				}else {
-					insererDisponibilite(jsonEmp.idemploye, 'J', '1', '0');
+					await insererDisponibilite(jsonEmp.idemploye, 'J', '1', '0');
 				}	
 				
 				if (document.getElementById("S1").checked) {
-					insererDisponibilite(jsonEmp.idemploye, 'S', '1', '1');
+					await insererDisponibilite(jsonEmp.idemploye, 'S', '1', '1');
 				}else {
-					insererDisponibilite(jsonEmp.idemploye, 'S', '1', '0');
+					await insererDisponibilite(jsonEmp.idemploye, 'S', '1', '0');
 				}	
 				
 				if (document.getElementById("N1").checked) {
-					insererDisponibilite(jsonEmp.idemploye, 'N', '1', '1');
+					await insererDisponibilite(jsonEmp.idemploye, 'N', '1', '1');
 				}else {
-					insererDisponibilite(jsonEmp.idemploye, 'N', '1', '0');
+					await insererDisponibilite(jsonEmp.idemploye, 'N', '1', '0');
 				}	
 				
 				if (document.getElementById("J2").checked) {
-					insererDisponibilite(jsonEmp.idemploye, 'J', '2', '1');
+					await insererDisponibilite(jsonEmp.idemploye, 'J', '2', '1');
 				}else {
-					insererDisponibilite(jsonEmp.idemploye, 'J', '2', '0');
+					await insererDisponibilite(jsonEmp.idemploye, 'J', '2', '0');
 				}	
 				
 				if (document.getElementById("S2").checked) {
-					insererDisponibilite(jsonEmp.idemploye, 'S', '2', '1');
+					await insererDisponibilite(jsonEmp.idemploye, 'S', '2', '1');
 				}else {
-					insererDisponibilite(jsonEmp.idemploye, 'S', '2', '0');
+					await insererDisponibilite(jsonEmp.idemploye, 'S', '2', '0');
 				}	
 				
 				if (document.getElementById("N2").checked) {
-					insererDisponibilite(jsonEmp.idemploye, 'N', '2', '1');
+					await insererDisponibilite(jsonEmp.idemploye, 'N', '2', '1');
 				}else {
-					insererDisponibilite(jsonEmp.idemploye, 'N', '2', '0');
+					await insererDisponibilite(jsonEmp.idemploye, 'N', '2', '0');
 				}	
 				
 				if (document.getElementById("J3").checked) {
-					insererDisponibilite(jsonEmp.idemploye, 'J', '3', '1');
+					await insererDisponibilite(jsonEmp.idemploye, 'J', '3', '1');
 				}else {
-					insererDisponibilite(jsonEmp.idemploye, 'J', '3', '0');
+					await insererDisponibilite(jsonEmp.idemploye, 'J', '3', '0');
 				}	
 				
 				if (document.getElementById("S3").checked) {
-					insererDisponibilite(jsonEmp.idemploye, 'S', '3', '1');
+					await insererDisponibilite(jsonEmp.idemploye, 'S', '3', '1');
 				}else {
-					insererDisponibilite(jsonEmp.idemploye, 'S', '3', '0');
+					await insererDisponibilite(jsonEmp.idemploye, 'S', '3', '0');
 				}
 				
 				if (document.getElementById("N3").checked) {
-					insererDisponibilite(jsonEmp.idemploye, 'N', '3', '1');
+					await insererDisponibilite(jsonEmp.idemploye, 'N', '3', '1');
 				}else {
-					insererDisponibilite(jsonEmp.idemploye, 'N', '3', '0');
+					await insererDisponibilite(jsonEmp.idemploye, 'N', '3', '0');
 				}	
 				
 				if (document.getElementById("J4").checked) {
-					insererDisponibilite(jsonEmp.idemploye, 'J', '4', '1');
+					await insererDisponibilite(jsonEmp.idemploye, 'J', '4', '1');
 				}else {
-					insererDisponibilite(jsonEmp.idemploye, 'J', '4', '0');
+					await insererDisponibilite(jsonEmp.idemploye, 'J', '4', '0');
 				}	
 				
 				if (document.getElementById("S4").checked) {
-					insererDisponibilite(jsonEmp.idemploye, 'S', '4', '1');
+					await insererDisponibilite(jsonEmp.idemploye, 'S', '4', '1');
 				}else {
-					insererDisponibilite(jsonEmp.idemploye, 'S', '4', '0');
+					await insererDisponibilite(jsonEmp.idemploye, 'S', '4', '0');
 				}	
 				
 				if (document.getElementById("N4").checked) {
-					insererDisponibilite(jsonEmp.idemploye, 'N', '4', '1');
+					await insererDisponibilite(jsonEmp.idemploye, 'N', '4', '1');
 				}else {
-					insererDisponibilite(jsonEmp.idemploye, 'N', '4', '0');
+					await insererDisponibilite(jsonEmp.idemploye, 'N', '4', '0');
 				}	
 				
 				if (document.getElementById("J5").checked) {
-					insererDisponibilite(jsonEmp.idemploye, 'J', '5', '1');
+					await insererDisponibilite(jsonEmp.idemploye, 'J', '5', '1');
 				}else {
-					insererDisponibilite(jsonEmp.idemploye, 'J', '5', '0');
+					await insererDisponibilite(jsonEmp.idemploye, 'J', '5', '0');
 				}
 				
 				if (document.getElementById("S5").checked) {
-					insererDisponibilite(jsonEmp.idemploye, 'S', '5', '1');
+					await insererDisponibilite(jsonEmp.idemploye, 'S', '5', '1');
 				}else {
-					insererDisponibilite(jsonEmp.idemploye, 'S', '5', '0');
+					await insererDisponibilite(jsonEmp.idemploye, 'S', '5', '0');
 				}	
 				
 				if (document.getElementById("N5").checked) {
-					insererDisponibilite(jsonEmp.idemploye, 'N', '5', '1');
+					await insererDisponibilite(jsonEmp.idemploye, 'N', '5', '1');
 				}else {
-					insererDisponibilite(jsonEmp.idemploye, 'N', '5', '0');
+					await insererDisponibilite(jsonEmp.idemploye, 'N', '5', '0');
 				}
 				
 			} catch (e) {
@@ -639,9 +639,9 @@
 		
 		btnCongedier.addEventListener("click", async e => {
 			var ID = document.getElementById('identifiant').value;
-			supprimerEmploye(ID);
-			supprimerIdentificationEmploye(ID);
-			changerDispoEmploye(ID);
+			await supprimerEmploye(ID);
+			await supprimerIdentificationEmploye(ID);
+			await changerDispoEmploye(ID);
 		})	
 		
 		async function ajouterEmploye(jsonEmp){
@@ -683,23 +683,23 @@
 		
 		async function changerDispoEmploye(idemploye){
 			idemploye = idemploye.toUpperCase();
-			supprimerDispo(idemploye); 	//Les disponibilités de l'employé sont d'abord supprimées 		
+			await supprimerDispo(idemploye); 	//Les disponibilités de l'employé sont d'abord supprimées 		
 			//Les disponibilités de l'employé sont remises dans la base de données avec comme code '0' (non disponible)
-			insererDisponibilite(idemploye, 'J', '1', '0'); 
-			insererDisponibilite(idemploye, 'S', '1', '0');
-			insererDisponibilite(idemploye, 'N', '1', '0');
-			insererDisponibilite(idemploye, 'J', '2', '0');
-			insererDisponibilite(idemploye, 'S', '2', '0');
-			insererDisponibilite(idemploye, 'N', '2', '0');
-			insererDisponibilite(idemploye, 'J', '3', '0');
-			insererDisponibilite(idemploye, 'S', '3', '0');
-			insererDisponibilite(idemploye, 'N', '3', '0');
-			insererDisponibilite(idemploye, 'J', '4', '0');
-			insererDisponibilite(idemploye, 'S', '4', '0');
-			insererDisponibilite(idemploye, 'N', '4', '0');
-			insererDisponibilite(idemploye, 'J', '5', '0');
-			insererDisponibilite(idemploye, 'S', '5', '0');
-			insererDisponibilite(idemploye, 'N', '5', '0');
+			await insererDisponibilite(idemploye, 'J', '1', '0'); 
+			await insererDisponibilite(idemploye, 'S', '1', '0');
+			await insererDisponibilite(idemploye, 'N', '1', '0');
+			await insererDisponibilite(idemploye, 'J', '2', '0');
+			await insererDisponibilite(idemploye, 'S', '2', '0');
+			await insererDisponibilite(idemploye, 'N', '2', '0');
+			await insererDisponibilite(idemploye, 'J', '3', '0');
+			await insererDisponibilite(idemploye, 'S', '3', '0');
+			await insererDisponibilite(idemploye, 'N', '3', '0');
+			await insererDisponibilite(idemploye, 'J', '4', '0');
+			await insererDisponibilite(idemploye, 'S', '4', '0');
+			await insererDisponibilite(idemploye, 'N', '4', '0');
+			await insererDisponibilite(idemploye, 'J', '5', '0');
+			await insererDisponibilite(idemploye, 'S', '5', '0');
+			await insererDisponibilite(idemploye, 'N', '5', '0');
 		}
 		
 		async function supprimerDispo(idemploye){
