@@ -1,26 +1,27 @@
 const { Pool } = require('pg');
 const session = require('express-session');
-const bodyParser = require('body-parser')
-var PostgREST = require('postgrest-client')
-var Api = new PostgREST ('http://testpostgrest-calendrier.herokuapp.com')
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: true
+});
 
 const fpageWeb  = async (req, res) => {
 response.sendFile(path.join(__dirname + '/views/pages/gestionEmploye.ejs'));
 }
 
-const afficherEmployes  = async (req, res) => {
+const fafficherEmployes  = async (req, res) => {
 	  var sessEmployeur = req.session.username;
-	  const rows = await getEmployes(sessEmployeur);
+	  const rows = await afficherEmployes(sessEmployeur);
 	  res.setHeader("content-type", "application/json")
 	  res.send(JSON.stringify(rows))
 }
 
-const ajouterEmploye   = async (req, res) => {
+const fajouterEmploye   = async (req, res) => {
 	  let result = {}
 	  const reqJson = req.body;
 	  var sessEmployeur = req.session.username;
 	  try{	
-		  await ajoutEmploye(sessEmployeur, reqJson.idemploye, reqJson.nomemploye, reqJson.prenomemploye, reqJson.nbrquartsmax, reqJson.dateembauche);		  
+		  await ajoutEmploye(sessEmployeur, reqJson.idemploye, reqJson.nomemploye, reqJson.prenomemploye, reqJson.nbrheuresmax, reqJson.dateembauche, reqJson.motdepasse);		  
 		  result.success = true;
 	  } catch (e) {
 		  result.success = false;
@@ -30,27 +31,12 @@ const ajouterEmploye   = async (req, res) => {
 	  }
 }
 
-const ajouterIdentification = async (req, res) => {
-	  let result = {}
-	  const reqJson = req.body;
-	  try{		  
-		  await ajoutIdentification(reqJson.idutilisateur, reqJson.motdepasse)
-		  result.success = true;
-	  } catch (e) {
-		  result.success = false;
-	  } finally {
-		  res.setHeader("content-type", "application/json")
-		  res.send(JSON.stringify(result))
-	  }
-}
-
-const enleverEmploye   = async (req, res) => {
+const fenleverEmploye   = async (req, res) => {
 	  let result = {}
 	  try{	
 		  const reqJson = req.body;
-		  console.log(reqJson);
 		  var sessEmployeur = req.session.username;
-		  await deleteEmploye(reqJson.idemploye, sessEmployeur);
+		  await deleteEmploye(reqJson.idemploye);
 		  result.success = true;		
 	  } catch (e) {
 		  result.success = false;
@@ -60,10 +46,9 @@ const enleverEmploye   = async (req, res) => {
 	  }	  
 }
 
-const ajouterDisponibilite = async(req, res) => {
+const fajouterDisponibilite = async(req, res) => {
 	let result = {}
 	const reqjson = req.body;
-	console.log(reqjson);
 	var sessEmployeur = req.session.username;
 	try{	
 		  await ajoutDispo(sessEmployeur, reqjson.idemploye, reqjson.typequart, reqjson.joursemaine, reqjson.dispo);		  
@@ -76,18 +61,13 @@ const ajouterDisponibilite = async(req, res) => {
 	  }
 }
 
-const ajouterDisponibiliteV2 = async(req, res) => {
-	let result = {}
-	const reqjson = req.body;
-	//console.log(reqjson);
-	while (i > reqjson.length){
-	
-	console.log(reqjson[i]);
-	i++
-	}
-	var sessEmployeur = req.session.username;
-	try{	
-		  await ajoutDispo(sessEmployeur, reqjson.idemploye, reqjson.typequart, reqjson.joursemaine, reqjson.dispo);		  
+const fmodifierEmploye = async (req, res) => {	
+	  let result = {}
+	  const reqJson = req.body;
+	  var sessEmployeur = req.session.username;
+	  var nbHeure = parseInt(reqJson.nbrheuresmax);
+	  try{	
+		  await modifierEmploye(reqJson.idemploye, reqJson.nomemploye, reqJson.prenomemploye, nbHeure);		  
 		  result.success = true;
 	  } catch (e) {
 		  result.success = false;
@@ -97,92 +77,73 @@ const ajouterDisponibiliteV2 = async(req, res) => {
 	  }
 }
 
-const supprimerDisponibilite   = async (req, res) => {
-	  let result = {}
-	  const reqJson = req.body;
-	  try{	
-		  await supprimerDispo(reqJson.idemploye);
-		  result.success = true;		
-	  } catch (e) {
-		  result.success = false;
-	  } finally {
-		  res.setHeader("content-type", "application/json")
-		  res.send(JSON.stringify(result))
-	  }	  
-}
-
-const supprimerIdentification   = async (req, res) => {
-	  let result = {}
-	  const reqJson = req.body;
-	  try{	
-		  await suppressionIdentification(reqJson.idutilisateur);
-		  result.success = true;		
-	  } catch (e) {
-		  result.success = false;
-	  } finally {
-		  res.setHeader("content-type", "application/json")
-		  res.send(JSON.stringify(result))
-	  }	  
-}
-
-
-	async function ajoutEmploye(idemployeur, idemploye, nomemploye, prenomemploye, nbrquartsmax, dateembauche) {	
-		await Api
-			.post('/baseemployes')
-			.send({idemployeur:idemployeur, idemploye: idemploye, nomemploye: nomemploye, prenomemploye: prenomemploye, nbrquartsmax: nbrquartsmax, dateembauche: dateembauche});	
-	}
-	
-	async function ajoutIdentification(idemploye, motdepasse){
-		await Api
-		.post('/baseidentification')
-		.send({idutilisateur: idemploye, motdepasse: motdepasse, typeutilisateur: '0'});		
+	async function ajoutEmploye(idemployeur, idemploye, nomemploye, prenomemploye, nbrheuresmax, dateembauche, motdepasse) {	
+		
+		try {
+			const client = await pool.connect();
+			await client.query('INSERT INTO BaseEmployes(idemployeur, idemploye, nomemploye, prenomemploye, nbrheuresmax, dateembauche) values ($1, $2, $3, $4, $5, $6)', [idemployeur, idemploye, nomemploye, prenomemploye, nbrheuresmax, dateembauche]);
+			await client.query('insert into BaseIdentification values ($1, $2, $3)', [idemploye, motdepasse, '0'])
+			client.release(); 
+			return true;
+		} catch(e){
+			return false;
+		}		
 	}
 
-	async function getEmployes(idemployeur) {
-		return await Api.get('/baseemployes').eq('idemployeur', idemployeur);
+	async function afficherEmployes(idemployeur) {
+		try {
+			const client = await pool.connect();
+			const results = await client.query('select IDEmploye, NomEmploye, PrenomEmploye, NBRHeuresMax, DateEmbauche from BaseEmployes where IDEmployeur = $1',[idemployeur])
+			client.release();
+			return results.rows
+		} catch(e) {
+			console.error(e);
+			return [];
+		}
 	}
 
-	async function deleteEmploye(idemploye, gestionnaire) {
-		await Api
-		.delete('/baseemployes')
-		.eq('idemploye', idemploye)
-		.eq('idemployeur', gestionnaire);
+	async function deleteEmploye(idemploye) {
+		try {
+			const client = await pool.connect();
+			await client.query('delete from BaseEmployes where IDEmploye = $1', [idemploye])
+			await client.query('delete from BaseIdentification where idutilisateur = $1', [idemploye])
+			await client.query('update baseQuartsEmploye set disponibilite = $1 where idemploye = $2', ['0', idemploye]);
+			client.release();
+			return true
+		} catch(e) {
+			return false;
+			console.error(e);
+		}
 	}
 	
 	async function ajoutDispo(idemployeur, idemploye, typequart, joursemaine, disponibilite) {		
-		await Api
-		.post('/basequartsemploye')
-		.send({idemployeur:idemployeur, idemploye: idemploye, idtablehoraire: '000', typequart: typequart, joursemaine: joursemaine, disponibilite: disponibilite, paramtype: '1'});		
+		try {
+			const client = await pool.connect();
+			await pool.query('insert into baseQuartsEmploye values ($1, $2, $3, $4, $5, $6, $7)', [idemployeur, idemploye, '000', typequart, joursemaine, disponibilite, '1']);
+			client.release(); 
+			return true;
+		} catch(e){
+			return false;
+		}		
 	}
 	
-	async function supprimerDispo(idemploye){
-		await Api
-		.delete('/basequartsemploye')
-		.eq('idemploye', idemploye)
-		.eq('paramtype', '1');
-	}
-	
-	async function ajoutIdentification(idutilisateur, motdepasse){
-		await Api
-		.post('/baseidentification')
-		.send({idutilisateur: idutilisateur, motdepasse: motdepasse, typeutilisateur: '0'});
-	}
-	
-	async function suppressionIdentification(idutilisateur){
-		await Api
-		.delete('/baseidentification')
-		.eq('idutilisateur', idutilisateur);
+	async function modifierEmploye(idemploye, nomemploye, prenomemploye, nbrheuresmax) {		
+		try {
+			const client = await pool.connect();
+			await client.query('update baseEmployes set nomemploye = $1, prenomemploye = $2, nbrheuresmax = $3 where idemploye = $4', [nomemploye, prenomemploye, nbrheuresmax, idemploye])
+			client.release();
+			return true;
+		} catch (e) {
+			return false;
+			console.error(e);
+		}
 	}
    
   module.exports = {
   fpageWeb,
-  afficherEmployes,
-  ajouterEmploye,
-  ajouterIdentification,
-  enleverEmploye,
-  ajouterDisponibilite,
-  supprimerDisponibilite,
-  supprimerIdentification,
-  ajouterDisponibiliteV2
-
+  fajouterEmploye,
+  fafficherEmployes,
+  fenleverEmploye,
+  fajouterDisponibilite,
+  fmodifierEmploye
 }
