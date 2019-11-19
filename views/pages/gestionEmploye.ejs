@@ -489,11 +489,11 @@
 			try {
 				const jsonEmp = {};	
 				const jsonIdentification = {};
-				let jsonLundi = {};
-				let jsonMardi = {};
-				let jsonMercredi = {};
-				let jsonJeudi = {};
-				let jsonVendredi = {};
+				const jsonLundi = {};
+				const jsonMardi = {};
+				const jsonMercredi = {};
+				const jsonJeudi = {};
+				const jsonVendredi = {};
 				
 				var nomEmp =  document.getElementById('nomemployeid').value;	
 				jsonEmp.nomemploye = nomEmp.toUpperCase();				
@@ -589,7 +589,7 @@
 				}	
 				
 				if (document.getElementById("J5").checked) {
-					 jsonVendredi.J =jsonEmp.idemploye, 'J', '5', '1'};
+					 jsonVendredi.J ={jsonEmp.idemploye, 'J', '5', '1'};
 				}else {
 					 jsonVendredi.J ={jsonEmp.idemploye, 'J', '5', '0'};
 				}
