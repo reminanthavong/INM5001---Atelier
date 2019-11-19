@@ -76,6 +76,27 @@ const ajouterDisponibilite = async(req, res) => {
 	  }
 }
 
+const ajouterDisponibiliteV2 = async(req, res) => {
+	let result = {}
+	const reqjson = req.body;
+	//console.log(reqjson);
+	while (i > reqjson.length){
+	
+	console.log(reqjson[i]);
+	i++
+	}
+	var sessEmployeur = req.session.username;
+	try{	
+		  await ajoutDispo(sessEmployeur, reqjson.idemploye, reqjson.typequart, reqjson.joursemaine, reqjson.dispo);		  
+		  result.success = true;
+	  } catch (e) {
+		  result.success = false;
+	  } finally {
+		  res.setHeader("content-type", "application/json")
+		  res.send(JSON.stringify(result))
+	  }
+}
+
 const supprimerDisponibilite   = async (req, res) => {
 	  let result = {}
 	  const reqJson = req.body;
