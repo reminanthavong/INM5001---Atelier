@@ -531,7 +531,7 @@
 				dispoSemaine.N5 = document.getElementById("N5").checked;
 				console.log(dispoSemaine);
 				
-				insererDisponibilite(dispoSemaine);
+				insererDisponibilite2(dispoSemaine);
 				
 				
 			} catch (e) {
@@ -546,7 +546,7 @@
 			return ID;
 		}
 		
-		async function insererDisponibilite2(idemploye, typequart, joursemaine, dispo) {
+		async function insererDisponibilite(idemploye, typequart, joursemaine, dispo) {
 			const jsonDispo = {};	
 			jsonDispo.idemploye = idemploye;
 			jsonDispo.typequart = typequart;
@@ -565,7 +565,7 @@
 			}
 		}	
 
-		async function insererDisponibilite(dispo) {
+		async function insererDisponibilite2(dispo) {
 		        const jsonDispo = dispo;
 			jsonDispo.idemploye = idemploye;
 			console.log(jsonDispo);
@@ -597,6 +597,10 @@
 					'Content-Type': 'application/json'
 			}, 
 			body: JSON.stringify(jsonEmp) })
+			const success = await result.json();
+			if(!success.success){
+				alert("ERREUR ajouterEmploye");
+			}
 		}
 		
 		async function ajouterIdentification(jsonIdentification){
@@ -607,6 +611,10 @@
 					'Content-Type': 'application/json'
 			}, 
 			body: JSON.stringify(jsonIdentification) })
+			const success = await result.json();
+			if(!success.success){
+				alert("ERREUR ajouterIdentification");
+			}
 		}
 		
 		async function supprimerEmploye(employe){
@@ -615,6 +623,10 @@
 			jsonRequest.idemploye = employe;
 			const resultat = await fetch('/Employe', {method: "DELETE", 
         		headers: { "content-type": "application/json"}, body: JSON.stringify(jsonRequest) })
+			const success = await result.json();
+			if(!success.success){
+				alert("ERREUR supprimerEmploye");
+			}
 		}
 		
 		async function supprimerIdentificationEmploye(idemploye){
@@ -624,6 +636,10 @@
 			console.log(jsonRequest);
 			const resultat = await fetch('/Identification', {method: "DELETE", 
         		headers: { "content-type": "application/json"}, body: JSON.stringify(jsonRequest) })
+			const success = await result.json();
+			if(!success.success){
+				alert("ERREUR supprimerIdentification");
+			}
 		}
 		
 		async function changerDispoEmploye(idemploye){
@@ -652,7 +668,10 @@
 			jsonRequest.idemploye = idemploye;
 			const resultat = await fetch('/Disponibilite', {method: "DELETE", 
         		headers: { "content-type": "application/json"}, body: JSON.stringify(jsonRequest) }); 
-        	const success = await resultat.json();
+		const success = await result.json();
+			if(!success.success){
+				alert("ERREUR supprimerDispo");
+			}
 		}
 		</script>		
 	</body>
