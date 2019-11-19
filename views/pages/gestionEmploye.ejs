@@ -514,6 +514,82 @@
 				ajouterEmploye(jsonEmp);				
 				ajouterIdentification(jsonIdentification);
 				
+				if (document.getElementById("J1").checked) {
+					insererDisponibilite(jsonEmp.idemploye, 'J', '1', '1');
+				}else {
+					insererDisponibilite(jsonEmp.idemploye, 'J', '1', '0');
+				}				
+				if (document.getElementById("S1").checked) {
+					insererDisponibilite(jsonEmp.idemploye, 'S', '1', '1');
+				}else {
+					insererDisponibilite(jsonEmp.idemploye, 'S', '1', '0');
+				}				
+				if (document.getElementById("N1").checked) {
+					insererDisponibilite(jsonEmp.idemploye, 'N', '1', '1');
+				}else {
+					insererDisponibilite(jsonEmp.idemploye, 'N', '1', '0');
+				}				
+				if (document.getElementById("J2").checked) {
+					insererDisponibilite(jsonEmp.idemploye, 'J', '2', '1');
+				}else {
+					insererDisponibilite(jsonEmp.idemploye, 'J', '2', '0');
+				}				
+				if (document.getElementById("S2").checked) {
+					insererDisponibilite(jsonEmp.idemploye, 'S', '2', '1');
+				}else {
+					insererDisponibilite(jsonEmp.idemploye, 'S', '2', '0');
+				}				
+				if (document.getElementById("N2").checked) {
+					insererDisponibilite(jsonEmp.idemploye, 'N', '2', '1');
+				}else {
+					insererDisponibilite(jsonEmp.idemploye, 'N', '2', '0');
+				}				
+				if (document.getElementById("J3").checked) {
+					insererDisponibilite(jsonEmp.idemploye, 'J', '3', '1');
+				}else {
+					insererDisponibilite(jsonEmp.idemploye, 'J', '3', '0');
+				}	
+				if (document.getElementById("S3").checked) {
+					insererDisponibilite(jsonEmp.idemploye, 'S', '3', '1');
+				}else {
+					insererDisponibilite(jsonEmp.idemploye, 'S', '3', '0');
+				}
+				if (document.getElementById("N3").checked) {
+					insererDisponibilite(jsonEmp.idemploye, 'N', '3', '1');
+				}else {
+					insererDisponibilite(jsonEmp.idemploye, 'N', '3', '0');
+				}				
+				if (document.getElementById("J4").checked) {
+					insererDisponibilite(jsonEmp.idemploye, 'J', '4', '1');
+				}else {
+					insererDisponibilite(jsonEmp.idemploye, 'J', '4', '0');
+				}				
+				if (document.getElementById("S4").checked) {
+					insererDisponibilite(jsonEmp.idemploye, 'S', '4', '1');
+				}else {
+					insererDisponibilite(jsonEmp.idemploye, 'S', '4', '0');
+				}				
+				if (document.getElementById("N4").checked) {
+					insererDisponibilite(jsonEmp.idemploye, 'N', '4', '1');
+				}else {
+					insererDisponibilite(jsonEmp.idemploye, 'N', '4', '0');
+				}				
+				if (document.getElementById("J5").checked) {
+					insererDisponibilite(jsonEmp.idemploye, 'J', '5', '1');
+				}else {
+					insererDisponibilite(jsonEmp.idemploye, 'J', '5', '0');
+				}
+				if (document.getElementById("S5").checked) {
+					insererDisponibilite(jsonEmp.idemploye, 'S', '5', '1');
+				}else {
+					insererDisponibilite(jsonEmp.idemploye, 'S', '5', '0');
+				}				
+				if (document.getElementById("N5").checked) {
+					insererDisponibilite(jsonEmp.idemploye, 'N', '5', '1');
+				}else {
+					insererDisponibilite(jsonEmp.idemploye, 'N', '5', '0');
+				}
+				
 				dispoSemaine.J1 = document.getElementById("J1").checked;
 				dispoSemaine.S1 = document.getElementById("S1").checked;
 				dispoSemaine.N1 = document.getElementById("N1").checked;
@@ -531,7 +607,7 @@
 				dispoSemaine.N5 = document.getElementById("N5").checked;
 				console.log(dispoSemaine);
 				
-				insererDisponibilite2(dispoSemaine);
+				//insererDisponibilite2(dispoSemaine);
 				
 				
 			} catch (e) {
