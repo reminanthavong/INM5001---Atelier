@@ -564,15 +564,14 @@
 		}	
 
 		async function insererDisponibilite2(dispo) {
-			const jsonDispo = {};	
-			console.log(dispo);
+			//const jsonDispo = {};	
 			const result = await fetch('/Disponibilite', {
 		        method: 'POST', 
 				headers: { 
 				'Accept': 'application/json',
 					'Content-Type': 'application/json'
 			}, 
-			body: JSON.stringify(jsonDispo) })
+			body: JSON.stringify(dispo) })
 			const success = await result.json();
 			if(!success.success){
 				alert("dispo pas entrées" + typequart + " " + joursemaine);
