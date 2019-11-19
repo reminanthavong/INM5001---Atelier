@@ -489,6 +489,7 @@
 			try {
 				const jsonEmp = {};	
 				const jsonIdentification = {};
+				const dispoSemaine = {};
 				
 				var nomEmp =  document.getElementById('nomemployeid').value;	
 				jsonEmp.nomemploye = nomEmp.toUpperCase();				
@@ -511,8 +512,6 @@
 				ajouterEmploye(jsonEmp);				
 				ajouterIdentification(jsonIdentification);
 				
-				const dispoSemaine = {};
-				
 				dispoSemaine.J1 = document.getElementById("J1").checked;
 				dispoSemaine.S1 = document.getElementById("S1").checked;
 				dispoSemaine.N1 = document.getElementById("N1").checked;
@@ -528,7 +527,7 @@
 				dispoSemaine.J5 = document.getElementById("J5").checked;
 				dispoSemaine.S5 = document.getElementById("S5").checked;
 				dispoSemaine.N5 = document.getElementById("N5").checked;
-				
+				console.log(dispoSemaine);
 				insererDisponibilite2(dispoSemaine);
 				
 			} catch (e) {
@@ -563,14 +562,16 @@
 		}	
 
 		async function insererDisponibilite2(dispo) {
-			dispo.idemploye = idemploye;
+		        const jsonDispo = dispo;
+			jsonDispo.idemploye = idemploye;
+			console.log(jsonDispo);
 			const result = await fetch('/Disponibilite2', {
 		        method: 'POST', 
 				headers: { 
 				'Accept': 'application/json',
 					'Content-Type': 'application/json'
 			}, 
-			body: JSON.stringify(dispo) })
+			body: JSON.stringify(jsonDispo) })
 			const success = await result.json();
 			if(!success.success){
 				alert("dispo pas entrées" + typequart + " " + joursemaine);
