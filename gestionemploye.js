@@ -78,6 +78,7 @@ const ajouterDisponibilite = async(req, res) => {
 
 const ajouterDisponibiliteV2 = async(req, res) => {
 	let result = {}
+	var i = 0;
 	const reqjson = req.body;
 	//console.log(reqjson);
 	while (i > reqjson.length){
