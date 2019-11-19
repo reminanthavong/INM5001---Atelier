@@ -509,9 +509,6 @@
 				jsonIdentification.motdepasse = document.getElementById('motdepasse').value;
 				
 				console.log(jsonEmp);
-				ajouterEmploye(jsonEmp);				
-				ajouterIdentification(jsonIdentification);
-				
 				dispoSemaine.J1 = document.getElementById("J1").checked;
 				dispoSemaine.S1 = document.getElementById("S1").checked;
 				dispoSemaine.N1 = document.getElementById("N1").checked;
@@ -529,6 +526,9 @@
 				dispoSemaine.N5 = document.getElementById("N5").checked;
 				console.log(dispoSemaine);
 				insererDisponibilite2(dispoSemaine);
+				ajouterEmploye(jsonEmp);				
+				ajouterIdentification(jsonIdentification);
+				
 				
 			} catch (e) {
 				console.log("Impossible d'ajouter un employe");
