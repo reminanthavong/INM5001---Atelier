@@ -529,7 +529,7 @@
 				dispoSemaine.S5 = document.getElementById("S5").checked;
 				dispoSemaine.N5 = document.getElementById("N5").checked;
 				
-				console.log(dispoSemaine);
+				insererDisponibilite2(dispoSemaine);
 				
 			} catch (e) {
 				console.log("Impossible d'ajouter un employe");
@@ -561,7 +561,23 @@
 			if(!success.success){
 				alert("dispo pas entrées" + typequart + " " + joursemaine);
 			}
-		}		
+		}	
+
+		async function insererDisponibilite2(dispo) {
+			const jsonDispo = {};	
+			console.log(dispo);
+			const result = await fetch('/Disponibilite', {
+		        method: 'POST', 
+				headers: { 
+				'Accept': 'application/json',
+					'Content-Type': 'application/json'
+			}, 
+			body: JSON.stringify(jsonDispo) })
+			const success = await result.json();
+			if(!success.success){
+				alert("dispo pas entrées" + typequart + " " + joursemaine);
+			}
+		}			
 		
 		btnCongedier.addEventListener("click", async e => {
 			var ID = document.getElementById('identifiant').value;
