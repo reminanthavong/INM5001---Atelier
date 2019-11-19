@@ -182,6 +182,7 @@ const supprimerIdentification   = async (req, res) => {
   enleverEmploye,
   ajouterDisponibilite,
   supprimerDisponibilite,
-  supprimerIdentification
+  supprimerIdentification,
+  ajouterDisponibiliteV2
 
 }

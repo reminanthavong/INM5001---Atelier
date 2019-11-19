@@ -84,6 +84,7 @@ if (req.session.typeutilisateur == 1){
 .get('/Employe',gestionemploye.afficherEmployes) 
 .post('/Employe',gestionemploye.ajouterEmploye) 
 .post('/Disponibilite',gestionemploye.ajouterDisponibilite) 
+.post('/Disponibilite2',gestionemploye.ajouterDisponibiliteV2)
 .delete('/Employe',gestionemploye.enleverEmploye) 
 .post('/Identification', gestionemploye.ajouterIdentification) 
 .delete('/Identification', gestionemploye.supprimerIdentification)
