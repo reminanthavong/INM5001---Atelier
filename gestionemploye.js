@@ -77,28 +77,41 @@ const ajouterDisponibilite = async(req, res) => {
 }
 
 const ajouterDisponibiliteV2 = async(req, res) => {
+
+
+
 	let result = {}
-	var jours = ["J1", "N1", "S1","J2", "N2", "S2","J3", "N3", "S3","J4", "N4", "S4","J5", "N5", "S5",];
+	var jours = ["1", "1", "1","2", "2", "2","3", "3", "3","4", "4", "4","5", "5", "5",];
+	var quarts = ["J1", "N1", "S1","J2", "N2", "S2","J3", "N3", "S3","J4", "N4", "S4","J5", "N5", "S5",];
 	var i = 0;
 	const reqjson = req.body;
 	
 	while ( i > jours.length){
 	
-	console.log(reqjson.jours[i]);
-	i++
-	
-	}
-
-	var sessEmployeur = req.session.username;
+		var sessEmployeur = req.session.username;
 	try{	
-		  await ajoutDispo(sessEmployeur, reqjson.idemploye, reqjson.typequart, reqjson.joursemaine, reqjson.dispo);		  
+		if (reqjson.quarts[i]){
+		  await ajoutDispo(sessEmployeur, reqjson.idemploye, quarts[i],jours[i], "1");		  
 		  result.success = true;
+		  }else {
+		  await ajoutDispo(sessEmployeur, reqjson.idemploye, quarts[i],jours[i], "0");		  
+		  result.success = true;
+		  
+		  }
 	  } catch (e) {
 		  result.success = false;
 	  } finally {
 		  res.setHeader("content-type", "application/json")
 		  res.send(JSON.stringify(result))
 	  }
+		
+	i++
+	
+	}
+	  
+	  
+	  
+	  
 }
 
 const supprimerDisponibilite   = async (req, res) => {
