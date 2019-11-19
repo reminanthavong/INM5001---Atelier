@@ -668,7 +668,7 @@
 			const jsonRequest = {}
 			employe = employe.toUpperCase();
 			jsonRequest.idemploye = employe;
-			const resultat = await fetch('Employe', {method: "DELETE", 
+			const resultat = await fetch('/Employe', {method: "DELETE", 
         		headers: { "content-type": "application/json"}, body: JSON.stringify(jsonRequest) })
 		}
 		
