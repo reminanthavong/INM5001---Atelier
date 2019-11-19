@@ -48,6 +48,7 @@ const enleverEmploye   = async (req, res) => {
 	  let result = {}
 	  try{	
 		  const reqJson = req.body;
+		  console.log(reqJson);
 		  var sessEmployeur = req.session.username;
 		  await deleteEmploye(reqJson.idemploye, sessEmployeur);
 		  result.success = true;		
