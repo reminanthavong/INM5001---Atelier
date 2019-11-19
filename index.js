@@ -15,6 +15,7 @@ const afficherhoraire = require('./afficherhoraire')
 const login = require('./login')
 const gestionemploye = require('./gestionemploye')
 const gestionhoraire = require('./gestionhoraire')
+const pageemploye = require('./pageemploye')
 
 express()
   .use(express.static(path.join(__dirname, 'public')))
@@ -36,9 +37,14 @@ express()
 	response.sendFile(path.join(__dirname + '/views/pages/login.html'));
 })
 
-// Verification key pour Loader.io
+// Verification key pour Loader.io PROD
 .get('/loaderio-59933bf6aeb3d010d23fa39a006ec516', async (req, res) => {
       res.send('loaderio-59933bf6aeb3d010d23fa39a006ec516');
+  })
+
+// Verification key pour Loader.io TEST
+.get('/loaderio-ea729398c3aaad4977cc2f95746edf2a', async (req, res) => {
+      res.send('loaderio-ea729398c3aaad4977cc2f95746edf2a');
   })
 
 // Fonction Login
@@ -75,11 +81,14 @@ if (req.session.typeutilisateur == 1){
 	}
   })
 
-.get('/Employe',gestionemploye.fafficherEmployes)
-.post('/Employe',gestionemploye.fajouterEmploye )
-.post('/Disponibilite',gestionemploye.fajouterDisponibilite)
-.post('/InfoEmploye',gestionemploye.fmodifierEmploye)
-.delete('/Employe',gestionemploye.fenleverEmploye )
+.get('/Employe',gestionemploye.afficherEmployes) 
+.post('/Employe',gestionemploye.ajouterEmploye) 
+.post('/Disponibilite',gestionemploye.ajouterDisponibilite) 
+.post('/Disponibilite2',gestionemploye.ajouterDisponibiliteV2)
+.delete('/Employe',gestionemploye.enleverEmploye) 
+.post('/Identification', gestionemploye.ajouterIdentification) 
+.delete('/Identification', gestionemploye.supprimerIdentification)
+.delete('/Disponibilite', gestionemploye.supprimerDisponibilite) 
 
 // Fonction GestionHoraire
 .get('/GestionHoraire', async (req, res) => {
@@ -93,5 +102,17 @@ if (req.session.typeutilisateur == 1){
 .post('/Horaire',gestionhoraire.ajouterHoraire )
 .delete('/Horaire',gestionhoraire.enleverHoraire )
 
+// Fonction PageEmploye
+.get('/PageEmploye', async (req, res) => {
+	if (req.session.typeutilisateur == 0){
+      res.render('pages/pageEmploye');
+		} else {
+	  res.send('Vous devez être un Employe pour acceder à cette page!');	
+	}
+  })
+  .get('/DispoEmploye',pageemploye.afficherDisponibilites)
+  .post('/DispoEmploye',pageemploye.ajouterDisponibilites)
+  .delete('/DispoEmploye', pageemploye.supprimerDisponibilites)
+  .post('/Conge', pageemploye.ajouterConge)
 
  .listen(PORT, () => console.log(`Listening on ${ PORT }`))

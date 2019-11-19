@@ -8,8 +8,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "node test.js",
-    "testunitaire": "mocha"
+    "test": "mocha || true"
   },
   "dependencies": {
     "@types/es6-promise": "^3.3.0",

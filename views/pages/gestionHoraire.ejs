@@ -28,6 +28,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
     <a href="/AffichageHoraire" class="w3-bar-item w3-button w3-theme-l1">Affichage Horaire</a>
     <a href="/GestionEmploye" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Gestion Employe</a>
     <a href="/GestionHoraire" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Gestion Horaire</a>
+    <a href="/PageEmploye" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Zone Employe</a>
   </div>
 </div>
 
@@ -164,53 +165,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
                         </div>
 
                         <br/><br/>
-                        
-                        <div class="form-group">
-                            <label for="jour">Samedi:</label> 
-                          </div>
-                          <br/> 
-                        <div class="form-group">
-                            <label for="samedijour">Jour:</label>
-                            <input type="text" class="form-control" id="samedijour" name="samedijour" pattern='[0-9]' required='required'>  
-                          </div>
-                      <div class="form-group">
-                          <label for="samedisoir">Soir:</label>
-                          <input type="text" class="form-control" id="samedisoir" name="samedisoir" pattern='[0-9]' required='required'>  
-                        </div>
-                        <div class="form-group">
-                            <label for="samedisoir">Nuit:</label>
-                            <input type="text" class="form-control" id="samedisoir" name="samedisoir" pattern='[0-9]' required='required'>  
-                        </div>
-
-                        <div class="form-group">
-                            <label for='samedidate'>Date:</label>
-      					          	<input type='date' id=samedidate' class='form-control' required='required'>
-                        </div>
-
-                        <br/><br/>
-                        
-                        <div class="form-group">
-                            <label for="jour">Dimanche:</label> 
-                          </div>
-                          <br/> 
-                        <div class="form-group">
-                            <label for="dimanchejour">Jour:</label>
-                            <input type="text" class="form-control" id="dimanchejour" name="dimanchejour" pattern='[0-9]' required='required'>  
-                          </div>
-                      <div class="form-group">
-                          <label for="dimanchesoir">Soir:</label>
-                          <input type="text" class="form-control" id="dimanchesoir" name="dimanchesoir" pattern='[0-9]' required='required'>  
-                        </div>
-                        <div class="form-group">
-                            <label for="dimanchenuit">Nuit:</label>
-                            <input type="text" class="form-control" id="dimanchenuit" name="dimanchenuit" pattern='[0-9]' required='required'>  
-                        </div>
-
-                        <div class="form-group">
-                            <label for='dimanchedate'>Date:</label>
-      					          	<input type='date' id=dimanchedate' class='form-control' required='required'>
-                        </div>
-                        <br/><br/>
+                      
                         <button class='btn btn-primary' style='background-color:grey; border:none' id="btngenererhoraire" name='btngenererhoraire' value='btngenererhoraire'>Générer</button>
                     </form>
                   </div>
@@ -269,11 +224,36 @@ const btnGenerer = document.getElementById("btngenererhoraire");
 btnGenerer.addEventListener("click", async e => {	
 			try {
 				const jsonEmp = {};								
-        jsonEmp.employejour = document.getElementById('employejour').value;
-        jsonEmp.employesoir =  document.getElementById('employesoir').value;
-        jsonEmp.employenuit =  document.getElementById('employenuit').value;
-				var date = document.getElementById('datehoraire').value
-				jsonEmp.datehoraire = new Date(date);
+        jsonEmp.lundijour = document.getElementById('lundijour').value;
+        jsonEmp.lundisoir =  document.getElementById('lundisoir').value;
+        jsonEmp.lundinuit =  document.getElementById('lundinuit').value;
+				var date = document.getElementById('lundidate').value
+        jsonEmp.lundidate = new Date(date);
+        
+        jsonEmp.mardijour = document.getElementById('mardijour').value;
+        jsonEmp.mardisoir =  document.getElementById('mardisoir').value;
+        jsonEmp.mardinuit =  document.getElementById('mardinuit').value;
+				var date = document.getElementById('mardidate').value
+        jsonEmp.mardidate = new Date(date);
+        
+        jsonEmp.mercredijour = document.getElementById('mercredijour').value;
+        jsonEmp.mercredisoir =  document.getElementById('mercredisoir').value;
+        jsonEmp.mercredinuit =  document.getElementById('mercredinuit').value;
+				var date = document.getElementById('mercredidate').value
+        jsonEmp.mercredidate = new Date(date);
+        
+        jsonEmp.jeudijour = document.getElementById('jeudijour').value;
+        jsonEmp.jeudisoir =  document.getElementById('jeudisoir').value;
+        jsonEmp.jeudinuit =  document.getElementById('jeudinuit').value;
+				var date = document.getElementById('jeudidate').value
+        jsonEmp.jeudidate = new Date(date);
+
+        jsonEmp.vendredijour = document.getElementById('vendredijour').value;
+        jsonEmp.vendredisoir =  document.getElementById('vendredisoir').value;
+        jsonEmp.vendredinuit =  document.getElementById('vendredinuit').value;
+				var date = document.getElementById('vendredidate').value
+        jsonEmp.jeudidate = new Date(date);
+        
 				const result = await fetch(url, {
 				        method: 'POST', 
 					headers: { 
