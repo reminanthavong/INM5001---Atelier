@@ -489,11 +489,6 @@
 			try {
 				const jsonEmp = {};	
 				const jsonIdentification = {};
-				const jsonLundi = {};
-				const jsonMardi = {};
-				const jsonMercredi = {};
-				const jsonJeudi = {};
-				const jsonVendredi = {};
 				
 				var nomEmp =  document.getElementById('nomemployeid').value;	
 				jsonEmp.nomemploye = nomEmp.toUpperCase();				
@@ -517,105 +512,98 @@
 				ajouterIdentification(jsonIdentification);
 				
 				if (document.getElementById("J1").checked) {
-					 jsonLundi.J = {jsonEmp.idemploye, 'J', '1', '1'};
+					 insererDisponibilite(jsonEmp.idemploye, 'J', '1', '1');
 				}else {
-					 jsonLundi.J = {jsonEmp.idemploye, 'J', '1', '0'};
+					 insererDisponibilite(jsonEmp.idemploye, 'J', '1', '0');
 				}	
 				
 				if (document.getElementById("S1").checked) {
-					 jsonLundi.S = {jsonEmp.idemploye, 'S', '1', '1'};
+					 insererDisponibilite(jsonEmp.idemploye, 'S', '1', '1');
 				}else {
-					 jsonLundi.S = {jsonEmp.idemploye, 'S', '1', '0'};
+					 insererDisponibilite(jsonEmp.idemploye, 'S', '1', '0');
 				}	
 				
 				if (document.getElementById("N1").checked) {
-					 jsonLundi.N = {jsonEmp.idemploye, 'N', '1', '1'};
+					 insererDisponibilite(jsonEmp.idemploye, 'N', '1', '1');
 				}else {
-					 jsonLundi.N = {jsonEmp.idemploye, 'N', '1', '0'};
+					 insererDisponibilite(jsonEmp.idemploye, 'N', '1', '0');
 				}	
 				
 				if (document.getElementById("J2").checked) {
-					 jsonMardi.J ={jsonEmp.idemploye, 'J', '2', '1'};
+					 insererDisponibilite(jsonEmp.idemploye, 'J', '2', '1');
 				}else {
-					 jsonMardi.J ={jsonEmp.idemploye, 'J', '2', '0'};
+					 insererDisponibilite(jsonEmp.idemploye, 'J', '2', '0');
 				}	
 				
 				if (document.getElementById("S2").checked) {
-					 jsonMardi.S ={jsonEmp.idemploye, 'S', '2', '1'};
+					 insererDisponibilite(jsonEmp.idemploye, 'S', '2', '1');
 				}else {
-					 jsonMardi.S ={jsonEmp.idemploye, 'S', '2', '0'};
+					 insererDisponibilite(jsonEmp.idemploye, 'S', '2', '0');
 				}	
 				
 				if (document.getElementById("N2").checked) {
-					 jsonMardi.N ={jsonEmp.idemploye, 'N', '2', '1'};
+					 insererDisponibilite(jsonEmp.idemploye, 'N', '2', '1');
 				}else {
-					 jsonMardi.N ={jsonEmp.idemploye, 'N', '2', '0'};
+					 insererDisponibilite(jsonEmp.idemploye, 'N', '2', '0');
 				}	
 				
 				if (document.getElementById("J3").checked) {
-					 jsonMercredi.J ={jsonEmp.idemploye, 'J', '3', '1'};
+					 insererDisponibilite(jsonEmp.idemploye, 'J', '3', '1');
 				}else {
-					 jsonMercredi.J ={jsonEmp.idemploye, 'J', '3', '0'};
+					 insererDisponibilite(jsonEmp.idemploye, 'J', '3', '0');
 				}	
 				
 				if (document.getElementById("S3").checked) {
-					 jsonMercredi.S ={jsonEmp.idemploye, 'S', '3', '1'};
+					 insererDisponibilite(jsonEmp.idemploye, 'S', '3', '1');
 				}else {
-					 jsonMercredi.S ={jsonEmp.idemploye, 'S', '3', '0'};
+					 insererDisponibilite(jsonEmp.idemploye, 'S', '3', '0');
 				}
 				
 				if (document.getElementById("N3").checked) {
-					 jsonMercredi.N ={jsonEmp.idemploye, 'N', '3', '1'};
+					 insererDisponibilite(jsonEmp.idemploye, 'N', '3', '1');
 				}else {
-					 jsonMercredi.N ={jsonEmp.idemploye, 'N', '3', '0'};
+					 insererDisponibilite(jsonEmp.idemploye, 'N', '3', '0');
 				}	
 				
 				if (document.getElementById("J4").checked) {
-					 jsonJeudi.J ={jsonEmp.idemploye, 'J', '4', '1'};
+					 insererDisponibilite(jsonEmp.idemploye, 'J', '4', '1');
 				}else {
-					 jsonJeudi.J ={jsonEmp.idemploye, 'J', '4', '0'};
+					 insererDisponibilite(jsonEmp.idemploye, 'J', '4', '0');
 				}	
 				
 				if (document.getElementById("S4").checked) {
-					 jsonJeudi.S ={jsonEmp.idemploye, 'S', '4', '1'};
+					 insererDisponibilite(jsonEmp.idemploye, 'S', '4', '1');
 				}else {
-					 jsonJeudi.S ={jsonEmp.idemploye, 'S', '4', '0'};
+					 insererDisponibilite(jsonEmp.idemploye, 'S', '4', '0');
 				}	
 				
 				if (document.getElementById("N4").checked) {
-					 jsonJeudi.N ={jsonEmp.idemploye, 'N', '4', '1'};
+					 insererDisponibilite(jsonEmp.idemploye, 'N', '4', '1');
 				}else {
-					 jsonJeudi.N ={jsonEmp.idemploye, 'N', '4', '0'};
+					 insererDisponibilite(jsonEmp.idemploye, 'N', '4', '0');
 				}	
 				
 				if (document.getElementById("J5").checked) {
-					 jsonVendredi.J ={jsonEmp.idemploye, 'J', '5', '1'};
+					 insererDisponibilite(jsonEmp.idemploye, 'J', '5', '1');
 				}else {
-					 jsonVendredi.J ={jsonEmp.idemploye, 'J', '5', '0'};
+					 insererDisponibilite(jsonEmp.idemploye, 'J', '5', '0');
 				}
 				
 				if (document.getElementById("S5").checked) {
-					 jsonVendredi.S ={jsonEmp.idemploye, 'S', '5', '1'};
+					 insererDisponibilite(jsonEmp.idemploye, 'S', '5', '1');
 				}else {
-					 jsonVendredi.S ={jsonEmp.idemploye, 'S', '5', '0'};
+					 insererDisponibilite(jsonEmp.idemploye, 'S', '5', '0');
 				}	
 				
 				if (document.getElementById("N5").checked) {
-					 jsonVendredi.N ={jsonEmp.idemploye, 'N', '5', '1'};
+					 insererDisponibilite(jsonEmp.idemploye, 'N', '5', '1');
 				}else {
-					 jsonVendredi.N ={jsonEmp.idemploye, 'N', '5', '0'};
+					 insererDisponibilite(jsonEmp.idemploye, 'N', '5', '0');
 				}
-				console.log(jsonLundi);
-				console.log(jsonMardi);
-				console.log(jsonMercredi);
-				console.log(jsonJeudi);
-				console.log(jsonVendredi);
 				
 			} catch (e) {
 				console.log("Impossible d'ajouter un employe");
 			}
-			
-			
 		})
 		//L'identifiant de l'employé est composé de la première lettre de son nom + les 4 premières lettres de son prénom
 		function creerIDEmploye(nom, prenom) {
