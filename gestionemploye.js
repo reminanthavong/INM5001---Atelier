@@ -85,7 +85,7 @@ const ajouterDisponibiliteV2 = async(req, res) => {
 	var quarts = ["J1", "N1", "S1","J2", "N2", "S2","J3", "N3", "S3","J4", "N4", "S4","J5", "N5", "S5",];
 	var i = 0;
 	const reqjson = req.body;
-	
+	console.log(reqjson);
 	while ( i > jours.length){
 	
 		var sessEmployeur = req.session.username;
