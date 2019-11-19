@@ -549,7 +549,6 @@
 			jsonDispo.typequart = typequart;
 			jsonDispo.joursemaine = joursemaine;
 			jsonDispo.dispo = dispo;
-			console.log(jsonDispo);
 			const result = await fetch('/Disponibilite', {
 		        method: 'POST', 
 				headers: { 
@@ -564,7 +563,7 @@
 		}	
 
 		async function insererDisponibilite2(dispo) {
-			//const jsonDispo = {};	
+			dispo.idemploye = idemploye;
 			const result = await fetch('/Disponibilite2', {
 		        method: 'POST', 
 				headers: { 
