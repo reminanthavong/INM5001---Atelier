@@ -350,7 +350,7 @@
 		
 		async function changerInfoEmploye(idemploye, nomemploye, prenomemploye, nbrquartsmax, dateembauche) {
 			supprimerEmploye(idemploye);	
-			let jsonEmp = {};
+			const jsonEmp = {};
 			jsonEmp.idemploye = idemploye;
 			jsonEmp.nomemploye = nomemploye;
 			jsonEmp.prenomemploye = prenomemploye;
@@ -361,7 +361,7 @@
 		}
 		
 		btnCacher.addEventListener("click", function() {
-			let tableEmploye = document.getElementById("tableEmploye");
+			const tableEmploye = document.getElementById("tableEmploye");
 			while(tableEmploye.firstChild) tableEmploye.removeChild(tableEmploye.firstChild);
 		}) 
 		
@@ -489,6 +489,11 @@
 			try {
 				const jsonEmp = {};	
 				const jsonIdentification = {};
+				let jsonLundi = {};
+				let jsonMardi = {};
+				let jsonMercredi = {};
+				let jsonJeudi = {};
+				let jsonVendredi = {};
 				
 				var nomEmp =  document.getElementById('nomemployeid').value;	
 				jsonEmp.nomemploye = nomEmp.toUpperCase();				
@@ -512,98 +517,105 @@
 				ajouterIdentification(jsonIdentification);
 				
 				if (document.getElementById("J1").checked) {
-					 insererDisponibilite(jsonEmp.idemploye, 'J', '1', '1');
+					 jsonLundi.J = {jsonEmp.idemploye, 'J', '1', '1'};
 				}else {
-					 insererDisponibilite(jsonEmp.idemploye, 'J', '1', '0');
+					 jsonLundi.J = {jsonEmp.idemploye, 'J', '1', '0'};
 				}	
 				
 				if (document.getElementById("S1").checked) {
-					 insererDisponibilite(jsonEmp.idemploye, 'S', '1', '1');
+					 jsonLundi.S = {jsonEmp.idemploye, 'S', '1', '1'};
 				}else {
-					 insererDisponibilite(jsonEmp.idemploye, 'S', '1', '0');
+					 jsonLundi.S = {jsonEmp.idemploye, 'S', '1', '0'};
 				}	
 				
 				if (document.getElementById("N1").checked) {
-					 insererDisponibilite(jsonEmp.idemploye, 'N', '1', '1');
+					 jsonLundi.N = {jsonEmp.idemploye, 'N', '1', '1'};
 				}else {
-					 insererDisponibilite(jsonEmp.idemploye, 'N', '1', '0');
+					 jsonLundi.N = {jsonEmp.idemploye, 'N', '1', '0'};
 				}	
 				
 				if (document.getElementById("J2").checked) {
-					 insererDisponibilite(jsonEmp.idemploye, 'J', '2', '1');
+					 jsonMardi.J ={jsonEmp.idemploye, 'J', '2', '1'};
 				}else {
-					 insererDisponibilite(jsonEmp.idemploye, 'J', '2', '0');
+					 jsonMardi.J ={jsonEmp.idemploye, 'J', '2', '0'};
 				}	
 				
 				if (document.getElementById("S2").checked) {
-					 insererDisponibilite(jsonEmp.idemploye, 'S', '2', '1');
+					 jsonMardi.S ={jsonEmp.idemploye, 'S', '2', '1'};
 				}else {
-					 insererDisponibilite(jsonEmp.idemploye, 'S', '2', '0');
+					 jsonMardi.S ={jsonEmp.idemploye, 'S', '2', '0'};
 				}	
 				
 				if (document.getElementById("N2").checked) {
-					 insererDisponibilite(jsonEmp.idemploye, 'N', '2', '1');
+					 jsonMardi.N ={jsonEmp.idemploye, 'N', '2', '1'};
 				}else {
-					 insererDisponibilite(jsonEmp.idemploye, 'N', '2', '0');
+					 jsonMardi.N ={jsonEmp.idemploye, 'N', '2', '0'};
 				}	
 				
 				if (document.getElementById("J3").checked) {
-					 insererDisponibilite(jsonEmp.idemploye, 'J', '3', '1');
+					 jsonMercredi.J ={jsonEmp.idemploye, 'J', '3', '1'};
 				}else {
-					 insererDisponibilite(jsonEmp.idemploye, 'J', '3', '0');
+					 jsonMercredi.J ={jsonEmp.idemploye, 'J', '3', '0'};
 				}	
 				
 				if (document.getElementById("S3").checked) {
-					 insererDisponibilite(jsonEmp.idemploye, 'S', '3', '1');
+					 jsonMercredi.S ={jsonEmp.idemploye, 'S', '3', '1'};
 				}else {
-					 insererDisponibilite(jsonEmp.idemploye, 'S', '3', '0');
+					 jsonMercredi.S ={jsonEmp.idemploye, 'S', '3', '0'};
 				}
 				
 				if (document.getElementById("N3").checked) {
-					 insererDisponibilite(jsonEmp.idemploye, 'N', '3', '1');
+					 jsonMercredi.N ={jsonEmp.idemploye, 'N', '3', '1'};
 				}else {
-					 insererDisponibilite(jsonEmp.idemploye, 'N', '3', '0');
+					 jsonMercredi.N ={jsonEmp.idemploye, 'N', '3', '0'};
 				}	
 				
 				if (document.getElementById("J4").checked) {
-					 insererDisponibilite(jsonEmp.idemploye, 'J', '4', '1');
+					 jsonJeudi.J ={jsonEmp.idemploye, 'J', '4', '1'};
 				}else {
-					 insererDisponibilite(jsonEmp.idemploye, 'J', '4', '0');
+					 jsonJeudi.J ={jsonEmp.idemploye, 'J', '4', '0'};
 				}	
 				
 				if (document.getElementById("S4").checked) {
-					 insererDisponibilite(jsonEmp.idemploye, 'S', '4', '1');
+					 jsonJeudi.S ={jsonEmp.idemploye, 'S', '4', '1'};
 				}else {
-					 insererDisponibilite(jsonEmp.idemploye, 'S', '4', '0');
+					 jsonJeudi.S ={jsonEmp.idemploye, 'S', '4', '0'};
 				}	
 				
 				if (document.getElementById("N4").checked) {
-					 insererDisponibilite(jsonEmp.idemploye, 'N', '4', '1');
+					 jsonJeudi.N ={jsonEmp.idemploye, 'N', '4', '1'};
 				}else {
-					 insererDisponibilite(jsonEmp.idemploye, 'N', '4', '0');
+					 jsonJeudi.N ={jsonEmp.idemploye, 'N', '4', '0'};
 				}	
 				
 				if (document.getElementById("J5").checked) {
-					 insererDisponibilite(jsonEmp.idemploye, 'J', '5', '1');
+					 jsonVendredi.J =jsonEmp.idemploye, 'J', '5', '1'};
 				}else {
-					 insererDisponibilite(jsonEmp.idemploye, 'J', '5', '0');
+					 jsonVendredi.J ={jsonEmp.idemploye, 'J', '5', '0'};
 				}
 				
 				if (document.getElementById("S5").checked) {
-					 insererDisponibilite(jsonEmp.idemploye, 'S', '5', '1');
+					 jsonVendredi.S ={jsonEmp.idemploye, 'S', '5', '1'};
 				}else {
-					 insererDisponibilite(jsonEmp.idemploye, 'S', '5', '0');
+					 jsonVendredi.S ={jsonEmp.idemploye, 'S', '5', '0'};
 				}	
 				
 				if (document.getElementById("N5").checked) {
-					 insererDisponibilite(jsonEmp.idemploye, 'N', '5', '1');
+					 jsonVendredi.N ={jsonEmp.idemploye, 'N', '5', '1'};
 				}else {
-					 insererDisponibilite(jsonEmp.idemploye, 'N', '5', '0');
+					 jsonVendredi.N ={jsonEmp.idemploye, 'N', '5', '0'};
 				}
+				console.log(jsonLundi);
+				console.log(jsonMardi);
+				console.log(jsonMercredi);
+				console.log(jsonJeudi);
+				console.log(jsonVendredi);
 				
 			} catch (e) {
 				console.log("Impossible d'ajouter un employe");
 			}
+			
+			
 		})
 		//L'identifiant de l'employé est composé de la première lettre de son nom + les 4 premières lettres de son prénom
 		function creerIDEmploye(nom, prenom) {
@@ -614,11 +626,12 @@
 		}
 		
 		async function insererDisponibilite(idemploye, typequart, joursemaine, dispo) {
-			let jsonDispo = {};	
+			const jsonDispo = {};	
 			jsonDispo.idemploye = idemploye;
 			jsonDispo.typequart = typequart;
 			jsonDispo.joursemaine = joursemaine;
 			jsonDispo.dispo = dispo;
+			console.log(jsonDispo);
 			const result = await fetch('/Disponibilite', {
 		        method: 'POST', 
 				headers: { 
@@ -629,17 +642,14 @@
 			const success = await result.json();
 			if(!success.success){
 				alert("dispo pas entrées" + typequart + " " + joursemaine);
-				jsonDispo = {};
-			} else {
-			jsonDispo = {};
-			} 
+			}
 		}		
 		
 		btnCongedier.addEventListener("click", async e => {
 			var ID = document.getElementById('identifiant').value;
 			supprimerEmploye(ID);
 			supprimerIdentificationEmploye(ID);
-			supprimerDispo(ID);
+			changerDispoEmploye(ID);
 		})	
 		
 		async function ajouterEmploye(jsonEmp){
@@ -663,7 +673,7 @@
 		}
 		
 		async function supprimerEmploye(employe){
-			let jsonRequest = {}
+			const jsonRequest = {}
 			employe = employe.toUpperCase();
 			jsonRequest.idemploye = employe;
 			const resultat = await fetch('/Employe', {method: "DELETE", 
@@ -671,7 +681,7 @@
 		}
 		
 		async function supprimerIdentificationEmploye(idemploye){
-			let jsonRequest = {}
+			const jsonRequest = {}
 			idemploye = idemploye.toUpperCase();
 			jsonRequest.idutilisateur = idemploye;
 			console.log(jsonRequest);
@@ -681,7 +691,7 @@
 		
 		async function changerDispoEmploye(idemploye){
 			idemploye = idemploye.toUpperCase();
-			supprimerDispo(idemploye); 	//Les disponibilités de l'employé sont d'abord supprimées 		
+			await supprimerDispo(idemploye); 	//Les disponibilités de l'employé sont d'abord supprimées 		
 			//Les disponibilités de l'employé sont remises dans la base de données avec comme code '0' (non disponible)
 			 insererDisponibilite(idemploye, 'J', '1', '0'); 
 			 insererDisponibilite(idemploye, 'S', '1', '0');
@@ -701,7 +711,7 @@
 		}
 		
 		async function supprimerDispo(idemploye){
-			let jsonRequest = {};
+			const jsonRequest = {};
 			jsonRequest.idemploye = idemploye;
 			const resultat = await fetch('/Disponibilite', {method: "DELETE", 
         		headers: { "content-type": "application/json"}, body: JSON.stringify(jsonRequest) }); 
