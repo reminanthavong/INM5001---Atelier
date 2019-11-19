@@ -350,7 +350,7 @@
 		
 		async function changerInfoEmploye(idemploye, nomemploye, prenomemploye, nbrquartsmax, dateembauche) {
 			supprimerEmploye(idemploye);	
-			const jsonEmp = {};
+			let jsonEmp = {};
 			jsonEmp.idemploye = idemploye;
 			jsonEmp.nomemploye = nomemploye;
 			jsonEmp.prenomemploye = prenomemploye;
@@ -361,7 +361,7 @@
 		}
 		
 		btnCacher.addEventListener("click", function() {
-			const tableEmploye = document.getElementById("tableEmploye");
+			let tableEmploye = document.getElementById("tableEmploye");
 			while(tableEmploye.firstChild) tableEmploye.removeChild(tableEmploye.firstChild);
 		}) 
 		
@@ -614,7 +614,7 @@
 		}
 		
 		async function insererDisponibilite(idemploye, typequart, joursemaine, dispo) {
-			const jsonDispo = {};	
+			let jsonDispo = {};	
 			jsonDispo.idemploye = idemploye;
 			jsonDispo.typequart = typequart;
 			jsonDispo.joursemaine = joursemaine;
@@ -661,7 +661,7 @@
 		}
 		
 		async function supprimerEmploye(employe){
-			const jsonRequest = {}
+			let jsonRequest = {}
 			employe = employe.toUpperCase();
 			jsonRequest.idemploye = employe;
 			const resultat = await fetch('/Employe', {method: "DELETE", 
@@ -669,7 +669,7 @@
 		}
 		
 		async function supprimerIdentificationEmploye(idemploye){
-			const jsonRequest = {}
+			let jsonRequest = {}
 			idemploye = idemploye.toUpperCase();
 			jsonRequest.idutilisateur = idemploye;
 			console.log(jsonRequest);
@@ -679,7 +679,7 @@
 		
 		async function changerDispoEmploye(idemploye){
 			idemploye = idemploye.toUpperCase();
-			await supprimerDispo(idemploye); 	//Les disponibilités de l'employé sont d'abord supprimées 		
+			supprimerDispo(idemploye); 	//Les disponibilités de l'employé sont d'abord supprimées 		
 			//Les disponibilités de l'employé sont remises dans la base de données avec comme code '0' (non disponible)
 			 insererDisponibilite(idemploye, 'J', '1', '0'); 
 			 insererDisponibilite(idemploye, 'S', '1', '0');
@@ -699,7 +699,7 @@
 		}
 		
 		async function supprimerDispo(idemploye){
-			const jsonRequest = {};
+			let jsonRequest = {};
 			jsonRequest.idemploye = idemploye;
 			const resultat = await fetch('/Disponibilite', {method: "DELETE", 
         		headers: { "content-type": "application/json"}, body: JSON.stringify(jsonRequest) }); 
