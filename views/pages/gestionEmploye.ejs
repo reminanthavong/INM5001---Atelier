@@ -619,7 +619,6 @@
 			jsonDispo.typequart = typequart;
 			jsonDispo.joursemaine = joursemaine;
 			jsonDispo.dispo = dispo;
-			console.log(jsonDispo);
 			const result = await fetch('/Disponibilite', {
 		        method: 'POST', 
 				headers: { 
@@ -630,7 +629,10 @@
 			const success = await result.json();
 			if(!success.success){
 				alert("dispo pas entrées" + typequart + " " + joursemaine);
-			}
+				jsonDispo = {};
+			} else {
+			jsonDispo = {};
+			} 
 		}		
 		
 		btnCongedier.addEventListener("click", async e => {
