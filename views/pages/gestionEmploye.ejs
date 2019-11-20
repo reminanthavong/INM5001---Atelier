@@ -349,15 +349,15 @@
 		});	
 		
 		async function changerInfoEmploye(idemploye, nomemploye, prenomemploye, nbrquartsmax, dateembauche) {
-			supprimerEmploye(idemploye);	
+			//supprimerEmploye(idemploye);	
 			const jsonEmp = {};
 			jsonEmp.idemploye = idemploye;
 			jsonEmp.nomemploye = nomemploye;
 			jsonEmp.prenomemploye = prenomemploye;
 			jsonEmp.nbrquartsmax = nbrquartsmax;
 			jsonEmp.dateembauche = dateembauche;
-			console.log(jsonEmp);
-			ajouterEmploye(jsonEmp)
+		
+			changerInfoEmployeV2(jsonEmp);
 		}
 		
 		btnCacher.addEventListener("click", function() {
@@ -594,6 +594,23 @@
 				
 			const result = await fetch('Employe', {
 		        method: 'POST', 
+			headers: { 
+			'Accept': 'application/json',
+					'Content-Type': 'application/json'
+			}, 
+			body: JSON.stringify(jsonEmp) })
+			
+			const success = await result.json();
+			if(!success.success){
+				alert("ERREUR ajouterEmploye");
+			}
+		}
+		
+		async function changerInfoEmployeV2(jsonEmp){
+		                
+				
+			const result = await fetch('Employe', {
+		        method: 'PATCH', 
 			headers: { 
 			'Accept': 'application/json',
 					'Content-Type': 'application/json'
