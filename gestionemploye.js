@@ -91,10 +91,9 @@ const ajouterDisponibiliteV2 = async(req, res) => {
 	while (i < jours.length) {
 		var x = quarts[i];
   		console.log(reqjson[x]);
-  		i++;
-}	
+  		i++;	
 
-}
+		}
 	
 	
 	try{	
