@@ -97,15 +97,20 @@ const ajouterDisponibiliteV2 = async(req, res) => {
 		console.log(x);
 		console.log(y);
 	
-		  
+		  try{
 			if (reqjson[x] == "true"){
 			    await ajoutDispo(sessEmployeur, reqjson.idemploye, x, y, "1");		  
 		  result.success = true;
 		}
+		  
 		else{
 			await ajoutDispo(sessEmployeur, reqjson.idemploye, x, y, "0");		  
 		  result.success = true; 
-		}
+		} 
+			  
+		  }catch (e) {
+		  result.success = false;
+	  }
 	  
   		i++;	
 
