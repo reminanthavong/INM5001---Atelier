@@ -610,7 +610,7 @@
 				
 				
 			} catch (e) {
-				console.log("Impossible d'ajouter un employe");
+				alert("Impossible d'ajouter un employe");
 			}
 		})
 		//L'identifiant de l'employé est composé de la première lettre de son nom + les 4 premières lettres de son prénom
@@ -642,7 +642,6 @@
 
 		async function insererDisponibilite2(dispo) {
 				
-			dispo.idemploye = idemploye;
 			const result = await fetch('/Disponibilite2', {
 		        method: 'POST', 
 				headers: { 
