@@ -86,12 +86,13 @@ const ajouterDisponibiliteV2 = async(req, res) => {
 	const reqjson = req.body;
 	
 	var sessEmployeur = req.session.username;
-	
-	console.log(sessEmployeur);
-	console.log(reqjson.idemploye);
-	console.log(quarts[0]);
-	console.log(reqjson.j1);
-	console.log(reqjson.quarts[0]);
+	var i = 0;
+        while (i < jours.length) {
+	var x = quarts[i];	
+	console.log(x);	
+  	console.log(reqjson.x);
+  	i++;
+	}
 	
 	
 	try{	
