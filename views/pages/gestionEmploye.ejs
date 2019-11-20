@@ -489,7 +489,7 @@
 			try {
 				const jsonEmp = {};	
 				const jsonIdentification = {};
-				let dispoSemaine = {};
+				
 				
 				var nomEmp =  document.getElementById('nomemployeid').value;	
 				jsonEmp.nomemploye = nomEmp.toUpperCase();				
@@ -508,7 +508,68 @@
 				jsonIdentification.idutilisateur = ID;
 				jsonIdentification.motdepasse = document.getElementById('motdepasse').value;
 				
+				ajouterEmploye(jsonEmp);				
+				ajouterIdentification(jsonIdentification);
 				
+			} catch (e) {
+				console.log("Impossible d'ajouter un employe");
+			}
+		})
+		//L'identifiant de l'employé est composé de la première lettre de son nom + les 4 premières lettres de son prénom
+		function creerIDEmploye(nom, prenom) {
+			let nomUn = nom.charAt(0);
+			let prenomQuatre = prenom.substring(0,4);
+			let ID = nomUn.concat(prenomQuatre);
+			return ID;
+		}
+		
+		async function insererDisponibilite(idemploye, typequart, joursemaine, dispo) {
+			let jsonDispo = {};	
+			jsonDispo.idemploye = idemploye;
+			jsonDispo.typequart = typequart;
+			jsonDispo.joursemaine = joursemaine;
+			jsonDispo.dispo = dispo;
+			const result = await fetch('/Disponibilite', {
+		        method: 'POST', 
+				headers: { 
+				'Accept': 'application/json',
+					'Content-Type': 'application/json'
+			}, 
+			body: JSON.stringify(jsonDispo) })
+			const success = await result.json();
+			if(!success.success){
+				alert("dispo pas entrées" + typequart + " " + joursemaine);
+			}
+		}	
+
+		async function insererDisponibilite2(dispo) {
+			let jsonDispo = dispo;	
+			jsonDispo.idemploye = idemploye;
+			const result = await fetch('/Disponibilite', {
+		        method: 'POST', 
+				headers: { 
+				'Accept': 'application/json',
+					'Content-Type': 'application/json'
+			}, 
+			body: JSON.stringify(jsonDispo) })
+			const success = await result.json();
+			if(!success.success){
+				alert("dispo pas entrées" + typequart + " " + joursemaine);
+			}
+		}
+		
+		
+		
+		btnCongedier.addEventListener("click", async e => {
+			var ID = document.getElementById('identifiant').value;
+			supprimerEmploye(ID);
+			supprimerIdentificationEmploye(ID);
+			changerDispoEmploye(ID);
+		})	
+		
+		async function ajouterEmploye(jsonEmp){
+		                let dispoSemaine = {};
+		
 				if (document.getElementById("J1").checked) {
 					insererDisponibilite(jsonEmp.idemploye, 'J', '1', '1');
 				}else {
@@ -602,68 +663,6 @@
 				dispoSemaine.s5 = document.getElementById("S5").checked;
 				dispoSemaine.n5 = document.getElementById("N5").checked;
 				
-				//insererDisponibilite2(dispoSemaine);
-				
-				ajouterEmploye(jsonEmp);				
-				ajouterIdentification(jsonIdentification);
-				
-			} catch (e) {
-				console.log("Impossible d'ajouter un employe");
-			}
-		})
-		//L'identifiant de l'employé est composé de la première lettre de son nom + les 4 premières lettres de son prénom
-		function creerIDEmploye(nom, prenom) {
-			let nomUn = nom.charAt(0);
-			let prenomQuatre = prenom.substring(0,4);
-			let ID = nomUn.concat(prenomQuatre);
-			return ID;
-		}
-		
-		async function insererDisponibilite(idemploye, typequart, joursemaine, dispo) {
-			let jsonDispo = {};	
-			jsonDispo.idemploye = idemploye;
-			jsonDispo.typequart = typequart;
-			jsonDispo.joursemaine = joursemaine;
-			jsonDispo.dispo = dispo;
-			const result = await fetch('/Disponibilite', {
-		        method: 'POST', 
-				headers: { 
-				'Accept': 'application/json',
-					'Content-Type': 'application/json'
-			}, 
-			body: JSON.stringify(jsonDispo) })
-			const success = await result.json();
-			if(!success.success){
-				alert("dispo pas entrées" + typequart + " " + joursemaine);
-			}
-		}	
-
-		async function insererDisponibilite2(dispo) {
-			let jsonDispo = dispo;	
-			jsonDispo.idemploye = idemploye;
-			const result = await fetch('/Disponibilite', {
-		        method: 'POST', 
-				headers: { 
-				'Accept': 'application/json',
-					'Content-Type': 'application/json'
-			}, 
-			body: JSON.stringify(jsonDispo) })
-			const success = await result.json();
-			if(!success.success){
-				alert("dispo pas entrées" + typequart + " " + joursemaine);
-			}
-		}
-		
-		
-		
-		btnCongedier.addEventListener("click", async e => {
-			var ID = document.getElementById('identifiant').value;
-			supprimerEmploye(ID);
-			supprimerIdentificationEmploye(ID);
-			changerDispoEmploye(ID);
-		})	
-		
-		async function ajouterEmploye(jsonEmp){
 			const result = await fetch('Employe', {
 		        method: 'POST', 
 			headers: { 
@@ -671,6 +670,7 @@
 					'Content-Type': 'application/json'
 			}, 
 			body: JSON.stringify(jsonEmp) })
+			result = await insererDisponibilite2(dispoSemaine);
 			const success = await result.json();
 			if(!success.success){
 				alert("ERREUR ajouterEmploye");
