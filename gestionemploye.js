@@ -179,6 +179,8 @@ const modifierEmploye   = async (req, res) => {
 	async function patchEmploye(idemployeur, idemploye, nomemploye, prenomemploye, nbrquartsmax, dateembauche) {	
 		await Api
 			.patch('/baseemployes')
+			.eq('idemploye', idemploye)
+		        .eq('idemployeur', idemployeur)
 			.send({idemployeur:idemployeur, idemploye: idemploye, nomemploye: nomemploye, prenomemploye: prenomemploye, nbrquartsmax: nbrquartsmax, dateembauche: dateembauche});	
 	}
 	
