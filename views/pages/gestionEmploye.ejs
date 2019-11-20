@@ -500,7 +500,7 @@
 				var quarts = document.getElementById('nbquartsmaxid').value;
 				jsonEmp.nbrquartsmax = parseInt(quarts, 10);	
 				//jsonEmp.nbrquartsmax = document.getElementById('nbquartsmaxid').value;
-				var date = document.getElementById('dateembauche').value
+				var date = document.getElementById('dateembauche').value;
 				var dateAjustee = new Date(date);
 				dateAjustee.setMinutes(dateAjustee.getMinutes() + dateAjustee.getTimezoneOffset()); //Permet d'avoir la bonne date sans influence du fuseau horaire
 				jsonEmp.dateembauche = dateAjustee;
