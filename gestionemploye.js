@@ -154,10 +154,31 @@ const supprimerIdentification   = async (req, res) => {
 	  }	  
 }
 
+const modifierEmploye   = async (req, res) => {
+	  let result = {}
+	  const reqJson = req.body;
+	  var sessEmployeur = req.session.username;
+	  try{	
+		  await patchEmploye(sessEmployeur, reqJson.idemploye, reqJson.nomemploye, reqJson.prenomemploye, reqJson.nbrquartsmax, reqJson.dateembauche);		  
+		  result.success = true;
+	  } catch (e) {
+		  result.success = false;
+	  } finally {
+		  res.setHeader("content-type", "application/json")
+		  res.send(JSON.stringify(result))
+	  }
+}
+
 
 	async function ajoutEmploye(idemployeur, idemploye, nomemploye, prenomemploye, nbrquartsmax, dateembauche) {	
 		await Api
 			.post('/baseemployes')
+			.send({idemployeur:idemployeur, idemploye: idemploye, nomemploye: nomemploye, prenomemploye: prenomemploye, nbrquartsmax: nbrquartsmax, dateembauche: dateembauche});	
+	}
+
+	async function patchEmploye(idemployeur, idemploye, nomemploye, prenomemploye, nbrquartsmax, dateembauche) {	
+		await Api
+			.patch('/baseemployes')
 			.send({idemployeur:idemployeur, idemploye: idemploye, nomemploye: nomemploye, prenomemploye: prenomemploye, nbrquartsmax: nbrquartsmax, dateembauche: dateembauche});	
 	}
 	
@@ -212,6 +233,7 @@ const supprimerIdentification   = async (req, res) => {
   ajouterDisponibilite,
   supprimerDisponibilite,
   supprimerIdentification,
-  ajouterDisponibiliteV2
+  ajouterDisponibiliteV2,
+  modifierEmploye	  
 
 }
