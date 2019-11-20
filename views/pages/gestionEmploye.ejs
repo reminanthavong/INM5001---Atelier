@@ -508,7 +508,6 @@
 				jsonIdentification.idutilisateur = ID;
 				jsonIdentification.motdepasse = document.getElementById('motdepasse').value;
 				
-				console.log(jsonEmp);
 				
 				
 				ajouterEmploye(jsonEmp);				
@@ -531,7 +530,6 @@
 				dispoSemaine.j5 = document.getElementById("J5").checked;
 				dispoSemaine.s5 = document.getElementById("S5").checked;
 				dispoSemaine.n5 = document.getElementById("N5").checked;
-				console.log(dispoSemaine);
 				
 				insererDisponibilite2(dispoSemaine);
 				
@@ -549,7 +547,7 @@
 		}
 		
 		async function insererDisponibilite(idemploye, typequart, joursemaine, dispo) {
-			const jsonDispo = {};	
+			let jsonDispo = {};	
 			jsonDispo.idemploye = idemploye;
 			jsonDispo.typequart = typequart;
 			jsonDispo.joursemaine = joursemaine;
@@ -568,7 +566,7 @@
 		}	
 
 		async function insererDisponibilite2(dispo) {
-		        const jsonDispo = dispo;
+		        let jsonDispo = dispo;
 			jsonDispo.idemploye = idemploye;
 			console.log(jsonDispo);
 			const result = await fetch('/Disponibilite2', {
