@@ -100,18 +100,16 @@ const ajouterDisponibiliteV2 = async(req, res) => {
 		}else{
 			await ajoutDispo(sessEmployeur, reqjson.idemploye, x, y, '0');		  
 		  result.success = true; }
-	  } 
-  		i++;	
-
-		}
-	
-	
-	catch (e) {
+	  } catch (e) {
 		  result.success = false;
 	  } finally {
 		  res.setHeader("content-type", "application/json")
 		  res.send(JSON.stringify(result))
 	  }
+  		i++;	
+
+		}
+	
 
 	  
 	  
