@@ -509,10 +509,6 @@
 				jsonIdentification.motdepasse = document.getElementById('motdepasse').value;
 				
 				
-				
-				ajouterEmploye(jsonEmp);				
-				ajouterIdentification(jsonIdentification);
-				
 				if (document.getElementById("J1").checked) {
 					insererDisponibilite(jsonEmp.idemploye, 'J', '1', '1');
 				}else {
@@ -608,6 +604,8 @@
 				
 				//insererDisponibilite2(dispoSemaine);
 				
+				ajouterEmploye(jsonEmp);				
+				ajouterIdentification(jsonIdentification);
 				
 			} catch (e) {
 				console.log("Impossible d'ajouter un employe");
@@ -654,7 +652,9 @@
 			if(!success.success){
 				alert("dispo pas entrées" + typequart + " " + joursemaine);
 			}
-		}			
+		}
+		
+		
 		
 		btnCongedier.addEventListener("click", async e => {
 			var ID = document.getElementById('identifiant').value;
