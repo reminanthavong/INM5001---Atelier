@@ -92,25 +92,23 @@ const ajouterDisponibiliteV2 = async(req, res) => {
 		var x = quarts[i];
 		var y = jours[i];
   		//console.log(reqjson[x]);
-		try{	
+	
 		  
 			if (reqjson[x]){
 			    await ajoutDispo(sessEmployeur, reqjson.idemploye, x, y, '1');		  
 		  result.success = true;
-		}else{
+		}
+		else{
 			await ajoutDispo(sessEmployeur, reqjson.idemploye, x, y, '0');		  
-		  result.success = true; }
-	  } catch (e) {
-		  result.success = false;
-	  } finally {
-		  res.setHeader("content-type", "application/json")
-		  res.send(JSON.stringify(result))
-	  }
+		  result.success = true; 
+		}
+	  
   		i++;	
 
 		}
 	
-
+		  res.setHeader("content-type", "application/json")
+		  res.send(JSON.stringify(result))
 	  
 	  
 	  
