@@ -82,7 +82,7 @@ const ajouterDisponibiliteV2 = async(req, res) => {
 
 	let result = {}
 	var jours = ["1", "1", "1","2", "2", "2","3", "3", "3","4", "4", "4","5", "5", "5",];
-	var quarts = ["j1", "n1", "s1","j2", "n2", "s2","j3", "n3", "s3","j4", "n4", "s4","j5", "n5", "s5",];
+	var quarts = ["J1", "N1", "S1","J2", "S2", "N2","J3", "S3", "N3","J4", "S4", "N4","J5", "S5", "N5",];
 	const reqjson = req.body;
 	
 	var sessEmployeur = req.session.username;
@@ -99,12 +99,12 @@ const ajouterDisponibiliteV2 = async(req, res) => {
 	
 		  try{
 			if (reqjson[x] == "true"){
-			    await ajoutDispo(sessEmployeur, reqjson.idemploye, x, y, "1");		  
+			    await ajoutDispo(sessEmployeur, reqjson.idemploye, x.replace(/regExp/[0-9], ''), y, "1");		  
 		  result.success = true;
 		}
 		  
 		else{
-			await ajoutDispo(sessEmployeur, reqjson.idemploye, x, y, "0");		  
+			await ajoutDispo(sessEmployeur, reqjson.idemploye, x.replace(/regExp/[0-9], ''), y, "0");		  
 		  result.success = true; 
 		} 
 			  
