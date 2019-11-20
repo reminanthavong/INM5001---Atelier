@@ -90,12 +90,9 @@ const ajouterDisponibiliteV2 = async(req, res) => {
 	console.log(sessEmployeur);
 	console.log(reqjson.idemploye);
 	console.log(quarts[0]);
+	console.log(reqjson.j1);
+	console.log(reqjson.quarts[0]);
 	
-	var i = 0;
-		while (i < jours.length) {
-  		console.log(reqjson.quarts[i]);
-  		i++;
-		}
 	
 	try{	
 		  await ajoutDispo(sessEmployeur, reqjson.idemploye, reqjson.typequart, reqjson.joursemaine, reqjson.dispo);		  
