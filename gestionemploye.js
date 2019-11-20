@@ -91,7 +91,6 @@ const ajouterDisponibiliteV2 = async(req, res) => {
 	while (i < jours.length) {
 		var x = quarts[i];
 		var y = jours[i];
-		var xx = x.slice(0, 1);
   		//console.log(reqjson[x]);
 		//console.log(sessEmployeur);
 		//console.log(reqjson.idemploye);
@@ -101,13 +100,13 @@ const ajouterDisponibiliteV2 = async(req, res) => {
 	
 		  try{
 			if (reqjson[x]){
-				console.log("True");
+				//console.log("True");
 			    await ajoutDispo(sessEmployeur, reqjson.idemploye, x.slice(0, 1), y, "1");		  
 		  result.success = true;
 		}
 		  
 		else{
-			console.log("Not True");
+			//console.log("Not True");
 			await ajoutDispo(sessEmployeur, reqjson.idemploye, x.slice(0, 1), y, "0");		  
 		  result.success = true; 
 		} 
