@@ -91,20 +91,24 @@ const ajouterDisponibiliteV2 = async(req, res) => {
 	while (i < jours.length) {
 		var x = quarts[i];
 		var y = jours[i];
+		var xx = quarts[i].replace(/regExp/[0-9], '');
   		//console.log(reqjson[x]);
-		console.log(sessEmployeur);
-		console.log(reqjson.idemploye);
-		console.log(x);
-		console.log(y);
+		//console.log(sessEmployeur);
+		//console.log(reqjson.idemploye);
+		//console.log(x);
+		//console.log(y);
+		console.log(xx);
 	
 		  try{
 			if (reqjson[x] == "true"){
-			    await ajoutDispo(sessEmployeur, reqjson.idemploye, x.replace(/regExp/[0-9], ''), y, "1");		  
+				console.log("True");
+			    await ajoutDispo(sessEmployeur, reqjson.idemploye, xx, y, "1");		  
 		  result.success = true;
 		}
 		  
 		else{
-			await ajoutDispo(sessEmployeur, reqjson.idemploye, x.replace(/regExp/[0-9], ''), y, "0");		  
+			console.log("Not True");
+			await ajoutDispo(sessEmployeur, reqjson.idemploye, xx, y, "0");		  
 		  result.success = true; 
 		} 
 			  
