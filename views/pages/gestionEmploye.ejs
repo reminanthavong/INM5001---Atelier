@@ -508,6 +508,12 @@
 				
 				jsonIdentification.idutilisateur = ID;
 				jsonIdentification.motdepasse = document.getElementById('motdepasse').value;
+				
+				ajouterEmploye(jsonEmp);				
+				ajouterIdentification(jsonIdentification);
+				
+				let dispoSemaine = {};
+				
 				dispoSemaine.j1 = document.getElementById("J1").checked;
 				dispoSemaine.s1 = document.getElementById("S1").checked;
 				dispoSemaine.n1 = document.getElementById("N1").checked;
@@ -524,10 +530,6 @@
 				dispoSemaine.s5 = document.getElementById("S5").checked;
 				dispoSemaine.n5 = document.getElementById("N5").checked;
 				insererDisponibilite2(dispoSemaine);
-				ajouterEmploye(jsonEmp);				
-				ajouterIdentification(jsonIdentification);
-				
-				let dispoSemaine = {};
 		
 				if (document.getElementById("J1").checked) {
 					insererDisponibilite(jsonEmp.idemploye, 'J', '1', '1');
