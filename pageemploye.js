@@ -21,7 +21,7 @@ const ajouterDisponibilites   = async (req, res) => {
 	var jours = ["1", "1", "1","2", "2", "2","3", "3", "3","4", "4", "4","5", "5", "5",];
 	var quarts = ["J1", "N1", "S1","J2", "S2", "N2","J3", "S3", "N3","J4", "S4", "N4","J5", "S5", "N5",];
 	const reqjson = req.body;
-	
+	console.log(reqjson);
 	var utilisateur = req.session.username;
 	var gestionnaire = req.session.idgestion;
 	var i = 0;
