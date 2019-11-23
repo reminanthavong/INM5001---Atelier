@@ -530,6 +530,7 @@
 				dispoSemaine.S5 = document.getElementById("S5").checked;
 				dispoSemaine.N5 = document.getElementById("N5").checked;
 				dispoSemaine.idemploye = ID;
+				console.log(dispoSemaine);
 				insererDisponibilite2(dispoSemaine);
 				
 				
@@ -575,9 +576,6 @@
 			}, 
 			body: JSON.stringify(dispo) })
 			const success = await result.json();
-			if(!success.success){
-				alert("dispo pas entrées" + typequart + " " + joursemaine);
-			}
 		}
 		
 		
@@ -643,7 +641,7 @@
 			jsonRequest.idemploye = employe;
 			const resultat = await fetch('/Employe', {method: "DELETE", 
         		headers: { "content-type": "application/json"}, body: JSON.stringify(jsonRequest) })
-			const success = await result.json();
+			const success = await resultat.json();
 			if(!success.success){
 				alert("ERREUR supprimerEmploye");
 			}
@@ -656,7 +654,7 @@
 			console.log(jsonRequest);
 			const resultat = await fetch('/Identification', {method: "DELETE", 
         		headers: { "content-type": "application/json"}, body: JSON.stringify(jsonRequest) })
-			const success = await result.json();
+			const success = await resultat.json();
 			if(!success.success){
 				alert("ERREUR supprimerIdentification");
 			}
@@ -666,21 +664,25 @@
 			idemploye = idemploye.toUpperCase();
 			await supprimerDispo(idemploye); 	//Les disponibilités de l'employé sont d'abord supprimées 		
 			//Les disponibilités de l'employé sont remises dans la base de données avec comme code '0' (non disponible)
-			 insererDisponibilite(idemploye, 'J', '1', '0'); 
-			 insererDisponibilite(idemploye, 'S', '1', '0');
-			 insererDisponibilite(idemploye, 'N', '1', '0');
-			 insererDisponibilite(idemploye, 'J', '2', '0');
-			 insererDisponibilite(idemploye, 'S', '2', '0');
-			 insererDisponibilite(idemploye, 'N', '2', '0');
-			 insererDisponibilite(idemploye, 'J', '3', '0');
-			 insererDisponibilite(idemploye, 'S', '3', '0');
-			 insererDisponibilite(idemploye, 'N', '3', '0');
-			 insererDisponibilite(idemploye, 'J', '4', '0');
-			 insererDisponibilite(idemploye, 'S', '4', '0');
-			 insererDisponibilite(idemploye, 'N', '4', '0');
-			 insererDisponibilite(idemploye, 'J', '5', '0');
-			 insererDisponibilite(idemploye, 'S', '5', '0');
-			 insererDisponibilite(idemploye, 'N', '5', '0');
+			const jsonDispoAZero = {}; 
+			jsonDispoAZero.J1 = false;
+			jsonDispoAZero.S1 = false;
+			jsonDispoAZero.N1 = false;
+			jsonDispoAZero.J2 = false;
+			jsonDispoAZero.S2 = false;
+			jsonDispoAZero.N2 = false;
+			jsonDispoAZero.J3 = false;
+			jsonDispoAZero.S3 = false;
+			jsonDispoAZero.N3 = false;
+			jsonDispoAZero.J4 = false;
+			jsonDispoAZero.S4 = false;
+			jsonDispoAZero.N4 = false;
+			jsonDispoAZero.J5 = false;
+			jsonDispoAZero.S5 = false;
+			jsonDispoAZero.N5 = false;
+			jsonDispoAZero.idemploye = idemploye;
+			console.log(jsonDispoAZero);
+			await insererDisponibilite2(jsonDispoAZero);
 		}
 		
 		async function supprimerDispo(idemploye){
@@ -688,7 +690,7 @@
 			jsonRequest.idemploye = idemploye;
 			const resultat = await fetch('/Disponibilite', {method: "DELETE", 
         		headers: { "content-type": "application/json"}, body: JSON.stringify(jsonRequest) }); 
-		const success = await result.json();
+		const success = await resultat.json();
 			if(!success.success){
 				alert("ERREUR supprimerDispo");
 			}

@@ -411,81 +411,24 @@
 			supprimerDisponibilites();	//Les anciennes disponibilités par défaut sont supprimées
 			
 			//Les nouvelles disponibilité par défaut sont entrées dans la base de données
-			if (document.getElementById("J1").checked) {
-				modifierDisponibilite('J', '1', '1');
-			}else {
-				modifierDisponibilite('J', '1', '0');
-			}				
-			if (document.getElementById("S1").checked) {
-				modifierDisponibilite('S', '1', '1');
-			}else {
-				modifierDisponibilite('S', '1', '0');
-			}				
-			if (document.getElementById("N1").checked) {
-				modifierDisponibilite('N', '1', '1');
-			}else {
-				modifierDisponibilite('N', '1', '0');
-			}				
-			if (document.getElementById("J2").checked) {
-				modifierDisponibilite('J', '2', '1');
-			}else {
-				modifierDisponibilite('J', '2', '0');
-			}				
-			if (document.getElementById("S2").checked) {
-				modifierDisponibilite('S', '2', '1');
-			}else {
-				modifierDisponibilite('S', '2', '0');
-			}				
-			if (document.getElementById("N2").checked) {
-				modifierDisponibilite('N', '2', '1');
-			}else {
-				modifierDisponibilite('N', '2', '0');
-			}				
-			if (document.getElementById("J3").checked) {
-				modifierDisponibilite('J', '3', '1');
-			}else {
-				modifierDisponibilite('J', '3', '0');
-			}	
-			if (document.getElementById("S3").checked) {
-				modifierDisponibilite('S', '3', '1');
-			}else {
-				modifierDisponibilite('S', '3', '0');
-			}
-			if (document.getElementById("N3").checked) {
-			modifierDisponibilite('N', '3', '1');
-			}else {
-				modifierDisponibilite('N', '3', '0');
-			}				
-			if (document.getElementById("J4").checked) {
-				modifierDisponibilite('J', '4', '1');
-			}else {
-				modifierDisponibilite('J', '4', '0');
-			}				
-			if (document.getElementById("S4").checked) {
-				modifierDisponibilite('S', '4', '1');
-			}else {
-				modifierDisponibilite('S', '4', '0');
-			}				
-			if (document.getElementById("N4").checked) {
-				modifierDisponibilite('N', '4', '1');
-			}else {
-				modifierDisponibilite('N', '4', '0');
-			}				
-			if (document.getElementById("J5").checked) {
-				modifierDisponibilite('J', '5', '1');
-			}else {
-				modifierDisponibilite('J', '5', '0');
-			}
-			if (document.getElementById("S5").checked) {
-				modifierDisponibilite('S', '5', '1');
-			}else {
-				modifierDisponibilite('S', '5', '0');
-			}				
-			if (document.getElementById("N5").checked) {
-				modifierDisponibilite('N', '5', '1');
-			}else {
-				modifierDisponibilite('N', '5', '0');
-			}
+				let dispoSemaine = {};
+				dispoSemaine.J1 = document.getElementById("J1").checked;
+				dispoSemaine.S1 = document.getElementById("S1").checked;
+				dispoSemaine.N1 = document.getElementById("N1").checked;
+				dispoSemaine.J2 = document.getElementById("J2").checked;
+				dispoSemaine.S2 = document.getElementById("S2").checked;
+				dispoSemaine.N2 = document.getElementById("N2").checked;
+				dispoSemaine.J3 = document.getElementById("J3").checked;
+				dispoSemaine.S3 = document.getElementById("S3").checked;
+				dispoSemaine.N3 = document.getElementById("N3").checked;
+				dispoSemaine.J4 = document.getElementById("J4").checked;
+				dispoSemaine.S4 = document.getElementById("S4").checked;
+				dispoSemaine.N4 = document.getElementById("N4").checked;
+				dispoSemaine.J5 = document.getElementById("J5").checked;
+				dispoSemaine.S5 = document.getElementById("S5").checked;
+				dispoSemaine.N5 = document.getElementById("N5").checked;
+				console.log(dispoSemaine);
+				modifierDisponibilite(dispoSemaine);
 		});
 		
 		async function supprimerDisponibilites(){
@@ -494,20 +437,20 @@
         	const success = await resultat.json();
 		}
 	
-		async function modifierDisponibilite(typequart, joursemaine, dispo) {
-			const jsonDispo = {};	
-			jsonDispo.typequart = typequart;
-			jsonDispo.joursemaine = joursemaine;
-			jsonDispo.dispo = dispo;
-			console.log(jsonDispo)
+		async function modifierDisponibilite(dispoSemaine) {
 			const result = await fetch(url, {
 		        method: 'POST', 
 				headers: { 
 				'Accept': 'application/json',
 					'Content-Type': 'application/json'
 			}, 
-			body: JSON.stringify(jsonDispo) })
+			body: JSON.stringify(dispoSemaine) })
 			const success = await result.json();
+			if(!success.success){
+				alert("Impossible de modifier dispos");
+			} else {
+				alert("Dispos modifiées");
+			}
 		}	
 		
 		btnConge.addEventListener("click", async e => {		
