@@ -11,6 +11,7 @@ response.sendFile(path.join(__dirname + '/views/pages/pageEmploye.ejs'));
 const afficherDisponibilites  = async (req, res) => {
 	  var utilisateur = req.session.username;
 	  const rows = await getDisponibilites(utilisateur);
+	  console.log(rows);
 	  res.setHeader("content-type", "application/json")
 	  res.send(JSON.stringify(rows))
 }
