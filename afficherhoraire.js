@@ -60,40 +60,10 @@ const fonctions4  = async (req, res) => {
 }
 
 
-  try {
-const DonneesEmployes = await client.query(`SELECT IDEmploye, JourSemaine, TypeQuart
-FROM (
-SELECT *,ROW_NUMBER()OVER(PARTITION BY A.IDEmploye ORDER BY A.JourSemaine ASC) AS MaxSem	
-FROM(
-	SELECT BQE.IDEmploye, BQE.JourSemaine, BQE.TypeQuart, nbrQuartsmax ,ROW_NUMBER()OVER(PARTITION BY BQE.IDEmploye, BQE.JourSemaine ORDER BY BQE.TypeQuart ASC) AS MaxJOur
-	FROM basequartsemploye BQE
-	INNER JOIN baseemployes BE ON BE.IDEmploye=BQE.IDEmploye 
-		AND BE.IDEmployeur='Gestion8768'
-  		AND Disponibilite='1'
-  		AND ParamType='1'
-	LEFT JOIN Tableconges TC ON TC.IDEmploye=BQE.IDEmploye 
-		AND TC.JourSemaine=BQE.JourSemaine 
-		AND TC.TypeQuart=BQE.TypeQuart
-		AND TC.DateConges='2019-10-7'
-	WHERE TC.IDEmploye IS NULL 
-	ORDER BY DateEmbauche DESC, JourSemaine ASC, TypeQuart ASC
-	
-)A	
-WHERE MaxJour=1
-)B
-WHERE MaxSem<=nbrQuartsmax`);
-} catch (err) {
-               console.error(err);
-               res.send("Erreur appel client " + err);
-             }
-
-console.log(DonneesEmployes)
-
-
 module.exports = {
   fonctions1,
   fonctions2,
   fonctions3,
   fonctions4,
-  DonneesEmployes
+
 }
