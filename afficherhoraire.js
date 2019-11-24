@@ -59,6 +59,8 @@ const fonctions4  = async (req, res) => {
   res.sendFile(path.join(__dirname+'/views/pages/AffichageHoraire.html' /*, getHoraires */));
 }
 
+
+  try {
 const DonneesEmployes = await client.query(`SELECT IDEmploye, JourSemaine, TypeQuart
 FROM (
 SELECT *,ROW_NUMBER()OVER(PARTITION BY A.IDEmploye ORDER BY A.JourSemaine ASC) AS MaxSem	
@@ -80,6 +82,10 @@ FROM(
 WHERE MaxJour=1
 )B
 WHERE MaxSem<=nbrQuartsmax`);
+} catch (err) {
+               console.error(err);
+               res.send("Erreur appel client " + err);
+             }
 
 console.log(DonneesEmployes)
 
