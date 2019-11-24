@@ -96,7 +96,7 @@ WHERE MaxSem<=nbrQuartsmax;`);
 const ObtentionDonneesEmployeur = async (req, res) => {
   try {
             const client = await pool.connect()
-            const DonneesEmployeur = await client.query(`SELECT * FROM BaseQuartsEmployeur WHERE IDEmployeur='Gestion8768' AND IDTableHoraire='001';`);
+            const DonneesEmployeur = await client.query(`SELECT * FROM BaseQuartsEmployeur WHERE IDEmployeur='Gestion8768' AND IDTableHoraire='001' AND JourSemaine<=5 ORDER BY JourSemaine ASC ;`);
             res.json(DonneesEmployeur);
             client.release();
           } catch (err) {
