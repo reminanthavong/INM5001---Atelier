@@ -59,7 +59,7 @@ const fonctions4  = async (req, res) => {
   res.sendFile(path.join(__dirname+'/views/pages/AffichageHoraire.html' /*, getHoraires */));
 }
 
-
+//--------------------------------------------------------------------------------------------------------------//
 const ObtentionDonneesEmployes = async (req, res) => {
   try {
             const client = await pool.connect()
@@ -106,8 +106,18 @@ const ObtentionDonneesEmployeur = async (req, res) => {
         console.log(DonneesEmployeur)
 }
 
+const GenererHoraire = async (req, res) => {
+  try {
+            const DonneesEmployes = ObtentionDonneesEmployes()
+            const DonneesEmployeur = ObtentionDonneesEmployeur()
+          } catch (err) {
+            console.error(err);
+            res.send("Erreur appel client " + err);
+          }
+}
 
 
+//---------------------------------------------------------------------------------------------------------------------------------//
 
 
 
@@ -117,5 +127,6 @@ module.exports = {
   fonctions3,
   fonctions4,
 ObtentionDonneesEmployes,
-ObtentionDonneesEmployeur
+ObtentionDonneesEmployeur,
+GenererHoraire
 }
