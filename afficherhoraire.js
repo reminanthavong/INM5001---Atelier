@@ -59,7 +59,7 @@ const fonctions4  = async (req, res) => {
   res.sendFile(path.join(__dirname+'/views/pages/AffichageHoraire.html' /*, getHoraires */));
 }
 
-
+const client = await pool.connect()
 const DonneesEmployes = await client.query(`SELECT IDEmploye, JourSemaine, TypeQuart
 FROM (
 SELECT *,ROW_NUMBER()OVER(PARTITION BY A.IDEmploye ORDER BY A.JourSemaine ASC) AS MaxSem	
