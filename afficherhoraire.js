@@ -58,13 +58,44 @@ const fonctions3  = async (req, res) => {
 const fonctions4  = async (req, res) => {
   res.sendFile(path.join(__dirname+'/views/pages/AffichageHoraire.html' /*, getHoraires */));
 }
-         try {
-const client = await pool.connect()
-const DonneesEmployes = await client.query(`SELECT BQE.IDEmploye, BQE.JourSemaine, BQE.TypeQuart FROM basequartsemploye BQE`);
-             } catch (err) {
-               console.error(err);
-               res.send("Erreur appel client " + err);
-             }
+
+
+const GenererHoraire  = async (req, res) => {
+  try {
+            const client = await pool.connect()
+            const DonneesEmployes = await client.query(`SELECT IDEmploye, JourSemaine, TypeQuart
+FROM (
+SELECT *,ROW_NUMBER()OVER(PARTITION BY A.IDEmploye ORDER BY A.JourSemaine ASC) AS MaxSem	
+FROM(
+	SELECT BQE.IDEmploye, BQE.JourSemaine, BQE.TypeQuart, nbrQuartsmax ,ROW_NUMBER()OVER(PARTITION BY BQE.IDEmploye, BQE.JourSemaine ORDER BY BQE.TypeQuart ASC) AS MaxJOur
+	FROM basequartsemploye BQE
+	INNER JOIN baseemployes BE ON BE.IDEmploye=BQE.IDEmploye 
+		AND BE.IDEmployeur='Gestion8768'
+  		AND Disponibilite='1'
+  		AND ParamType='1'
+	LEFT JOIN Tableconges TC ON TC.IDEmploye=BQE.IDEmploye 
+		AND TC.JourSemaine=BQE.JourSemaine 
+		AND TC.TypeQuart=BQE.TypeQuart
+		AND TC.DateConges='2019-10-7'
+	WHERE TC.IDEmploye IS NULL 
+	ORDER BY DateEmbauche DESC, JourSemaine ASC, TypeQuart ASC
+	
+)A	
+WHERE MaxJour=1
+)B
+WHERE MaxSem<=nbrQuartsmax;`);
+            res.json( DonneesEmployes );
+            client.release();
+          } catch (err) {
+            console.error(err);
+            res.send("Erreur appel client " + err);
+          }
+}
+
+
+
+
+
 
 
 module.exports = {
@@ -72,5 +103,5 @@ module.exports = {
   fonctions2,
   fonctions3,
   fonctions4,
-
+GenererHoraire
 }
