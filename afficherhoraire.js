@@ -90,6 +90,7 @@ WHERE MaxSem<=nbrQuartsmax;`);
             console.error(err);
             res.send("Erreur appel client " + err);
           }
+        console.log(choixsemaine)
 }
 
 
