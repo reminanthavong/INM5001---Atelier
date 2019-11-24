@@ -60,7 +60,7 @@ const fonctions4  = async (req, res) => {
 }
 
 
-const GenererHoraire  = async (req, res) => {
+const ObtentionDonneesEmployes = async (req, res) => {
   try {
             const client = await pool.connect()
             const DonneesEmployes = await client.query(`SELECT IDEmploye, JourSemaine, TypeQuart
@@ -84,15 +84,27 @@ FROM(
 WHERE MaxJour=1
 )B
 WHERE MaxSem<=nbrQuartsmax;`);
-            res.json( DonneesEmployes );
+            res.json(DonneesEmployes);
             client.release();
           } catch (err) {
             console.error(err);
             res.send("Erreur appel client " + err);
           }
-        console.log(choixsemaine)
+        console.log(DonneesEmployes)
 }
 
+const ObtentionDonneesEmployeur = async (req, res) => {
+  try {
+            const client = await pool.connect()
+            const DonneesEmployeur = await client.query(`SELECT * FROM BaseQuartsEmployeur WHERE IDEmployeur='Gestion8768' AND IDTableHoraire='001';`);
+            res.json(DonneesEmployeur);
+            client.release();
+          } catch (err) {
+            console.error(err);
+            res.send("Erreur appel client " + err);
+          }
+        console.log(DonneesEmployeur)
+}
 
 
 
@@ -104,5 +116,6 @@ module.exports = {
   fonctions2,
   fonctions3,
   fonctions4,
-GenererHoraire
+ObtentionDonneesEmployes,
+ObtentionDonneesEmployeur
 }
