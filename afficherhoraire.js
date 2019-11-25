@@ -64,7 +64,7 @@ const fonctions4  = async (req, res) => {
 const GenererHoraire = async (req, res) => {
  try {
             const client = await pool.connect()
-            const DonneesEmployeur = await client.query(`SELECT DISTINCT '999' AS IDTableHoraire, '10/7/2019' AS DateParam ,C.IDEmployeur,C.IDEmploye, C.JourSemaine, C.TypeQuart,c.Selection--,NBREmployes
+            const horaire = await client.query(`SELECT DISTINCT '999' AS IDTableHoraire, '10/7/2019' AS DateParam ,C.IDEmployeur,C.IDEmploye, C.JourSemaine, C.TypeQuart,c.Selection--,NBREmployes
 FROM(
 	SELECT IDEmploye,IDEmployeur,JourSemaine, TypeQuart,Selection,DateEmbauche
 	FROM (
@@ -95,13 +95,13 @@ INNER JOIN BaseQuartsEmployeur BQER ON BQER.IDEmployeur=C.IDEmployeur
 		AND BQER.JourSemaine=C.JourSemaine
 		AND C.Selection <= BQER.NBREmployes
 ;`);
-            res.json(DonneesEmployeur);
+            res.json(horaire);
             client.release();
           } catch (err) {
             console.error(err);
             res.send("Erreur appel client " + err);
           }
-        console.log(DonneesEmployeur)
+        console.log(horaire)
 }
 
 }
