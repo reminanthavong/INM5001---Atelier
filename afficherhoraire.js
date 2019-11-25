@@ -59,10 +59,9 @@ const fonctions4  = async (req, res) => {
   res.sendFile(path.join(__dirname+'/views/pages/AffichageHoraire.html' /*, getHoraires */));
 }
 
-//--------------------------------------------------------------------------------------------------------------//
-
+//---------------------------------------------------------------------------------------------------------------------------------//
 const GenererHoraire = async (req, res) => {
- try {
+  try {
             const client = await pool.connect()
             const horaire = await client.query(`SELECT DISTINCT '999' AS IDTableHoraire, '10/7/2019' AS DateParam ,C.IDEmployeur,C.IDEmploye, C.JourSemaine, C.TypeQuart,c.Selection--,NBREmployes
 FROM(
@@ -94,6 +93,8 @@ INNER JOIN BaseQuartsEmployeur BQER ON BQER.IDEmployeur=C.IDEmployeur
 		AND BQER.TypeQuart=C.TypeQuart
 		AND BQER.JourSemaine=C.JourSemaine
 		AND C.Selection <= BQER.NBREmployes
+
+
 ;`);
             res.json(horaire);
             client.release();
@@ -101,11 +102,7 @@ INNER JOIN BaseQuartsEmployeur BQER ON BQER.IDEmployeur=C.IDEmployeur
             console.error(err);
             res.send("Erreur appel client " + err);
           }
-        console.log(horaire)
 }
-
-}
-
 
 //---------------------------------------------------------------------------------------------------------------------------------//
 
