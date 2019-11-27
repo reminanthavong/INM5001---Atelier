@@ -159,7 +159,7 @@
             jsonEmp.vendredisoir = document.getElementById('vendredisoir').value;
             jsonEmp.vendredinuit = document.getElementById('vendredinuit').value;
 
-            const result = await fetch(url, {
+            const result = fetch(url, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
