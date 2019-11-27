@@ -112,6 +112,7 @@
                         }).catch(error => {
                             console.log(error);
                         });
+                        this.$forceUpdate();
 
                 },
                 demanderConge() {
@@ -138,6 +139,7 @@
                         }).catch(error => {
                             console.log(error);
                         });
+                        this.$forceUpdate();
                 }
 
         }
