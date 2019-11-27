@@ -101,8 +101,8 @@ if (req.session.typeutilisateur == 1){
 	}
   })
 //.get('/Horaire',gestionhoraire.afficherHoraire)
-//.post('/Horaire',gestionhoraire.ajouterHoraire )
-//.delete('/Horaire',gestionhoraire.enleverHoraire )
+.post('/Horaire',gestionhoraire.ajouterHoraire )
+.delete('/Horaire',gestionhoraire.enleverHoraire )
 
 // Fonction PageEmploye
 .get('/PageEmploye', async (req, res) => {
