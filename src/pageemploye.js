@@ -26,7 +26,7 @@ const ajouterDisponibilites   = async (req, res) => {
 	try {
 		await supprimerDispo(utilisateur);
 		result.success = true;
-		console.log("Supprimer" + result.success);
+		//console.log("Supprimer" + result.success);
 	}catch (e) {
 		  result.success = false;
 	                     }
@@ -37,7 +37,7 @@ const ajouterDisponibilites   = async (req, res) => {
 		  try{
 		  await ajoutDispo(gestionnaire, utilisateur, x.slice(0, 1), y, "0");		  
 		  result.success = true;
-		  console.log("Ajout" + result.success);  
+		  //console.log("Ajout" + result.success);  
 		  }catch (e) {
 		  result.success = false;
 	                     }
@@ -47,6 +47,7 @@ const ajouterDisponibilites   = async (req, res) => {
 		}
 	
 	i = 0;
+	console.log(dispo.length);
 	while (i < dispo.length) {
 		try{
 		  await patchDispo(gestionnaire, utilisateur, dispo[i].slice(0, 1), dispo[i].slice(1), "1");		  
