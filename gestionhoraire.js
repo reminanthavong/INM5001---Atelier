@@ -31,11 +31,12 @@ const enleverHoraire   = async (req, res) => {
 async function ajoutHoraire(sessEmployeur, horairedate, lundijour, lundisoir, lundinuit, mardijour, mardisoir, mardinuit, mercredijour, 
   mercredisoir, mercredinuit, jeudijour, jeudisoir, jeudinuit, vendredijour, vendredisoir, vendredinuit ) {
 
-    var idtablehoraire = sessEmployeur + '' + horairedate;
+    //var idtablehoraire = sessEmployeur + '' + horairedate;
     await Api
       .post('/basequartsemployeur')
       .eq('J', typequart)
       .eq('1', joursemaine)
+      .eq('2019/12/02Gestion8798', idtablehoraire)
       .send({idemployeur: sessEmployeur, idtablehoraire: idtablehoraire, typequart: typequart, joursemaine: joursemaine, Nbemployes: lundijour}); 
 }
 
