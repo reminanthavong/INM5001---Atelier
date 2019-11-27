@@ -40,7 +40,8 @@ const routes = [
     name: 'zoneEmploye',
     component: ZoneEmploye,
     meta: {
-                requiresAuth: true
+                requiresAuth: true,
+	        isUser: 1
             }
   },
 	{
@@ -79,9 +80,20 @@ router.beforeEach((to, from, next) => {
           return
         }
         next('/unauthorized')
-      } else {
-        next()
+      } else if (to.matched.some(record => record.meta.isUser)){
+	   if (store.getters.userStatus == 1) {
+          next()
+          return
+        }
+	  next('/unauthorized')    
+	      
+      }else {
+	      
+      next()
+      
       }
+	
+	
     })
 
 
