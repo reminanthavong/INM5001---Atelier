@@ -74,27 +74,26 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-      if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (to.matched.some(record => record.meta.requiresAuth)) {
         if (store.getters.isLoggedIn) {
-          next()
-          return
+            next()
+            return
         }
         next('/unauthorized')
-      } else if (to.matched.some(record => record.meta.isUser)){
-	   if (store.getters.userStatus == 1) {
-          next()
-          return
+    } else if (to.matched.some(record => record.meta.isUser)) {
+        if (store.getters.userStatus == 1) {
+            next()
+            return
         }
-	  next('/unauthorized')    
-	      
-      }else {
-	      
-      next()
-      
-      }
-	
-	
-    })
+        next('/unauthorized')
+
+    } else {
+
+        next()
+
+    }
+
+})
 
 
 export default router
