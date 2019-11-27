@@ -100,9 +100,9 @@ if (req.session.typeutilisateur == 1){
 	  res.send('Vous devez être une Administrateur pour acceder à cette page!');	
 	}
   })
-.get('/Horaire',gestionhoraire.afficherHoraire)
-.post('/Horaire',gestionhoraire.ajouterHoraire )
-.delete('/Horaire',gestionhoraire.enleverHoraire )
+//.get('/Horaire',gestionhoraire.afficherHoraire)
+//.post('/Horaire',gestionhoraire.ajouterHoraire )
+//.delete('/Horaire',gestionhoraire.enleverHoraire )
 
 // Fonction PageEmploye
 .get('/PageEmploye', async (req, res) => {
