@@ -112,7 +112,7 @@
                         }).catch(error => {
                             console.log(error);
                         });
-                        location.reload();
+                        this.$router.push("/")
 
                 },
                 demanderConge() {
@@ -139,7 +139,7 @@
                         }).catch(error => {
                             console.log(error);
                         });
-                        location.reload();
+                        this.$router.push("/")
                 }
 
         }
