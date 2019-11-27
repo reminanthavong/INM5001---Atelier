@@ -29,8 +29,9 @@ async function ajoutHoraire(sessEmployeur, horairedate, lundijour, lundisoir, lu
 
     var idtablehoraire = sessEmployeur + '' + horairedate;
     await Api
-      .post('/basequartsemploye')
-      .send({idemployeur: sessEmployeur, idtablehoraire: idtablehoraire, typequart: 'J', joursemaine: '1', Nbemployes: lundijour},
+      .post('/basequartsemployeur')
+      .send(
+            {idemployeur: sessEmployeur, idtablehoraire: idtablehoraire, typequart: 'J', joursemaine: '1', Nbemployes: lundijour},
             {idemployeur: sessEmployeur, idtablehoraire: idtablehoraire, typequart: 'S', joursemaine: '1', Nbemployes: lundisoir},
             {idemployeur: sessEmployeur, idtablehoraire: idtablehoraire, typequart: 'N', joursemaine: '1', Nbemployes: lundinuit},
             {idemployeur: sessEmployeur, idtablehoraire: idtablehoraire, typequart: 'J', joursemaine: '2', Nbemployes: mardijour},
@@ -44,11 +45,13 @@ async function ajoutHoraire(sessEmployeur, horairedate, lundijour, lundisoir, lu
             {idemployeur: sessEmployeur, idtablehoraire: idtablehoraire, typequart: 'N', joursemaine: '4', Nbemployes: jeudinuit},
             {idemployeur: sessEmployeur, idtablehoraire: idtablehoraire, typequart: 'J', joursemaine: '5', Nbemployes: vendredijour},
             {idemployeur: sessEmployeur, idtablehoraire: idtablehoraire, typequart: 'S', joursemaine: '5', Nbemployes: vendredisoir},
-            {idemployeur: sessEmployeur, idtablehoraire: idtablehoraire, typequart: 'N', joursemaine: '5', Nbemployes: vendredinuit}); 
+            {idemployeur: sessEmployeur, idtablehoraire: idtablehoraire, typequart: 'N', joursemaine: '5', Nbemployes: vendredinuit}
+            ); 
 }
 
 module.exports = {
- ajouterHoraire ,
+  afficherHoraire,
+  ajouterHoraire ,
   enleverHoraire 
 }
 
