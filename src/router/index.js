@@ -31,6 +31,13 @@ const routes=[
     path: '/gestionEmployes',
     name: 'gestionEmployes',
     component: GestionEmployes,
+    beforeEnter: (to, from, next) => {
+        if(store.getters.adminStatus == 1) {
+          next()
+        } else {
+          next('/unauthorized')
+        }
+      },
     meta: {
         requiresAuth: true
           }
@@ -54,6 +61,13 @@ const routes=[
     path: '/gestionHoraire',
     name: 'gestionHoraire',
     component: GestionHoraire,
+    beforeEnter: (to, from, next) => {
+        if(store.getters.adminStatus == 1) {
+          next()
+        } else {
+          next('/unauthorized')
+        }
+      },
     meta: {
         requiresAuth: true
           }
