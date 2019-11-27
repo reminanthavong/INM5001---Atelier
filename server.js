@@ -3,7 +3,9 @@ const express = require('express');
 const session = require('express-session');
 const login = require('./src/login')
 const gestionemploye = require('./src/gestionemploye')
-const DB = require('./src/db');
+const afficherhoraire = require('./src/afficherhoraire')
+const pageemploye = require('./src/pageemploye')
+const gestionhoraire = require('./src/gestionhoraire')
 const config = require('./src/config');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -59,6 +61,22 @@ router.delete('/Employe', gestionemploye.enleverEmploye)
 router.post('/Identification', gestionemploye.ajouterIdentification)
 router.delete('/Identification', gestionemploye.supprimerIdentification)
 router.delete('/Disponibilite', gestionemploye.supprimerDisponibilite)
+
+// Fonction AfficherHoraire
+router.get('/api/v1/semaines',afficherhoraire.fonctions1 )
+router.post('/api/v1/horaires',afficherhoraire.fonctions2 )
+
+// Fonction GestionHoraire
+
+//router.get('/Horaire',gestionhoraire.afficherHoraire)
+router.post('/Horaire',gestionhoraire.ajouterHoraire )
+router.delete('/Horaire',gestionhoraire.enleverHoraire )
+
+// Fonction PageEmploye
+  router.get('/DispoEmploye',pageemploye.afficherDisponibilites)
+  router.post('/DispoEmploye',pageemploye.ajouterDisponibilites)
+  router.delete('/DispoEmploye', pageemploye.supprimerDisponibilites)
+  router.post('/Conge', pageemploye.ajouterConge)
 
 app.use(router)
 var port = process.env.PORT || 5000;
