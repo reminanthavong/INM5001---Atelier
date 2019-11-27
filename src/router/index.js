@@ -39,6 +39,13 @@ const routes=[
     path: '/zoneEmploye',
     name: 'zoneEmploye',
     component: ZoneEmploye,
+    beforeEnter: (to, from, next) => {
+        if(store.getters.isLoggedIn == 1) {
+          next()
+        } else {
+          next('/unauthorized')
+        }
+      },
     meta: {
         requiresAuth: true
           }
