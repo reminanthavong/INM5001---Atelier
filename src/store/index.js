@@ -25,6 +25,8 @@ import axios from 'axios'
           logout(state) {
             state.status = ''
             state.token = ''
+            state.user = ''
+            state.admin = ''
           }
       },
       actions: {
