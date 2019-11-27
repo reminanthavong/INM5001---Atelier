@@ -131,47 +131,4 @@
     </div>
 </template>
 <script>
-    //Fonction d'accès à la BD
-    const url = "/Horaire";
-    const btnGenerer = document.getElementById("btngenererhoraire");
-    btnGenerer.addEventListener("click", async (e) => {
-    e.preventDefault()
-        try {
-            const jsonEmp = {};
-
-            var date = document.getElementById('horairedate').value
-            jsonEmp.horairedate = new Date(date);
-            jsonEmp.lundijour = document.getElementById('lundijour').value;
-            jsonEmp.lundisoir = document.getElementById('lundisoir').value;
-            jsonEmp.lundinuit = document.getElementById('lundinuit').value;
-
-            jsonEmp.mardijour = document.getElementById('mardijour').value;
-            jsonEmp.mardisoir = document.getElementById('mardisoir').value;
-            jsonEmp.mardinuit = document.getElementById('mardinuit').value;
-
-            jsonEmp.mercredijour = document.getElementById('mercredijour').value;
-            jsonEmp.mercredisoir = document.getElementById('mercredisoir').value;
-            jsonEmp.mercredinuit = document.getElementById('mercredinuit').value;
-
-            jsonEmp.jeudijour = document.getElementById('jeudijour').value;
-            jsonEmp.jeudisoir = document.getElementById('jeudisoir').value;
-            jsonEmp.jeudinuit = document.getElementById('jeudinuit').value;
-            jsonEmp.vendredijour = document.getElementById('vendredijour').value;
-            jsonEmp.vendredisoir = document.getElementById('vendredisoir').value;
-            jsonEmp.vendredinuit = document.getElementById('vendredinuit').value;
-
-            const result = await fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(jsonEmp)
-            })
-            const success = await result.json();
-            alert(success.success);
-        } catch (e) {
-            console.log("Impossible de générer un horaire");
-        }
-    })
 </script>
