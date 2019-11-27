@@ -54,12 +54,7 @@ router.post('/login', login.loginAPI)
 router.get('/Employe', gestionemploye.afficherEmployes)
 router.post('/Employe', gestionemploye.ajouterEmploye)
 router.patch('/Employe', gestionemploye.modifierEmploye)
-router.post('/Disponibilite', gestionemploye.ajouterDisponibilite)
-router.post('/Disponibilite2', gestionemploye.ajouterDisponibiliteV2)
 router.delete('/Employe', gestionemploye.enleverEmploye)
-router.post('/Identification', gestionemploye.ajouterIdentification)
-router.delete('/Identification', gestionemploye.supprimerIdentification)
-router.delete('/Disponibilite', gestionemploye.supprimerDisponibilite)
 
 // Fonction AfficherHoraire
 router.get('/api/v1/semaines',afficherhoraire.fonctions1 )
