@@ -1,5 +1,3 @@
-Skip to content
-Search or jump to…
 
 const { Pool } = require('pg');
 const pool = new Pool({
@@ -15,10 +13,10 @@ const GenererHoraire = async (req, res) => {
 const employeur = req.session.username
 const choixsemaine = resp['choixsemaine'] || '000';
 
-  try {
-            const client = await pool.connect()
-            const horaire = await client.query(`SELECT DISTINCT '999' AS IDTableHoraire, '10/7/2019' AS DateParam ,C.IDEmployeur,C.IDEmploye, C.JourSemaine, C.TypeQuart,c.Selection--,NBREmployes
-FROM(
+try {
+	const client = await pool.connect()
+	const horaire = await client.query(`SELECT DISTINCT '999' AS IDTableHoraire, '10/7/2019' AS DateParam ,C.IDEmployeur,C.IDEmploye, C.JourSemaine, C.TypeQuart,c.Selection--,NBREmployes
+	FROM(
 	SELECT IDEmploye,IDEmployeur,JourSemaine, TypeQuart,Selection,DateEmbauche
 	FROM (
 		SELECT 
@@ -48,17 +46,15 @@ INNER JOIN BaseQuartsEmployeur BQER ON BQER.IDEmployeur=C.IDEmployeur
 		AND BQER.JourSemaine=C.JourSemaine
 		AND C.Selection <= BQER.NBREmployes
 ;`);
-            res.json(horaire);
-            client.release();
-          } catch (err) {
-            console.error(err);
-            res.send("Erreur appel client " + err);
+res.json(horaire);
+client.release();
+ } catch (err) {
+	console.error(err);
+	res.send("Erreur appel client " + err);
           }
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------//
-
-
 
 module.exports = {
   GenererHoraire
