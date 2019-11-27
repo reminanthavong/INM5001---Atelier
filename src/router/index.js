@@ -32,8 +32,7 @@ const routes=[
     name: 'gestionEmployes',
     component: GestionEmployes,
     beforeEnter: (to, from, next) => {
-        console.log(store.getters.adminStatus);
-        if(store.getters.adminStatus == "1") {
+        if(store.getters.adminStatus) {
           next()
         } else {
           next('/unauthorized')
@@ -48,7 +47,7 @@ const routes=[
     name: 'zoneEmploye',
     component: ZoneEmploye,
     beforeEnter: (to, from, next) => {
-        if(store.getters.userStatus == "1") {
+        if(store.getters.userStatus) {
           next()
         } else {
           next('/unauthorized')
@@ -63,7 +62,7 @@ const routes=[
     name: 'gestionHoraire',
     component: GestionHoraire,
     beforeEnter: (to, from, next) => {
-        if(store.getters.adminStatus == "1") {
+        if(store.getters.adminStatus) {
           next()
         } else {
           next('/unauthorized')
