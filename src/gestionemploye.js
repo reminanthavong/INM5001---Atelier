@@ -1,4 +1,3 @@
-const { Pool } = require('pg');
 const session = require('express-session');
 const bodyParser = require('body-parser')
 var PostgREST = require('postgrest-client')
@@ -40,19 +39,6 @@ const ajouterEmploye   = async (req, res) => {
 	  }
 }
 
-const ajouterIdentification = async (req, res) => {
-	  let result = {}
-	  const reqJson = req.body;
-	  try{		  
-		  await ajoutIdentification(reqJson.idutilisateur, reqJson.motdepasse)
-		  result.success = true;
-	  } catch (e) {
-		  result.success = false;
-	  } finally {
-		  res.setHeader("content-type", "application/json")
-		  res.send(JSON.stringify(result))
-	  }
-}
 
 const enleverEmploye   = async (req, res) => {
 	  let result = {}
@@ -72,21 +58,6 @@ const enleverEmploye   = async (req, res) => {
 	  }	  
 }
 
-const ajouterDisponibilite = async(req, res) => {
-	let result = {}
-	const reqjson = req.body;
-	console.log(reqjson);
-	var sessEmployeur = req.session.username;
-	try{	
-		  await ajoutDispo(sessEmployeur, reqjson.idemploye, reqjson.typequart, reqjson.joursemaine, reqjson.dispo);		  
-		  result.success = true;
-	  } catch (e) {
-		  result.success = false;
-	  } finally {
-		  res.setHeader("content-type", "application/json")
-		  res.send(JSON.stringify(result))
-	  }
-}
 
 async function initDisponibilite (ID,sessEmployeur, dispo) {
 
@@ -122,83 +93,6 @@ async function initDisponibilite (ID,sessEmployeur, dispo) {
 		 return result.succes	  
 }
 
-const ajouterDisponibiliteV2 = async(req, res) => {
-
-	let result = {}
-	var jours = ["1", "1", "1","2", "2", "2","3", "3", "3","4", "4", "4","5", "5", "5",];
-	var quarts = ["J1", "N1", "S1","J2", "S2", "N2","J3", "S3", "N3","J4", "S4", "N4","J5", "S5", "N5",];
-	const reqjson = req.body;
-	
-	var sessEmployeur = req.session.username;
-	var i = 0;
-	//console.log(reqjson[quarts[0]]);
-	while (i < jours.length) {
-		var x = quarts[i];
-		var y = jours[i];
-  		//console.log(reqjson[x]);
-		//console.log(sessEmployeur);
-		//console.log(reqjson.idemploye);
-		//console.log(x);
-		//console.log(y);
-		//console.log(xx);
-	
-		  try{
-			if (reqjson[x]){
-				//console.log("True");
-			    await ajoutDispo(sessEmployeur, reqjson.idemploye, x.slice(0, 1), y, "1");		  
-		  result.success = true;
-		}
-		  
-		else{
-			//console.log("Not True");
-			await ajoutDispo(sessEmployeur, reqjson.idemploye, x.slice(0, 1), y, "0");		  
-		  result.success = true; 
-		} 
-			  
-		  }catch (e) {
-		  result.success = false;
-	  }
-	  
-  		i++;	
-
-		}
-	
-		  res.setHeader("content-type", "application/json")
-		  res.send(JSON.stringify(result))
-	  
-	  
-	  
-}
-
-
-
-const supprimerDisponibilite   = async (req, res) => {
-	  let result = {}
-	  const reqJson = req.body;
-	  try{	
-		  await supprimerDispo(reqJson.idemploye);
-		  result.success = true;		
-	  } catch (e) {
-		  result.success = false;
-	  } finally {
-		  res.setHeader("content-type", "application/json")
-		  res.send(JSON.stringify(result))
-	  }	  
-}
-
-const supprimerIdentification   = async (req, res) => {
-	  let result = {}
-	  const reqJson = req.body;
-	  try{	
-		  await suppressionIdentification(reqJson.idutilisateur);
-		  result.success = true;		
-	  } catch (e) {
-		  result.success = false;
-	  } finally {
-		  res.setHeader("content-type", "application/json")
-		  res.send(JSON.stringify(result))
-	  }	  
-}
 
 const modifierEmploye   = async (req, res) => {
 	  let result = {}
@@ -285,12 +179,7 @@ const modifierEmploye   = async (req, res) => {
   module.exports = {
   afficherEmployes,
   ajouterEmploye,
-  ajouterIdentification,
   enleverEmploye,
-  ajouterDisponibilite,
-  supprimerDisponibilite,
-  supprimerIdentification,
-  ajouterDisponibiliteV2,
   modifierEmploye	  
 
 }
