@@ -112,7 +112,7 @@
                         }).catch(error => {
                             console.log(error);
                         });
-                        this.$router.push("/zoneEmploye")
+                        this.$router.push("/success")
 
                 },
                 demanderConge() {
@@ -139,7 +139,7 @@
                         }).catch(error => {
                             console.log(error);
                         });
-                        this.$router.push("/zoneEmploye")
+                        this.$router.push("/success")
                 }
 
         }

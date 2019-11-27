@@ -138,6 +138,7 @@
                         }).catch(error => {
                             console.log(error);
                         });
+                        this.$router.push("/success")
                 },
                 ajouterEmploye() {
                     var date = this.dateembauche;
@@ -166,6 +167,7 @@
                         }).catch(error => {
                             console.log(error);
                         });
+                        this.$router.push("/success")
                 }
         }
     }
