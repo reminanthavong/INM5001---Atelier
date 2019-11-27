@@ -8,6 +8,7 @@ import ZoneEmploye from '../components/resources/ZoneEmploye.vue'
 import AffichageHoraire from '../components/resources/AffichageHoraire.vue'
 import GestionHoraire from '../components/resources/GestionHoraire.vue'
 import Success from '../components/auth/Success.vue'
+import Unauthorized from '../components/auth/Unauthorized.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -22,24 +23,42 @@ const routes = [
             component: Login
           },
 	{
+            path: '/unauthorized',
+            name: 'unauthorized',
+            component: Unauthorized
+          },
+	{
     path: '/gestionEmployes',
     name: 'gestionEmployes',
-    component: GestionEmployes
+    component: GestionEmployes,
+    meta: {
+                requiresAuth: true
+            }
   },
 	{
     path: '/zoneEmploye',
     name: 'zoneEmploye',
-    component: ZoneEmploye
+    component: ZoneEmploye,
+    meta: {
+                requiresAuth: true,
+	        isUser: 1
+            }
   },
 	{
     path: '/gestionHoraire',
     name: 'gestionHoraire',
-    component: GestionHoraire
+    component: GestionHoraire,
+    meta: {
+                requiresAuth: true
+            }
   },
 	{
     path: '/affichageHoraire',
     name: 'affichageHoraire',
-    component: AffichageHoraire
+    component: AffichageHoraire,
+    meta: {
+                requiresAuth: true
+            }
   },
 	{
     path: '/success',
@@ -60,10 +79,21 @@ router.beforeEach((to, from, next) => {
           next()
           return
         }
-        next('/login')
-      } else {
-        next()
+        next('/unauthorized')
+      } else if (to.matched.some(record => record.meta.isUser)){
+	   if (store.getters.userStatus == 1) {
+          next()
+          return
+        }
+	  next('/unauthorized')    
+	      
+      }else {
+	      
+      next()
+      
       }
+	
+	
     })
 
 

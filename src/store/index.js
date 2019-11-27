@@ -13,10 +13,11 @@ import axios from 'axios'
            auth_request(state) {
             state.status = 'loading'
           },
-          auth_success(state, token, user) {
+          auth_success(state, token, user, admin) {
             state.status = 'success'
             state.token = token
             state.user = user
+            state.admin = admin
           },
           auth_error(state) {
             state.status = 'error'
@@ -59,6 +60,7 @@ import axios from 'axios'
       getters: {
       isLoggedIn: state => !!state.token,
       authStatus: state => state.status,
-      userStatus: state => state.user
+      userStatus: state => state.user,
+      adminStatus: state => state.admin
       }
     })
