@@ -3,7 +3,11 @@ const { Pool } = require('pg');
 var PostgREST = require('postgrest-client')
 var Api = new PostgREST ('http://testpostgrest-calendrier.herokuapp.com')
 var sess;
-   
+
+const fpageWeb  = async (req, res) => {
+  response.sendFile(path.join(__dirname + '/views/pages/gestionHoraire.ejs'));
+  }
+
 const ajouterHoraire   = async (req, res) => {
 	  let result = {}
 	  const reqJson = req.body;
