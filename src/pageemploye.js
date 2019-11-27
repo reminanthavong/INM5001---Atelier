@@ -20,7 +20,14 @@ const ajouterDisponibilites   = async (req, res) => {
 	const reqjson = req.body;
 	var utilisateur = req.session.username;
 	var gestionnaire = req.session.idgestion;
-	var dispo = reqjson.dispo
+	var dispo = reqjson.dispo;
+	try {
+		await supprimerDispo(utilisateur);
+		result.success = true;
+	}catch (e) {
+		  result.success = false;
+	                     }
+	
 	while (i < jours.length) {
 		var x = quarts[i];
 		var y = jours[i];
@@ -83,6 +90,13 @@ async function ajoutConge(utilisateur, dateconges, joursemaine, typequart){
 	await Api
 		.post('/tableconges')
 		.send({idemploye: utilisateur, dateconges: dateconges, joursemaine: joursemaine, typequart: typequart});
+}
+
+async function supprimerDispo(utilisateur) {
+	await Api
+			.delete('/basequartsemploye')
+			.eq('idemploye', utilisateur)
+			.eq('paramtype', '1')
 }
 
 module.exports = {
