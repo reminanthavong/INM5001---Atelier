@@ -59,7 +59,9 @@ const fonctions4  = async (req, res) => {
   res.sendFile(path.join(__dirname+'/views/pages/AffichageHoraire.html' /*, getHoraires */));
 }
 
+/*
 //---------------------------------------------------------------------------------------------------------------------------------//
+
 const GenererHoraire = async (req, res) => {
   try {
             const client = await pool.connect()
@@ -105,7 +107,7 @@ INNER JOIN BaseQuartsEmployeur BQER ON BQER.IDEmployeur=C.IDEmployeur
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------//
-
+*/
 
 
 module.exports = {
@@ -113,5 +115,5 @@ module.exports = {
   fonctions2,
   fonctions3,
   fonctions4,
-GenererHoraire
+//GenererHoraire
 }
