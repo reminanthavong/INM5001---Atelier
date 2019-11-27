@@ -36,7 +36,7 @@ async function ajoutHoraire(sessEmployeur, horairedate, lundijour, lundisoir, lu
       .post('/basequartsemployeur')
       .eq('J', typequart)
       .eq('1', joursemaine)
-      .eq('2019/12/02Gestion8798', idtablehoraire)
+      .eq('003', idtablehoraire)
       .send({idemployeur: sessEmployeur, idtablehoraire: idtablehoraire, typequart: typequart, joursemaine: joursemaine, Nbemployes: lundijour}); 
 }
 
