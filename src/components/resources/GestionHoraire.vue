@@ -134,7 +134,8 @@
     //Fonction d'accès à la BD
     const url = "/Horaire";
     const btnGenerer = document.getElementById("btngenererhoraire");
-    btnGenerer.addEventListener("click", async => {
+    btnGenerer.addEventListener("click", async (e) => {
+    e.preventDefault()
         try {
             const jsonEmp = {};
 
@@ -159,7 +160,7 @@
             jsonEmp.vendredisoir = document.getElementById('vendredisoir').value;
             jsonEmp.vendredinuit = document.getElementById('vendredinuit').value;
 
-            const result = fetch(url, {
+            const result = await fetch(url, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -167,7 +168,7 @@
                 },
                 body: JSON.stringify(jsonEmp)
             })
-            const success = result.json();
+            const success = await result.json();
             alert(success.success);
         } catch (e) {
             console.log("Impossible de générer un horaire");
