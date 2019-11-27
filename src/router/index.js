@@ -11,67 +11,70 @@ import Success from '../components/auth/Success.vue'
 import Unauthorized from '../components/auth/Unauthorized.vue'
 Vue.use(VueRouter)
 
-const routes = [
-        {
-            path: '/',
-            name: 'home',
-            component: Home
-          },
-		{
-            path: '/login',
-            name: 'login',
-            component: Login
-          },
-	{
-            path: '/unauthorized',
-            name: 'unauthorized',
-            component: Unauthorized
-          },
-	{
+const routes=[ {
+    path: '/', name: 'home', component: Home
+}
+
+,
+{
+    path: '/login', name: 'login', component: Login
+}
+
+,
+{
+    path: '/unauthorized', name: 'unauthorized', component: Unauthorized
+}
+
+,
+{
     path: '/gestionEmployes',
     name: 'gestionEmployes',
     component: GestionEmployes,
     meta: {
-                requiresAuth: true
-            }
-  },
-	{
+        requiresAuth: true
+    }
+}
+
+,
+{
     path: '/zoneEmploye',
     name: 'zoneEmploye',
     component: ZoneEmploye,
     meta: {
-                requiresAuth: true,
-	        isUser: 1
-            }
-  },
-	{
+        requiresAuth: true, isUser: 1
+    }
+}
+
+,
+{
     path: '/gestionHoraire',
     name: 'gestionHoraire',
     component: GestionHoraire,
     meta: {
-                requiresAuth: true
-            }
-  },
-	{
+        requiresAuth: true
+    }
+}
+
+,
+{
     path: '/affichageHoraire',
     name: 'affichageHoraire',
     component: AffichageHoraire,
     meta: {
-                requiresAuth: true
-            }
-  },
-	{
-    path: '/success',
-    name: 'success',
-    component: Success
-  }
-]
+        requiresAuth: true
+    }
+}
 
-const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes
-})
+,
+{
+    path: '/success', name: 'success', component: Success
+}
+
+] const router=new VueRouter( {
+    mode: 'history', base: process.env.BASE_URL, routes
+}
+
+)
 
 router.beforeEach((to, from, next) => {
     if (to.matched.some(record => record.meta.requiresAuth)) {
