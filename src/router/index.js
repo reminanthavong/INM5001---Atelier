@@ -3,8 +3,6 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import store from '../store/index.js'
 import Login from '../components/auth/Login.vue'
-import Admin from '../components/auth/Admin.vue'
-import User from '../components/auth/User.vue'
 import GestionEmployes from '../components/resources/GestionEmployes.vue'
 import ZoneEmploye from '../components/resources/ZoneEmploye.vue'
 import AffichageHoraire from '../components/resources/AffichageHoraire.vue'
@@ -17,16 +15,6 @@ const routes = [
             path: '/',
             name: 'home',
             component: Home
-          },
-	{
-            path: '/admin',
-            name: 'admin',
-            component: Admin
-          },
-		{
-            path: '/user',
-            name: 'user',
-            component: User
           },
 		{
             path: '/login',
