@@ -70,15 +70,12 @@ const ajouterConge = async (req, res) => {
 		  result.success = true;
 	  } catch (e) {
 		  result.success = false;
-	  } finally {
-		  res.setHeader("content-type", "application/json")
-		  res.send(JSON.stringify(result))
-		  
 	  }
   		i++;	
 
 		}
-	 
+	          res.setHeader("content-type", "application/json")
+		  res.send(JSON.stringify(result))
 }
 
 async function getDisponibilites(utilisateur) {
