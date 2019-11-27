@@ -29,7 +29,7 @@ const loginAPI = async (request, response) => {	// Nom de la fonction
 				let token = jwt.sign({ id: request.session.idutilisateur }, config.secret, {
                                 expiresIn: 86400 // expires in 24 hours
                                 });
-                                response.status(200).send({ auth: true, token: token, user: 0, admin: 1});
+                                response.status(200).send({ auth: true, token: token, user: false, admin: true});
 			      }  else {
 	                        const infoUser = await getIDgestion(username); // Allez chercher les informations du utilisateur   
 				// Ajout dans JSON Session
@@ -42,7 +42,7 @@ const loginAPI = async (request, response) => {	// Nom de la fonction
 				let token = jwt.sign({ id: request.session.idutilisateur }, config.secret, {
                                 expiresIn: 86400 // expires in 24 hours
                                 });
- 				response.status(200).send({ auth: true, token: token, user: 1, admin: 0 });
+ 				response.status(200).send({ auth: true, token: token, user: true, admin: false });
 			      }
 	      
 			} else {
