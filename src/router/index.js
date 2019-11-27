@@ -40,7 +40,7 @@ const routes=[
     name: 'zoneEmploye',
     component: ZoneEmploye,
     beforeEnter: (to, from, next) => {
-        if(store.getters.isLoggedIn == 1) {
+        if(store.getters.userStatus == 1) {
           next()
         } else {
           next('/unauthorized')
