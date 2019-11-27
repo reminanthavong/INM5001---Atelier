@@ -129,13 +129,12 @@
             </div>
         </div>
     </div>
-    </div>
 </template>
 <script>
     //Fonction d'accès à la BD
     const url = "/Horaire";
     const btnGenerer = document.getElementById("btngenererhoraire");
-    btnGenerer.addEventListener("click", async e => {
+    btnGenerer.addEventListener("click", async => {
         try {
             const jsonEmp = {};
 
