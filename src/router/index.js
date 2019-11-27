@@ -7,6 +7,8 @@ import Admin from '../components/auth/Admin.vue'
 import User from '../components/auth/User.vue'
 import GestionEmployes from '../components/resources/GestionEmployes.vue'
 import ZoneEmploye from '../components/resources/ZoneEmploye.vue'
+import AffichageHoraire from '../components/resources/AffichageHoraire.vue'
+import GestionHoraire from '../components/resources/GestionHoraire.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -39,6 +41,16 @@ const routes = [
     path: '/zoneEmploye',
     name: 'zoneEmploye',
     component: ZoneEmploye
+  },
+	{
+    path: '/gestionHoraire',
+    name: 'gestionHoraire',
+    component: GestionHoraire
+  },
+	{
+    path: '/affichageHoraire',
+    name: 'affichageHoraire',
+    component: AffichageHoraire
   }
 ]
 
