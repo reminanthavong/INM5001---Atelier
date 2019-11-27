@@ -47,7 +47,7 @@ const ajouterDisponibilites   = async (req, res) => {
 		}
 	
 	i = 0;
-	console.log(dispo.length);
+	
 	while (i < dispo.length) {
 		try{
 		  await patchDispo(gestionnaire, utilisateur, dispo[i].slice(0, 1), dispo[i].slice(1), "1");		  
@@ -105,6 +105,16 @@ async function supprimerDispo(utilisateur) {
 			.eq('idemploye', utilisateur)
 			.eq('paramtype', '1')
 }
+
+async function patchDispo(idemployeur, idemploye, typequart, joursemaine, disponibilite) {	
+		await Api
+			.patch('/basequartsemploye')
+			.eq('idemploye', idemploye)
+		        .eq('idemployeur', idemployeur)
+		        .eq('typequart', typequart)
+		        .eq('joursemaine', joursemaine)
+			.send({idemployeur:idemployeur, idemploye: idemploye, idtablehoraire: '000', typequart: typequart, joursemaine: joursemaine, disponibilite: disponibilite, paramtype: '1'});	
+	}
 
 module.exports = {
 		  afficherDisponibilites,
