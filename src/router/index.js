@@ -30,25 +30,34 @@ const routes=[
     {
     path: '/gestionEmployes',
     name: 'gestionEmployes',
-    component: GestionEmployes
+    component: GestionEmployes,
+    meta: {
+        requiresAuth: true
+          }
     },
     {
     path: '/zoneEmploye',
     name: 'zoneEmploye',
     component: ZoneEmploye,
     meta: {
-        isUser: 1
+        requiresAuth: true
           }
     },
 {
     path: '/gestionHoraire',
     name: 'gestionHoraire',
-    component: GestionHoraire
+    component: GestionHoraire,
+    meta: {
+        requiresAuth: true
+          }
 },
 {
     path: '/affichageHoraire',
     name: 'affichageHoraire',
-    component: AffichageHoraire
+    component: AffichageHoraire,
+    meta: {
+        requiresAuth: true
+          }
 },
 {
     path: '/success',
@@ -64,7 +73,7 @@ const router=new VueRouter({
 
 router.beforeEach((to, from, next) => {
     if (to.matched.some(record => record.meta.requiresAuth)) {
-        if (store.getters.userStatus == 1) {
+        if (store.getters.isLoggedIn) {
             next()
             return
         }
