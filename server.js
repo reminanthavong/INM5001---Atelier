@@ -69,7 +69,6 @@ router.delete('/Horaire',gestionhoraire.enleverHoraire )
 // Fonction PageEmploye
   router.get('/DispoEmploye',pageemploye.afficherDisponibilites)
   router.post('/DispoEmploye',pageemploye.ajouterDisponibilites)
-  router.delete('/DispoEmploye', pageemploye.supprimerDisponibilites)
   router.post('/Conge', pageemploye.ajouterConge)
 
 app.use(router)
