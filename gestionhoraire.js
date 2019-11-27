@@ -1,7 +1,7 @@
 const session = require('express-session');
 const { Pool } = require('pg');
-var PostgREST = require('postgrest-client')
-var Api = new PostgREST ('http://testpostgrest-calendrier.herokuapp.com')
+var PostgREST = require('postgrest-client');
+var Api = new PostgREST ('http://testpostgrest-calendrier.herokuapp.com');
 var sess;
 
 const fpageWeb  = async (req, res) => {
@@ -34,7 +34,7 @@ async function ajoutHoraire(sessEmployeur, horairedate, lundijour, lundisoir, lu
     //var idtablehoraire = sessEmployeur + '' + horairedate;
     await Api
       .post('/basequartsemployeur')
-      .send({idemployeur: sessEmployeur, idtablehoraire: '002', typequart: 'J', joursemaine: '1', Nbemployes: 1}); 
+      .send({idemployeur: sessEmployeur, idtablehoraire: '002', typequart: 'J', joursemaine: '1', Nbemployes: '1'}); 
 }
 
 module.exports = {
