@@ -48,8 +48,7 @@ async function ajoutHoraire(sessEmployeur, horairedate, lundijour, lundisoir, lu
 }
 
 module.exports = {
-  afficherHoraire,
-  ajouterHoraire ,
+ ajouterHoraire ,
   enleverHoraire 
 }
 
