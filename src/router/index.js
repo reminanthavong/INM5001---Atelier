@@ -32,6 +32,7 @@ const routes=[
     name: 'gestionEmployes',
     component: GestionEmployes,
     beforeEnter: (to, from, next) => {
+        console.log(store.getters.adminStatus);
         if(store.getters.adminStatus == "1") {
           next()
         } else {
