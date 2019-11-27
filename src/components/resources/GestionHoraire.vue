@@ -167,7 +167,7 @@
                 },
                 body: JSON.stringify(jsonEmp)
             })
-            const success = await result.json();
+            const success = result.json();
             alert(success.success);
         } catch (e) {
             console.log("Impossible de générer un horaire");
