@@ -18,6 +18,9 @@ const ajouterDisponibilites   = async (req, res) => {
 	var quarts = ["J1", "N1", "S1","J2", "S2", "N2","J3", "S3", "N3","J4", "S4", "N4","J5", "S5", "N5"];
 	var i = 0;
 	const reqjson = req.body;
+	console.log(req.body);
+	console.log(utilisateur);
+	console.log(gestionnaire);
 	var utilisateur = req.session.username;
 	var gestionnaire = req.session.idgestion;
 	var dispo = reqjson.dispo;
@@ -53,9 +56,9 @@ const ajouterDisponibilites   = async (req, res) => {
 
 		}
 	
-		  //res.setHeader("content-type", "application/json")
-		  //res.send(JSON.stringify(result))
-		  res.redirect(301, '/zoneEmploye')	
+		  res.setHeader("content-type", "application/json")
+		  res.send(JSON.stringify(result))
+		
 }
 
 const ajouterConge = async (req, res) => {
@@ -70,9 +73,9 @@ const ajouterConge = async (req, res) => {
 		  result.success = false;
 		  console.log(e);
 	  } finally {
-		  //res.setHeader("content-type", "application/json")
-		  //res.send(JSON.stringify(result))
-		  res.redirect(301, '/zoneEmploye')
+		  res.setHeader("content-type", "application/json")
+		  res.send(JSON.stringify(result))
+		  
 	  }
 }
 
