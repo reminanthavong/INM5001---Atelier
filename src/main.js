@@ -7,7 +7,6 @@ import router from './router'
 import store from './store'
 import Axios from 'axios'
 
-Vue.forceUpdate();
 Vue.use(BootstrapVue)
 Vue.config.productionTip = false
 

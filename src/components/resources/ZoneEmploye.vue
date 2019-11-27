@@ -112,7 +112,7 @@
                         }).catch(error => {
                             console.log(error);
                         });
-                        this.$forceUpdate();
+                        location.reload();
 
                 },
                 demanderConge() {
@@ -139,7 +139,7 @@
                         }).catch(error => {
                             console.log(error);
                         });
-                        this.$forceUpdate();
+                        location.reload();
                 }
 
         }
