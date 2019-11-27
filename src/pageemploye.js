@@ -6,7 +6,6 @@ var Api = new PostgREST ('http://testpostgrest-calendrier.herokuapp.com')
 const afficherDisponibilites  = async (req, res) => {
 	  var utilisateur = req.session.username;
 	  const rows = await getDisponibilites(utilisateur);
-	  console.log(rows);
 	  res.setHeader("content-type", "application/json")
 	  res.send(JSON.stringify(rows))
 }
@@ -18,12 +17,12 @@ const ajouterDisponibilites   = async (req, res) => {
 	var quarts = ["J1", "N1", "S1","J2", "S2", "N2","J3", "S3", "N3","J4", "S4", "N4","J5", "S5", "N5"];
 	var i = 0;
 	const reqjson = req.body;
-	console.log(req.body);
-	console.log(utilisateur);
-	console.log(gestionnaire);
 	var utilisateur = req.session.username;
 	var gestionnaire = req.session.idgestion;
 	var dispo = reqjson.dispo;
+	console.log(dispo);
+	console.log(utilisateur);
+	console.log(gestionnaire);
 	try {
 		await supprimerDispo(utilisateur);
 		result.success = true;
@@ -44,6 +43,7 @@ const ajouterDisponibilites   = async (req, res) => {
   		i++;	
 
 		}
+	
 	i = 0;
 	while (i < dispo.length) {
 		try{
