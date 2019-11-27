@@ -1,11 +1,11 @@
 "use strict";
 const express = require('express');
 const session = require('express-session');
-const login = require('./src/login')
-const gestionemploye = require('./src/gestionemploye')
-const afficherhoraire = require('./src/afficherhoraire')
-const pageemploye = require('./src/pageemploye')
-const gestionhoraire = require('./src/gestionhoraire')
+const login = require('./src/backend/login')
+const gestionemploye = require('./src/backend/gestionemploye')
+const afficherhoraire = require('./src/backend/afficherhoraire')
+const pageemploye = require('./src/backend/pageemploye')
+const gestionhoraire = require('./src/backend/gestionhoraire')
 const config = require('./src/config');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
