@@ -9,7 +9,7 @@ import GestionEmployes from '../components/resources/GestionEmployes.vue'
 import ZoneEmploye from '../components/resources/ZoneEmploye.vue'
 import AffichageHoraire from '../components/resources/AffichageHoraire.vue'
 import GestionHoraire from '../components/resources/GestionHoraire.vue'
-import Success from '../components/auth/Success.vue
+import Success from '../components/auth/Success.vue'
 Vue.use(VueRouter)
 
 const routes = [
