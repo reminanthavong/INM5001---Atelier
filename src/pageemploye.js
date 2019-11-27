@@ -20,12 +20,13 @@ const ajouterDisponibilites   = async (req, res) => {
 	var utilisateur = req.session.username;
 	var gestionnaire = req.session.idgestion;
 	var dispo = reqjson.dispo;
-	console.log(dispo);
-	console.log(utilisateur);
-	console.log(gestionnaire);
+	//console.log(dispo);
+	//console.log(utilisateur);
+	//console.log(gestionnaire);
 	try {
 		await supprimerDispo(utilisateur);
 		result.success = true;
+		console.log("Supprimer" + result.success);
 	}catch (e) {
 		  result.success = false;
 	                     }
@@ -36,6 +37,7 @@ const ajouterDisponibilites   = async (req, res) => {
 		  try{
 		  await ajoutDispo(gestionnaire, utilisateur, x.slice(0, 1), y, "0");		  
 		  result.success = true;
+		  console.log("Ajout" + result.success);  
 		  }catch (e) {
 		  result.success = false;
 	                     }
@@ -49,6 +51,7 @@ const ajouterDisponibilites   = async (req, res) => {
 		try{
 		  await patchDispo(gestionnaire, utilisateur, dispo[i].slice(0, 1), dispo[i].slice(1), "1");		  
 		  result.success = true;
+		  console.log("Patch" + result.success);
 		  }catch (e) {
 		  result.success = false;
 	                     }
