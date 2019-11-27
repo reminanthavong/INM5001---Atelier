@@ -1,5 +1,5 @@
 Skip to content
-Search or jump to…
+Search or jump toâ€¦
 
 const { Pool } = require('pg');
 const pool = new Pool({
