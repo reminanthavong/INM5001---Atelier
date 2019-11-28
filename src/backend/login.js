@@ -10,16 +10,7 @@ var Api = new PostgREST ('http://testpostgrest-calendrier.herokuapp.com')
 
 const userStatus = async (request, response) => {
 	console.log(request.session.typeutilisateur)
-	if (request.session.typeutilisateur == 1){
-	
-		response.send(true)
-	
-	}else {
-	
-	
-		response.send(false)
-	}
-	
+        response.send(request.session.typeutilisateur)	
 }
 
 
