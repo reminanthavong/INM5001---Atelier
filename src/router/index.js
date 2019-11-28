@@ -15,12 +15,20 @@ const routes=[
     {
     path: '/',
     name: 'home',
-    component: Home
+    component: Home,
+    beforeEnter(to, from, next) {
+    	console.log('beforeEnter: HOME')
+    	next()
+      }
     },
     {
     path: '/login',
     name: 'login',
-    component: Login
+    component: Login,
+    beforeEnter(to, from, next) {
+    	console.log('beforeEnter: HOME')
+    	next()
+      }    
     },
     {
     path: '/unauthorized',
@@ -31,15 +39,22 @@ const routes=[
     path: '/gestionEmployes',
     name: 'gestionEmployes',
     component: GestionEmployes,
+    beforeEnter(to, from, next) {
+    	console.log('beforeEnter: HOME')
+    	next()
+      },    
     meta: {
-        requiresAuth: true,
-        isAdmin: true
+        requiresAuth: true
           }
     },
     {
     path: '/zoneEmploye',
     name: 'zoneEmploye',
     component: ZoneEmploye,
+    beforeEnter(to, from, next) {
+    	console.log('beforeEnter: HOME')
+    	next()
+      },    
     meta: {
         requiresAuth: true
           }
@@ -48,15 +63,22 @@ const routes=[
     path: '/gestionHoraire',
     name: 'gestionHoraire',
     component: GestionHoraire,
+    beforeEnter(to, from, next) {
+    	console.log('beforeEnter: HOME')
+    	next()
+      },
     meta: {
-        requiresAuth: true,
-        isAdmin: true
+        requiresAuth: true
           }
 },
 {
     path: '/affichageHoraire',
     name: 'affichageHoraire',
     component: AffichageHoraire,
+    beforeEnter(to, from, next) {
+    	console.log('beforeEnter: HOME')
+    	next()
+      },
     meta: {
         requiresAuth: true
           }
@@ -76,15 +98,6 @@ const router=new VueRouter({
 router.beforeEach((to, from, next) => {
     if (to.matched.some(record => record.meta.requiresAuth)) {
         if (store.getters.isLoggedIn) {
-            
-            if(to.matched.some(record => record.meta.isAdmin)){
-                if(store.getters.isLoggedIn){
-                    next()
-                   }else {
-                       next('/unauthorized')
-                   }
-               }
-            
             next()
             return
         }
