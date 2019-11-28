@@ -45,7 +45,29 @@ const enableCrossDomain = function(req, res, next) {
 }
 app.use(enableCrossDomain)
 
+// Fonction Login
 router.post('/login', login.loginAPI)
+router.get('/gestionEmployes', async (req, res) => {
+	if (req.session.typeutilisateur == 1){
+      res.redirect('/gestionEmployes2');
+		} else {
+	  res.redirect('/unauthorized');	
+	}
+  })
+router.get('/zoneEmploye', async (req, res) => {
+	if (req.session.typeutilisateur == 0){
+      res.redirect('/zoneEmploye2');
+		} else {
+	  res.redirect('/unauthorized');	
+	}
+  })
+router.get('/gestionHoraire', async (req, res) => {
+	if (req.session.typeutilisateur == 1){
+      res.redirect('/gestionHoraire2');
+		} else {
+	  res.redirect('/unauthorized');	
+	}
+  })
 
 // Fonction GestionEmploye
 router.get('/Employe', gestionemploye.afficherEmployes)
@@ -64,9 +86,9 @@ router.post('/Horaire',gestionhoraire.ajouterHoraire )
 router.delete('/Horaire',gestionhoraire.enleverHoraire )
 
 // Fonction PageEmploye
-  router.get('/DispoEmploye',pageemploye.afficherDisponibilites)
-  router.post('/DispoEmploye',pageemploye.ajouterDisponibilites)
-  router.post('/Conge', pageemploye.ajouterConge)
+router.get('/DispoEmploye',pageemploye.afficherDisponibilites)
+router.post('/DispoEmploye',pageemploye.ajouterDisponibilites)
+router.post('/Conge', pageemploye.ajouterConge)
 
 app.use(router)
 var port = process.env.PORT || 5000;
