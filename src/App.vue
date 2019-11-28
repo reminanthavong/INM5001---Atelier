@@ -7,7 +7,11 @@
       <router-link class="w3-bar-item w3-button w3-hide-small w3-hover-white" to="/affichageHoraire">Afficher Horaire</router-link> 
       <router-link class="w3-bar-item w3-button w3-hide-small w3-hover-white" to="/gestionHoraire">Gestion Horaire</router-link> 
       <router-link class="w3-bar-item w3-button w3-hide-small w3-hover-white" to="/gestionEmployes">Gestion Employes</router-link> 
-      <router-link class="w3-bar-item w3-button w3-hide-small w3-hover-white" to="/zoneEmploye">Zone Employes</router-link> 
+      <router-link class="w3-bar-item w3-button w3-hide-small w3-hover-white" to="/zoneEmploye">Zone Employes</router-link>
+      <span v-if="userStatus">  <a class="w3-bar-item w3-button w3-hide-small w3-hover-white" to="/login">TRUE USER</a></span>
+      <span v-else>  <router-link class="w3-bar-item w3-button w3-hide-small w3-hover-white" to="/login">FALSE USER</router-link></span>
+      <span v-if="adminStatus">  <a class="w3-bar-item w3-button w3-hide-small w3-hover-white" to="/login">TRUE ADMIN</a></span>
+      <span v-else>  <router-link class="w3-bar-item w3-button w3-hide-small w3-hover-white" to="/login">FALSE ADMIN</router-link></span>
       <span v-if="isLoggedIn">  <a class="w3-bar-item w3-button w3-hide-small w3-hover-white" @click="logout">Logout</a></span>
       <span v-else>  <router-link class="w3-bar-item w3-button w3-hide-small w3-hover-white" to="/login">Login</router-link></span>
     </div>
