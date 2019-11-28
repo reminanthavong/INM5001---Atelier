@@ -37,7 +37,7 @@ async function ajoutHoraire(sessEmployeur, horairedate, lundijour, lundisoir, lu
     */
     await Api
       .post('/basequartsemployeur')
-      .send({idemployeur: 'Gestion8768', idtablehoraire: '002', typequart: 'J', joursemaine: '1', Nbemployes: '1'});
+      .send({idemployeur: 'Gestion8768', idtablehoraire: '002', typequart: 'J', joursemaine: '1', nbremployes: '1'});
 
       /*retirer temporairement pour tester
       .send(
