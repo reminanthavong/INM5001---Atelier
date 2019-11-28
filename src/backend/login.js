@@ -33,6 +33,7 @@ const loginAPI = async (request, response) => {	// Nom de la fonction
 	                        request.session.prenom = 'Administrateur'; // Valeur prenom de l'employe
 	                        request.session.typeutilisateur = checkUsername[0].typeutilisateur; // Si utilisateur est admin
 				let token = jwt.sign({ id: username }, config.secret, { expiresIn: 86400 });
+				      console.log(request.session)
                                 response.status(200).send({ auth: true, token: token, user: request.session });
 			      }  else {
 	                        const infoUser = await getIDgestion(username); // Allez chercher les informations du utilisateur   
@@ -44,6 +45,7 @@ const loginAPI = async (request, response) => {	// Nom de la fonction
 	                        request.session.prenom = infoUser[0].prenomemploye; // Valeur prenom de l'employe
 	                        request.session.typeutilisateur = checkUsername[0].typeutilisateur; // Si utilisateur est admin
 				let token = jwt.sign({ id: username }, config.secret, { expiresIn: 86400});
+				      console.log(request.session)
                                 response.status(200).send({ auth: true, token: token, user: request.session });
 			      }
 	      
