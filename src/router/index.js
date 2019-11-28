@@ -17,8 +17,8 @@ const routes=[
     name: 'home',
     component: Home,
     beforeEnter(to, from, next) {
-    	console.log('beforeEnter: HOME')
-    	next()
+        console.log('beforeEnter: HOME')
+        next()
       }
     },
     {
@@ -26,8 +26,8 @@ const routes=[
     name: 'login',
     component: Login,
     beforeEnter(to, from, next) {
-    	console.log('beforeEnter: HOME')
-    	next()
+        console.log('beforeEnter: HOME')
+        next()
       }    
     },
     {
@@ -40,8 +40,8 @@ const routes=[
     name: 'gestionEmployes',
     component: GestionEmployes,
     beforeEnter(to, from, next) {
-    	console.log('beforeEnter: HOME')
-    	next()
+        console.log('beforeEnter: HOME')
+        next()
       },    
     meta: {
         requiresAuth: true
@@ -52,8 +52,8 @@ const routes=[
     name: 'zoneEmploye',
     component: ZoneEmploye,
     beforeEnter(to, from, next) {
-    	console.log('beforeEnter: HOME')
-    	next()
+        console.log('beforeEnter: HOME')
+        next()
       },    
     meta: {
         requiresAuth: true
@@ -64,8 +64,8 @@ const routes=[
     name: 'gestionHoraire',
     component: GestionHoraire,
     beforeEnter(to, from, next) {
-    	console.log('beforeEnter: HOME')
-    	next()
+        console.log('beforeEnter: HOME')
+        next()
       },
     meta: {
         requiresAuth: true
@@ -76,8 +76,8 @@ const routes=[
     name: 'affichageHoraire',
     component: AffichageHoraire,
     beforeEnter(to, from, next) {
-    	console.log('beforeEnter: HOME')
-    	next()
+        console.log('beforeEnter: HOME')
+        next()
       },
     meta: {
         requiresAuth: true
