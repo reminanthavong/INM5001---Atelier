@@ -10,6 +10,7 @@ import GestionHoraire from '../components/resources/GestionHoraire.vue'
 import Success from '../components/auth/Success.vue'
 import Unauthorized from '../components/auth/Unauthorized.vue'
 const session = require('express-session');
+const request = require('request');
 Vue.use(VueRouter)
 
 const routes=[ 
@@ -41,7 +42,7 @@ const routes=[
     name: 'zoneEmploye',
     component: ZoneEmploye,
     beforeEnter: (to, from, next) => {
-        if(session.typeutilisateur == 0){
+        if(request.session.typeutilisateur == 0){
         next()
         }else{
          next('/unauthorized')
