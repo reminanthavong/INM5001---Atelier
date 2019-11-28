@@ -48,16 +48,19 @@
           };
         },
         methods: {
-          login: function() {
-            let username = this.username;
-            let password = this.password;
-            this.$store
-              .dispatch("login", { username, password })
-              .then(() => this.$router.push("/"))
-              .catch(function (error) {
-                        /*eslint no-console: ["error", { allow: ["warn", "error"] }] */
+          login: function(e) {
+	    e.preventDefault()
+            if (this.password.length > 0) {
+                    this.$http.post('/login', {
+                        username: this.username,
+                        password: this.password
+                    })
+                    .then(response => {
+                    })
+                    .catch(function (error) {
                         console.error(error.response);
 		});
+	     }
           }
         }
       };
