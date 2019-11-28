@@ -22,15 +22,29 @@
 <style src="./assets/w3-theme-black.css"></style>
 <script>
     export default {
+      data() {
+            return {
+                isAdmin: false
+        },
       computed: {
         isLoggedIn: function() {
           return this.$store.getters.isLoggedIn;
-        },
-        isAdmin: function() {
-          return this.$store.getters.userStatus;
         }
       },
       methods: {
+      toggleAfficherEmployes() {
+                    fetch('/userStatus', {
+                            method: 'GET'
+                        })
+                        .then((response) => {
+                            return response.json()
+                        })
+                        .then((data) => {
+                            this.isAdmin = data
+                        }).catch(error => {
+                            console.log(error);
+                        });
+                },
         logout: function() {
           this.$store.dispatch("logout").then(() => {
             this.$router.push("/login");
