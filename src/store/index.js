@@ -7,8 +7,8 @@ import axios from 'axios'
       state: {
       status: '',
         token: localStorage.getItem('token') || '',
-        user: {},
-        admin: {}  
+        user: false,
+        admin: false  
       },
       mutations: {
            auth_request(state) {
@@ -26,8 +26,8 @@ import axios from 'axios'
           logout(state) {
             state.status = ''
             state.token = ''
-            state.user = ''
-            state.admin = ''
+            state.user = false
+            state.admin = false
           }
       },
       actions: {
@@ -38,10 +38,11 @@ import axios from 'axios'
                 .then(resp => {
                   const token = resp.data.token
                   const user = resp.data.user
+                  const admin = resp.data.admin
                   localStorage.setItem('token', token)
                   // Add the following line:
                   axios.defaults.headers.common['Authorization'] = token
-                  commit('auth_success', token, user)
+                  commit('auth_success', token, user, admin)
                   resolve(resp)
                 })
                 .catch(err => {
