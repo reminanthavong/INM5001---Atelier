@@ -30,7 +30,7 @@ const routes=[
     component: Unauthorized
     },
     {
-    path: '/gestionEmployes',
+    path: '/gestionEmployes2',
     name: 'gestionEmployes',
     component: GestionEmployes,    
     meta: {
@@ -38,22 +38,15 @@ const routes=[
           }
     },
     {
-    path: '/zoneEmploye',
+    path: '/zoneEmploye2',
     name: 'zoneEmploye',
     component: ZoneEmploye,
-    beforeEnter: (to, from, next) => {
-        if(request.session.typeutilisateur == 0){
-        next()
-        }else{
-         next('/unauthorized')
-        }
-      },
     meta: {
         requiresAuth: true
           }
     },
 {
-    path: '/gestionHoraire',
+    path: '/gestionHoraire2',
     name: 'gestionHoraire',
     component: GestionHoraire,
     meta: {
