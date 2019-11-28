@@ -47,25 +47,25 @@ app.use(enableCrossDomain)
 
 // Fonction Login
 router.post('/login', login.loginAPI)
-router.get('/gestionEmployes', async (req, res) => {
+router.get('/gestionEmployes', async (req) => {
 	if (req.session.typeutilisateur == 1){
-      res.redirect('/gestionEmployes2');
+      router.get('/gestionEmployes2')
 		} else {
-	  res.redirect('/unauthorized');	
+	  router.get('/unauthorized')	
 	}
   })
-router.get('/zoneEmploye', async (req, res) => {
+router.get('/zoneEmploye', async (req) => {
 	if (req.session.typeutilisateur == 0){
-      res.redirect('/zoneEmploye2');
+      router.get('/zoneEmploye2');
 		} else {
-	  res.redirect('/unauthorized');	
+	  router.get('/unauthorized')	
 	}
   })
-router.get('/gestionHoraire', async (req, res) => {
+router.get('/gestionHoraire', async (req) => {
 	if (req.session.typeutilisateur == 1){
-      res.redirect('/gestionHoraire2');
+      router.get('/gestionHoraire2');
 		} else {
-	  res.redirect('/unauthorized');	
+	  router.get('/unauthorized')	
 	}
   })
 
