@@ -25,14 +25,14 @@
       data() {
             return {
                 isAdmin: false
+          }
         },
       computed: {
         isLoggedIn: function() {
           return this.$store.getters.isLoggedIn;
         }
       },
-      methods: {
-      toggleAfficherEmployes() {
+      mounted: function(){
                     fetch('/userStatus', {
                             method: 'GET'
                         })
@@ -44,7 +44,10 @@
                         }).catch(error => {
                             console.log(error);
                         });
-                },
+                
+                
+            },
+      methods: {
         logout: function() {
           this.$store.dispatch("logout").then(() => {
             this.$router.push("/login");
