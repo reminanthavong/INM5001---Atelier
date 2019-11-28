@@ -18,7 +18,6 @@
         ></b-form-input>
       </b-form-group>
       
-      <b-form @submit="login" v-if="show">
       <b-form-group
         id="input-group-2"
         label="Password:"
