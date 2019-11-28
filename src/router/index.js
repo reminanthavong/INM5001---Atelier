@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import store from '../store/index.js'
+//import store from '../store/index.js'
 import Login from '../components/auth/Login.vue'
 import GestionEmployes from '../components/resources/GestionEmployes.vue'
 import ZoneEmploye from '../components/resources/ZoneEmploye.vue'
@@ -34,7 +34,8 @@ const routes=[
     name: 'gestionEmployes',
     component: GestionEmployes,    
     meta: {
-        requiresAuth: true
+        requiresAuth: true,
+        is_admin : true
           }
     },
     {
@@ -74,14 +75,27 @@ const router=new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-    if (to.matched.some(record => record.meta.requiresAuth)) {
-        if (store.getters.isLoggedIn) {
-            next()
-            return
+    if(to.matched.some(record => record.meta.requiresAuth)) {
+        if (localStorage.getItem('jwt') == null) {
+            next({
+                path: '/login',
+                params: { nextUrl: to.fullPath }
+            })
+        } else {
+            let user = JSON.parse(localStorage.getItem('user'))
+            if(to.matched.some(record => record.meta.is_admin)) {
+                if(user.is_admin == 1){
+                    next()
+                }
+                else{
+                    next('/unauthorized')
+                }
+            }else {
+                next()
+            }
         }
-        next('/unauthorized')
     } else {
-        next()
+        next() 
     }
 })
 
