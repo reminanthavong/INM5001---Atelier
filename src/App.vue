@@ -7,7 +7,7 @@
       <router-link class="w3-bar-item w3-button w3-hide-small w3-hover-white" to="/affichageHoraire">Afficher Horaire</router-link> 
       <router-link class="w3-bar-item w3-button w3-hide-small w3-hover-white" to="/gestionHoraire">Gestion Horaire</router-link> 
       <router-link class="w3-bar-item w3-button w3-hide-small w3-hover-white" to="/gestionEmployes">Gestion Employes</router-link> 
-      <span v-if="isAdmin">  <a class="w3-bar-item w3-button w3-hide-small w3-hover-white" to="/zoneEmploye">Zone Employes</a></span>
+      <span v-if="!isAdmin">  <a class="w3-bar-item w3-button w3-hide-small w3-hover-white" to="/zoneEmploye">Zone Employes</a></span>
       <span v-else> </span>
       <span v-if="isLoggedIn">  <a class="w3-bar-item w3-button w3-hide-small w3-hover-white" @click="logout">Logout</a></span>
       <span v-else>  <router-link class="w3-bar-item w3-button w3-hide-small w3-hover-white" to="/login">Login</router-link></span>
@@ -21,16 +21,11 @@
 <style src="./assets/w3-theme-black.css"></style>
 <script>
     export default {
-      data() {
-            return {
-                isAdmin: false
-          }
-        },
       computed: {
         isLoggedIn: function() {
           return this.$store.getters.isLoggedIn;
         },
-        zoneEmploye: function(){
+        isAdmin: function(){
                     fetch('/userStatus', {
                             method: 'GET'
                         })
@@ -39,15 +34,15 @@
                         })
                         .then((data) => {
                             if(data == 1){
-                            this.isAdmin = true
-                            }
+                            return true
+                            }else {return false}
                             console.log(data);
                         }).catch(error => {
                             console.log(error);
                         });
                 }
                 
-            }
+            
       },
       methods: {
         logout: function() {
