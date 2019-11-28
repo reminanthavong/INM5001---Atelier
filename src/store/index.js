@@ -26,8 +26,8 @@ import axios from 'axios'
           logout(state) {
             state.status = ''
             state.token = ''
-            state.user = false
-            state.admin = false
+            state.user = false,
+            state.admin = false  
           }
       },
       actions: {
@@ -38,11 +38,11 @@ import axios from 'axios'
                 .then(resp => {
                   const token = resp.data.token
                   const user = resp.data.user
-                  const admin = resp.data.admin
                   localStorage.setItem('token', token)
+                  console.log(token + user)
                   // Add the following line:
                   axios.defaults.headers.common['Authorization'] = token
-                  commit('auth_success', token, user, admin)
+                  commit('auth_success', token, user)
                   resolve(resp)
                 })
                 .catch(err => {
@@ -64,11 +64,7 @@ import axios from 'axios'
       getters: {
       isLoggedIn: state => !!state.token,
       authStatus: state => state.status,
-      userStatus: state => {
-      return state.user
-        },
-      adminStatus: state => {
-      return state.admin
-        }
+      userStatus: state => state.user,
+      adminStatus: state => state.admin
       }
     })
