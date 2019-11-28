@@ -9,6 +9,7 @@ import AffichageHoraire from '../components/resources/AffichageHoraire.vue'
 import GestionHoraire from '../components/resources/GestionHoraire.vue'
 import Success from '../components/auth/Success.vue'
 import Unauthorized from '../components/auth/Unauthorized.vue'
+const session = require('express-session');
 Vue.use(VueRouter)
 
 const routes=[ 
@@ -39,6 +40,13 @@ const routes=[
     path: '/zoneEmploye',
     name: 'zoneEmploye',
     component: ZoneEmploye,
+    beforeEnter: (to, from, next) => {
+        if(session.typeutilisateur == 0){
+        next()
+        }else{
+         next('/unauthorized')
+        }
+      },
     meta: {
         requiresAuth: true
           }
@@ -82,6 +90,5 @@ router.beforeEach((to, from, next) => {
         next()
     }
 })
-
 
 export default router
