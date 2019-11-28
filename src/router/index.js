@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import store from '../store/index.js'
+//import store from '../store/index.js'
 import Login from '../components/auth/Login.vue'
 import GestionEmployes from '../components/resources/GestionEmployes.vue'
 import ZoneEmploye from '../components/resources/ZoneEmploye.vue'
@@ -34,7 +34,8 @@ const routes=[
     name: 'gestionEmployes',
     component: GestionEmployes,    
     meta: {
-        requiresAuth: true
+        requiresAuth: true,
+        is_admin : true
           }
     },
     {
@@ -87,20 +88,13 @@ router.beforeEach((to, from, next) => {
                     next()
                 }
                 else{
-                    next({ name: 'userboard'})
+                    next('/unauthorized')
                 }
             }else {
                 next()
             }
         }
-    } else if(to.matched.some(record => record.meta.guest)) {
-        if(localStorage.getItem('jwt') == null){
-            next()
-        }
-        else{
-            next({ name: 'userboard'})
-        }
-    }else {
+    } else {
         next() 
     }
 })
