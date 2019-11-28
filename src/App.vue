@@ -10,6 +10,10 @@
       <router-link class="w3-bar-item w3-button w3-hide-small w3-hover-white" to="/zoneEmploye">Zone Employes</router-link> 
       <span v-if="isLoggedIn">  <a class="w3-bar-item w3-button w3-hide-small w3-hover-white" @click="logout">Logout</a></span>
       <span v-else>  <router-link class="w3-bar-item w3-button w3-hide-small w3-hover-white" to="/login">Login</router-link></span>
+      <span v-if="isAdmin">  <a class="w3-bar-item w3-button w3-hide-small w3-hover-white" @click="logout">TEST ADMIN</a></span>
+      <span v-else></span>
+      <span v-if="isUser">  <a class="w3-bar-item w3-button w3-hide-small w3-hover-white" @click="logout">TEST USER</a></span>
+      <span v-else></span>
     </div>
     </div>
     <router-view/>
@@ -23,6 +27,12 @@
       computed: {
         isLoggedIn: function() {
           return this.$store.getters.isLoggedIn;
+        },
+        isAdmin: function() {
+          return this.$store.getters.adminStatus;
+        },
+        isUser: function() {
+          return this.$store.getters.userStatus;
         }
       },
       methods: {
