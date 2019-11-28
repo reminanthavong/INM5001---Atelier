@@ -9,26 +9,19 @@ import AffichageHoraire from '../components/resources/AffichageHoraire.vue'
 import GestionHoraire from '../components/resources/GestionHoraire.vue'
 import Success from '../components/auth/Success.vue'
 import Unauthorized from '../components/auth/Unauthorized.vue'
+const session = require('express-session');
 Vue.use(VueRouter)
 
 const routes=[ 
     {
     path: '/',
     name: 'home',
-    component: Home,
-    beforeEnter(to, from, next) {
-        console.log('beforeEnter: HOME')
-        next()
-      }
+    component: Home
     },
     {
     path: '/login',
     name: 'login',
-    component: Login,
-    beforeEnter(to, from, next) {
-        console.log('beforeEnter: HOME')
-        next()
-      }    
+    component: Login   
     },
     {
     path: '/unauthorized',
@@ -38,11 +31,7 @@ const routes=[
     {
     path: '/gestionEmployes',
     name: 'gestionEmployes',
-    component: GestionEmployes,
-    beforeEnter(to, from, next) {
-        console.log('beforeEnter: HOME')
-        next()
-      },    
+    component: GestionEmployes,    
     meta: {
         requiresAuth: true
           }
@@ -51,10 +40,13 @@ const routes=[
     path: '/zoneEmploye',
     name: 'zoneEmploye',
     component: ZoneEmploye,
-    beforeEnter(to, from, next) {
-        console.log('beforeEnter: HOME')
+    beforeEnter: (to, from, next) => {
+        if(session.typeutilisateur == 0){
         next()
-      },    
+        }else{
+         next('/unauthorized')
+        }
+      },
     meta: {
         requiresAuth: true
           }
@@ -63,10 +55,6 @@ const routes=[
     path: '/gestionHoraire',
     name: 'gestionHoraire',
     component: GestionHoraire,
-    beforeEnter(to, from, next) {
-        console.log('beforeEnter: HOME')
-        next()
-      },
     meta: {
         requiresAuth: true
           }
@@ -75,10 +63,6 @@ const routes=[
     path: '/affichageHoraire',
     name: 'affichageHoraire',
     component: AffichageHoraire,
-    beforeEnter(to, from, next) {
-        console.log('beforeEnter: HOME')
-        next()
-      },
     meta: {
         requiresAuth: true
           }
@@ -106,6 +90,5 @@ router.beforeEach((to, from, next) => {
         next()
     }
 })
-
 
 export default router
