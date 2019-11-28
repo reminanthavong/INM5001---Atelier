@@ -47,6 +47,7 @@ app.use(enableCrossDomain)
 
 // Fonction Login
 router.post('/login', login.loginAPI)
+router.get('/userStatus', login.userStatus)
 
 // Fonction GestionEmploye
 router.get('/Employe', gestionemploye.afficherEmployes)
