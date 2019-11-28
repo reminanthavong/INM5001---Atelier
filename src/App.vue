@@ -50,7 +50,7 @@
                         }).catch(error => {
                             console.log(error);
                         });
-                if(!this.isAdmin){
+                if(this.isAdmin==0){
                 this.$router.push("/zoneEmploye")
                 }else{
                 this.$router.push("/unauthorized")
