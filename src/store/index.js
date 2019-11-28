@@ -7,18 +7,16 @@ import axios from 'axios'
       state: {
       status: '',
         token: localStorage.getItem('token') || '',
-        user: false,
-        admin: false  
+        user: false 
       },
       mutations: {
            auth_request(state) {
             state.status = 'loading'
           },
-          auth_success(state, token, user, admin) {
+          auth_success(state, token, user) {
             state.status = 'success'
             state.token = token
             state.user = user
-            state.admin = admin
           },
           auth_error(state) {
             state.status = 'error'
@@ -26,8 +24,7 @@ import axios from 'axios'
           logout(state) {
             state.status = ''
             state.token = ''
-            state.user = false,
-            state.admin = false  
+            state.user = false 
           }
       },
       actions: {
@@ -39,7 +36,6 @@ import axios from 'axios'
                   const token = resp.data.token
                   const user = resp.data.user
                   localStorage.setItem('token', token)
-                  console.log(token + user)
                   // Add the following line:
                   axios.defaults.headers.common['Authorization'] = token
                   commit('auth_success', token, user)
@@ -64,7 +60,6 @@ import axios from 'axios'
       getters: {
       isLoggedIn: state => !!state.token,
       authStatus: state => state.status,
-      userStatus: state => state.user,
-      adminStatus: state => state.admin
+      userStatus: state => state.user
       }
     })
