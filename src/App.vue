@@ -7,11 +7,9 @@
       <router-link class="w3-bar-item w3-button w3-hide-small w3-hover-white" to="/affichageHoraire">Afficher Horaire</router-link> 
       <router-link class="w3-bar-item w3-button w3-hide-small w3-hover-white" to="/gestionHoraire">Gestion Horaire</router-link> 
       <router-link class="w3-bar-item w3-button w3-hide-small w3-hover-white" to="/gestionEmployes">Gestion Employes</router-link> 
-      <router-link class="w3-bar-item w3-button w3-hide-small w3-hover-white" to="/zoneEmploye">Zone Employes</router-link>
+      <router-link class="w3-bar-item w3-button w3-hide-small w3-hover-white" @click="zoneEmploye">Zone Employes</router-link>
       <span v-if="isLoggedIn">  <a class="w3-bar-item w3-button w3-hide-small w3-hover-white" @click="logout">Logout</a></span>
       <span v-else>  <router-link class="w3-bar-item w3-button w3-hide-small w3-hover-white" to="/login">Login</router-link></span>
-      <span v-if="isAdmin">  <a class="w3-bar-item w3-button w3-hide-small w3-hover-white" to="/">ADMIN</a></span>
-      <span v-else>  <router-link class="w3-bar-item w3-button w3-hide-small w3-hover-white" to="/">USER</router-link></span>
     </div>
     </div>
     <router-view/>
@@ -32,7 +30,13 @@
           return this.$store.getters.isLoggedIn;
         }
       },
-      mounted: function(){
+      methods: {
+        logout: function() {
+          this.$store.dispatch("logout").then(() => {
+            this.$router.push("/login");
+          });
+        },
+        zoneEmploye: function(){
                     fetch('/userStatus', {
                             method: 'GET'
                         })
@@ -44,15 +48,13 @@
                         }).catch(error => {
                             console.log(error);
                         });
+                if(!this.isAdmin){
+                this.$router.push("/zoneEmploye")
+                }else{
+                this.$router.push("/unauthorized")
+                }
                 
-                
-            },
-      methods: {
-        logout: function() {
-          this.$store.dispatch("logout").then(() => {
-            this.$router.push("/login");
-          });
-        }
+            }
       }
     };
     </script>
