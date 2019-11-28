@@ -9,7 +9,7 @@ import AffichageHoraire from '../components/resources/AffichageHoraire.vue'
 import GestionHoraire from '../components/resources/GestionHoraire.vue'
 import Success from '../components/auth/Success.vue'
 import Unauthorized from '../components/auth/Unauthorized.vue'
-const session = require('express-session');
+//const session = require('express-session');
 const request = require('request');
 Vue.use(VueRouter)
 
