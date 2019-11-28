@@ -8,6 +8,21 @@ var JSAlert = require("js-alert");
 var PostgREST = require('postgrest-client')
 var Api = new PostgREST ('http://testpostgrest-calendrier.herokuapp.com')
 
+const userStatus = async (request, response) => {
+	console.log(request.session.typeutilisateur)
+	if (request.session.typeutilisateur == 1){
+	
+		response.send(true)
+	
+	}else {
+	
+	
+		response.send(false)
+	}
+	
+}
+
+
 // Fonction pour verifier si les valeurs entrez dans le formulaire login est valides.
 const loginAPI = async (request, response) => {	// Nom de la fonction
 	const username = request.body.username; // Input username dans login.html
@@ -93,5 +108,6 @@ async function getIDgestion(user) {
 
 // Pour lier a index.js
 module.exports = {
-  loginAPI	
+  loginAPI,
+  userStatus
 }
