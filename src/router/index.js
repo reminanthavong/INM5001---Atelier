@@ -30,7 +30,7 @@ const routes=[
     component: Unauthorized
     },
     {
-    path: '/gestionEmployes2',
+    path: '/gestionEmployes',
     name: 'gestionEmployes',
     component: GestionEmployes,    
     meta: {
@@ -38,7 +38,7 @@ const routes=[
           }
     },
     {
-    path: '/zoneEmploye2',
+    path: '/zoneEmploye',
     name: 'zoneEmploye',
     component: ZoneEmploye,
     meta: {
@@ -46,7 +46,7 @@ const routes=[
           }
     },
 {
-    path: '/gestionHoraire2',
+    path: '/gestionHoraire',
     name: 'gestionHoraire',
     component: GestionHoraire,
     meta: {
