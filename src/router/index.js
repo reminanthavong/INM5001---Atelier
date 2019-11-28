@@ -32,7 +32,8 @@ const routes=[
     name: 'gestionEmployes',
     component: GestionEmployes,
     meta: {
-        requiresAuth: true
+        requiresAuth: true,
+        isAdmin: true
           }
     },
     {
@@ -48,7 +49,8 @@ const routes=[
     name: 'gestionHoraire',
     component: GestionHoraire,
     meta: {
-        requiresAuth: true
+        requiresAuth: true,
+        isAdmin: true
           }
 },
 {
@@ -74,6 +76,15 @@ const router=new VueRouter({
 router.beforeEach((to, from, next) => {
     if (to.matched.some(record => record.meta.requiresAuth)) {
         if (store.getters.isLoggedIn) {
+            
+            if(to.matched.some(record => record.meta.isAdmin)){
+                if(store.getters.isLoggedIn){
+                    next()
+                   }else {
+                       next('/unauthorized')
+                   }
+               }
+            
             next()
             return
         }
