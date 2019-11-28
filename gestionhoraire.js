@@ -12,6 +12,7 @@ const ajouterHoraire   = async (req, res) => {
 	  let result = {}
 	  const reqJson = req.body;
 	  var sessEmployeur = req.session.username;
+	  console.log(reqJson);
 	  try{	
       await ajoutHoraire(sessEmployeur, reqJson.horairedate, reqJson.lundijour, reqJson.lundisoir, reqJson.lundinuit, reqJson.mardijour, reqJson.mardisoir, reqJson.mardinuit, reqJson.mercredijour, 
         reqJson.mercredisoir, reqJson.mercredinuit, reqJson.jeudijour, reqJson.jeudisoir, reqJson.jeudinuit, reqJson.vendredijour, reqJson.vendredisoir, reqJson.vendredinuit);		  
