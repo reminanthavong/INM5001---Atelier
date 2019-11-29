@@ -54,7 +54,7 @@ describe('test de AfficherHoraire', function (done) {
     //const res = mockRes();
     //await AfficherHoraire.fonctions2(req, res); 
     //sinon.assert.calledOnce(res.json); //res.json a ete appellee une fois
-   });
+   //});
        
  });
 
