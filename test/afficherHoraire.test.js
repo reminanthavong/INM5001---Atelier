@@ -4,7 +4,7 @@ var sinon = require('sinon');
 var assert = require('chai').assert;
 const expect = require('chai').expect;
 //***********************************************************//
-var {recupererListeSemaine} = require('../afficherhoraire'); //Destructuration : recupere seulement recupererListeSemaine
+var {recupererListeSemaine, fonctions1} = require('../afficherhoraire'); //Destructuration : recupere seulement recupererListeSemaine et fonctions1
 //***********************************************************//
 
 describe('test de AfficherHoraire', function (done) {
