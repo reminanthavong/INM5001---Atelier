@@ -42,9 +42,10 @@ const routes=[
     name: 'zoneEmploye',
     component: ZoneEmploye,
     beforeEnter: (to, from, next) => {
-        console.log(store.getters.userStatus.Session.typeutilisateur)
-        if (store.getters.userStatus.Session.typeutilisateur == '0') {
+        console.log(store.getters.userStatus.typeutilisateur)
+        if (store.getters.userStatus.typeutilisateur == '0') {
           next()
+            return
         }else {
         
         next('/unauthorized')
