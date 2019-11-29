@@ -29,13 +29,17 @@ describe('test de AfficherHoraire', function (done) {
       });
    });
     describe('fonctions1', function (done) {
+     //Pour reinitilialiser le stub
+     afterEach(() => {
+        sinon.restore();
+     });     
     it('devrait retourner vrai', async function() {
     const req = mockReq();
     const res = mockRes();
-    //const recupererListeSemaineSTUB = sinon.stub(AfficherHoraire,'recupererListeSemaine');
+    const recupererListeSemaineSTUB = sinon.stub(AfficherHoraire,'recupererListeSemaine');
     await AfficherHoraire.fonctions1(req, res); 
     sinon.assert.calledOnce(res.json); //res.json a ete appellee une fois
-    //sinon.assert.calledOnce(recupererListeSemaineSTUB);
+    sinon.assert.calledOnce(recupererListeSemaineSTUB);
     //sinon.assert.calledWithExactly(recupererListeSemaineSTUB, null); //recupererListeSemaine a bien ete appelle dans fonctions1
     });
        
