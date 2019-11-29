@@ -5,13 +5,21 @@ const pool = new Pool({
 });
 
 
-const fonctions1  = async (req, res) => {
-	             console.log(req)
-	             console.log(res)
-  try {
+const recupererListeSemaine = async () => {
+            console.log('yooo');
+
             const client = await pool.connect()
             const choixSemaine = await client.query(`SELECT DISTINCT IDTableHoraire FROM TableHoraire;`);
             const choixSemaines = { 'choixSemaines': (choixSemaine) ? choixSemaine.rows : null};
+            console.log(choixSemaines);
+            return choixSemaines;
+}
+
+const fonctions1  = async (req, res) => {
+             //console.log(req)
+             //console.log(res)
+  try {
+           const choixSemaines = await recupererListeSemaine();
             res.json( choixSemaines );
             client.release();
           } catch (err) {
@@ -115,6 +123,7 @@ INNER JOIN BaseQuartsEmployeur BQER ON BQER.IDEmployeur=C.IDEmployeur
 
 
 module.exports = {
+recupererListeSemaine,
   fonctions1,
   fonctions2,
   fonctions3,
