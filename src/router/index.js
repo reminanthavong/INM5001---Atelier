@@ -85,5 +85,11 @@ router.beforeEach((to, from, next) => {
       }
     })
 
+const isAdmin = async (request, response) => {
+
+const result = await login.userStatus
+response.send(result)
+    
+}
 
 export default router
