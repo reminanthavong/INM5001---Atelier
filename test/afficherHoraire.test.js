@@ -42,7 +42,7 @@ describe('test de AfficherHoraire', function (done) {
     //sinon.assert.calledOnce(recupererListeSemaineSTUB);
     //sinon.assert.calledWithExactly(recupererListeSemaineSTUB, null); //recupererListeSemaine a bien ete appelle dans fonctions1
     });
-       
+    });   
     describe('recupererHoraire', function (done) {
    it('devrait retourner le bon horaire', async () => {
          const horaire = await AfficherHoraire.recupererHoraire('001','2019-10-07','Gestion3525');
