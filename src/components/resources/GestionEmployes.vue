@@ -8,7 +8,7 @@
 
                 <button @click="toggleAfficherEmployes" class="btn btn-primary">Afficher tous les employés</button>
                 <p v-if="afficherEmployes">Veuillez cliquer sur un employé pour le modifier</p>
-                <b-table striped hover :items="employes" v-if="afficherEmployes" selectable>
+                <b-table striped hover :items="employes" v-if="afficherEmployes" @row-clicked="modifierEmploye" selectable>
                 </b-table>
 
                 <h1 class="w3-text-teal">Ajouter un employé</h1>
@@ -168,6 +168,9 @@
                             console.log(error);
                         });
                         this.$router.push("/success")
+                },
+                modifierEmploye(record, index) {
+                    alert(record + "; " + index)
                 }
         }
     }
