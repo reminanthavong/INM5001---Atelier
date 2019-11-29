@@ -50,7 +50,7 @@ describe('test de AfficherHoraire', function (done) {
          expect(horaire).to.deep.equal(Horaire00120191007Gestion3525);
       });
      it('devrait retourner vrai', async function() {
-    const req = mockReq({body: {}});
+    const req = mockReq();
     const res = mockRes();
     await AfficherHoraire.fonctions2(req, res); 
     sinon.assert.calledOnce(res.json); //res.json a ete appellee une fois
