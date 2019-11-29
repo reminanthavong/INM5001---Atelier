@@ -18,7 +18,7 @@ describe('test de AfficherHoraire', function (done) {
     it('devrait retourner vrai', async function() {
     const req = mockReq();
     const res = mockRes();
-    const recupererListeSemaineSTUB = sinon.stub(recupererListeSemaine).returns({choixSemaines: [{ idtablehoraire: '001' }]});
+    const recupererListeSemaineSTUB = sinon.stub(recupererListeSemaine);
 
     await fonctions1(req, res); 
     sinon.assert.calledOnce(res.json); //res.json a ete appellee une fois
