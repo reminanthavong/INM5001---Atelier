@@ -9,15 +9,15 @@ const recupererListeSemaine = async () => {
             const client = await pool.connect()
             const choixSemaine = await client.query(`SELECT DISTINCT IDTableHoraire FROM TableHoraire;`);
             const choixSemaines = { 'choixSemaines': (choixSemaine) ? choixSemaine.rows : null};
-            console.log(choixSemaines);
-            return choixSemaines;
+	    client.release();
+            //console.log(choixSemaines);
+            return choixSemaines;	
 }
 
 const fonctions1  = async (req, res) => {
   try {
            const choixSemaines = await recupererListeSemaine();
             res.json( choixSemaines );
-            client.release();
           } catch (err) {
             console.error(err);
             res.send("Erreur appel client " + err);
