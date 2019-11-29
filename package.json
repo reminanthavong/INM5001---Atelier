@@ -12,6 +12,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
+    "prepublish": "mocha --exit"
   },
   "dependencies": {
     "@types/es6-promise": "^3.3.0",

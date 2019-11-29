@@ -10,6 +10,7 @@ const pool = new Pool({
   ssl: true
 });
 
+
 // Linker queries.js
 const afficherhoraire = require('./afficherhoraire')
 const login = require('./login')
@@ -99,7 +100,7 @@ if (req.session.typeutilisateur == 1){
 	  res.send('Vous devez être une Administrateur pour acceder à cette page!');	
 	}
   })
-.get('/Horaire',gestionhoraire.afficherHoraire)
+//.get('/Horaire',gestionhoraire.afficherHoraire)
 .post('/Horaire',gestionhoraire.ajouterHoraire )
 .delete('/Horaire',gestionhoraire.enleverHoraire )
 

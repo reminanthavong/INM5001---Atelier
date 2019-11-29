@@ -5,30 +5,26 @@ const pool = new Pool({
 });
 
 
-const fonctions1  = async (req, res) => {
-  try {
+async function recupererListeSemaine() {
             const client = await pool.connect()
             const choixSemaine = await client.query(`SELECT DISTINCT IDTableHoraire FROM TableHoraire;`);
             const choixSemaines = { 'choixSemaines': (choixSemaine) ? choixSemaine.rows : null};
+	    client.release();
+            //console.log(choixSemaines);
+            return choixSemaines;	
+}
+
+async function fonctions1(req, res)  {
+  try {
+           const choixSemaines = await recupererListeSemaine();
             res.json( choixSemaines );
-            client.release();
           } catch (err) {
             console.error(err);
             res.send("Erreur appel client " + err);
           }
 }
 
-const fonctions2  = async (req, res) => {
-        const resp = JSON.parse(req.body); //{$choixsemaine}
-        //const resp = { choixSemaine: '001'};
-  
-        const choixsemaine = resp['choixsemaine'] || '000';
-        const choixdate = resp['choixdate'] || '01/01/1899';      
-        console.log(req)
-             console.log(choixsemaine)
-               console.log(choixdate)
-        const employeur = req.session.username//'Gestion3525' //'JNASH'// 
-         try {
+async function recupererHoraire(choixsemaine,choixdate,employeur) {
             const client = await pool.connect()
             const horaires = await client.query(`SELECT *
                                                          FROM
@@ -42,9 +38,18 @@ const fonctions2  = async (req, res) => {
                                                                                                     ) AS SourceTable;
 
                                                          `);
-               const horairesRecu = { 'horaires': (horaires) ? horaires.rows : null};
-               res.json( horairesRecu );
-               client.release();
+             const horairesRecu = { 'horaires': (horaires) ? horaires.rows : null};
+             client.release();
+            return horairesRecu;	
+}
+const fonctions2  = async (req, res) => {
+        const resp = JSON.parse(req.body); //{$choixsemaine}
+        const choixsemaine = resp['choixsemaine'] || '000';
+        const choixdate = resp['choixdate'] || '01-01-1899';      
+        const employeur = req.session.username//'Gestion3525' //'JNASH'// 
+         try {
+		const horairesRecu= await recupererHoraire(choixsemaine,choixdate,employeur)
+                res.json( horairesRecu );
              } catch (err) {
                console.error(err);
                res.send("Erreur appel client " + err);
@@ -58,9 +63,19 @@ const fonctions3  = async (req, res) => {
 const fonctions4  = async (req, res) => {
   res.sendFile(path.join(__dirname+'/views/pages/AffichageHoraire.html' /*, getHoraires */));
 }
+
+
+//---------------------------------------------------------------------------------------------------------------------------------//
+
+//---------------------------------------------------------------------------------------------------------------------------------//
+
+
+
 module.exports = {
-  fonctions1,
-  fonctions2,
-  fonctions3,
-  fonctions4
+	recupererListeSemaine,
+	fonctions1,
+	recupererHoraire,
+  	fonctions2,
+  	fonctions3,
+  	fonctions4
 }

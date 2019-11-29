@@ -1,7 +1,7 @@
-const assert = require('chai').assert;
+/*const assert = require('chai').assert;
 const sinon = require('sinon');
 const chai = require('chai');
-const gestionEmploye = require('../gestionEmploye');
+const gestionEmploye = require('../gestionemploye');
 const request = require('request');
 chai.should();
 
@@ -55,3 +55,4 @@ describe('gestionEmploye', function(){
 	
 });
 			
+*/
