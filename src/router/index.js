@@ -42,11 +42,6 @@ const routes=[
     path: '/zoneEmploye',
     name: 'zoneEmploye',
     component: ZoneEmploye,
-    beforeEnter(to, from, next) {
-        if(isAdmin == 0){
-        next()
-        }else{next('/unauthorized')}
-      },
     meta: {
         requiresAuth: true
           }
@@ -90,12 +85,5 @@ router.beforeEach((to, from, next) => {
         next()
       }
     })
-
-const isAdmin = async (request, response) => {
-
-const result = await login.userStatus
-response.send(result)
-    
-}
 
 export default router
