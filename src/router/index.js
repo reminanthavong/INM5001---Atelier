@@ -9,6 +9,7 @@ import AffichageHoraire from '../components/resources/AffichageHoraire.vue'
 import GestionHoraire from '../components/resources/GestionHoraire.vue'
 import Success from '../components/auth/Success.vue'
 import Unauthorized from '../components/auth/Unauthorized.vue'
+const login = require('../backend/login')
 
 
 Vue.use(VueRouter)
@@ -41,6 +42,11 @@ const routes=[
     path: '/zoneEmploye',
     name: 'zoneEmploye',
     component: ZoneEmploye,
+    beforeEnter(to, from, next) {
+        if(isAdmin == 0){
+        next()
+        }else{next('/unauthorized')}
+      },
     meta: {
         requiresAuth: true
           }
@@ -85,5 +91,11 @@ router.beforeEach((to, from, next) => {
       }
     })
 
+const isAdmin = async (request, response) => {
+
+const result = await login.userStatus
+response.send(result)
+    
+}
 
 export default router
