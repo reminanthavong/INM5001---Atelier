@@ -8,7 +8,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "mocha || true"
+    "test": "mocha || true",
+    "prepublish": "mocha"
   },
   "dependencies": {
     "@types/es6-promise": "^3.3.0",
