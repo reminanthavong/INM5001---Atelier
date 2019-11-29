@@ -18,13 +18,21 @@ describe('test de AfficherHoraire', function (done) {
     it('devrait retourner vrai', async function() {
     const req = mockReq();
     const res = mockRes();
-    //const AfficherHoraireSTUB = sinon.stub(AfficherHoraire);
-    const AfficherHoraireSTUB = sinon.spy(AfficherHoraire);
+    const recupererListeSemaineSTUB = sinon.stub(AfficherHoraire.prototype,'recupererListeSemaine');
     await AfficherHoraire.fonctions1(req, res); 
     sinon.assert.calledOnce(res.json); //res.json a ete appellee une fois
-    //sinon.assert.calledOnce(AfficherHoraireSTUB.recupererListeSemaine);
+    sinon.assert.calledOnce(recupererListeSemaineSTUB);
     //sinon.assert.calledWithExactly(recupererListeSemaineSTUB, null); //recupererListeSemaine a bien ete appelle dans fonctions1
     });
+       
+    describe('recupererHoraire', function (done) {
+   it('devrait retourner le bon horaire', async () => {
+         const horaire = await AfficherHoraire.recupererHoraire('001','2019-10-07','Gestion3525');
+         console.log(horaire);
+         expect(listeSemaine).to.deep.equal({choixSemaines: [{ idtablehoraire: '001' }]});
+      });
+   });
+       
  });
 
 });
