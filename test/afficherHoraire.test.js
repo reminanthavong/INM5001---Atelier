@@ -6,6 +6,20 @@ const expect = require('chai').expect;
 //***********************************************************//
 var AfficherHoraire = require('../afficherhoraire'); //Destructuration : recupere seulement recupererListeSemaine et fonctions1
 //***********************************************************//
+ var Horaire00120191007Gestion3525 = { horaires:
+          [ { typequart: 'Nuit',
+              joursemaine: 'Mercredi',
+              nomemploye: 'ELAINE R BECKER' },
+            { typequart: 'Jour',
+              joursemaine: 'Jeudi',
+              nomemploye: 'JENISSA C NASHEL' },
+            { typequart: 'Soir',
+              joursemaine: 'Jeudi',
+              nomemploye: 'MASCHEAL SLATTON' },
+            { typequart: 'Nuit',
+              joursemaine: 'Jeudi',
+              nomemploye: 'DESRI M PURNELL' } ] }
+//***********************************************************//
 
 describe('test de AfficherHoraire', function (done) {
    describe('recupererListeSemaine', function (done) {
@@ -29,7 +43,7 @@ describe('test de AfficherHoraire', function (done) {
    it('devrait retourner le bon horaire', async () => {
          const horaire = await AfficherHoraire.recupererHoraire('001','2019-10-07','Gestion3525');
          console.log(horaire);
-         expect(listeSemaine).to.deep.equal({choixSemaines: [{ idtablehoraire: '001' }]});
+         expect(horaire).to.deep.equal(Horaire00120191007Gestion3525);
       });
    });
        
