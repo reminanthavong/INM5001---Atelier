@@ -8,7 +8,10 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "mocha || true"
+    "test": "mocha || true",
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "@types/es6-promise": "^3.3.0",
@@ -25,7 +28,10 @@
     "pg": "^7.12.1",
     "postgrest-client": "^1.1.2",
     "request": "^2.88.0",
-    "superagent": "^5.1.0"
+    "superagent": "^5.1.0",
+    "vue": "^2.5.22",
+    "bootstrap": "4.3.1",
+    "bootstrap-vue": "2.0.0-rc.13"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.144",
@@ -35,7 +41,14 @@
     "request": "^2.81.0",
     "sinon": "^7.5.0",
     "sinon-express-mock": "^2.2.1",
-    "tape": "^4.7.0"
+    "tape": "^4.7.0",
+    "@vue/cli-plugin-babel": "^3.1.1",
+    "@vue/cli-plugin-eslint": "^3.1.1",
+    "@vue/cli-service": "^3.1.1",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.8.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "vue-template-compiler": "^2.5.21"
   },
   "repository": {
     "type": "git",
@@ -46,5 +59,31 @@
     "heroku",
     "express"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "rules": {
+      "no-console": 0
+    },
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
 }
