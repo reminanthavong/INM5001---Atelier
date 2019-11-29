@@ -1,7 +1,7 @@
 // Module ou Variable requis pour le fonctionnement des fonctions
-var data = require('request');
-const session = require('express-session');	
-const bodyParser = require('body-parser')
+//var data = require('request');
+//const session = require('express-session');	
+//const bodyParser = require('body-parser')
 const jwt = require('jsonwebtoken');
 const config = require('../config');
 var JSAlert = require("js-alert");
