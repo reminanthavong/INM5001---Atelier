@@ -41,18 +41,6 @@ const routes=[
     path: '/zoneEmploye',
     name: 'zoneEmploye',
     component: ZoneEmploye,
-    beforeEnter: (to, from, next) => {
-        console.log(store.getters.userStatus.typeutilisateur)
-        if (store.getters.userStatus.typeutilisateur == '0') {
-          next()
-            return
-        }else {
-        
-        next('/unauthorized')
-            
-        }
-        
-             }
     },
 {
     path: '/gestionHoraire',
