@@ -81,124 +81,18 @@ async function initDisponibilite (ID,sessEmployeur, dispo) {
 	i = 0;
 	while (i < dispo.length) {
 		try{
-		  await patchDispo(sessEmployeur, ID, dispo[i].slice(0, 1), dispo[i].slice(1), "1");
+		  await patchDispo(sessEmployeur, ID, dispo[i].slice(0, 1), dispo[i].slice(1), "1");		  
 		  result.success = true;
 		  }catch (e) {
 		  result.success = false;
 	                     }
-  		i++;
+  		i++;	
 
 		}
-
-		 return result.succes
+	
+		 return result.succes	  
 }
 
-
-const modifierEmploye   = async (req, res) => {
-	  let result = {}
-	  const reqJson = req.body;
-	  var sessEmployeur = req.session.username;
-	  try{
-		  await patchEmploye(sessEmployeur, reqJson.idemploye, reqJson.nomemploye, reqJson.prenomemploye, reqJson.nbrquartsmax, reqJson.dateembauche);
-		  result.success = true;
-	  } catch (e) {
-		  result.success = false;
-	  } finally {
-		  res.setHeader("content-type", "application/json")
-		  res.send(JSON.stringify(result))
-	  }
-}
-
-
-	async function ajoutEmploye(idemployeur, idemploye, nomemploye, prenomemploye, nbrquartsmax, dateembauche) {
-		await Api
-			.post('/baseemployes')
-			.send({idemployeur:idemployeur, idemploye: idemploye, nomemploye: nomemploye, prenomemploye: prenomemploye, nbrquartsmax: nbrquartsmax, dateembauche: dateembauche});
-	}
-
-	async function patchEmploye(idemployeur, idemploye, nomemploye, prenomemploye, nbrquartsmax, dateembauche) {
-		await Api
-			.patch('/baseemployes')
-			.eq('idemploye', idemploye)
-		        .eq('idemployeur', idemployeur)
-			.send({idemployeur:idemployeur, idemploye: idemploye, nomemploye: nomemploye, prenomemploye: prenomemploye, nbrquartsmax: nbrquartsmax, dateembauche: dateembauche});
-	}
-
-	async function ajoutIdentification(idemploye, motdepasse){
-		await Api
-		.post('/baseidentification')
-		.send({idutilisateur: idemploye, motdepasse: motdepasse, typeutilisateur: '0'});
-	}
-
-	async function getEmployes(idemployeur) {
-		return await Api.get('/baseemployes').eq('idemployeur', idemployeur);
-	}
-
-	async function deleteEmploye(idemploye, gestionnaire) {
-		await Api
-		.delete('/baseemployes')
-		.eq('idemploye', idemploye)
-		.eq('idemployeur', gestionnaire);
-	}
-
-	async function ajoutDispo(idemployeur, idemploye, typequart, joursemaine, disponibilite) {
-		await Api
-		.post('/basequartsemploye')
-		.send({idemployeur:idemployeur, idemploye: idemploye, idtablehoraire: '000', typequart: typequart, joursemaine: joursemaine, disponibilite: disponibilite, paramtype: '1'});
-	}
-
-	async function patchDispo(idemployeur, idemploye, typequart, joursemaine, disponibilite) {
-		await Api
-			.patch('/basequartsemploye')
-			.eq('idemploye', idemploye)
-		        .eq('idemployeur', idemployeur)
-		        .eq('typequart', typequart)
-		        .eq('joursemaine', joursemaine)
-			.send({idemployeur:idemployeur, idemploye: idemploye, idtablehoraire: '000', typequart: typequart, joursemaine: joursemaine, disponibilite: disponibilite, paramtype: '1'});
-	}
-
-	async function supprimerDispo(idemploye){
-		await Api
-		.delete('/basequartsemploye')
-		.eq('idemploye', idemploye)
-		.eq('paramtype', '1');
-	}
-
-	async function ajoutIdentification(idutilisateur, motdepasse){
-		await Api
-		.post('/baseidentification')
-		.send({idutilisateur: idutilisateur, motdepasse: motdepasse, typeutilisateur: '0'});
-	}
-
-	async function suppressionIdentification(idutilisateur){
-		await Api
-		.delete('/baseidentification')
-		.eq('idutilisateur', idutilisateur);
-	}
-
-  module.exports = {
-  afficherEmployes,
-  ajouterEmploye,
-  enleverEmploye,
-  modifierEmploye
-
-}
-
-
-const modifierEmploye   = async (req, res) => {
-	  let result = {}
-	  const reqJson = req.body;
-	  var sessEmployeur = req.session.username;
-	  try{	
-		  await patchEmploye(sessEmployeur, reqJson.idemploye, reqJson.nomemploye, reqJson.prenomemploye, reqJson.nbrquartsmax, reqJson.dateembauche);		  
-		  result.success = true;
-	  } catch (e) {
-		  result.success = false;
-	  } finally {
-		  res.setHeader("content-type", "application/json")
-		  res.send(JSON.stringify(result))
-	  }
-}
 
 const modifierEmploye   = async (req, res) => {
 	  let result = {}
@@ -286,13 +180,6 @@ const modifierEmploye   = async (req, res) => {
   afficherEmployes,
   ajouterEmploye,
   enleverEmploye,
-<<<<<<< HEAD:gestionemploye.js
-  ajouterDisponibilite,
-  supprimerDisponibilite,
-  supprimerIdentification,
-  ajouterDisponibiliteV2,
-=======
->>>>>>> 2d5187f26eb6b47b138a784538a4308d7a583b86:src/backend/gestionemploye.js
   modifierEmploye	  
 
 }
