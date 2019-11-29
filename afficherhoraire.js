@@ -24,19 +24,7 @@ async function fonctions1(req, res)  {
           }
 }
 
-const fonctions2  = async (req, res) => {
-		     console.log(req)
-	             console.log(res)
-        const resp = JSON.parse(req.body); //{$choixsemaine}
-        //const resp = { choixSemaine: '001'};
-  
-        const choixsemaine = resp['choixsemaine'] || '000';
-        const choixdate = resp['choixdate'] || '01/01/1899';      
-        console.log(req)
-             console.log(choixsemaine)
-               console.log(choixdate)
-        const employeur = req.session.username//'Gestion3525' //'JNASH'// 
-         try {
+async function recupererHoraire(choixsemaine,choixdate,employeur) {
             const client = await pool.connect()
             const horaires = await client.query(`SELECT *
                                                          FROM
@@ -50,9 +38,18 @@ const fonctions2  = async (req, res) => {
                                                                                                     ) AS SourceTable;
 
                                                          `);
-               const horairesRecu = { 'horaires': (horaires) ? horaires.rows : null};
-               res.json( horairesRecu );
-               client.release();
+             const horairesRecu = { 'horaires': (horaires) ? horaires.rows : null};
+             client.release();
+            return horairesRecu;	
+}
+const fonctions2  = async (req, res) => {
+        const resp = JSON.parse(req.body); //{$choixsemaine}
+        const choixsemaine = resp['choixsemaine'] || '000';
+        const choixdate = resp['choixdate'] || '01/01/1899';      
+        const employeur = req.session.username//'Gestion3525' //'JNASH'// 
+         try {
+		const horairesRecu= await recupererHoraire(choixsemaine,choixdate,employeur)
+                res.json( horairesRecu );
              } catch (err) {
                console.error(err);
                res.send("Erreur appel client " + err);
@@ -121,6 +118,7 @@ INNER JOIN BaseQuartsEmployeur BQER ON BQER.IDEmployeur=C.IDEmployeur
 module.exports = {
 recupererListeSemaine,
   fonctions1,
+recupererHoraire,
   fonctions2,
   fonctions3,
   fonctions4,
