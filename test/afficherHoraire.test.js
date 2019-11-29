@@ -9,7 +9,7 @@ var AfficherHoraire = require('../afficherhoraire'); //Destructuration : recuper
 
 describe('test de AfficherHoraire', function (done) {
    describe('recupererListeSemaine', function (done) {
-   it('devrait 001', async () => {
+   it('devrait retourner 001', async () => {
          const listeSemaine = await AfficherHoraire.recupererListeSemaine();
          expect(listeSemaine).to.deep.equal({choixSemaines: [{ idtablehoraire: '001' }]});
       });
@@ -18,11 +18,11 @@ describe('test de AfficherHoraire', function (done) {
     it('devrait retourner vrai', async function() {
     const req = mockReq();
     const res = mockRes();
-    const recupererListeSemaineSTUB = sinon.stub(AfficherHoraire,'recupererListeSemaine');
+    const AfficherHoraireSTUB = sinon.stub(AfficherHoraire);
 
     await AfficherHoraire.fonctions1(req, res); 
     sinon.assert.calledOnce(res.json); //res.json a ete appellee une fois
-    sinon.assert.calledOnce(recupererListeSemaineSTUB);
+    sinon.assert.calledOnce(AfficherHoraireSTUB.recupererListeSemaine);
     sinon.assert.calledWithExactly(recupererListeSemaineSTUB, null); //recupererListeSemaine a bien ete appelle dans fonctions1
     });
  });
