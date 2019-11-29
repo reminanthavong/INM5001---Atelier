@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node index.js",
     "test": "mocha || true",
-    "prepublish": "mocha"
+    "prepublish": "mocha --exit"
   },
   "dependencies": {
     "@types/es6-promise": "^3.3.0",
