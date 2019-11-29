@@ -6,6 +6,8 @@ const pool = new Pool({
 
 
 const fonctions1  = async (req, res) => {
+	             console.log(req)
+	             console.log(res)
   try {
             const client = await pool.connect()
             const choixSemaine = await client.query(`SELECT DISTINCT IDTableHoraire FROM TableHoraire;`);
@@ -19,6 +21,8 @@ const fonctions1  = async (req, res) => {
 }
 
 const fonctions2  = async (req, res) => {
+		     console.log(req)
+	             console.log(res)
         const resp = JSON.parse(req.body); //{$choixsemaine}
         //const resp = { choixSemaine: '001'};
   
