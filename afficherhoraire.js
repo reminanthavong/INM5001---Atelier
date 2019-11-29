@@ -43,8 +43,7 @@ async function recupererHoraire(choixsemaine,choixdate,employeur) {
             return horairesRecu;	
 }
 const fonctions2  = async (req, res) => {
-        //const resp = JSON.parse(req.body); //{$choixsemaine}
-	const resp = req.body;
+        const resp = JSON.parse(req.body); //{$choixsemaine}
         const choixsemaine = resp['choixsemaine'] || '000';
         const choixdate = resp['choixdate'] || '01-01-1899';      
         const employeur = req.session.username//'Gestion3525' //'JNASH'// 
