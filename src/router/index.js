@@ -41,9 +41,17 @@ const routes=[
     path: '/zoneEmploye',
     name: 'zoneEmploye',
     component: ZoneEmploye,
-    meta: {
-        requiresAuth: true
-          }
+    beforeEnter: (to, from, next) => {
+        console.log(store.getters.userStatus.Session.typeutilisateur)
+        if (store.getters.userStatus.Session.typeutilisateur == '0') {
+          next()
+        }else {
+        
+        next(/unauthorized)
+            
+        }
+        
+             }
     },
 {
     path: '/gestionHoraire',
