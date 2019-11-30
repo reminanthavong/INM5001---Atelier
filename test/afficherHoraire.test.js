@@ -58,7 +58,7 @@ describe('test de AfficherHoraire', function (done) {
     await AfficherHoraire.fonctions2(req, res); 
     sinon.assert.calledOnce(res.json); //res.json a ete appellee une fois
     sinon.assert.calledOnce(recupererHoraireSTUB);
-    sinon.assert.calledWithExactly(recupererHoraireSTUB, null);
+    sinon.assert.calledWithExactly(recupererHoraireSTUB, '000');
    });
        
  });
