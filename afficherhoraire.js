@@ -18,7 +18,7 @@ async function recupererListeSemaine() {
 async function fonctions1(req, res)  {
   try {
 	  console.log('before')
-           const choixSemaines = await recupererListeSemaine();
+           const choixSemaines = recupererListeSemaine();
 	   console.log('after')
 
             res.json( choixSemaines );
