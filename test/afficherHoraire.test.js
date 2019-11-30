@@ -32,7 +32,7 @@ describe('test de AfficherHoraire', function (done) {
      //Pour reinitilialiser le stub
      let recupererListeSemaineSTUB;
      beforeEach(() => {
-      recupererListeSemaineSTUB = sinon.stub(AfficherHoraire,'recupererListeSemain');
+      recupererListeSemaineSTUB = sinon.stub(AfficherHoraire,'recupererListeSemaine');
      })
      afterEach(() => {
         sinon.restore();
@@ -43,7 +43,7 @@ describe('test de AfficherHoraire', function (done) {
     //const recupererListeSemaineSTUB = sinon.stub(AfficherHoraire,'recupererListeSemaine');
     await AfficherHoraire.fonctions1(req, res); 
     sinon.assert.calledOnce(res.json); //res.json a ete appellee une fois
-    sinon.assert.calledOnce(recupererListeSemaineSTUB);
+    sinon.assert.notCalled(recupererListeSemaineSTUB);
     //sinon.assert.calledWithExactly(recupererListeSemaineSTUB, null); //recupererListeSemaine a bien ete appelle dans fonctions1
     });
     });   
