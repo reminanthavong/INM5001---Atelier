@@ -117,7 +117,11 @@ async function chercherHoraire(choixsemaine){
         const resp=await fetch('https://testcalendrier.herokuapp.com/api/v1/horaires',
           {
             method: 'POST',
-            body: {choixsemaine}
+	    headers: {
+               'Accept': 'application/json',
+               'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({choixsemaine})
            }
         );
         const donnee = await resp.json();
@@ -132,7 +136,11 @@ async function chercherHoraire(choixsemaine){
         const resp=await fetch('https://testcalendrier.herokuapp.com/api/v1/horaires',
           {
             method: 'POST',
-            body: {date: choixdate}
+		headers: {
+               'Accept': 'application/json',
+               'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({choixdate})
            }
         );
         const donnee = await resp.json();
