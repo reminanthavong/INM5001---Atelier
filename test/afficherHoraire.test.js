@@ -4,7 +4,8 @@ const sinon = require('sinon');
 const assert = require('chai').assert;
 const expect = require('chai').expect;
 //***********************************************************//
-const AfficherHoraire = require('../afficherhoraire'); //Destructuration : recupere seulement recupererListeSemaine et fonctions1
+const AfficherHoraire = require('../afficherhoraire'); //Destructuration : recupere seulement fonctions1
+const Ressources = require('../ressources'); //Destructuration : recupere seulement recupererListeSemaine 
 //***********************************************************//
  const Horaire00120191007Gestion3525 = { horaires:
           [ { typequart: 'Nuit',
@@ -24,7 +25,7 @@ const AfficherHoraire = require('../afficherhoraire'); //Destructuration : recup
 describe('test de AfficherHoraire', function (done) {
    describe('recupererListeSemaine', function (done) {
    it('devrait retourner 001', async () => {
-         const listeSemaine = await AfficherHoraire.recupererListeSemaine();
+         const listeSemaine = await Ressources.recupererListeSemaine();
          expect(listeSemaine).to.deep.equal({choixSemaines: [{ idtablehoraire: '001' }]});
       });
    });
@@ -32,7 +33,7 @@ describe('test de AfficherHoraire', function (done) {
      //Pour reinitilialiser le stub
      let recupererListeSemaineSTUB;
      beforeEach(() => {
-      recupererListeSemaineSTUB = sinon.stub(AfficherHoraire,'recupererListeSemaine');
+      recupererListeSemaineSTUB = sinon.stub(Ressources,'recupererListeSemaine');
      })
      afterEach(() => {
         sinon.restore();
@@ -49,7 +50,7 @@ describe('test de AfficherHoraire', function (done) {
     });   
     describe('recupererHoraire', function (done) {
    it('devrait retourner le bon horaire', async () => {
-         const horaire = await AfficherHoraire.recupererHoraire('001','2019-10-07','Gestion3525');
+         const horaire = await Ressources.recupererHoraire('001','2019-10-07','Gestion3525');
          console.log(horaire);
          expect(horaire).to.deep.equal(Horaire00120191007Gestion3525);
       });
