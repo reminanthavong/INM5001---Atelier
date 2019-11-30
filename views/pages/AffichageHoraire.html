@@ -112,7 +112,6 @@ async function chercherListeSemaine(){
     }
 }
 async function chercherHoraire(choixsemaine){
-    console.log(choixsemaine)
     try {
         const resp=await fetch('https://testcalendrier.herokuapp.com/api/v1/horaires',
           {
@@ -131,7 +130,6 @@ async function chercherHoraire(choixsemaine){
     }
 }
   async function chercherHoraire2(choixdate){
-    console.log(choixdate)
     try {
         const resp=await fetch('https://testcalendrier.herokuapp.com/api/v1/horaires',
           {
