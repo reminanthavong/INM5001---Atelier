@@ -32,7 +32,7 @@ describe('test de AfficherHoraire', function (done) {
      //Pour reinitilialiser le stub
      let recupererListeSemaineSTUB;
      beforeEach(() => {
-      recupererListeSemaineSTUB = sinon.stub(AfficherHoraire,'recupererListeSemaine');
+      recupererListeSemaineSTUB = sinon.stub(AfficherHoraire,'recupererListeSemain');
      })
      afterEach(() => {
         sinon.restore();
