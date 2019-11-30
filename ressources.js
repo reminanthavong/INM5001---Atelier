@@ -6,7 +6,6 @@ const pool = new Pool({
 
 
 async function recupererListeSemaine() {
-	    console.log('inside')
             const client = await pool.connect()
             const choixSemaine = await client.query(`SELECT DISTINCT IDTableHoraire FROM TableHoraire;`);
             const choixSemaines = { 'choixSemaines': (choixSemaine) ? choixSemaine.rows : null};
