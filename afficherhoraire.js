@@ -11,11 +11,11 @@ async function fonctions1(req, res)  {
 }
 
 const fonctions2  = async (req, res) => {
-	console.log(JSON.stringify(req.body));
+	console.log(JSON.parse(JSON.stringify(req.body)));
         const resp = req.body; //{$choixsemaine}
-        const choixsemaine = resp['choixsemaine'] || '000';
+        const choixsemaine = resp['choixsemaine'] /*|| '000'*/;
 	
-        const choixdate = resp['choixdate'] || '01-01-1899';     
+        const choixdate = resp['date'] /*|| '01-01-1899'*/;     
 	console.log(choixsemaine);
 	console.log(choixdate);
 
