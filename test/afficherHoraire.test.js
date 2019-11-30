@@ -1,12 +1,12 @@
 //***********************************************************//
 const { mockReq, mockRes } = require('sinon-express-mock');
-var sinon = require('sinon');
-var assert = require('chai').assert;
+const sinon = require('sinon');
+const assert = require('chai').assert;
 const expect = require('chai').expect;
 //***********************************************************//
-var AfficherHoraire = require('../afficherhoraire'); //Destructuration : recupere seulement recupererListeSemaine et fonctions1
+const AfficherHoraire = require('../afficherhoraire'); //Destructuration : recupere seulement recupererListeSemaine et fonctions1
 //***********************************************************//
- var Horaire00120191007Gestion3525 = { horaires:
+ const Horaire00120191007Gestion3525 = { horaires:
           [ { typequart: 'Nuit',
               joursemaine: 'Mercredi',
               nomemploye: 'ELAINE R BECKER' },
@@ -30,16 +30,20 @@ describe('test de AfficherHoraire', function (done) {
    });
     describe('fonctions1', function (done) {
      //Pour reinitilialiser le stub
-     //afterEach(() => {
-     //   sinon.restore();
-     //});     
+     let recupererListeSemaineSTUB;
+     beforeEach(() => {
+      recupererListeSemaineSTUB = sinon.stub(AfficherHoraire,'recupererListeSemaine');
+     })
+     afterEach(() => {
+        sinon.restore();
+     });     
     it('devrait retourner vrai', async function() {
     const req = mockReq();
     const res = mockRes();
     //const recupererListeSemaineSTUB = sinon.stub(AfficherHoraire,'recupererListeSemaine');
     await AfficherHoraire.fonctions1(req, res); 
     sinon.assert.calledOnce(res.json); //res.json a ete appellee une fois
-    //sinon.assert.calledOnce(recupererListeSemaineSTUB);
+    sinon.assert.calledOnce(recupererListeSemaineSTUB);
     //sinon.assert.calledWithExactly(recupererListeSemaineSTUB, null); //recupererListeSemaine a bien ete appelle dans fonctions1
     });
     });   
