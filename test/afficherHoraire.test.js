@@ -51,8 +51,8 @@ describe('test de AfficherHoraire', function (done) {
          const horaire = await Ressources.recupererHoraire('001','2019-10-07','Gestion3525');
          expect(horaire).to.deep.equal(Horaire00120191007Gestion3525);
       });
-     xit('devrait retourner vrai', async function() {
-    const req = mockReq();
+     it('devrait retourner vrai', async function() {
+    const req = mockReq({ body: {}});
     const res = mockRes();
     recupererHoraireSTUB = sinon.stub(Ressources,'recupererHoraire');
     await AfficherHoraire.fonctions2(req, res); 
