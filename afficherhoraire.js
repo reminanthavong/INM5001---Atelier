@@ -11,12 +11,12 @@ async function fonctions1(req, res)  {
 }
 
 const fonctions2  = async (req, res) => {
-	console.log(req.body);
+	console.log(JSON.stringify(req.body));
         const resp = req.body; //{$choixsemaine}
         const choixsemaine = resp['choixsemaine'] || '000';
 	
         const choixdate = resp['choixdate'] || '01-01-1899';     
-		console.log(choixsemaine);
+	console.log(choixsemaine);
 	console.log(choixdate);
 
         const employeur = req.session.username//'Gestion3525' //'JNASH'// 
