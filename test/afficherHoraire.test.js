@@ -41,11 +41,10 @@ describe('test de AfficherHoraire', function (done) {
     it('devrait retourner vrai', async function() {
     const req = mockReq();
     const res = mockRes();
-    //const recupererListeSemaineSTUB = sinon.stub(AfficherHoraire,'recupererListeSemaine');
     await AfficherHoraire.fonctions1(req, res); 
     sinon.assert.calledOnce(res.json); //res.json a ete appellee une fois
     sinon.assert.calledOnce(recupererListeSemaineSTUB);
-    //sinon.assert.calledWithExactly(recupererListeSemaineSTUB, null); //recupererListeSemaine a bien ete appelle dans fonctions1
+    sinon.assert.calledWithExactly(recupererListeSemaineSTUB, null); //recupererListeSemaine a bien ete appelle dans fonctions1
     });
     });   
     describe('recupererHoraire', function (done) {
@@ -54,12 +53,15 @@ describe('test de AfficherHoraire', function (done) {
          console.log(horaire);
          expect(horaire).to.deep.equal(Horaire00120191007Gestion3525);
       });
-     //it('devrait retourner vrai', async function() {
-    //const req = mockReq();
-    //const res = mockRes();
-    //await AfficherHoraire.fonctions2(req, res); 
-    //sinon.assert.calledOnce(res.json); //res.json a ete appellee une fois
-   //});
+     it('devrait retourner vrai', async function() {
+    const req = mockReq();
+    const res = mockRes();
+    recupererHoraireSTUB = sinon.stub(Ressources,'recupererhoraire');
+    await AfficherHoraire.fonctions2(req, res); 
+    sinon.assert.calledOnce(res.json); //res.json a ete appellee une fois
+    sinon.assert.calledOnce(recupererHoraireSTUB);
+    sinon.assert.calledWithExactly(recupererHoraireSTUB, null);
+   });
        
  });
 
