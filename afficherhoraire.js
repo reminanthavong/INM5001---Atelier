@@ -1,4 +1,5 @@
 const { Pool } = require('pg');
+const AfficherHoraire = require('./afficherhoraire');
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: true
@@ -18,7 +19,7 @@ async function recupererListeSemaine() {
 async function fonctions1(req, res)  {
   try {
 	  console.log('before')
-           const choixSemaines = await recupererListeSemaine();
+           const choixSemaines = await AfficherHoraire.recupererListeSemaine();
 	   console.log('after')
 
             res.json( choixSemaines );
