@@ -123,6 +123,16 @@ describe('test de AfficherHoraire', function (done) {
     	    console.log(horaire);
          expect(horaire).to.deep.equal(HoraireGenere00120191007Gestion3525);
       });
+      
+     it('devrait appeller la fonction', async function() {
+    const req = mockReq();
+    const res = mockRes();
+    GenererHoraireSTUB = sinon.stub(GenererHoraire,'GenererHoraire');
+    await GenererHoraire.GenererHoraireReponse(req, res); 
+    sinon.assert.calledOnce(res.json); //res.json a ete appellee une fois
+    sinon.assert.calledOnce(GenererHoraireSTUB);
+    sinon.assert.calledWithExactly(GenererHoraireSTUB, '000', '01-01-1899', undefined);
+   });   
  });
  /**********/
  
