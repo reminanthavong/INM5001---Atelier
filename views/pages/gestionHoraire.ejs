@@ -211,25 +211,25 @@ btnGenerer.addEventListener("click", async e => {
         var date = document.getElementById('horairedate').value
         jsonEmp.horairedate = new Date(date);
 
-        jsonEmp.lundijour = document.getElementById('lundijour').value;
-        jsonEmp.lundisoir =  document.getElementById('lundisoir').value;
-        jsonEmp.lundinuit =  document.getElementById('lundinuit').value;
+        jsonEmp.J1 = document.getElementById('lundijour').value;
+        jsonEmp.S1 =  document.getElementById('lundisoir').value;
+        jsonEmp.N1 =  document.getElementById('lundinuit').value;
 				
-        jsonEmp.mardijour = document.getElementById('mardijour').value;
-        jsonEmp.mardisoir =  document.getElementById('mardisoir').value;
-        jsonEmp.mardinuit =  document.getElementById('mardinuit').value;
+        jsonEmp.J2 = document.getElementById('mardijour').value;
+        jsonEmp.S2 =  document.getElementById('mardisoir').value;
+        jsonEmp.N2 =  document.getElementById('mardinuit').value;
         
-        jsonEmp.mercredijour = document.getElementById('mercredijour').value;
-        jsonEmp.mercredisoir =  document.getElementById('mercredisoir').value;
-        jsonEmp.mercredinuit =  document.getElementById('mercredinuit').value;
+        jsonEmp.J3 = document.getElementById('mercredijour').value;
+        jsonEmp.S3 =  document.getElementById('mercredisoir').value;
+        jsonEmp.N3 =  document.getElementById('mercredinuit').value;
         
-        jsonEmp.jeudijour = document.getElementById('jeudijour').value;
-        jsonEmp.jeudisoir =  document.getElementById('jeudisoir').value;
-        jsonEmp.jeudinuit =  document.getElementById('jeudinuit').value;
+        jsonEmp.J4 = document.getElementById('jeudijour').value;
+        jsonEmp.S4 =  document.getElementById('jeudisoir').value;
+        jsonEmp.N4 =  document.getElementById('jeudinuit').value;
 
-        jsonEmp.vendredijour = document.getElementById('vendredijour').value;
-        jsonEmp.vendredisoir =  document.getElementById('vendredisoir').value;
-        jsonEmp.vendredinuit =  document.getElementById('vendredinuit').value;
+        jsonEmp.J5 = document.getElementById('vendredijour').value;
+        jsonEmp.S5 =  document.getElementById('vendredisoir').value;
+        jsonEmp.N5 =  document.getElementById('vendredinuit').value;
         
 				const result = await fetch(url, {
 				        method: 'POST', 
