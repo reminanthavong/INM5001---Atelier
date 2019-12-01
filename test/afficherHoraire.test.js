@@ -6,6 +6,7 @@ const expect = require('chai').expect;
 //***********************************************************//
 const AfficherHoraire = require('../afficherhoraire'); //Destructuration : recupere seulement fonctions1
 const Ressources = require('../ressources'); //Destructuration : recupere seulement recupererListeSemaine 
+const GenererHoraire = require('../GenererHoraire'); 
 //***********************************************************//
  const Horaire00120191007Gestion3525 = { horaires:
           [ { typequart: 'Nuit',
@@ -23,12 +24,14 @@ const Ressources = require('../ressources'); //Destructuration : recupere seulem
 //***********************************************************//
 
 describe('test de AfficherHoraire', function (done) {
+ /**********/
    describe('recupererListeSemaine', function (done) {
    it('devrait retourner 001', async () => {
          const listeSemaine = await Ressources.recupererListeSemaine();
          expect(listeSemaine).to.deep.equal({choixSemaines: [{ idtablehoraire: '001' }]});
       });
    });
+  /**********/
     describe('fonctions1', function (done) {
      //Pour reinitilialiser le stub
      let recupererListeSemaineSTUB;
@@ -45,7 +48,8 @@ describe('test de AfficherHoraire', function (done) {
     sinon.assert.calledOnce(res.json); //res.json a ete appellee une fois
     sinon.assert.calledOnce(recupererListeSemaineSTUB);
     });
-    });   
+    }); 
+  /**********/
     describe('recupererHoraire', function (done) {
    it('devrait retourner le bon horaire', async () => {
          const horaire = await Ressources.recupererHoraire('001','2019-10-07','Gestion3525');
@@ -59,10 +63,16 @@ describe('test de AfficherHoraire', function (done) {
     sinon.assert.calledOnce(res.json); //res.json a ete appellee une fois
     sinon.assert.calledOnce(recupererHoraireSTUB);
     sinon.assert.calledWithExactly(recupererHoraireSTUB, '000', '01-01-1899', undefined);
-   });
-       
+   });   
  });
-
+ /**********/
+     describe('recupererHoraire', function (done) {
+   it('devrait retourner le bon horaire', async () => {
+         const horaire = await GenererHoraire.GenererHoraire('001','2019-10-07','Gestion3525');
+         expect(horaire).to.deep.equal('5');
+      });
+ });
+ /**********/
 });
 
 
