@@ -33,7 +33,7 @@ const ajouterHoraireV2 = async(req, res) => {
 	var sessEmployeur = req.session.username;
 	var i = 0;
 	//console.log(reqjson[quarts[0]]);
-	while (i < jours.length) {
+	while (i < quarts.length) {
 		var x = quarts[i];
 		  try{
 			if (reqjson[x] != null){
