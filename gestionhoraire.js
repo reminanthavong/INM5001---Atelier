@@ -29,7 +29,7 @@ const ajouterHoraireV2 = async(req, res) => {
 	let result = {}
 	var quarts = ["J1", "N1", "S1","J2", "S2", "N2","J3", "S3", "N3","J4", "S4", "N4","J5", "S5", "N5",];
 	const reqjson = req.body;
-	
+	console.log(reqJson);
 	var sessEmployeur = req.session.username;
 	var i = 0;
 	//console.log(reqjson[quarts[0]]);
@@ -38,13 +38,13 @@ const ajouterHoraireV2 = async(req, res) => {
 		  try{
 			if (reqjson[x] != null){
 				//console.log("True");
-			    await ajoutDispo(sessEmployeur, reqjson.horairedate, x.slice(0, 1), x.slice(1), reqjson[x]);		  
+			    await ajoutHoraire(sessEmployeur, reqjson.horairedate, x.slice(0, 1), x.slice(1), reqjson[x]);		  
 		  result.success = true;
 		}
 		  
 		else{
 			//console.log("Not True");
-			await ajoutDispo(sessEmployeur, reqjson.horairedate, x.slice(0, 1), x.slice(1),"0");		  
+			await ajoutHoraire(sessEmployeur, reqjson.horairedate, x.slice(0, 1), x.slice(1),"0");		  
 		  result.success = true; 
 		} 
 			  
@@ -64,15 +64,14 @@ const enleverHoraire   = async (req, res) => {
  res.end();
 }
 
-async function ajoutHoraire(sessEmployeur, horairedate, lundijour, lundisoir, lundinuit, mardijour, mardisoir, mardinuit, mercredijour, 
-  mercredisoir, mercredinuit, jeudijour, jeudisoir, jeudinuit, vendredijour, vendredisoir, vendredinuit ) {
+async function ajoutHoraire(sessEmployeur, horairedate, quart, jour, nbemploye) {
 
-    /* Retirer temporairement pour tester
+    
     var idtablehoraire = sessEmployeur + '' + horairedate;
-    */
+    
     await Api
       .post('/basequartsemployeur')
-      .send({idemployeur: 'Gestion8768', idtablehoraire: '002', typequart: 'J', joursemaine: '1', nbremployes: '1'});
+      .send({idemployeur: sessEmployeur, idtablehoraire: idtablehoraire, typequart: quart, joursemaine: jour, nbremployes: nbemploye});
 
       /*retirer temporairement pour tester
       .send(
