@@ -39,6 +39,7 @@ INNER JOIN BaseQuartsEmployeur BQER ON BQER.IDEmployeur=C.IDEmployeur
 		AND C.Selection <= BQER.NBREmployes
 ;`);
 client.release();
+	console.log(horaire);
 	return horaire
 }
 //---------------------------------------------------------------------------------------------------------------------------------//
