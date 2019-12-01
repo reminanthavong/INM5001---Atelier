@@ -101,7 +101,7 @@ if (req.session.typeutilisateur == 1){
 	}
   })
 //.get('/Horaire',gestionhoraire.afficherHoraire)
-.post('/Horaire',gestionhoraire.ajouterHoraire )
+.post('/Horaire',gestionhoraire.ajouterHoraireV2 )
 .delete('/Horaire',gestionhoraire.enleverHoraire )
 
 // Fonction PageEmploye
