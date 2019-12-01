@@ -209,7 +209,10 @@ btnGenerer.addEventListener("click", async e => {
         const jsonEmp = {};
         
         var date = document.getElementById('horairedate').value
-        jsonEmp.horairedate = new Date(date);
+	var dateAjustee = new Date(date);
+	dateAjustee = dateAjustee.setMinutes(dateAjustee.getMinutes() + dateAjustee.getTimezoneOffset());
+	
+        jsonEmp.horairedate = dateAjustee;
 
         jsonEmp.J1 = document.getElementById('lundijour').value;
         jsonEmp.S1 =  document.getElementById('lundisoir').value;
