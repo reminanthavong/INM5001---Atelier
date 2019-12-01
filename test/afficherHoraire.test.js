@@ -121,7 +121,7 @@ describe('test de AfficherHoraire', function (done) {
    it('devrait retourner le bon horaire', async () => {
          const horaire = await GenererHoraire.GenererHoraire('001','2019-10-07','Gestion3525');
     	    console.log(horaire);
-         expect(horaire).to.deep.equal('5');
+         expect(horaire).to.deep.equal(HoraireGenere00120191007Gestion3525);
       });
  });
  /**********/
