@@ -125,7 +125,7 @@ describe('test de AfficherHoraire', function (done) {
       });
       
      it('devrait appeller la fonction', async function() {
-    const req = mockReq();
+    const req = mockReq({ body: {}});
     const res = mockRes();
     GenererHoraireSTUB = sinon.stub(GenererHoraire,'GenererHoraire');
     await GenererHoraire.GenererHoraireReponse(req, res); 
