@@ -15,12 +15,6 @@ async function recupererListeSemaine() {
 }
 
 async function recupererHoraire(choixsemaine,choixdate,employeur) {
-	
-		console.log(choixsemaine);
-	console.log(choixdate);
-	console.log(employeur);
-	console.log(typeof choixsemaine);
-	console.log(typeof choixdate);
             const client = await pool.connect()
             const horaires = await client.query(`SELECT *
                                                          FROM
