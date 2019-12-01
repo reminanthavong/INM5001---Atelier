@@ -21,7 +21,8 @@ const GenererHoraire = require('../GenererHoraire');
             { typequart: 'Nuit',
               joursemaine: 'Jeudi',
               nomemploye: 'DESRI M PURNELL' } ] }
- const HoraireGenere00120191007Gestion3525 =  {horaire:[ { idtablehoraire: '001',
+ const HoraireGenere00120191007Gestion3525 =  {horaires:
+          [ { idtablehoraire: '001',
               dateparam: '2019-10-07',
               idemployeur: 'Gestion3525',
               idemploye: 'DPURN',
