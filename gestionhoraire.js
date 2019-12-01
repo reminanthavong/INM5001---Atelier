@@ -31,19 +31,19 @@ const ajouterHoraireV2 = async(req, res) => {
 	const reqjson = req.body;
 	console.log(reqjson);
 	var sessEmployeur = req.session.username;
-	var i = 0;
+	var i = 1;
 	//console.log(reqjson[quarts[0]]);
 	while (i < quarts.length) {
 		var x = quarts[i];
 		  try{
 			if (reqjson[x] != null){
-				//console.log("True");
+				console.log("True");
 			    await ajoutHoraire(sessEmployeur, reqjson.horairedate, x.slice(0, 1), x.slice(1), reqjson[x]);		  
 		  result.success = true;
 		}
 		  
 		else{
-			//console.log("Not True");
+			console.log("Not True");
 			await ajoutHoraire(sessEmployeur, reqjson.horairedate, x.slice(0, 1), x.slice(1),"0");		  
 		  result.success = true; 
 		} 
