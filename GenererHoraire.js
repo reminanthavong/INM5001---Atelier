@@ -45,6 +45,7 @@ INNER JOIN BaseQuartsEmployeur BQER ON BQER.IDEmployeur=C.IDEmployeur
 }
 //---------------------------------------------------------------------------------------------------------------------------------//
 const GenererHoraireReponse = async (req, res) => {
+	const resp = req.body; 
 	const choixsemaine = resp['choixsemaine'] || '000';
         const choixdate = resp['choixdate'] || '01-01-1899';     
         const employeur = req.session.username
