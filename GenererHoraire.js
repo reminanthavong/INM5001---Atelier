@@ -38,10 +38,10 @@ INNER JOIN BaseQuartsEmployeur BQER ON BQER.IDEmployeur=C.IDEmployeur
 		AND BQER.JourSemaine=C.JourSemaine
 		AND C.Selection <= BQER.NBREmployes
 ;`);
-	const horairesRecu = { 'horaires': (horaires) ? horaires.rows : null};
+	const horairegenere = { 'horaires': (horaires) ? horaires.rows : null};
 	client.release();
 	//console.log(horaire);
-	return horaire
+	return horairegenere
 }
 //---------------------------------------------------------------------------------------------------------------------------------//
 const GenererHoraireReponse = async (req, res) => {
