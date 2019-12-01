@@ -1,4 +1,5 @@
 const Ressources = require('./ressources')
+const GenererHoraire = require('./GenererHoraire')
 
 async function fonctions1(req, res)  {
   try {
@@ -32,10 +33,26 @@ const fonctions4  = async (req, res) => {
   res.sendFile(path.join(__dirname+'/views/pages/AffichageHoraire.html'));
 }
 
+const GenererHoraireReponse = async (req, res) => {
+	const resp = req.body; 
+	const choixsemaine = resp['choixsemaine'] || '000';
+        const choixdate = resp['choixdate'] || '01-01-1899';     
+        const employeur = req.session.username
+try {
+	const horaire =await GenererHoraire.GenererHoraire(choixsemaine,choixdate,employeur);
+	res.json(horaire);
+ } catch (err) {
+	console.error(err);
+	res.send("Erreur appel client " + err);
+ }
+}
+
+
 //---------------------------------------------------------------------------------------------------------------------------------//
 module.exports = {
 	fonctions1,
   	fonctions2,
   	fonctions3,
-  	fonctions4
+  	fonctions4,
+	GenererHoraireReponse
 }
