@@ -29,7 +29,7 @@ const ajouterHoraireV2 = async(req, res) => {
 	let result = {}
 	var quarts = ["J1", "N1", "S1","J2", "S2", "N2","J3", "S3", "N3","J4", "S4", "N4","J5", "S5", "N5",];
 	const reqjson = req.body;
-	console.log(reqJson);
+	console.log(reqjson);
 	var sessEmployeur = req.session.username;
 	var i = 0;
 	//console.log(reqjson[quarts[0]]);
