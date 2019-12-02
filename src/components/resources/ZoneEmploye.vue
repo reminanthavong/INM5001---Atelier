@@ -136,7 +136,7 @@
                         dateConge.setDate(dateConge.getDate() - 4) //La date enregistré est toujours le lundi de cette semaine là
                     }
                 }
-                console.log(date + ", " + jourDeLaSemaine)
+                console.log(dateConge + ", " + dateConge.getDay())
                 if(dateConge != null) {
                     const jsonEmp = {};
                     jsonEmp.dateconge = dateConge;
