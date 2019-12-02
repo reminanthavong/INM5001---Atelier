@@ -109,7 +109,7 @@
                     {key: 'idemploye', label: 'Identifiant', sortable: true},
                     {key: 'nomemploye', label: 'Nom', sortable: true},
                     {key: 'prenomemploye', label: 'Prenom', sortable: true},
-                    {key: 'nbrquartsmax, label: 'Nombre de quarts de travail', sortable: true},
+                    {key: 'nbrquartsmax', label: 'Nombre de quarts de travail', sortable: true},
                     {key: 'dateembauche', label: 'Date de son embauche', sortable: true}
                 ],
                 keyword: ''
