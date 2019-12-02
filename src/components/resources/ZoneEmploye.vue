@@ -5,10 +5,22 @@
                 <br/>
                 <br/>
                 <h1 class="w3-text-teal">Disponibilités</h1>
-                <b-table responsive :items="dispos.typequart"
+                <b-table responsive :items="dispos"> </b-table>
 
-                >
-                </b-table>
+                <table>
+                    <thead>
+                        <tr>
+                            <th v-for="key in columns"> {{ key }}></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="entry in dispos">
+                            <td v-for="key in columns">
+                                {{entry[key]}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
 
                 <h1 class="w3-text-teal">Modifier mes disponibilités</h1>
                 <b-form @submit.prevent="changerDispos">
