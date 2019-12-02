@@ -8,13 +8,7 @@
 
                 <button @click="toggleAfficherEmployes" class="btn btn-primary">Afficher tous les employés</button>
                 <p v-if="afficherEmployes">Veuillez cliquer sur un employé pour le modifier</p>
-                <b-input-group v-if="afficherEmployes">
-                    <b-form-input v-model="keyword" placeholder="Recherche" type="text">
-                    <b-input-group-text slot="append"></b-input-group-text>
-                    </b-form-input>
-                    <b-btn :disabled="!keyword" variant="link" size="sm" @click="keyword = ''"></b-btn>
-                </b-input-group>
-                <b-table striped hover :items="employes" :fields="fields" :keyword="keyword" v-if="afficherEmployes" @row-clicked="modifierEmploye" selectable>
+                <b-table striped hover :items="employes" :fields="fields" v-if="afficherEmployes" @row-clicked="modifierEmploye" selectable>
                 </b-table>
 
                 <h1 class="w3-text-teal">Ajouter un employé</h1>
@@ -112,8 +106,7 @@
                     {key: 'prenomemploye', label: 'Prenom', sortable: true},
                     {key: 'nbrquartsmax', label: 'Nombre de quarts de travail', sortable: true},
                     {key: 'dateembauche', label: 'Date de son embauche', sortable: true}
-                ],
-                keyword: ''
+                ]
             }
         },
         mounted: function() {},
@@ -127,11 +120,6 @@
                         })
                         .then((data) => {
                             this.employes = data
-                            ? this.employes.filter(item =>
-                            item.nomemploye.includes(this.keyword) ||
-                            item.prenomemploye.includes(this.keyword) ||
-                            item.idemploye.includes(this.keyword))
-                            				: data
                         }).catch(error => {
                             console.log(error);
                         });
