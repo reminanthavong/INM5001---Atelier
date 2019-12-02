@@ -106,9 +106,9 @@
                     checked: []
                 },
                 fields: [
-                    {key: 'idemploye', label: 'Identifiant de l'employé', sortable: true},
-                    {key: 'nomemploye', label: 'Nom de l'employé', sortable: true},
-                    {key: 'prenomemploye', label: 'Prenom de l'employé', sortable: true},
+                    {key: 'idemploye', label: 'Identifiant', sortable: true},
+                    {key: 'nomemploye', label: 'Nom', sortable: true},
+                    {key: 'prenomemploye', label: 'Prenom', sortable: true},
                     {key: 'nbrquartsmax, label: 'Nombre de quarts de travail', sortable: true},
                     {key: 'dateembauche', label: 'Date de son embauche', sortable: true},
                 ],
