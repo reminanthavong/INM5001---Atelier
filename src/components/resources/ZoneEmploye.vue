@@ -10,12 +10,12 @@
                 <table>
                     <thead>
                         <tr>
-                            <th v-for="key in columns"> {{ key }}></th>
+                            <th v-for="key in columns" v-bind:key="dispos"> {{ key }}></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="entry in dispos">
-                            <td v-for="key in columns">
+                        <tr v-for="entry in dispos" v-bind:key="dispos">
+                            <td v-for="key in columns" v-bind:key="dispos">
                                 {{entry[key]}}
                             </td>
                         </tr>
