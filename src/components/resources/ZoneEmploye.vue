@@ -5,11 +5,9 @@
                 <br/>
                 <br/>
                 <h1 class="w3-text-teal">Disponibilités</h1>
-                <b-table responsive :items="dispos"> </b-table>
 
-                <div id="table">
-                    <b-table :fields="fields" :items="dispos"></b-table>
-                </div>
+                //Affichage des disponibilités de l'employé
+                <b-table :fields="fields" :items="dispos" :joursemaine="joursemaine"></b-table>
 
                 <h1 class="w3-text-teal">Modifier mes disponibilités</h1>
                 <b-form @submit.prevent="changerDispos">
@@ -84,6 +82,11 @@
                     {key: 'joursemaine', label: 'Jour de la semaine', sortable: true},
                     {key: 'typequart', label: 'Type de quart', sortable: true},
                     {key: 'disponibilite', label: 'Disponibilite', sortable: true}
+                ],
+                joursemaine: [
+                    {key: 1, label: 'lundi'}, {key: 2, label: 'mardi'},
+                    {key: 3, label: 'mercredi'}, {key: 4, label: 'jeudi'},
+                    {key: 5, label: 'vendredi'},
                 ]
             }
         },
