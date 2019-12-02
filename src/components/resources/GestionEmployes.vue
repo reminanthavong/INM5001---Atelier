@@ -9,8 +9,9 @@
                 <button @click="toggleAfficherEmployes" class="btn btn-primary">Afficher tous les employés</button>
                 <p v-if="afficherEmployes">Veuillez cliquer sur un employé pour le modifier</p>
                 <b-input-group v-if="afficherEmployes">
-                    <b-form-input v-model="keyword" placeholder="Recherche" type="text"></b-form-input>
+                    <b-form-input v-model="keyword" placeholder="Recherche" type="text">
                     <b-input-group-text slot="append"></b-input-group-text>
+                    </b-form-input>
                     <b-btn :disabled="!keyword" variant="link" size="sm" @click="keyword = ''"></b-btn>
                 </b-input-group>
                 <b-table striped hover :items="employes" :fields="fields" :keyword="keyword" v-if="afficherEmployes" @row-clicked="modifierEmploye" selectable>
@@ -125,8 +126,9 @@
                             return response.json()
                         })
                         .then((data) => {
-                            this.employes = this.keyword
-                            ? this.employes.filter(item => item.nomemploye.includes(this.keyword) ||
+                            this.employes = data
+                            ? this.employes.filter(item =>
+                            item.nomemploye.includes(this.keyword) ||
                             item.prenomemploye.includes(this.keyword) ||
                             item.idemploye.includes(this.keyword))
                             				: data
@@ -161,8 +163,8 @@
                     var dateAjustee = new Date(date);
                     dateAjustee.setMinutes(dateAjustee.getMinutes() + dateAjustee.getTimezoneOffset()); //Permet d'avoir la bonne date sans influence du fuseau horaire
                     const jsonEmp = {};
-                    jsonEmp.nomemploye = this.nomemploye;
-                    jsonEmp.prenomemploye = this.prenomemploye;
+                    jsonEmp.nomemploye = this.nomemploye.toUpperCase();
+                    jsonEmp.prenomemploye = this.prenomemploye.toUpperCase();
                     jsonEmp.nbrquartsmax = this.nbrquartsmax;
                     jsonEmp.dateembauche = dateAjustee;
                     jsonEmp.motdepasse = this.motdepasse;
