@@ -3,11 +3,10 @@
         <div class="w3-row w3-padding-64">
             <div class="w3-twothird w3-container">
                 <br/>
-                <br/>
                 <h1 class="w3-text-teal">Disponibilités</h1>
 
-                //Affichage des disponibilités de l'employé
-                <b-table :fields="fields" :items="dispos" :joursemaine="joursemaine"></b-table>
+                <button @click="toggleAfficherDispos" class="btn btn-primary">Afficher mes disponibilités</button>
+                <b-table :fields="fields" :items="dispos" v-if="afficherDispos"></b-table>
 
                 <h1 class="w3-text-teal">Modifier mes disponibilités</h1>
                 <b-form @submit.prevent="changerDispos">
@@ -70,6 +69,7 @@
         },
         data() {
             return {
+                afficherDispos: false,
                 dispos: null,
                 dateconge: null,
                 formDataDispos: {
@@ -81,12 +81,7 @@
                 fields: [
                     {key: 'joursemaine', label: 'Jour de la semaine', sortable: true},
                     {key: 'typequart', label: 'Type de quart', sortable: true},
-                    {key: 'disponibilite', label: 'Disponibilite', sortable: true}
-                ],
-                joursemaine: [
-                    {key: 1, label: 'lundi'}, {key: 2, label: 'mardi'},
-                    {key: 3, label: 'mercredi'}, {key: 4, label: 'jeudi'},
-                    {key: 5, label: 'vendredi'},
+                    {key: 'disponibilite', label: 'Disponibilité', sortable: true}
                 ]
             }
         },
@@ -172,6 +167,9 @@
                         this.$router.push("/success")
                 }
             },
+            toggleAfficherDispos() {
+                this.afficherDispos = !this.afficherDispos
+            }
         }
     }
 </script>
