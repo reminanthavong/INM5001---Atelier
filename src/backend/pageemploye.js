@@ -60,22 +60,22 @@ const ajouterDisponibilites   = async (req, res) => {
 }
 
 const ajouterConge = async (req, res) => {
-	 let result = {}
-	 const reqJson = req.body;
-	 var utilisateur = req.session.username;
-	var i = 0;
-	while (i < reqJson.dispo.length) {
-		try{	
-		  await ajoutConge(utilisateur, reqJson.dateconge, reqJson.dateconge.getDay(), reqJson.dispo[i]);		  
-		  result.success = true;
-	  } catch (e) {
-		  result.success = false;
-	  }
-  		i++;	
-
-		}
-	          res.setHeader("content-type", "application/json")
-		  res.send(JSON.stringify(result))
+    let result = {}
+    const reqJson = req.body;
+    var utilisateur = req.session.username;
+    var i = 0;
+    while (i < reqJson.dispo.length) {
+        try{
+            await ajoutConge(utilisateur, reqJson.dateconge, reqJson.dateconge.getDay(), reqJson.dispo[i]);
+            result.success = true;
+        }catch (e){
+            result.success = false;
+        }
+        console.log(result.success)
+        i++;
+    }
+    res.setHeader("content-type", "application/json")
+    res.send(JSON.stringify(result))
 }
 
 async function getDisponibilites(utilisateur) {
