@@ -7,7 +7,9 @@
                 <h1 class="w3-text-teal">Disponibilités</h1>
                 <b-table responsive :items="dispos"> </b-table>
 
-
+                <div id="table">
+                    <b-table :fields="fields" :items="dispos"></b-table>
+                </div>
 
                 <h1 class="w3-text-teal">Modifier mes disponibilités</h1>
                 <b-form @submit.prevent="changerDispos">
@@ -77,7 +79,12 @@
                 },
                 formDataConge: {
                     checked: []
-                }
+                },
+                fields: [
+                    {key: 'joursemaine', label: 'Jour de la semaine', sortable: true},
+                    {key: 'typequart', label: 'Type de quart', sortable: true},
+                    {key: 'disponibilite', label: 'Disponibilite', sortable: true}
+                ]
             }
         },
         mounted: function() {
@@ -89,7 +96,9 @@
                 })
                 .then((data) => {
                     this.dispos = data
-                        //console.log(this.employes);
+                    //this.dispo.filter(item =>
+                       // item.joursemaine.includes(this.keyword) || item.lastname.includes(this.keyword) || item.disponibilite.includes(this.keywords)
+                    //)
                 }).catch(error => {
                     console.log(error);
                 });
