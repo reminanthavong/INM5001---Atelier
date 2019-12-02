@@ -176,7 +176,7 @@
                         this.$router.push("/success")
                 },
                 modifierEmploye(record, index) {
-                    alert(record + "; " + index)
+                    alert(record + "; " + index + record.nomemploye)
                 }
         }
     }
