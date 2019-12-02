@@ -5,7 +5,10 @@
                 <br/>
                 <br/>
                 <h1 class="w3-text-teal">Disponibilités</h1>
-                <b-table responsive :items="dispos"></b-table>
+                <b-table responsive :items="dispos"
+
+                >
+                </b-table>
 
                 <h1 class="w3-text-teal">Modifier mes disponibilités</h1>
                 <b-form @submit.prevent="changerDispos">
@@ -116,11 +119,11 @@
 
                 },
                 demanderConge() {
-
                     var date = this.dateconge;
                     var dateConge = new Date(date);
                     dateConge.setMinutes(dateConge.getMinutes() + dateConge.getTimezoneOffset()); //Permet d'avoir la bonne date sans influence du fuseau horaire
-                    vaar dateLundi = changerDatePourLundi(dateConge);
+                    var dateLundi = changerDatePourLundi(dateConge);
+                    if(dateLundi != null) {
                     const jsonEmp = {};
                     jsonEmp.dateconge = dateLundi;
                     jsonEmp.dispo = this.formDataConge.checked;
@@ -141,9 +144,10 @@
                             console.log(error);
                         });
                         this.$router.push("/success")
+                        }
                 },
                 changerDatePourLundi(date) {
-                    var jourDeLaSemaine = dateConge.getDay();
+                    var jourDeLaSemaine = date.getDay();
                     if(jourDeLaSemaine == 0 || jourDeLaSemaine == 6){
                         alert("Impossible de demander un congé pour un jour de fin de semaine");
                         return null
