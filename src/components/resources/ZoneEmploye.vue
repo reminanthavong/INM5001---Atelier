@@ -120,7 +120,7 @@
                     var date = this.dateconge;
                     var dateConge = new Date(date);
                     dateConge.setMinutes(dateConge.getMinutes() + dateConge.getTimezoneOffset()); //Permet d'avoir la bonne date sans influence du fuseau horaire
-                    vaar dateLundi = changerDatePourLundi(dateConge);
+                    var dateLundi = changerDatePourLundi(dateConge);
                     const jsonEmp = {};
                     jsonEmp.dateconge = dateLundi;
                     jsonEmp.dispo = this.formDataConge.checked;
