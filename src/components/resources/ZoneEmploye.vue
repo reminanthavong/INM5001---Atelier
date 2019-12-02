@@ -5,7 +5,7 @@
                 <br/>
                 <br/>
                 <h1 class="w3-text-teal">Disponibilités</h1>
-                <b-table responsive :items="dispos"
+                <b-table responsive :items="dispos.typequart"
 
                 >
                 </b-table>
