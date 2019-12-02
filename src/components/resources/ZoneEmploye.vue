@@ -94,9 +94,6 @@
                 })
                 .then((data) => {
                     this.dispos = data
-                    //this.dispo.filter(item =>
-                       // item.joursemaine.includes(this.keyword) || item.lastname.includes(this.keyword) || item.disponibilite.includes(this.keywords)
-                    //)
                 }).catch(error => {
                     console.log(error);
                 });
