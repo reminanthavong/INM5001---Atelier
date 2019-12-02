@@ -7,20 +7,7 @@
                 <h1 class="w3-text-teal">Disponibilités</h1>
                 <b-table responsive :items="dispos"> </b-table>
 
-                <table>
-                    <thead>
-                        <tr>
-                            <th v-for="key in columns" v-bind:key="dispos"> {{ key }}></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="entry in dispos" v-bind:key="dispos">
-                            <td v-for="key in columns" v-bind:key="dispos">
-                                {{entry[key]}}
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+
 
                 <h1 class="w3-text-teal">Modifier mes disponibilités</h1>
                 <b-form @submit.prevent="changerDispos">
