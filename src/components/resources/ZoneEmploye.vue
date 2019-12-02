@@ -143,7 +143,7 @@
                         this.$router.push("/success")
                 },
                 changerDatePourLundi(date) {
-                    var jourDeLaSemaine = dateConge.getDay();
+                    var jourDeLaSemaine = date.getDay();
                     if(jourDeLaSemaine == 0 || jourDeLaSemaine == 6){
                         alert("Impossible de demander un congé pour un jour de fin de semaine");
                         return null
