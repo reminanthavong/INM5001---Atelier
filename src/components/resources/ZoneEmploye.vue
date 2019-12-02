@@ -118,10 +118,11 @@
                 demanderConge() {
 
                     var date = this.dateconge;
-                    var dateAjustee = new Date(date);
-                    dateAjustee.setMinutes(dateAjustee.getMinutes() + dateAjustee.getTimezoneOffset()); //Permet d'avoir la bonne date sans influence du fuseau horaire
+                    var dateConge = new Date(date);
+                    dateConge.setMinutes(dateConge.getMinutes() + dateConge.getTimezoneOffset()); //Permet d'avoir la bonne date sans influence du fuseau horaire
+                    vaar dateLundi = changerDatePourLundi(dateConge);
                     const jsonEmp = {};
-                    jsonEmp.dateconge = dateAjustee;
+                    jsonEmp.dateconge = dateLundi;
                     jsonEmp.dispo = this.formDataConge.checked;
                     fetch('/Conge', {
                             method: 'POST',
@@ -140,8 +141,26 @@
                             console.log(error);
                         });
                         this.$router.push("/success")
+                },
+                changerDatePourLundi(date) {
+                    var jourDeLaSemaine = dateConge.getDay();
+                    if(jourDeLaSemaine == 0 || jourDeLaSemaine == 6){
+                        alert("Impossible de demander un congé pour un jour de fin de semaine");
+                        return null
+                    }else {
+                       if(jourDeLaSemaine == 2) {
+                            date.setDate(date.getDate() - 1) //La date enregistré est toujours le lundi de cette semaine là
+                        }else if(jourDeLaSemaine == 3) {
+                            date.setDate(date.getDate() - 2) //La date enregistré est toujours le lundi de cette semaine là
+                        }else if(jourDeLaSemaine == 4) {
+                            date.setDate(date.getDate() - 3) //La date enregistré est toujours le lundi de cette semaine là
+                        }else if(jourDeLaSemaine == 5) {
+                            date.setDate(date.getDate() - 4) //La date enregistré est toujours le lundi de cette semaine là
+                        }
+                        console.log(date + ", " + jourDeLaSemaine)
+                        return date
+                    }
                 }
-
         }
     }
 </script>
