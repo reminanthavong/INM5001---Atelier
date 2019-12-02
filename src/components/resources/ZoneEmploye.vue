@@ -140,6 +140,7 @@
                 if(dateConge != null) {
                     const jsonEmp = {};
                     jsonEmp.dateconge = dateConge;
+                    jsonEmp.joursemaine = jourDeLaSemaine;
                     jsonEmp.dispo = this.formDataConge.checked;
                     fetch('/Conge', {
                             method: 'POST',

@@ -65,8 +65,9 @@ const ajouterConge = async (req, res) => {
     var utilisateur = req.session.username;
     var i = 0;
     while (i < reqJson.dispo.length) {
+        console.log(reqJson.dispo[i])
         try{
-            await ajoutConge(utilisateur, reqJson.dateconge, reqJson.dateconge.getDay(), reqJson.dispo[i]);
+            await ajoutConge(utilisateur, reqJson.dateconge, reqJson.joursemaine, reqJson.dispo[i]);
             result.success = true;
         }catch (e){
             result.success = false;
