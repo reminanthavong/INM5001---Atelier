@@ -175,7 +175,7 @@
                         });
                         this.$router.push("/success")
                 },
-                modifierEmploye(record, index) {
+                modifierEmploye() {
                     alert("Fonctionnalité en cours de dévelopement")
                 }
         }
