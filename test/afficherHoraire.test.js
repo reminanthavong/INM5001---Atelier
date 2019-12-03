@@ -4,9 +4,9 @@ const sinon = require('sinon');
 const assert = require('chai').assert;
 const expect = require('chai').expect;
 //***********************************************************//
-const AfficherHoraire = require('../afficherhoraire'); //Destructuration : recupere seulement fonctions1
+const AfficherHoraire = require('../src/backend/afficherhoraire'); //Destructuration : recupere seulement fonctions1
 const Ressources = require('../ressources'); //Destructuration : recupere seulement recupererListeSemaine 
-const GenererHoraire = require('../GenererHoraire'); 
+const GenererHoraire = require('../src/backend/GenererHoraire'); 
 //***********************************************************//
  const Horaire00120191007Gestion3525 = { horaires:
           [ { typequart: 'Nuit',
