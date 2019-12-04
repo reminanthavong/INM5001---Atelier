@@ -1,13 +1,15 @@
 const session = require('express-session');
 const { Pool } = require('pg');
-var PostgREST = require('postgrest-client')
-var Api = new PostgREST ('http://testpostgrest-calendrier.herokuapp.com')
+var PostgREST = require('postgrest-client');
+var Api = new PostgREST ('http://testpostgrest-calendrier.herokuapp.com');
 var sess;
-   
+
+
 const ajouterHoraire   = async (req, res) => {
 	  let result = {}
 	  const reqJson = req.body;
 	  var sessEmployeur = req.session.username;
+	  console.log(reqJson);
 	  try{	
       await ajoutHoraire(sessEmployeur, reqJson.horairedate, reqJson.lundijour, reqJson.lundisoir, reqJson.lundinuit, reqJson.mardijour, reqJson.mardisoir, reqJson.mardinuit, reqJson.mercredijour, 
         reqJson.mercredisoir, reqJson.mercredinuit, reqJson.jeudijour, reqJson.jeudisoir, reqJson.jeudinuit, reqJson.vendredijour, reqJson.vendredisoir, reqJson.vendredinuit);		  
@@ -20,17 +22,62 @@ const ajouterHoraire   = async (req, res) => {
 	  }
 }
 
+const ajouterHoraireV2 = async(req, res) => {
+
+
+
+	let result = {}
+	var quarts = ["","J1", "N1", "S1","J2", "S2", "N2","J3", "S3", "N3","J4", "S4", "N4","J5", "S5", "N5"];
+	const reqjson = req.body;
+	//console.log(reqjson);
+	var sessEmployeur = req.session.username;
+	var idtablehoraire = sessEmployeur + "-" + reqjson.horairedate.slice(0, 10);
+	//console.log(idtablehoraire);
+	var i = 1;
+	//console.log(reqjson[quarts[0]]);
+	while (i < quarts.length) {
+		var x = quarts[i];
+		  try{
+			if (reqjson[x] != null){
+				//console.log("True");
+			    await ajoutHoraire(sessEmployeur,idtablehoraire, reqjson.horairedate, x.slice(0, 1), x.slice(1), reqjson[x]);		  
+		  result.success = true;
+		}
+		  
+		else{
+			//console.log("Not True");
+			await ajoutHoraire(sessEmployeur, reqjson.horairedate, x.slice(0, 1), x.slice(1),"0");		  
+		  result.success = true; 
+		} 
+			  
+		  }catch (e) {
+		  result.success = false;
+	  }
+	  
+  		i++;	
+
+		}
+	
+		  res.setHeader("content-type", "application/json")
+		  res.send(JSON.stringify(result))	  
+}
+
 const enleverHoraire   = async (req, res) => {
  res.end();
 }
 
-async function ajoutHoraire(sessEmployeur, horairedate, lundijour, lundisoir, lundinuit, mardijour, mardisoir, mardinuit, mercredijour, 
-  mercredisoir, mercredinuit, jeudijour, jeudisoir, jeudinuit, vendredijour, vendredisoir, vendredinuit ) {
+async function ajoutHoraire(sessEmployeur,idtablehoraire, horairedate, quart, jour, nbemploye) {
 
-    var idtablehoraire = sessEmployeur + '' + horairedate;
+    
+   // var idtablehoraire = sessEmployeur + '' + horairedate;
+    
     await Api
-      .post('/basequartsemploye')
-      .send({idemployeur: sessEmployeur, idtablehoraire: idtablehoraire, typequart: 'J', joursemaine: '1', Nbemployes: lundijour},
+      .post('/basequartsemployeur')
+      .send({idemployeur: sessEmployeur, idtablehoraire: idtablehoraire, typequart: quart, joursemaine: jour, nbremployes: nbemploye});
+
+      /*retirer temporairement pour tester
+      .send(
+            {idemployeur: sessEmployeur, idtablehoraire: idtablehoraire, typequart: 'J', joursemaine: '1', Nbemployes: lundijour}
             {idemployeur: sessEmployeur, idtablehoraire: idtablehoraire, typequart: 'S', joursemaine: '1', Nbemployes: lundisoir},
             {idemployeur: sessEmployeur, idtablehoraire: idtablehoraire, typequart: 'N', joursemaine: '1', Nbemployes: lundinuit},
             {idemployeur: sessEmployeur, idtablehoraire: idtablehoraire, typequart: 'J', joursemaine: '2', Nbemployes: mardijour},
@@ -44,10 +91,12 @@ async function ajoutHoraire(sessEmployeur, horairedate, lundijour, lundisoir, lu
             {idemployeur: sessEmployeur, idtablehoraire: idtablehoraire, typequart: 'N', joursemaine: '4', Nbemployes: jeudinuit},
             {idemployeur: sessEmployeur, idtablehoraire: idtablehoraire, typequart: 'J', joursemaine: '5', Nbemployes: vendredijour},
             {idemployeur: sessEmployeur, idtablehoraire: idtablehoraire, typequart: 'S', joursemaine: '5', Nbemployes: vendredisoir},
-            {idemployeur: sessEmployeur, idtablehoraire: idtablehoraire, typequart: 'N', joursemaine: '5', Nbemployes: vendredinuit}); 
+            {idemployeur: sessEmployeur, idtablehoraire: idtablehoraire, typequart: 'N', joursemaine: '5', Nbemployes: vendredinuit}
+            );*/ 
 }
 
 module.exports = {
- ajouterHoraire ,
-  enleverHoraire 
-}
+  ajouterHoraire ,	
+  enleverHoraire,
+  ajouterHoraireV2
+}	
