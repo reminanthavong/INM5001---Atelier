@@ -2,133 +2,169 @@
     <div class="w3-main" style="margin-left:250px">
         <div class="w3-row w3-padding-64">
             <div class="w3-twothird w3-container">
-                <h1 class="w3-text-teal">Générer un horaire:</h1>
                 <br/>
-                <div class="container">
-                    <h4> Entrer le nombre d'employé nécessaire par quart de travail: </h4>
+                <br/>
+                <h4 class="w3-text-teal">Entrer le nombre d'employé nécessaire par quart de travail: </h4>
+                <b-form @submit.prevent="ajouterEmploye">
+                    <b-form id="datehoraire" label="Date du lundi de la semaine:">
+                        <datepicker v-model="datehoraire" name="datehoraire"></datepicker>
+                    </b-form>
                     <br/>
-                    <form class="form-inline">
-                        <div class="form-group">
-                            <div class="form-group">
-                                <label for='horairedate'>Date(entrer la date du lundi):</label>
-                                <input type='date' id='horairedate' class='form-control' required='required'>
-                            </div>
+                    <h6>Lundi:</h6>
+                    <b-form inline id="lundi">
+                        <label for="lundijour"> Jour:  </label>
+                        <b-input id="lundijour" pattern='[0-9]' required='required' placeholder="1-9"></b-input>
 
-                            <br/>
-                            <br/>
+                        <label for="lundisoir"> Soir:  </label>
+                        <b-input id="lundisoir" pattern='[0-9]' required='required' placeholder="1-9"></b-input>
 
-                            <label for="jour">Lundi:</label>
-                        </div>
-                        <br/>
-                        <div class="form-group">
-                            <label for="lundijour">Jour:</label>
-                            <input type="text" class="form-control" id="lundijour" name="lundijour" pattern='[0-9]' required='required'>
-                        </div>
-                        <div class="form-group">
-                            <label for="lundisoir">Soir:</label>
-                            <input type="text" class="form-control" id="lundisoir" name="lundisoir" pattern='[0-9]' required='required'>
-                        </div>
-                        <div class="form-group">
-                            <label for="lundinuit">Nuit:</label>
-                            <input type="text" class="form-control" id="lundinuit" name="lundinuit" pattern='[0-9]' required='required'>
-                        </div>
+                        <label for="lundinuit"> Nuit:  </label>
+                        <b-input id="lundinuit" pattern='[0-9]' required='required' placeholder="1-9"></b-input>
+                    </b-form>
+                    <br/>
 
-                        <br/>
-                        <br/>
+                    <h6>Mardi:</h6>
+                    <b-form inline id="mardi"> 
+                        <label for="mardijour"> Jour:  </label>
+                        <b-input id="mardijour" pattern='[0-9]' required='required' placeholder="1-9"></b-input>
 
-                        <div class="form-group">
-                            <label for="jour">Mardi:</label>
-                        </div>
-                        <br/>
-                        <div class="form-group">
-                            <label for="mardijour">Jour:</label>
-                            <input type="text" class="form-control" id="mardijour" name="mardijour" pattern='[0-9]' required='required'>
-                        </div>
-                        <div class="form-group">
-                            <label for="mardisoir">Soir:</label>
-                            <input type="text" class="form-control" id="mardisoir" name="mardisoir" pattern='[0-9]' required='required'>
-                        </div>
-                        <div class="form-group">
-                            <label for="mardinuit">Nuit:</label>
-                            <input type="text" class="form-control" id="mardinuit" name="mardinuit" pattern='[0-9]' required='required'>
-                        </div>
+                        <label for="mardisoir"> Soir:  </label>
+                        <b-input id="mardisoir" pattern='[0-9]' required='required' placeholder="1-9"></b-input>
 
-                        <br/>
-                        <br/>
+                        <label for="mardinuit"> Nuit:  </label>
+                        <b-input id="mardinuit" pattern='[0-9]' required='required' placeholder="1-9"></b-input>
+                    </b-form>
+                    <br/>
 
-                        <div class="form-group">
-                            <label for="jour">Mercredi:</label>
-                        </div>
-                        <br/>
-                        <div class="form-group">
-                            <label for="mercredijour">Jour:</label>
-                            <input type="text" class="form-control" id="mercredijour" name="mercredijour" pattern='[0-9]' required='required'>
-                        </div>
-                        <div class="form-group">
-                            <label for="mercredisoir">Soir:</label>
-                            <input type="text" class="form-control" id="mercredisoir" name="mercredisoir" pattern='[0-9]' required='required'>
-                        </div>
-                        <div class="form-group">
-                            <label for="mercredinuit">Nuit:</label>
-                            <input type="text" class="form-control" id="mercredinuit" name="mercredinuit" pattern='[0-9]' required='required'>
-                        </div>
+                    <h6>Mercredi:</h6>
+                    <b-form inline id="mercredi">
+                        <label for="mercredijour"> Jour:  </label>
+                        <b-input id="mercredijour" pattern='[0-9]' required='required' placeholder="1-9"></b-input>
 
-                        <br/>
-                        <br/>
+                        <label for="mercredisoir"> Soir:  </label>
+                        <b-input id="mercredisoir" pattern='[0-9]' required='required' placeholder="1-9"></b-input>
 
-                        <div class="form-group">
-                            <label for="jour">Jeudi:</label>
-                        </div>
-                        <br/>
-                        <div class="form-group">
-                            <label for="jeudijour">Jour:</label>
-                            <input type="text" class="form-control" id="jeudijour" name="jeudijour" pattern='[0-9]' required='required'>
-                        </div>
-                        <div class="form-group">
-                            <label for="jeudisoir">Soir:</label>
-                            <input type="text" class="form-control" id="jeudisoir" name="jeudisoir" pattern='[0-9]' required='required'>
-                        </div>
-                        <div class="form-group">
-                            <label for="jeudinuit">Nuit:</label>
-                            <input type="text" class="form-control" id="jeudinuit" name="jeudinuit" pattern='[0-9]' required='required'>
-                        </div>
+                        <label for="mercredinuit"> Nuit:  </label>
+                        <b-input id="mercredinuit" pattern='[0-9]' required='required' placeholder="1-9"></b-input>
+                    </b-form>
+                    <br/>
 
-                        <br/>
-                        <br/>
+                    <h6>Jeudi:</h6>
+                    <b-form inline id="jeudi">
+                        <label for="jeudijour"> Jour:  </label>
+                        <b-input id="jeudijour" pattern='[0-9]' required='required' placeholder="1-9"></b-input>
 
-                        <div class="form-group">
-                            <label for="jour">Vendredi:</label>
-                        </div>
-                        <br/>
-                        <div class="form-group">
-                            <label for="vendredijour">Jour:</label>
-                            <input type="text" class="form-control" id="vendredijour" name="vendredijour" pattern='[0-9]' required='required'>
-                        </div>
-                        <div class="form-group">
-                            <label for="vendredisoir">Soir:</label>
-                            <input type="text" class="form-control" id="vendredisoir" name="vendredisoir" pattern='[0-9]' required='required'>
-                        </div>
-                        <div class="form-group">
-                            <label for="vendredinuit">Nuit:</label>
-                            <input type="text" class="form-control" id="vendredinuit" name="vendredinuit" pattern='[0-9]' required='required'>
-                        </div>
+                        <label for="jeudisoir"> Soir:  </label>
+                        <b-input id="jeudisoir" pattern='[0-9]' required='required' placeholder="1-9"></b-input>
 
-                        <br/>
-                        <br/>
+                        <label for="jeudinuit"> Nuit:  </label>
+                        <b-input id="jeudinuit" pattern='[0-9]' required='required' placeholder="1-9"></b-input>
+                    </b-form>
+                    <br/>
 
-                        <button class='btn btn-primary' style='background-color:grey; border:none' id="btngenererhoraire" name='btngenererhoraire' value='btngenererhoraire'>Générer</button>
-                    </form>
-                </div>
-            </div>
-        </div>
+                    <h6>Vendredi:</h6>
+                    <b-form inline id="vendredi">
+                        <label for="vendredijour"> Jour:  </label>
+                        <b-input id="vendredijour" pattern='[0-9]' required='required' placeholder="1-9"></b-input>
 
-        <div class="w3-row w3-padding-64">
-            <div class="w3-twothird w3-container">
-                <h1 class="w3-text-teal">Heading</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        <label for="vendredisoir"> Soir:  </label>
+                        <b-input id="vendredisoir" pattern='[0-9]' required='required' placeholder="1-9"></b-input>
+
+                        <label for="vendredinuit"> Nuit:  </label>
+                        <b-input id="vendredinuit" pattern='[0-9]' required='required' placeholder="1-9"></b-input>
+                    </b-form>
+                    <br/>
+
+                    <b-button type="submit" variant="primary">Générer l'horaire:</b-button>
+                </b-form>
             </div>
         </div>
     </div>
 </template>
 <script>
+  import Datepicker from 'vuejs-datepicker'
+    export default {
+        name: 'gestionHoraire',
+        components: {
+            Datepicker
+        },
+        data: function() {
+            return {
+                datehoraire: null,
+                lundijour: null,
+                lundisoir: null,
+                lundinuit: null,
+                mardijour: null,
+                mardisoir: null,
+                mardinuit: null,
+                mercredijour: null,
+                mercredisoir: null,
+                mercredinuit: null,
+                jeudijour: null,
+                jeudisoir: null,
+                jeudinuit: null,
+                vendredijour: null,
+                vendredisoir: null,
+                vendredinuit: null,
+                fields: [
+                    {key: 'datehoraire', sortable: true},
+                    {key: 'lundi', sortable: true},
+                    {key: 'mardi', sortable: true},
+                    {key: 'mercredi', sortable: true},
+                    {key: 'jeudi', sortable: true},
+                    {key: 'vendredi', sortable: true}
+                ]
+            }
+        },
+        mounted: function() {},
+        methods: {
+                genererHoraire() {
+                    var date = this.datehoraire;
+                    var dateAjustee = new Date(date);
+                    dateAjustee.setMinutes(dateAjustee.getMinutes() + dateAjustee.getTimezoneOffset()); //Permet d'avoir la bonne date sans influence du fuseau horaire
+                    const jsonEmp = {};
+                    jsonEmp.lundijour = this.lundijour;
+                    jsonEmp.lundisoir = this.lundisoir;
+                    jsonEmp.lundinuit = this.lundinuit;
+                    jsonEmp.mardijour = this.mardijour;
+                    jsonEmp.mardisoir = this.mardisoir;
+                    jsonEmp.mardinuit = this.mardinuit;
+                    jsonEmp.mercredijour = this.mercredijour;
+                    jsonEmp.mercredisoir = this.mercredisoir;
+                    jsonEmp.mercredinuit = this.mercredinuit;
+                    jsonEmp.jeudijour = this.jeudijour
+                    jsonEmp.jeudisoir = this.jeudisoir
+                    jsonEmp.jeudinuit = this.jeudinuit;
+                    jsonEmp.vendredijour = this.vendredijour
+                    jsonEmp.vendredisoir = this.vendredisoir
+                    jsonEmp.vendredinuit = this.vendredinuit;
+                    fetch('/Horaire', {
+                            method: 'POST',
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(jsonEmp)
+                        })
+                        .then((response) => {
+                            return response.json()
+                        })
+                        .then((data) => {
+                            console.log(data);
+                        }).catch(error => {
+                            console.log(error);
+                        });
+                        this.$router.push("/success")
+            }
+        }
+    }
 </script>
+
+<style scoped>
+    .btn {
+        background-color: grey;
+        border: none;
+        margin: 5px 0;
+    }
+</style>
+
