@@ -43,7 +43,7 @@ export default {
             nomsHoraire: null
         }
     },
-    mounted function() {
+    mounted: function() {
         fetch('/api/v1/semaines', {
              method: 'GET'
         })
