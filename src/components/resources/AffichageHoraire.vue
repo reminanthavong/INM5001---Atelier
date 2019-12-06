@@ -12,10 +12,14 @@
                     </tr>
                     <tr>
                         <td>
-                            <select id="listeSemaines"></select>
+                            <b-form-group id="datehoraire">
+                                <select id="listeSemaines" :items="nomsHoraire"></select>
+                            </b-form-group>
                         </td>
                         <td>
-                            <input id='datesemaine' width="120">
+                            <b-form-group id="dateshoraire">
+                                <datepicker v-model="dateshoraire" name="dateshoraire"></datepicker>
+                            </b-form-group>
                         </td>
                     </tr>
                 </table>
@@ -25,5 +29,31 @@
         </div>
     </div>
 </template>
+
 <script>
+import Datepicker from 'vuejs-datepicker'
+export default {
+    name: 'affichageHoraire',
+    components: {
+        Datepicker
+    },
+    data: function() {
+        return {
+            dateshoraire: null,
+            nomsHoraire: null
+        }
+    },
+    mounted function() {
+        fetch('/api/v1/semaines', {
+             method: 'GET'
+        })
+        .then((response) => {
+            return response.json()
+        })
+        .then((data) => {
+            this.nomsHoraire = data
+        }).catch(error => {
+            console.log(error);
+        });
+    }
 </script>
