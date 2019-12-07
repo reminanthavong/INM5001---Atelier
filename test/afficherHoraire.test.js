@@ -8,7 +8,7 @@ const AfficherHoraire = require('../src/backend/afficherhoraire');
 const Ressources = require('../src/backend/ressources'); 
 const GenererHoraire = require('../src/backend/GenererHoraire'); 
 //***********************************************************//
-const TestScenarii = require('./TestScenarii/AfficherHoraire'); 
+const TestScenarii = require('./TestScenarii/AfficherHoraireTests'); 
 //***********************************************************//
 
 describe('test de AfficherHoraire', function (done) {
