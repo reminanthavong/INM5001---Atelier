@@ -104,7 +104,7 @@ INNER JOIN BaseQuartsEmployeur BQER ON BQER.IDEmployeur=C.IDEmployeur
 
 
 module.exports = {
-  fonctions1,
+  afficherChoixHoraire,
   fonctions2,
   fonctions3,
   fonctions4,
