@@ -111,7 +111,7 @@ export default {
                 })
                 .then((data) => {
                     this.horaire = data
-                    console.log(horaire);
+                    console.log(this.horaire);
                 })
                 .catch(error => {
                     console.log(error);
