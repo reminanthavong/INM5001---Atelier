@@ -182,6 +182,7 @@ describe('test de PageEmploye', function (done) {
     const req = mockReq();
     const res = mockRes();
     getDisponibilitesSTUB = sinon.stub(PageEmploye,'getDisponibilites');
+    setHeaderSTUB = sinon.stub(PageEmploye,'setHeader');
     await PageEmploye.afficherDisponibilites(req, res); 
     //sinon.assert.calledOnce(res.send); //res.send a ete appellee une fois
     //sinon.assert.calledOnce(res.setHeader); //res.send a ete appellee une fois
