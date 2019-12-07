@@ -13,7 +13,7 @@
                     <tr>
                         <td>
                             <select v-model="selectionne" id="listeSemaines">
-                                <option v-for="nom in nomsHoraire" v-bind:value="nom.idtablehoraire">
+                                <option v-for="nom in nomsHoraire" v-bind:value="nom.idtablehoraire" v-bind:key="nomsHoraire">
                                     {{ nom.idtablehoraire }}
                                 </option>
                             </select>
