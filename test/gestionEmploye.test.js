@@ -12,10 +12,29 @@ const GestionEmploye = require('../src/backend/gestionemploye');
 describe('test de GestionEmploye', function (done) {
  /**********/
    describe('creerIdEmploye', function (done) {
-   it('devrait retourner 001', async () => {
+   it('devrait retourner npren', async () => {
          const ID = await GestionEmploye.creerIdEmploye('nomdelemploye', 'prenomdelemploye');
          expect(ID).to.deep.equal('npren');
       });
    });
   /**********/
+    describe('afficherEmployes', function (done) {
+    xit('devrait retourner le bon horaire', async () => {
+    const req = mockReq();
+    const res = mockRes();
+    getEmployesSTUB = sinon.stub(GestionEmploye,'getEmployes');
+    //await GestionEmploye.GenererHoraireReponse(req, res); 
+    //sinon.assert.calledOnce(res.json); //setHeader
+    //sinon.assert.calledOnce(getEmployesSTUB);
+       });  
+   });
+  /**********/
+    describe('getEmployes', function (done) {
+   it('devrait retourner ???', async () => {
+         const Employes = await GestionEmploye.getEmployes('Gestion3525');
+         expect(Employes).to.deep.equal('');
+      });
+   });
+  /**********/
+ 
 });
