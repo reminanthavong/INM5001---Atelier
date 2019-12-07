@@ -5,7 +5,7 @@
                 <br/>
                 <br/>
                 <h4 class="w3-text-teal">Entrer le nombre d'employé nécessaire par quart de travail: </h4>
-                <b-form @submit.prevent="ajouterEmploye">
+                <b-form @submit.prevent="genererHoraire">
                     <b-form id="datehoraire" label="Date du lundi de la semaine:">
                         <datepicker v-model="datehoraire" name="datehoraire"></datepicker>
                     </b-form>
@@ -74,8 +74,7 @@
                         <b-input id="vendredinuit" pattern='[0-9]' required='required' placeholder="1-9"></b-input>
                     </b-form>
                     <br/>
-
-                    <b-button type="submit" variant="primary">Générer l'horaire:</b-button>
+                    <b-button type="submit" variant="primary">Générer l'horaire</b-button>
                 </b-form>
             </div>
         </div>
@@ -116,12 +115,14 @@
                 ]
             }
         },
-        mounted: function() {},
         methods: {
-                genererHoraire() {
-                    var date = this.datehoraire;
-                    var dateAjustee = new Date(date);
-                    dateAjustee.setMinutes(dateAjustee.getMinutes() + dateAjustee.getTimezoneOffset()); //Permet d'avoir la bonne date sans influence du fuseau horaire
+            genererHoraire() {
+                var date = this.datehoraire;
+                var dateHoraire = new Date(date);
+                var jourDeLaSemaine = dateHoraire.getDay()
+                if(jourDeLaSemaine != 1) {
+                    alert("Veuillez choisir une date correspondant à un lundi ")
+                }else{
                     const jsonEmp = {};
                     jsonEmp.lundijour = this.lundijour;
                     jsonEmp.lundisoir = this.lundisoir;
@@ -139,22 +140,23 @@
                     jsonEmp.vendredisoir = this.vendredisoir
                     jsonEmp.vendredinuit = this.vendredinuit;
                     fetch('/Horaire', {
-                            method: 'POST',
-                            headers: {
-                                'Accept': 'application/json',
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify(jsonEmp)
-                        })
-                        .then((response) => {
-                            return response.json()
-                        })
-                        .then((data) => {
-                            console.log(data);
-                        }).catch(error => {
-                            console.log(error);
-                        });
-                        this.$router.push("/success")
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(jsonEmp)
+                    })
+                    .then((response) => {
+                        return response.json()
+                    })
+                    .then((data) => {
+                        console.log(data);
+                    }).catch(error => {
+                        console.log(error);
+                    });
+                    this.$router.push("/success")
+                }
             }
         }
     }
