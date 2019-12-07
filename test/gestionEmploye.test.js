@@ -13,7 +13,7 @@ describe('test de GestionEmploye', function (done) {
  /**********/
    describe('creerIdEmploye', function (done) {
    it('devrait retourner 001', async () => {
-         const ID = await GestionEmploye.creerIdEmploye(nomdelemploye, prenomdelemploye);
+         const ID = await GestionEmploye.creerIdEmploye('nomdelemploye', 'prenomdelemploye');
         console.log(ID);
          expect(ID).to.deep.equal();
       });
