@@ -6,6 +6,7 @@ const session = require('express-session');
 const { mockReq, mockRes } = require('sinon-express-mock');
 const sinon = require('sinon');
 const assert = require('chai').assert;
+chai.use(chaiHttp);
 const expect = require('chai').expect;
 //***********************************************************//
 const PageEmploye = require('../src/backend/pageemploye.js'); 
@@ -182,7 +183,7 @@ describe('test de PageEmploye', function (done) {
     const req = mockReq();
     const res = mockRes();
     getDisponibilitesSTUB = sinon.stub(PageEmploye,'getDisponibilites');
-    .buffer(true)
+    //.buffer(true)
     await PageEmploye.afficherDisponibilites(req, res); 
     //sinon.assert.calledOnce(res.send); //res.send a ete appellee une fois
     //sinon.assert.calledOnce(res.setHeader); //res.send a ete appellee une fois
