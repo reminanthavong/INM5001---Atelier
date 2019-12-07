@@ -115,5 +115,7 @@ async function patchDispo(idemployeur, idemploye, typequart, joursemaine, dispon
 module.exports = {
 		  afficherDisponibilites,
 		  ajouterDisponibilites, 
-		  ajouterConge
+		  ajouterConge,
+		  getDisponibilites,
+	          afficherDisponibilites
 		}
