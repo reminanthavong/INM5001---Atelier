@@ -33,7 +33,6 @@ describe('test de GestionEmploye', function (done) {
     describe('getEmployes', function (done) {
    it('devrait retourner la liste des employes', async () => {
          const Employes = await GestionEmploye.getEmployes('Gestion3525');
-    console.log(Employes)
          expect(Employes).to.deep.equal(TestScenarii.EmployesDeGestion3525);
       });
    });
