@@ -8,7 +8,7 @@ const expect = require('chai').expect;
 //***********************************************************//
 const GestionEmploye = require('../src/backend/gestionemploye'); 
 //***********************************************************//
-const EmployesDeGestion3525 = require('./TestScenarii/GestionEmployeTests.js').EmployesDeGestion3525;
+const TestScenarii = require('./TestScenarii/GestionEmployeTests.js');
 //***********************************************************//
 describe('test de GestionEmploye', function (done) {
  /**********/
@@ -31,10 +31,10 @@ describe('test de GestionEmploye', function (done) {
    });
   /**********/
     describe('getEmployes', function (done) {
-   xit('devrait retourner la liste des employes', async () => {
+   it('devrait retourner la liste des employes', async () => {
          const Employes = await GestionEmploye.getEmployes('Gestion3525');
     console.log(Employes)
-         expect(Employes).to.deep.equal(EmployesDeGestion3525);
+         expect(Employes).to.deep.equal(TestScenarii.EmployesDeGestion3525);
       });
    });
   /**********/
