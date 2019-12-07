@@ -1,8 +1,19 @@
-const session = require('express-session');
-const bodyParser = require('body-parser')
-var PostgREST = require('postgrest-client')
-var Api = new PostgREST ('http://testpostgrest-calendrier.herokuapp.com')
+const { Pool } = require('pg');
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: true
+});
 
+const afficherChoixHoraire = async (req, res) => {
+    const client = await pool.connect()
+    const choixSemaine = await client.query(`SELECT DISTINCT IDTableHoraire FROM TableHoraire;`);
+    const choixSemaines = { 'choixSemaines': (choixSemaine) ? choixSemaine.rows : null};
+    client.release();
+    console.log(choixSemaines);
+    return choixSemaines;
+}
+
+/**
 const afficherChoixHoraire = async (req, res) => {
     var gestionnaire = req.session.username;
     const rows = await getChoixHoraire(gestionnaire);
@@ -14,6 +25,7 @@ const afficherChoixHoraire = async (req, res) => {
 async function getChoixHoraire(gestionnaire) {
 	return await Api.get('/tablehoraire').eq('idemployeur', gestionnaire)
 }
+*//
 
 const afficherHoraire  = async (req, res) => {
         const resp = JSON.parse(req.body); //{$choixsemaine}
