@@ -123,29 +123,31 @@
                 if(jourDeLaSemaine != 1) {
                     alert("Veuillez choisir une date correspondant à un lundi ")
                 }else{
-                    const jsonEmp = {};
-                    jsonEmp.lundijour = this.lundijour;
-                    jsonEmp.lundisoir = this.lundisoir;
-                    jsonEmp.lundinuit = this.lundinuit;
-                    jsonEmp.mardijour = this.mardijour;
-                    jsonEmp.mardisoir = this.mardisoir;
-                    jsonEmp.mardinuit = this.mardinuit;
-                    jsonEmp.mercredijour = this.mercredijour;
-                    jsonEmp.mercredisoir = this.mercredisoir;
-                    jsonEmp.mercredinuit = this.mercredinuit;
-                    jsonEmp.jeudijour = this.jeudijour
-                    jsonEmp.jeudisoir = this.jeudisoir
-                    jsonEmp.jeudinuit = this.jeudinuit;
-                    jsonEmp.vendredijour = this.vendredijour
-                    jsonEmp.vendredisoir = this.vendredisoir
-                    jsonEmp.vendredinuit = this.vendredinuit;
+                    const jsonExigences = {};
+                    jsonExigences.horairedate = dateHoraire
+                    jsonExigences.lundijour = this.lundijour;
+                    jsonExigences.lundisoir = this.lundisoir;
+                    jsonExigences.lundinuit = this.lundinuit;
+                    jsonExigences.mardijour = this.mardijour;
+                    jsonExigences.mardisoir = this.mardisoir;
+                    jsonExigences.mardinuit = this.mardinuit;
+                    jsonExigences.mercredijour = this.mercredijour;
+                    jsonExigences.mercredisoir = this.mercredisoir;
+                    jsonExigences.mercredinuit = this.mercredinuit;
+                    jsonExigences.jeudijour = this.jeudijour
+                    jsonExigences.jeudisoir = this.jeudisoir
+                    jsonExigences.jeudinuit = this.jeudinuit;
+                    jsonExigences.vendredijour = this.vendredijour
+                    jsonExigences.vendredisoir = this.vendredisoir
+                    jsonExigences.vendredinuit = this.vendredinuit;
+                    console.log(jsonExigences)
                     fetch('/Horaire', {
                         method: 'POST',
                         headers: {
                             'Accept': 'application/json',
                             'Content-Type': 'application/json'
                         },
-                        body: JSON.stringify(jsonEmp)
+                        body: JSON.stringify(jsonExigences)
                     })
                     .then((response) => {
                         return response.json()
@@ -155,8 +157,28 @@
                     }).catch(error => {
                         console.log(error);
                     });
-                    this.$router.push("/success")
                 }
+
+                const jsonHoraire = {}
+                jsonHoraire.horairedate = dateHoraire
+                console.log(jsonHoraire)
+                fetch('/creationHoraire', {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                     body: JSON.stringify(jsonHoraire)
+                })
+                .then((response) => {
+                    return response.json()
+                })
+                 .then((data) => {
+                    console.log(data);
+                }).catch(error => {
+                    console.log(error);
+                });
+                this.$router.push("/success")
             }
         }
     }

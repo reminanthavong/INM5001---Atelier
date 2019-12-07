@@ -8,7 +8,7 @@ const ajouterHoraire = async(req, res) => {
 	let result = {}
 	var quarts = ["","J1", "N1", "S1","J2", "S2", "N2","J3", "S3", "N3","J4", "S4", "N4","J5", "S5", "N5"];
 	const reqjson = req.body;
-	//console.log(reqjson);
+	console.log(reqjson);
 	var sessEmployeur = req.session.username;
 	var idtablehoraire = sessEmployeur + "-" + reqjson.horairedate.slice(0, 10);
 	//console.log(idtablehoraire);
@@ -36,9 +36,14 @@ const ajouterHoraire = async(req, res) => {
 }
 
 const genererHoraire = async (req, res) => {
+    const reqjson = req.body;
+    var sessEmployeur = req.session.username;
+    var dateHoraire = reqjson.horairedate;
+    var idTableHoraire = sessEmployeur + "-" + reqjson.horairedate.slice(0, 10);
+    console.log(reqjons + "; " + sessEmployeur + "; " + idTableHoraire)
   try {
             const client = await pool.connect()
-            const horaire = await client.query(`SELECT DISTINCT '999' AS IDTableHoraire, '10/7/2019' AS DateParam ,C.IDEmployeur,C.IDEmploye, C.JourSemaine, C.TypeQuart,c.Selection--,NBREmployes
+            const horaire = await client.query(`SELECT DISTINCT '${idTableHoraire}' AS IDTableHoraire, '${dateHoraire}' AS DateParam ,C.IDEmployeur,C.IDEmploye, C.JourSemaine, C.TypeQuart,c.Selection--,NBREmployes
 FROM(
 	SELECT IDEmploye,IDEmployeur,JourSemaine, TypeQuart,Selection,DateEmbauche
 	FROM (
@@ -49,13 +54,13 @@ FROM(
 			SELECT BQE.*, nbrQuartsmax,DateEmbauche ,ROW_NUMBER()OVER(PARTITION BY BQE.IDEmploye, BQE.JourSemaine ORDER BY BQE.TypeQuart ASC) AS MaxJOur
 			FROM basequartsemploye BQE
 			INNER JOIN baseemployes BE ON BE.IDEmploye=BQE.IDEmploye
-				AND BE.IDEmployeur='Gestion8768'
+				AND BE.IDEmployeur='${sessEmployeur}'
   				AND Disponibilite='1'
   				AND ParamType='1'
 			LEFT JOIN Tableconges TC ON TC.IDEmploye=BQE.IDEmploye
 				AND TC.JourSemaine=BQE.JourSemaine
 				AND TC.TypeQuart=BQE.TypeQuart
-				AND TC.DateConges='2019-10-7'
+				AND TC.DateConges='${dateHoraire}'
 			WHERE TC.IDEmploye IS NULL
 	)A
 	WHERE MaxJour=1

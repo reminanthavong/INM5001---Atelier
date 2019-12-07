@@ -56,12 +56,12 @@ router.patch('/Employe', gestionemploye.modifierEmploye)
 router.delete('/Employe', gestionemploye.enleverEmploye)
 
 // Fonction AfficherHoraire
-router.get('choixHoraire', afficherhoraire.afficherChoixHoraire)
-router.post('affichageHoraire',afficherhoraire.afficherHoraire)
+router.get('/choixHoraire', afficherhoraire.afficherChoixHoraire)
+router.post('/affichageHoraire',afficherhoraire.afficherHoraire)
 
 // Fonction GestionHoraire
 router.post('/Horaire', gestionhoraire.ajouterHoraire )
-router.post('creationHoraire', gestionhoraire.genererHoraire)
+router.post('/creationHoraire', gestionhoraire.genererHoraire)
 
 // Fonction PageEmploye
 router.get('/DispoEmploye',pageemploye.afficherDisponibilites)
