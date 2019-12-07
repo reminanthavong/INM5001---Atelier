@@ -63,7 +63,7 @@ const Horaire00120191007Gestion3525 = { horaires:
               selection: '2' } ]
 }
 
-module.export{
+module.export = {
 Horaire00120191007Gestion3525,
 HoraireGenere00120191007Gestion3525
 }
