@@ -171,20 +171,19 @@ describe('test de PageEmploye', function (done) {
    describe('getDisponibilite', function (done) {
    it('devrait retourner les disponibilites de lemploye', async () => {
          const Disponibilite = await PageEmploye.getDisponibilites('TREIK');
-         console.log(Disponibilite);
          expect(Disponibilite).to.deep.equal(DisponibilitesTREIK);
       });
    });
   /**********/
  describe('afficherDisponibilites', function (done) {
- xit('devrait retourner vrai', async function() {
+ it('devrait retourner vrai', async function() {
     const req = mockReq();
     const res = mockRes();
     getDisponibilitesSTUB = sinon.stub(PageEmploye,'getDisponibilites');
     await PageEmploye.afficherDisponibilites(req, res); 
     //sinon.assert.calledOnce(res.send); //res.send a ete appellee une fois
     //sinon.assert.calledOnce(res.setHeader); //res.send a ete appellee une fois
-    //sinon.assert.calledOnce(getDisponibilitesSTUB);
+    sinon.assert.calledOnce(getDisponibilitesSTUB);
 
     });
    });
