@@ -83,15 +83,16 @@ describe('test de AfficherHoraire', function (done) {
       });
    });
   /**********/
-    describe('fonctions1', function (done) {
+
+//    describe('fonctions1', function (done) {
      //Pour reinitilialiser le stub
-     let recupererListeSemaineSTUB;
-     beforeEach(() => {
-      recupererListeSemaineSTUB = sinon.stub(Ressources,'recupererListeSemaine');
-     })
-     afterEach(() => {
-        sinon.restore();
-     });     
+//     let recupererListeSemaineSTUB;
+//     beforeEach(() => {
+//      recupererListeSemaineSTUB = sinon.stub(Ressources,'recupererListeSemaine');
+//     })
+//     afterEach(() => {
+//        sinon.restore();
+//     });
    /* it('devrait retourner vrai', async function() {
     const req = mockReq();
     const res = mockRes();
@@ -100,7 +101,8 @@ describe('test de AfficherHoraire', function (done) {
     sinon.assert.calledOnce(recupererListeSemaineSTUB);
     });
     */
-    }); 
+//    });
+
   /**********/
     describe('recupererHoraire', function (done) {
    it('devrait retourner le bon horaire', async () => {
