@@ -25,7 +25,7 @@ const afficherChoixHoraire = async (req, res) => {
 async function getChoixHoraire(gestionnaire) {
 	return await Api.get('/tablehoraire').eq('idemployeur', gestionnaire)
 }
-*//
+**/
 
 const afficherHoraire  = async (req, res) => {
         const resp = JSON.parse(req.body); //{$choixsemaine}
