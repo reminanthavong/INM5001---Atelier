@@ -8,3 +8,15 @@ const expect = require('chai').expect;
 //***********************************************************//
 const GestionEmploye = require('../src/backend/gestionemploye'); 
 //***********************************************************//
+
+describe('test de GestionEmploye', function (done) {
+ /**********/
+   describe('creerIdEmploye', function (done) {
+   it('devrait retourner 001', async () => {
+         const ID = await GestionEmploye.creerIdEmploye(nomdelemploye, prenomdelemploye);
+        console.log(ID);
+         expect(ID).to.deep.equal();
+      });
+   });
+  /**********/
+});
