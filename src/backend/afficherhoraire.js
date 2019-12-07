@@ -6,6 +6,7 @@ var Api = new PostgREST ('http://testpostgrest-calendrier.herokuapp.com')
 const afficherChoixHoraire = async (req, res) => {
     var gestionnaire = req.session.username;
     const rows = await getChoixHoraire(gestionnaire);
+    console.log(rows)
     res.setHeader("content-type", "application/json")
     res.send(JSON.stringify(rows))
 }
