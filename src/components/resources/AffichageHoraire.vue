@@ -13,8 +13,8 @@
                     <tr>
                         <td>
                             <select v-model="selectionne" id="listeSemaines" @change="afficherHoraire(selectionne)">
-                                <option v-for="nom in nomsHoraire" v-bind:value="nom.idtablehoraire" v-bind:key="nom.idtablehoraire">
-                                    {{ nom.idtablehoraire }}
+                                <option v-for="(item, key) nomsHoraire" v-bind:value="key" v-bind:key="key">
+                                    {{ key }}
                                 </option>
                             </select>
                         </td>
@@ -67,7 +67,7 @@ export default {
         })
         .then((data) => {
             this.nomsHoraire = data
-            console.log(this.nomsHoraire)
+            console.log("Liste: " + this.nomsHoraire)
         })
         .catch(error => {
             console.log(error)
@@ -115,7 +115,7 @@ export default {
                 })
                 .then((data) => {
                     this.horaire = data
-                    console.log(this.horaire);
+                    console.log("Horaire: " + this.horaire);
                 })
                 .catch(error => {
                     console.log(error);
