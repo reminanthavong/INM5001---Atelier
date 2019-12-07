@@ -4,8 +4,8 @@ const sinon = require('sinon');
 const assert = require('chai').assert;
 const expect = require('chai').expect;
 //***********************************************************//
-const AfficherHoraire = require('../src/backend/afficherhoraire'); //Destructuration : recupere seulement fonctions1
-const Ressources = require('../src/backend/ressources'); //Destructuration : recupere seulement recupererListeSemaine 
+const AfficherHoraire = require('../src/backend/afficherhoraire'); 
+const Ressources = require('../src/backend/ressources'); 
 const GenererHoraire = require('../src/backend/GenererHoraire'); 
 //***********************************************************//
  const Horaire00120191007Gestion3525 = { horaires:
@@ -123,7 +123,6 @@ describe('test de AfficherHoraire', function (done) {
      describe('recupererHoraire', function (done) {
    it('devrait retourner le bon horaire', async () => {
          const horaire = await GenererHoraire.GenererHoraire('001','2019-10-07','Gestion3525');
-    	    console.log(horaire);
          expect(horaire).to.deep.equal(HoraireGenere00120191007Gestion3525);
       });
       
