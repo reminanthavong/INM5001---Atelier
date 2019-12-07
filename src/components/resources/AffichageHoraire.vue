@@ -79,7 +79,7 @@ export default {
             dateHoraire.setMinutes(dateHoraire.getMinutes() + dateHoraire.getTimezoneOffset())
             var jourDeLaSemaine = dateHoraire.getDay();
             if(jourDeLaSemaine != 1) {
-                alert("Veuillez choisir une date correspondant à un lundi")
+                alert("Veuillez choisir une date correspondant à un lundi " + jourDeLaSemaine)
             } else {
                 fetch('/affichageHoraire', {
                     method: 'POST',
