@@ -76,7 +76,7 @@ export default {
         afficherHoraireSelonDate() {
             var date = this.datehoraire;
             var dateHoraire = new Date(date)
-            dateHoraire.setMinutes(dateHoraire.getMinutes() + dateHoraire.getTimezoneOffset())
+            //dateHoraire.setMinutes(dateHoraire.getMinutes() + dateHoraire.getTimezoneOffset())
             var jourDeLaSemaine = dateHoraire.getDay();
             if(jourDeLaSemaine != 1) {
                 alert("Veuillez choisir une date correspondant à un lundi " + jourDeLaSemaine)
