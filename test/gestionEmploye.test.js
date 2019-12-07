@@ -12,6 +12,7 @@ const GestionEmploye = require('../src/backend/gestionemploye');
 //var TestScenarii = JSON.parse(require('fs').readFileSync('./TestScenarii/GestionEmployeTests.json', 'utf8'));
 //const EmployesDeGestion3525 = TestScenarii.EmployesDeGestion3525
 const EmployesDeGestion3525 = require('./TestScenarii/GestionEmployeTests.json').EmployesDeGestion3525;
+ console.log(EmployesDeGestion3525)
 //***********************************************************//
 describe('test de GestionEmploye', function (done) {
  /**********/
@@ -34,7 +35,7 @@ describe('test de GestionEmploye', function (done) {
    });
   /**********/
     describe('getEmployes', function (done) {
-   it('devrait retourner ???', async () => {
+   xit('devrait retourner ???', async () => {
          const Employes = await GestionEmploye.getEmployes('Gestion3525');
     console.log(Employes)
          expect(Employes).to.deep.equal(EmployesDeGestion3525);
