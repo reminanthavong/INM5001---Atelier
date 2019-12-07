@@ -1,5 +1,5 @@
-{
-EmployesDeGestion3525: [
+
+var EmployesDeGestion3525 = [
          {
            idemployeur: 'Gestion3525',
            idemploye: 'EBECK',
@@ -33,4 +33,7 @@ EmployesDeGestion3525: [
            dateembauche: '1984-10-16'
          }
        ]
+
+module.exports = {
+EmployesDeGestion3525
 }
