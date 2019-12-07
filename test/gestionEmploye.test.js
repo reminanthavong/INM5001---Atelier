@@ -8,7 +8,8 @@ const expect = require('chai').expect;
 //***********************************************************//
 const GestionEmploye = require('../src/backend/gestionemploye'); 
 //***********************************************************//
-var TestScenarii = require('./TestScenarii/GestionEmployeTests.json');
+//var TestScenarii = require('./TestScenarii/GestionEmployeTests.json');
+var TestScenarii = JSON.parse(require('fs').readFileSync('./TestScenarii/GestionEmployeTests.json', 'utf8'));
 const EmployesDeGestion3525 = TestScenarii.EmployesDeGestion3525
 //***********************************************************//
 describe('test de GestionEmploye', function (done) {
