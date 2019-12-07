@@ -158,7 +158,7 @@
                         console.log(error);
                     });
                 }
-
+                if(jourDeLaSemaine ==1) {
                 const jsonHoraire = {}
                 jsonHoraire.horairedate = dateHoraire
                 console.log(jsonHoraire)
@@ -168,7 +168,7 @@
                         'Accept': 'application/json',
                         'Content-Type': 'application/json'
                     },
-                     body: JSON.stringify(jsonHoraire)
+                    body: JSON.stringify(jsonHoraire)
                 })
                 .then((response) => {
                     return response.json()
@@ -179,6 +179,7 @@
                     console.log(error);
                 });
                 this.$router.push("/success")
+                }
             }
         }
     }

@@ -59,3 +59,11 @@
         }
       };
       </script>
+
+<style scoped>
+    .btn {
+        background-color: grey;
+        border: none;
+        margin: 5px 0;
+    }
+</style>

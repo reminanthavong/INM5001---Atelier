@@ -28,7 +28,7 @@
                         </td>
                         <td>
                             <button @click="afficherHoraireSelonDate" class="btn btn-primary">Afficher</button>
-                        <td>
+                        </td>
                     </tr>
                 </table>
 
