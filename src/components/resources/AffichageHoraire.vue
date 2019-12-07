@@ -22,6 +22,14 @@
                             <datepicker v-model="datehoraire" name="datehoraire"></datepicker>
                         </td>
                     </tr>
+                    <tr>
+                        <td>
+
+                        </td>
+                        <td>
+                            <button @click="afficherHoraireSelonDate" class="btn btn-primary">Afficher</button>
+                        <td>
+                    </tr>
                 </table>
 
                 <b-table striped hover :items="horaire">
@@ -61,37 +69,37 @@ export default {
             console.log(error)
         })
     },
-    computed: function() {
-        var date = this.datehoraire;
-        var dateHoraire = new Date(date)
-        dateHoraire.setMinutes(dateHoraire.getMinutes() + dateHoraire.getTimezoneOffset())
-        var jourDeLaSemaine = dateHoraire.getDay();
-        if(jourDeLaSemaine != 1) {
-            alert("Veuillez choisir une date correspondant à un lundi")
-        } else {
-            fetch('/affichageHoraire', {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({date})
-            })
-            .then((response) => {
-                return response.json()
-            })
-            .then((data) => {
-                this.horaire = data
-                console.log(data);
-            })
-            .catch(error => {
-                console.log(error);
-            });
-        }
-    },
     methods: {
         afficherHoraire(idtablehoraire) {
             alert(idtablehoraire)
+        },
+        afficherHoraireSelonDate() {
+            var date = this.datehoraire;
+            var dateHoraire = new Date(date)
+            dateHoraire.setMinutes(dateHoraire.getMinutes() + dateHoraire.getTimezoneOffset())
+            var jourDeLaSemaine = dateHoraire.getDay();
+            if(jourDeLaSemaine != 1) {
+                alert("Veuillez choisir une date correspondant à un lundi")
+            } else {
+                fetch('/affichageHoraire', {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({date})
+                })
+                .then((response) => {
+                    return response.json()
+                })
+                .then((data) => {
+                    this.horaire = data
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+            }
         }
     }
 }
