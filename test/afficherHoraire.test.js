@@ -84,7 +84,7 @@ describe('test de AfficherHoraire', function (done) {
    });
   /**********/
 
-    describe('fonctions1', function (done) {
+    describe('afficherChoixHoraire', function (done) {
      //Pour reinitilialiser le stub
      let recupererListeSemaineSTUB;
      beforeEach(() => {
@@ -96,7 +96,7 @@ describe('test de AfficherHoraire', function (done) {
     it('devrait retourner vrai', async function() {
     const req = mockReq();
     const res = mockRes();
-    await AfficherHoraire.fonctions1(req, res); 
+    await AfficherHoraire.afficherChoixHoraire(req, res); 
     sinon.assert.calledOnce(res.json); //res.json a ete appellee une fois
     sinon.assert.calledOnce(recupererListeSemaineSTUB);
     });
@@ -113,7 +113,7 @@ describe('test de AfficherHoraire', function (done) {
     const req = mockReq({ body: {}});
     const res = mockRes();
     recupererHoraireSTUB = sinon.stub(Ressources,'recupererHoraire');
-    await AfficherHoraire.fonctions2(req, res); 
+    await AfficherHoraire.afficherHoraire(req, res); 
     sinon.assert.calledOnce(res.json); //res.json a ete appellee une fois
     sinon.assert.calledOnce(recupererHoraireSTUB);
     sinon.assert.calledWithExactly(recupererHoraireSTUB, '000', '01-01-1899', undefined);
