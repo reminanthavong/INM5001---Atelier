@@ -12,14 +12,14 @@
                     </tr>
                     <tr>
                         <td>
-                            <b-form-group id="datehoraire">
-                                <select id="listeSemaines" :items="nomsHoraire"></select>
-                            </b-form-group>
+                            <select v-model="selectionne" id="listeSemaines">
+                                <option v-for="nom in nomsHoraire" v-bind:value="nomsHoraire">
+                                    {{ nomsHoraire }}
+                                </option>
+                            </select>
                         </td>
                         <td>
-                            <b-form-group id="dateshoraire">
-                                <datepicker v-model="dateshoraire" name="dateshoraire"></datepicker>
-                            </b-form-group>
+                            <datepicker v-model="dateshoraire" name="dateshoraire"></datepicker>
                         </td>
                     </tr>
                 </table>
@@ -39,6 +39,7 @@ export default {
     },
     data: function() {
         return {
+            selectionne: '',
             dateshoraire: null,
             nomsHoraire: null
         }
