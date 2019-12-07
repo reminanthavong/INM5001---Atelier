@@ -5,9 +5,10 @@ const session = require('express-session');
 //***********************************************************//
 const { mockReq, mockRes } = require('sinon-express-mock');
 const sinon = require('sinon');
-const assert = require('chai').assert;
+const chai = require('chai');
 chai.use(chaiHttp);
 const expect = require('chai').expect;
+const assert = require('chai').assert;
 //***********************************************************//
 const PageEmploye = require('../src/backend/pageemploye.js'); 
 //***********************************************************//
