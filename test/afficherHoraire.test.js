@@ -100,7 +100,7 @@ describe('test de AfficherHoraire', function (done) {
     sinon.assert.calledOnce(res.json); //res.json a ete appellee une fois
     sinon.assert.calledOnce(recupererListeSemaineSTUB);
     });
-    */
+    
     });
 
   /**********/
