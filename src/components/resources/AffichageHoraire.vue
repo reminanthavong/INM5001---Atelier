@@ -19,12 +19,13 @@
                             </select>
                         </td>
                         <td>
-                            <datepicker v-model="dateshoraire" name="dateshoraire"></datepicker>
+                            <datepicker v-model="datehoraire" name="datehoraire"></datepicker>
                         </td>
                     </tr>
                 </table>
 
-                <table id="tabledesHoraire"></table>
+                <b-table striped hover :items="horaire">
+                </b-table>
             </div>
         </div>
     </div>
@@ -40,12 +41,13 @@ export default {
     data: function() {
         return {
             selectionne: '',
-            dateshoraire: null,
-            nomsHoraire: null
+            datehoraire: null,
+            nomsHoraire: null,
+            horaire: null
         }
     },
     mounted: function() {
-        fetch('choixHoraire', {
+        fetch('/choixHoraire', {
              method: 'GET'
         })
         .then((response) => {
@@ -58,6 +60,34 @@ export default {
         .catch(error => {
             console.log(error)
         })
+    },
+    computed: function() {
+        var date = this.datehoraire;
+        var dateHoraire = new Date(date)
+        dateHoraire.setMinutes(dateHoraire.getMinutes() + dateHoraire.getTimezoneOffset())
+        var jourDeLaSemaine = dateConge.getDay();
+        if(jourDeLasemaine != 1) {
+            alert("Veuillez choisir une date correspondant à un lundi"
+        } else {
+            fetch('/affichageHoraire', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({date}})
+            })
+            .then((response) => {
+                return response.json()
+            })
+            .then((data) => {
+                this.horaire = data
+                console.log(data);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        }
     },
     methods: {
         afficherHoraire(idtablehoraire) {

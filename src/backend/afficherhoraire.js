@@ -14,7 +14,7 @@ async function getChoixHoraire(gestionnaire) {
 	return await Api.get('/tablehoraire').eq('idemployeur', gestionnaire)
 }
 
-const fonctions2  = async (req, res) => {
+const afficherHoraire  = async (req, res) => {
         const resp = JSON.parse(req.body); //{$choixsemaine}
         //const resp = { choixSemaine: '001'};
 
@@ -45,15 +45,6 @@ const fonctions2  = async (req, res) => {
                res.send("Erreur appel client " + err);
              }
 }
-
-const fonctions3  = async (req, res) => {
-  res.sendFile(path.join(__dirname+'/views/pages/AffichageHoraire.html' /*, getHoraires */));
-}
-
-const fonctions4  = async (req, res) => {
-  res.sendFile(path.join(__dirname+'/views/pages/AffichageHoraire.html' /*, getHoraires */));
-}
-
 
 //---------------------------------------------------------------------------------------------------------------------------------//
 
@@ -105,8 +96,6 @@ INNER JOIN BaseQuartsEmployeur BQER ON BQER.IDEmployeur=C.IDEmployeur
 
 module.exports = {
   afficherChoixHoraire,
-  fonctions2,
-  fonctions3,
-  fonctions4,
+  afficherHoraire,
   GenererHoraire
 }
