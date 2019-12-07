@@ -112,40 +112,41 @@
         mounted: function() {},
         methods: {
             toggleAfficherEmployes() {
-                    fetch('/Employe', {
-                            method: 'GET'
-                        })
-                        .then((response) => {
-                            return response.json()
-                        })
-                        .then((data) => {
-                            this.employes = data
-                        }).catch(error => {
-                            console.log(error);
-                        });
-                    this.afficherEmployes = !this.afficherEmployes
-                },
-                congedierEmploye() {
-                    const jsonRequest = {}
-                    jsonRequest.idemploye = this.formDataCongediement.toUpperCase();
-                    fetch('/Employe', {
-                            method: 'DELETE',
-                            headers: {
-                                'Accept': 'application/json',
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify(jsonRequest)
-                        })
-                        .then((response) => {
-                            return response.json()
-                        })
-                        .then((data) => {
-                            console.log(data);
-                        }).catch(error => {
-                            console.log(error);
-                        });
-                        this.$router.push("/success")
-                },
+                fetch('/Employe', {
+                    method: 'GET'
+                })
+                .then((response) => {
+                    return response.json()
+                })
+                .then((data) => {
+                    this.employes = data
+                }).catch(error => {
+                    console.log(error);
+                });
+                this.afficherEmployes = !this.afficherEmployes
+            },
+            congedierEmploye() {
+                const jsonRequest = {}
+                jsonRequest.idemploye = this.formDataCongediement.toUpperCase();
+                fetch('/Employe', {
+                    method: 'DELETE',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(jsonRequest)
+                })
+                .then((response) => {
+                    return response.json()
+                })
+                .then((data) => {
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+                 this.$router.push("/success")
+            },
                 ajouterEmploye() {
                     var date = this.dateembauche;
                     var dateAjustee = new Date(date);

@@ -52,8 +52,10 @@ export default {
         })
         .then((data) => {
             this.nomsHoraire = data
-        }).catch(error => {
-            console.log(error);
-        });
+        })
+        .catch(error => {
+            console.log(error)
+        })
     }
+}
 </script>

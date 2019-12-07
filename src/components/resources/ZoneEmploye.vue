@@ -94,7 +94,8 @@
                 })
                 .then((data) => {
                     this.dispos = data
-                }).catch(error => {
+                })
+                .catch(error => {
                     console.log(error);
                 });
         },
