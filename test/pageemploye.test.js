@@ -14,6 +14,7 @@ describe('test de PageEmploye', function (done) {
    describe('getDisponibilite', function (done) {
    it('devrait retourner les disponibilites de lemploye', async () => {
          const Disponibilite = await PageEmploye.getDisponibilite('TREIK');
+         console.log(Disponibilite);
          expect(Disponibilite).to.deep.equal();
       });
    });
