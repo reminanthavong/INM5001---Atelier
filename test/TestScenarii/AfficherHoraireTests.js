@@ -1,4 +1,4 @@
-const Horaire00120191007Gestion3525 = { horaires:
+var Horaire00120191007Gestion3525 = { horaires:
           [ { typequart: 'Nuit',
               joursemaine: 'Mercredi',
               nomemploye: 'ELAINE R BECKER' },
@@ -11,7 +11,7 @@ const Horaire00120191007Gestion3525 = { horaires:
             { typequart: 'Nuit',
               joursemaine: 'Jeudi',
               nomemploye: 'DESRI M PURNELL' } ] }
- const HoraireGenere00120191007Gestion3525 =  {horaires:
+var HoraireGenere00120191007Gestion3525 =  {horaires:
           [ { idtablehoraire: '001',
               dateparam: '2019-10-07',
               idemployeur: 'Gestion3525',
@@ -63,7 +63,7 @@ const Horaire00120191007Gestion3525 = { horaires:
               selection: '2' } ]
 }
 
-module.export = {
+module.exports = {
 Horaire00120191007Gestion3525,
 HoraireGenere00120191007Gestion3525
 }
