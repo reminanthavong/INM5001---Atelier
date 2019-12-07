@@ -34,6 +34,9 @@
 
                 <b-table striped hover :items="horaire">
                 </b-table>
+
+                <b-table striped hover :items="nomsHoraire">
+                </b-table>
             </div>
         </div>
     </div>
