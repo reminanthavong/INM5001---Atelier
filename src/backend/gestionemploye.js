@@ -180,6 +180,10 @@ const modifierEmploye   = async (req, res) => {
   afficherEmployes,
   ajouterEmploye,
   enleverEmploye,
-  modifierEmploye	  
+  modifierEmploye,
+	  
+  creerIdEmploye,
+  afficherEmployes,
+  getEmployes
 
 }
