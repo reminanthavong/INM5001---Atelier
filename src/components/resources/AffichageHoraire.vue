@@ -12,7 +12,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <select v-model="selectionne" id="listeSemaines">
+                            <select v-model="selectionne" id="listeSemaines" @change="afficherHoraire(selectionne)">
                                 <option v-for="nom in nomsHoraire" v-bind:value="nom.idtablehoraire" v-bind:key="nom.idtablehoraire">
                                     {{ nom.idtablehoraire }}
                                 </option>
@@ -58,6 +58,11 @@ export default {
         .catch(error => {
             console.log(error)
         })
+    },
+    methods: {
+        afficherHoraire(idtablehoraire) {
+            alert(idtablehoraire)
+        }
     }
 }
 </script>

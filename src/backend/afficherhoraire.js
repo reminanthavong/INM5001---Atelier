@@ -14,19 +14,6 @@ async function getChoixHoraire(gestionnaire) {
 	return await Api.get('/tablehoraire').eq('idemployeur', gestionnaire)
 }
 
-const fonctions1  = async (req, res) => {
-  try {
-            const client = await pool.connect()
-            const choixSemaine = await client.query(`SELECT DISTINCT IDTableHoraire FROM TableHoraire;`);
-            const choixSemaines = { 'choixSemaines': (choixSemaine) ? choixSemaine.rows : null};
-            res.json( choixSemaines );
-            client.release();
-          } catch (err) {
-            console.error(err);
-            res.send("Erreur appel client " + err);
-          }
-}
-
 const fonctions2  = async (req, res) => {
         const resp = JSON.parse(req.body); //{$choixsemaine}
         //const resp = { choixSemaine: '001'};
