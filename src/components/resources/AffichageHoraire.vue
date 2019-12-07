@@ -14,7 +14,7 @@
                         <td>
                             <select v-model="selectionne" id="listeSemaines">
                                 <option v-for="nom in nomsHoraire" v-bind:value="nomsHoraire">
-                                    {{ nomsHoraire }}
+                                    {{ nom.idtablehoraire }}
                                 </option>
                             </select>
                         </td>
@@ -45,7 +45,7 @@ export default {
         }
     },
     mounted: function() {
-        fetch('/api/v1/semaines', {
+        fetch('choixHoraire', {
              method: 'GET'
         })
         .then((response) => {
@@ -53,6 +53,7 @@ export default {
         })
         .then((data) => {
             this.nomsHoraire = data
+            console.log(this.nomsHoraire)
         })
         .catch(error => {
             console.log(error)

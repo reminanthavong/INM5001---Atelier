@@ -56,7 +56,7 @@ router.patch('/Employe', gestionemploye.modifierEmploye)
 router.delete('/Employe', gestionemploye.enleverEmploye)
 
 // Fonction AfficherHoraire
-router.get('/api/v1/semaines',afficherhoraire.fonctions1 )
+router.get('choixHoraire',afficherhoraire.afficherChoixHoraire)
 router.post('/api/v1/horaires',afficherhoraire.fonctions2 )
 
 // Fonction GestionHoraire

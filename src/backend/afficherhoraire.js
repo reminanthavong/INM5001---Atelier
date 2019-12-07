@@ -1,9 +1,18 @@
-const { Pool } = require('pg');
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: true
-});
+const session = require('express-session');
+const bodyParser = require('body-parser')
+var PostgREST = require('postgrest-client')
+var Api = new PostgREST ('http://testpostgrest-calendrier.herokuapp.com')
 
+const afficherChoixHoraire = async (req, res) => {
+    var gestionnaire = req.session.username;
+    const rows = await getChoixHoraire(gestionnaire);
+    res.setHeader("content-type", "application/json")
+    res.send(JSON.stringify(rows))
+}
+
+async function getChoixHoraire(gestionnaire) {
+	return await Api.get('/tablehoraire').eq('idemployeur', gestionnaire)
+}
 
 const fonctions1  = async (req, res) => {
   try {
