@@ -5,8 +5,12 @@ const session = require('express-session');
 //***********************************************************//
 const { mockReq, mockRes } = require('sinon-express-mock');
 const sinon = require('sinon');
+
 const chai = require('chai');
+const chaiHttp = require('chai-http')
+const server = require('./server');
 chai.use(chaiHttp);
+
 const expect = require('chai').expect;
 const assert = require('chai').assert;
 //***********************************************************//
@@ -183,8 +187,12 @@ describe('test de PageEmploye', function (done) {
  it('devrait retourner vrai', async function() {
     const req = mockReq();
     const res = mockRes();
+  
+  chai.request(server)
+      .get('/test')
+      .buffer(true)
+  
     getDisponibilitesSTUB = sinon.stub(PageEmploye,'getDisponibilites');
-    //.buffer(true)
     await PageEmploye.afficherDisponibilites(req, res); 
     //sinon.assert.calledOnce(res.send); //res.send a ete appellee une fois
     //sinon.assert.calledOnce(res.setHeader); //res.send a ete appellee une fois
