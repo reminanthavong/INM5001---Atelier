@@ -20,8 +20,8 @@ describe('test de PageEmploye', function (done) {
       });
    });
   /**********/
-
- it('devrait retourner vrai', async function() {
+ describe('getDisponibilite', function (done) {
+ xit('devrait retourner vrai', async function() {
     const req = mockReq();
     const res = mockRes();
     getDisponibilitesSTUB = sinon.stub(PageEmploye,'getDisponibilites');
@@ -29,5 +29,6 @@ describe('test de PageEmploye', function (done) {
     //sinon.assert.calledOnce(res.json); //res.json a ete appellee une fois
     sinon.assert.calledOnce(getDisponibilitesSTUB);
     });
+   });
    /**********/
 });
