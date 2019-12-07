@@ -65,8 +65,8 @@ export default {
         var date = this.datehoraire;
         var dateHoraire = new Date(date)
         dateHoraire.setMinutes(dateHoraire.getMinutes() + dateHoraire.getTimezoneOffset())
-        var jourDeLaSemaine = dateConge.getDay();
-        if(jourDeLasemaine != 1) {
+        var jourDeLaSemaine = dateHoraire.getDay();
+        if(jourDeLaSemaine != 1) {
             alert("Veuillez choisir une date correspondant à un lundi")
         } else {
             fetch('/affichageHoraire', {
