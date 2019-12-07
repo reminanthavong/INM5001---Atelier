@@ -131,7 +131,7 @@ describe('test de AfficherHoraire', function (done) {
     const req = mockReq({ body: {}});
     const res = mockRes();
     GenererHoraireSTUB = sinon.stub(GenererHoraire,'GenererHoraire');
-    await AfficherHoraire.GenererHoraire(req, res); 
+    await AfficherHoraire.GenererHoraireReponse(req, res); 
     sinon.assert.calledOnce(res.json); //res.json a ete appellee une fois
     sinon.assert.calledOnce(GenererHoraireSTUB);
     sinon.assert.calledWithExactly(GenererHoraireSTUB, '000', '01-01-1899', undefined);
