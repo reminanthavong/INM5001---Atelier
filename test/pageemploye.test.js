@@ -13,15 +13,15 @@ describe('test de PageEmploye', function (done) {
  
  /**********/
    describe('getDisponibilite', function (done) {
-   xit('devrait retourner les disponibilites de lemploye', async () => {
+   it('devrait retourner les disponibilites de lemploye', async () => {
          const Disponibilite = await PageEmploye.getDisponibilites('TREIK');
          console.log(Disponibilite);
          expect(Disponibilite).to.deep.equal();
       });
    });
   /**********/
- describe('getDisponibilite', function (done) {
- xit('devrait retourner vrai', async function() {
+ describe('afficherDisponibilites', function (done) {
+ it('devrait retourner vrai', async function() {
     const req = mockReq();
     const res = mockRes();
     getDisponibilitesSTUB = sinon.stub(PageEmploye,'getDisponibilites');
