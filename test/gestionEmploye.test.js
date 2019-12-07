@@ -11,7 +11,7 @@ const GestionEmploye = require('../src/backend/gestionemploye');
 //var TestScenarii = require('./TestScenarii/GestionEmployeTests.json');
 //var TestScenarii = JSON.parse(require('fs').readFileSync('./TestScenarii/GestionEmployeTests.json', 'utf8'));
 //const EmployesDeGestion3525 = TestScenarii.EmployesDeGestion3525
-const EmployesDeGestion3525 = require('./TestScenarii/GestionEmployeTests.json').EmployesDeGestion3525;
+const EmployesDeGestion3525 = require('./TestScenarii/GestionEmployeTests.js').EmployesDeGestion3525;
  console.log(EmployesDeGestion3525)
 //***********************************************************//
 describe('test de GestionEmploye', function (done) {
