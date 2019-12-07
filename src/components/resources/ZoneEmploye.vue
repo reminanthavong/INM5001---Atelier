@@ -124,7 +124,6 @@
             demanderConge() {
                 var date = this.dateconge;
                 var dateConge = new Date(date);
-                dateConge.setMinutes(dateConge.getMinutes() + dateConge.getTimezoneOffset()); //Permet d'avoir la bonne date sans influence du fuseau horaire
                 var jourDeLaSemaine = dateConge.getDay();
                 if(jourDeLaSemaine == 0 || jourDeLaSemaine == 6){
                     alert("Impossible de demander un congé pour un jour de fin de semaine");

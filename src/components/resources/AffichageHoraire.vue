@@ -72,11 +72,28 @@ export default {
     methods: {
         afficherHoraire(idtablehoraire) {
             alert(idtablehoraire)
+            fetch('/affichageHoraire', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                 body: JSON.stringify({idtablehoraire})
+            })
+            .then((response) => {
+                return response.json()
+            })
+            .then((data) => {
+                this.horaire = data
+                console.log(data);
+            })
+            .catch(error => {
+                console.log(error);
+            });
         },
         afficherHoraireSelonDate() {
             var date = this.datehoraire;
             var dateHoraire = new Date(date)
-            //dateHoraire.setMinutes(dateHoraire.getMinutes() + dateHoraire.getTimezoneOffset())
             var jourDeLaSemaine = dateHoraire.getDay();
             if(jourDeLaSemaine != 1) {
                 alert("Veuillez choisir une date correspondant à un lundi " + jourDeLaSemaine)
@@ -94,7 +111,7 @@ export default {
                 })
                 .then((data) => {
                     this.horaire = data
-                    console.log(data);
+                    console.log(horaire);
                 })
                 .catch(error => {
                     console.log(error);
@@ -104,3 +121,11 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+    .btn {
+        background-color: grey;
+        border: none;
+        margin: 5px 0;
+    }
+</style>
