@@ -105,15 +105,7 @@
                 jeudinuit: null,
                 vendredijour: null,
                 vendredisoir: null,
-                vendredinuit: null,
-                fields: [
-                    {key: 'datehoraire', sortable: true},
-                    {key: 'lundi', sortable: true},
-                    {key: 'mardi', sortable: true},
-                    {key: 'mercredi', sortable: true},
-                    {key: 'jeudi', sortable: true},
-                    {key: 'vendredi', sortable: true}
-                ]
+                vendredinuit: null
             }
         },
         methods: {
