@@ -20,7 +20,7 @@ describe('test de GestionEmploye', function (done) {
    });
   /**********/
     describe('afficherEmployes', function (done) {
-    xit('devrait retourner le bon horaire', async () => {
+    it('devrait retourner le bon horaire', async () => {
     const req = mockReq();
     const res = mockRes();
     getEmployesSTUB = sinon.stub(GestionEmploye,'getEmployes');
