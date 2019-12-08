@@ -8,16 +8,18 @@
                 <table id="choixpourafficherhoraire" style="width:100%">
                     <tr>
                         <th>Nom de l'horaire:</th>
-                        <th>Date de l'horaire:</th>
                     </tr>
                     <tr>
                         <td>
-                            <select v-model="selectionne">
+                            <select v-model="selectionne" @change="afficherHoraireSelonID()">
                                 <option v-for="nom in nomsHoraire" v-bind:key="nom.idtablehoraire">
                                     {{ nom.idtablehoraire }}
                                 </option>
                             </select>
                         </td>
+                    </tr>
+                    <tr>
+                        <th>Date de l'horaire:</th>
                     </tr>
                     <tr>
                         <td>
@@ -76,15 +78,13 @@ export default {
             if(jourDeLaSemaine != 1) {
                 alert("Veuillez choisir une date correspondant à un lundi ")
             } else {
-                var jsonHoraire = {}
-                jsonHoraire.date = dateHoraire
                 fetch('/affichageHoraire', {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify(jsonHoraire)
+                    body: JSON.stringify({dateHoraire})
                 })
                 .then((response) => {
                     return response.json()
@@ -99,6 +99,29 @@ export default {
                 
             }
              this.afficherHoraire = !this.afficherHoraire
+        },
+        afficherHoraireSelonID() {
+            alert(this.selectionne)
+            var choixsemaine = this.selectionne
+            fetch('/affichageHoraire', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({choixsemaine})
+                })
+                .then((response) => {
+                    return response.json()
+                })
+                .then((data) => {
+                    this.horaire = data
+                    console.log(this.horaire)
+                })
+                .catch(error => {
+                    console.log(error);
+            });
+            this.afficherHoraire = !this.afficherHoraire
         }
   
     }
