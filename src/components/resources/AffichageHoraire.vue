@@ -42,8 +42,8 @@
                         <th>Employés</th>
                     </thead>
                     <tbody>
-                        <tr v-for="employe in horaire" v-bind:key="nom.nomemploye">
-                            <template v-if="employe.joursemaine === 'Lundi'" v-if="employe.typequart === 'Jour'">
+                        <tr v-for="employe in horaire" v-bind:key="employe.nomemploye">
+                            <template v-if="employe.joursemaine === 'Lundi' && employe.typequart === 'Jour'">
                                 <td>Lundi jour</td>
                                 <td>{{employe.nomemploye}}</td>
                             </template>
