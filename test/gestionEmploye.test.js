@@ -28,8 +28,9 @@ describe('test de GestionEmploye', function (done) {
     const res = mockRes();
     getEmployesSTUB = sinon.stub(GestionEmploye,'getEmployes');
     await GestionEmploye.afficherEmployes(req, res); 
-    sinon.assert.calledOnce(res.json); 
-    //sinon.assert.calledOnce(getEmployesSTUB);
+    sinon.assert.calledOnce(res.send); 
+    sinon.assert.calledOnce(res.set); 
+    sinon.assert.calledOnce(getEmployesSTUB);
        });  
    });
   /**********/
