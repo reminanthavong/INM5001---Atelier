@@ -5,14 +5,16 @@
                 <h1 class="w3-text-teal">Affichage de L'horaire</h1>
                 <h3>Choisissez l'horaire a afficher selon :</h3>
 
-                <p>Nom de l'horaire:</p>
+                <p><b>Choisir par nom:</b></p>
                 <select v-model="selectionne" @change="afficherHoraireSelonID()">
                     <option v-for="nom in nomsHoraire" v-bind:key="nom.idtablehoraire">
                         {{ nom.idtablehoraire }}
                      </option>
                 </select>
                 <br/>
+                <p><b>Choisir par date:</b></p>
                 <datepicker v-model="datehoraire" name="datehoraire"></datepicker>
+                <br/>
                 <button @click="afficherHoraireSelonDate" class="btn btn-primary">Afficher</button>
 
                 <br/>
@@ -29,10 +31,10 @@
                                 <td>{{employe.nomemploye}}</td>
                             </template>
                         </tr>
-                        <tr v-for="employe in horaire" v-bind:key="employe.nomemploye">
-                            <template v-if="employe.joursemaine === 'Lundi' && employe.typequart === 'Soir'">
+                        <tr>
                                 <td>Lundi soir</td>
-                                <td>{{employe.nomemploye}}</td>
+                            <template  v-for="employe in horaire" v-bind:key="employe.nomemploye">
+                                <td v-if="employe.joursemaine === 'Lundi' && employe.typequart === 'Soir'">{{employe.nomemploye}}</td>
                             </template>
                         </tr>
                         <tr v-for="employe in horaire" v-bind:key="employe.nomemploye">
