@@ -98,8 +98,9 @@ export default {
                 });
                 
             }
+             this.afficherHoraire = !this.afficherHoraire
         }
-        this.afficherHoraire = !this.afficherHoraire
+  
     }
 }
 </script>
