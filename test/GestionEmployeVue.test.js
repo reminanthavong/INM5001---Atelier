@@ -1,9 +1,9 @@
-import { shallowMount } from '@vue/test-utils'
+//import { shallowMount } from '@vue/test-utils'
 import GestionEmploye from '../src/components/resources/GestionEmployes.vue'
 
 test('GestionEmploye', () => {
   // GestionEmploye a ete load
-  const wrapper = shallowMount(GestionEmploye)
+  //const wrapper = shallowMount(GestionEmploye)
 
   // should not allow for `username` less than 7 characters, excludes whitespace
   //wrapper.setData({ username: ' '.repeat(7) })
