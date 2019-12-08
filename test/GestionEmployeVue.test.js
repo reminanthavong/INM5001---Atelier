@@ -1,5 +1,5 @@
-import { shallowMount } from '@vue/test-utils'
-import GestionEmploye from '../src/components/resources/GestionEmployes.vue'
+const { shallowMount } = require('@vue/test-utils')
+const GestionEmploye = require('../src/components/resources/GestionEmployes.vue')
 
 test('GestionEmploye', () => {
   // GestionEmploye a ete load
