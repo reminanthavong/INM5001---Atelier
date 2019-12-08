@@ -4,7 +4,9 @@ const GenererHoraire = require('./GenererHoraire')
 async function afficherChoixHoraire(req, res)  {
   try {
            const choixSemaines = await Ressources.recupererListeSemaine();
-            res.json( choixSemaines );
+	  console.log(JSON.stringify(choixSemaines))
+		res.setHeader("content-type", "application/json")
+		res.send(JSON.stringify(choixSemaines));
           } catch (err) {
             console.error(err);
             res.send("Erreur appel client " + err);
