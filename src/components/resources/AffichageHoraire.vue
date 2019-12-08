@@ -27,12 +27,13 @@
 
                         </td>
                         <td>
-                            <button @click="afficherHoraireSelonDate" class="btn btn-primary">Afficher</button>
+    
                         </td>
                     </tr>
-                </table>
-
-                <b-table striped hover :items="horaire">
+                </table>  
+                <button @click="afficherHoraireSelonDate" class="btn btn-primary">Afficher</button>
+                <p v-if="afficherHoraire">Voici l'horaire</p>
+                <b-table striped hover :items="horaire" v-if="afficherEmployes">
                 </b-table>
             </div>
         </div>
@@ -51,7 +52,8 @@ export default {
             selectionne: '',
             datehoraire: null,
             nomsHoraire: null,
-            horaire: null
+            horaire: null,
+            afficherHoraire: false,
         }
     },
     mounted: function() {
@@ -90,6 +92,7 @@ export default {
             .catch(error => {
                 console.log(error);
             });
+           
         },
         afficherHoraireSelonDate() {
             var date = this.datehoraire;
@@ -116,6 +119,7 @@ export default {
                 .catch(error => {
                     console.log(error);
                 });
+                  this.affichageHoraire = !this.affichageHoraire
             }
         }
     }
