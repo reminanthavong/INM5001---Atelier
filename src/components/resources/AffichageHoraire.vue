@@ -38,13 +38,97 @@
                 <p v-if="afficherHoraire">Tentative d'affichage différent</p>
                 <table v-if="afficherHoraire">
                     <thead>
-                        <th>Type de quarts</th>
+                        <th>Type de quart de travail</th>
                         <th>Employés</th>
                     </thead>
                     <tbody>
                         <tr v-for="employe in horaire" v-bind:key="employe.nomemploye">
                             <template v-if="employe.joursemaine === 'Lundi' && employe.typequart === 'Jour'">
                                 <td>Lundi jour</td>
+                                <td>{{employe.nomemploye}}</td>
+                            </template>
+                        </tr>
+                        <tr v-for="employe in horaire" v-bind:key="employe.nomemploye">
+                            <template v-if="employe.joursemaine === 'Lundi' && employe.typequart === 'Soir'">
+                                <td>Lundi soir</td>
+                                <td>{{employe.nomemploye}}</td>
+                            </template>
+                        </tr>
+                        <tr v-for="employe in horaire" v-bind:key="employe.nomemploye">
+                            <template v-if="employe.joursemaine === 'Lundi' && employe.typequart === 'Nuit'">
+                                <td>Lundi nuit</td>
+                                <td>{{employe.nomemploye}}</td>
+                            </template>
+                        </tr>
+                        <tr v-for="employe in horaire" v-bind:key="employe.nomemploye">
+                            <template v-if="employe.joursemaine === 'Mardi' && employe.typequart === 'Jour'">
+                                <td>Mardi jour</td>
+                                <td>{{employe.nomemploye}}</td>
+                            </template>
+                        </tr>
+                        <tr v-for="employe in horaire" v-bind:key="employe.nomemploye">
+                            <template v-if="employe.joursemaine === 'Mardi' && employe.typequart === 'Soir'">
+                                <td>Mardi soir</td>
+                                <td>{{employe.nomemploye}}</td>
+                            </template>
+                        </tr>
+                        <tr v-for="employe in horaire" v-bind:key="employe.nomemploye">
+                            <template v-if="employe.joursemaine === 'Mardi' && employe.typequart === 'Nuit'">
+                                <td>Mardi nuit</td>
+                                <td>{{employe.nomemploye}}</td>
+                            </template>
+                        </tr>
+                        <tr v-for="employe in horaire" v-bind:key="employe.nomemploye">
+                            <template v-if="employe.joursemaine === 'Mercredi' && employe.typequart === 'Jour'">
+                                <td>Mercredi jour</td>
+                                <td>{{employe.nomemploye}}</td>
+                            </template>
+                        </tr>
+                        <tr v-for="employe in horaire" v-bind:key="employe.nomemploye">
+                            <template v-if="employe.joursemaine === 'Mercredi' && employe.typequart === 'Soir'">
+                                <td>Mercredi soir</td>
+                                <td>{{employe.nomemploye}}</td>
+                            </template>
+                        </tr>
+                        <tr v-for="employe in horaire" v-bind:key="employe.nomemploye">
+                            <template v-if="employe.joursemaine === 'Mercredi' && employe.typequart === 'Nuit'">
+                                <td>Mercredi nuit</td>
+                                <td>{{employe.nomemploye}}</td>
+                            </template>
+                        </tr>
+                        <tr v-for="employe in horaire" v-bind:key="employe.nomemploye">
+                            <template v-if="employe.joursemaine === 'Jeudi' && employe.typequart === 'Jour'">
+                                <td>Jeudi jour</td>
+                                <td>{{employe.nomemploye}}</td>
+                            </template>
+                        </tr> ***
+                        <tr v-for="employe in horaire" v-bind:key="employe.nomemploye">
+                            <template v-if="employe.joursemaine === 'Jeudi' && employe.typequart === 'Soir'">
+                                <td>Jour soir</td>
+                                <td>{{employe.nomemploye}}</td>
+                            </template>
+                        </tr>
+                        <tr v-for="employe in horaire" v-bind:key="employe.nomemploye">
+                            <template v-if="employe.joursemaine === 'Jeudi' && employe.typequart === 'Nuit'">
+                                <td>Jeudi nuit</td>
+                                <td>{{employe.nomemploye}}</td>
+                            </template>
+                        </tr>
+                        <tr v-for="employe in horaire" v-bind:key="employe.nomemploye">
+                            <template v-if="employe.joursemaine === 'Vendredi' && employe.typequart === 'Jour'">
+                                <td>Vendredi jour</td>
+                                <td>{{employe.nomemploye}}</td>
+                            </template>
+                        </tr>
+                        <tr v-for="employe in horaire" v-bind:key="employe.nomemploye">
+                            <template v-if="employe.joursemaine === 'Vendredi' && employe.typequart === 'Soir'">
+                                <td>Vendredi soir</td>
+                                <td>{{employe.nomemploye}}</td>
+                            </template>
+                        </tr>
+                        <tr v-for="employe in horaire" v-bind:key="employe.nomemploye">
+                            <template v-if="employe.joursemaine === 'Vendredi' && employe.typequart === 'Nuit'">
+                                <td>Vendredi nuit</td>
                                 <td>{{employe.nomemploye}}</td>
                             </template>
                         </tr>
