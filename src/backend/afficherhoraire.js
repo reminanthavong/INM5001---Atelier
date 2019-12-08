@@ -4,10 +4,11 @@ const GenererHoraire = require('./GenererHoraire')
 async function afficherChoixHoraire(req, res)  {
   try {
            const choixSemaine = await Ressources.recupererListeSemaine();
-	  choixSemaine = choixSemaine.choixSemaines;
-	  console.log(JSON.stringify(choixSemaine))
+	  const result = {};
+	  result = choixSemaine.choixSemaines;
+	  console.log(JSON.stringify(result))
 		res.setHeader("content-type", "application/json")
-		res.send(JSON.stringify(choixSemaine));
+		res.send(JSON.stringify(result));
           } catch (err) {
             console.error(err);
             res.send("Erreur appel client " + err);
@@ -22,10 +23,11 @@ const afficherHoraire  = async (req, res) => {
         const employeur = req.session.idgestion //'Gestion3525' //'JNASH'// 
          try {
 		const horairesRecu= await Ressources.recupererHoraire(choixsemaine,choixdate.slice(0, 10),employeur)
-		horairesRecu = horairesRecu.horaires
-                console.log(JSON.stringify(horairesRecu))
+		const result = {};
+		result = horairesRecu.horaires
+                console.log(JSON.stringify(result))
 		res.setHeader("content-type", "application/json")
-		res.send(JSON.stringify(horairesRecu));
+		res.send(JSON.stringify(result));
              } catch (err) {
                console.error(err);
                res.send("Erreur appel client " + err);
