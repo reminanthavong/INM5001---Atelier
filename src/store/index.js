@@ -38,7 +38,7 @@ import axios from 'axios'
                   const user = resp.data.user
                   const admin = resp.data.user.typeutilisateur
                   var isAdmin = false
-                  if (admin == '1'){isAdmin=true}
+                  if (admin == 1 || admin == "1"){isAdmin=true}
                   localStorage.setItem('token', token)
                   // Add the following line:
                   axios.defaults.headers.common['Authorization'] = token
