@@ -23,7 +23,7 @@ describe('test de PageEmploye', function (done) {
  
  /**********/
    describe('getDisponibilite', function (done) {
-   it('devrait retourner les disponibilites de lemploye', async () => {
+   xit('devrait retourner les disponibilites de lemploye', async () => {
          const Disponibilite = await PageEmploye.getDisponibilites('TREIK');
          expect(Disponibilite).to.deep.equal(TestScenarii.DisponibilitesTREIK);
       });

@@ -14,7 +14,7 @@ const TestScenarii = require('./TestScenarii/AfficherHoraireTests');
 describe('test de AfficherHoraire', function (done) {
  /**********/
    describe('recupererListeSemaine', function (done) {
-   it('devrait retourner 001', async () => {
+   xit('devrait retourner 001', async () => {
          const listeSemaine = await Ressources.recupererListeSemaine();
          expect(listeSemaine).to.deep.equal({choixSemaines: [{ idtablehoraire: '001' }]});
       });
@@ -30,7 +30,7 @@ describe('test de AfficherHoraire', function (done) {
      afterEach(() => {
         sinon.restore();
      });
-    it('devrait retourner vrai', async function() {
+    xit('devrait retourner vrai', async function() {
     const req = mockReq();
     const res = mockRes();
     await AfficherHoraire.afficherChoixHoraire(req, res); 
@@ -42,11 +42,11 @@ describe('test de AfficherHoraire', function (done) {
 
   /**********/
     describe('recupererHoraire', function (done) {
-   it('devrait retourner le bon horaire', async () => {
+   xit('devrait retourner le bon horaire', async () => {
          const horaire = await Ressources.recupererHoraire('001','2019-10-07','Gestion3525');
          expect(horaire).to.deep.equal(TestScenarii.Horaire00120191007Gestion3525);
       });
-     it('devrait retourner vrai', async function() {
+     xit('devrait retourner vrai', async function() {
     const req = mockReq({ body: {}});
     const res = mockRes();
     recupererHoraireSTUB = sinon.stub(Ressources,'recupererHoraire');
@@ -58,12 +58,12 @@ describe('test de AfficherHoraire', function (done) {
  });
  /**********/
      describe('recupererHoraire', function (done) {
-   it('devrait retourner le bon horaire', async () => {
+   xit('devrait retourner le bon horaire', async () => {
          const horaire = await GenererHoraire.GenererHoraire('001','2019-10-07','Gestion3525');
          expect(horaire).to.deep.equal(TestScenarii.HoraireGenere00120191007Gestion3525);
       });
       
-     it('devrait appeller la fonction', async function() {
+     xit('devrait appeller la fonction', async function() {
     const req = mockReq({ body: {}});
     const res = mockRes();
     GenererHoraireSTUB = sinon.stub(GenererHoraire,'GenererHoraire');

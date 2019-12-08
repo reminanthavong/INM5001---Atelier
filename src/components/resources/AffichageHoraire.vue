@@ -12,15 +12,13 @@
                     </tr>
                     <tr>
                         <td>
-                        
-                        <b-table striped hover :items="nomsHoraire">
-                </b-table>
-                
-                        <select v-model="selected">
-  <option v-for="option in options" v-bind:key="option.value">
-    {{ option.text }}
-  </option>
-</select>
+                          <b-table striped hover :items="nomsHoraire">
+                          </b-table>
+                          <select v-model="selected">
+                            <option v-for="option in options" v-bind:key="option.value">
+                              {{ option.text }}
+                            </option>
+                          </select>
                         </td>
                         <td>
                             <datepicker v-model="datehoraire" name="datehoraire"></datepicker>
@@ -38,6 +36,9 @@
                 <button @click="afficherHoraireSelonDate" class="btn btn-primary">Afficher</button>
                 <p v-if="afficherHoraire">Voici l'horaire</p>
                 <b-table striped hover :items="horaire" v-if="afficherHoraire">
+                </b-table>
+
+                <b-table striped hover :items="nomsHoraire">
                 </b-table>
             </div>
         </div>
@@ -76,7 +77,7 @@ export default {
         })
         .then((data) => {
             this.nomsHoraire = data
-            console.log(this.nomsHoraire)
+            console.log("Liste: " + this.nomsHoraire)
         })
         .catch(error => {
             console.log(error)
