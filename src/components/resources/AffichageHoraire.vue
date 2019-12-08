@@ -34,6 +34,7 @@
                     </tr>
                 </table>  
                 <button @click="afficherHoraireSelonDate" class="btn btn-primary">Afficher</button>
+                <br/>
                 <p v-if="afficherHoraire">Voici l'horaire</p>
                 <b-table striped hover :items="horaire" v-if="afficherHoraire">
                 </b-table>
@@ -57,7 +58,7 @@ export default {
             selectionne: '',
             datehoraire: null,
             nomsHoraire: null,
-            horaire: null,
+            horaire: [],
             afficherHoraire: false,
             selected: 'A',
     options: [
