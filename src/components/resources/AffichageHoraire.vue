@@ -21,7 +21,11 @@
     {{ option.Idtablehoraire }}
   </option>
 </select>
-                        
+                        <select v-model="selected">
+  <option v-for="option in options" v-bind:value="option.value">
+    {{ option.text }}
+  </option>
+</select>
                         </td>
                         <td>
                             <datepicker v-model="datehoraire" name="datehoraire"></datepicker>
@@ -59,6 +63,12 @@ export default {
             nomsHoraire: null,
             horaire: null,
             afficherHoraire: false,
+            selected: 'A',
+    options: [
+      { text: 'One', value: 'A' },
+      { text: 'Two', value: 'B' },
+      { text: 'Three', value: 'C' }
+    ]
         }
     },
     mounted: function() {
