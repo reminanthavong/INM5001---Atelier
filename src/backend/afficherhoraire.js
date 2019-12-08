@@ -14,12 +14,13 @@ async function afficherChoixHoraire(req, res)  {
 const afficherHoraire  = async (req, res) => {
         const resp = req.body; //{$choixsemaine}
 	console.log(resp)
-        const choixsemaine = resp['choixsemaine'] || '000';
-        const choixdate = resp['choixdate'] || '01-01-1899';     
-        const employeur = req.session.username//'Gestion3525' //'JNASH'// 
+        const choixsemaine = resp.choixsemaine || '000';
+        const choixdate = resp.choixdate || '01-01-1899';     
+        const employeur = req.session.idgestion //'Gestion3525' //'JNASH'// 
          try {
 		const horairesRecu= await Ressources.recupererHoraire(choixsemaine,choixdate,employeur)
-                res.json( horairesRecu );
+                console.log(horairesRecu)
+		res.json( horairesRecu );
              } catch (err) {
                console.error(err);
                res.send("Erreur appel client " + err);
