@@ -36,8 +36,8 @@ import axios from 'axios'
                 .then(resp => {
                   const token = resp.data.token
                   const user = resp.data.user
-                  const admin = user.typeutilisateur
-                  var isAdmin = false
+                  alert(token + user)
+                  
                   if (admin == 1 || admin == "1"){isAdmin=true}
                   localStorage.setItem('token', token)
                   // Add the following line:
