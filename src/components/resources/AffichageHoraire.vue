@@ -79,7 +79,7 @@ export default {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
-                 body: JSON.stringify({idtablehoraire})
+                 body: JSON.stringify(idtablehoraire)
             })
             .then((response) => {
                 return response.json()
@@ -105,7 +105,7 @@ export default {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({date})
+                    body: JSON.stringify(date)
                 })
                 .then((response) => {
                     return response.json()
