@@ -3,7 +3,8 @@ const GenererHoraire = require('./GenererHoraire')
 
 async function afficherChoixHoraire(req, res)  {
     try {
-        let choixSemaine = await Ressources.recupererListeSemaine();
+        const employeur = req.session.idgestion
+        let choixSemaine = await Ressources.recupererListeSemaine(employeur);
 	    let result = {};
 	    result = choixSemaine.choixSemaines;
 	    console.log(JSON.stringify(result))

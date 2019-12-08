@@ -5,11 +5,11 @@ const pool = new Pool({
 });
 
 
-async function recupererListeSemaine() {
+async function recupererListeSemaine(employeur) {
             const client = await pool.connect()
-            const choixSemaine = await client.query(`SELECT DISTINCT IDTableHoraire FROM TableHoraire;`);
+            const choixSemaine = await client.query(`SELECT DISTINCT IDTableHoraire FROM TableHoraire WHERE idemployeur = 'employeur';`);
             const choixSemaines = { 'choixSemaines': (choixSemaine) ? choixSemaine.rows : null};
-	    client.release();
+	        client.release();
             //console.log(choixSemaines);
             return choixSemaines;
 }

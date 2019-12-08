@@ -34,6 +34,22 @@
                 <p v-if="afficherHoraire">Voici l'horaire</p>
                 <b-table striped hover :items="horaire" v-if="afficherHoraire">
                 </b-table>
+
+                <p v-if="afficherHoraire">Tentative d'affichage différent</p>
+                <table v-if="afficherHoraire">
+                    <thead>
+                        <th>Type de quarts</th>
+                        <th>Employés</th>
+                    </thead>
+                    <tbody>
+                        <tr v-for="employe in horaire">
+                            <template v-if="employe.joursemaine === 'Lundi' v-if="employe.typequart === 'Jour'">
+                                <td>Lundi soir</td>
+                                <td>{{employe.nomemploye}}</td>
+                            </template>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -102,7 +118,6 @@ export default {
              this.afficherHoraire = !this.afficherHoraire
         },
         afficherHoraireSelonID() {
-            alert(this.selectionne)
             var choixsemaine = this.selectionne
             fetch('/affichageHoraire', {
                 method: 'POST',
