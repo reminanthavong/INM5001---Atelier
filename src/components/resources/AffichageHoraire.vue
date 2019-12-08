@@ -16,11 +16,6 @@
                         <b-table striped hover :items="nomsHoraire">
                 </b-table>
                 
-                       <select v-model="selectionne">
-  <option v-for="option in nomsHoraire" v-bind:key="nomsHoraire.choixSemaines">
-    {{ option.choixSemaines }}
-  </option>
-</select>
                         <select v-model="selected">
   <option v-for="option in options" v-bind:key="option.value">
     {{ option.text }}
