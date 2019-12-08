@@ -45,6 +45,7 @@
     "request": "^2.81.0",
     "sinon": "^7.5.0",
     "sinon-express-mock": "^2.2.1",
+     "@vue/test-utils": "^1.0.0-beta.30",
     "tape": "^4.7.0"
   },
   "eslintConfig": {
