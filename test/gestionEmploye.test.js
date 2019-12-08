@@ -24,7 +24,7 @@ describe('test de GestionEmploye', function (done) {
     const req = mockReq();
     const res = mockRes();
     getEmployesSTUB = sinon.stub(GestionEmploye,'getEmployes');
-    //await GestionEmploye.GenererHoraireReponse(req, res); 
+    await GestionEmploye.GenererHoraireReponse(req, res); 
     //sinon.assert.calledOnce(res.json); //setHeader
     //sinon.assert.calledOnce(getEmployesSTUB);
        });  
