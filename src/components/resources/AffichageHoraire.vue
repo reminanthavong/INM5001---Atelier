@@ -8,34 +8,30 @@
                 <table id="choixpourafficherhoraire" style="width:100%">
                     <tr>
                         <th>Nom de l'horaire:</th>
-                        <th>Date de l'horaire:</th>
                     </tr>
                     <tr>
                         <td>
-                            <select v-model="selectionne" @change="afficherHoraire(selectionne)">
-                                <option v-for="nom in nomsHoraire" v-bind:value="key" v-bind:key="nom.idtablehoraire">
+                            <select v-model="selectionne" @change="afficherHoraireSelonID()">
+                                <option v-for="nom in nomsHoraire" v-bind:key="nom.idtablehoraire">
                                     {{ nom.idtablehoraire }}
                                 </option>
                             </select>
                         </td>
-                        <td>
-                            <datepicker v-model="datehoraire" name="datehoraire"></datepicker>
-                        </td>
+                    </tr>
+                    <tr>
+                        <th>Date de l'horaire:</th>
                     </tr>
                     <tr>
                         <td>
-
+                            <datepicker v-model="datehoraire" name="datehoraire"></datepicker>
                         </td>
                         <td>
                             <button @click="afficherHoraireSelonDate" class="btn btn-primary">Afficher</button>
                         </td>
                     </tr>
                 </table>
-
-                <b-table striped hover :items="horaire">
-                </b-table>
-
-                <b-table striped hover :items="nomsHoraire">
+                <p v-if="afficherHoraire">Voici l'horaire</p>
+                <b-table striped hover :items="horaire" v-if="afficherHoraire">
                 </b-table>
             </div>
         </div>
@@ -54,7 +50,8 @@ export default {
             selectionne: '',
             datehoraire: null,
             nomsHoraire: null,
-            horaire: null
+            horaire: null,
+            afficherHoraire: false,
         }
     },
     mounted: function() {
@@ -67,34 +64,13 @@ export default {
         })
         .then((data) => {
             this.nomsHoraire = data
-            console.log("Liste: " + this.nomsHoraire)
+            console.log(this.nomsHoraire)
         })
         .catch(error => {
             console.log(error)
         })
     },
     methods: {
-        afficherHoraire(idtablehoraire) {
-            alert(idtablehoraire)
-            fetch('/affichageHoraire', {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                 body: JSON.stringify({idtablehoraire})
-            })
-            .then((response) => {
-                return response.json()
-            })
-            .then((data) => {
-                this.horaire = data
-                console.log(data);
-            })
-            .catch(error => {
-                console.log(error);
-            });
-        },
         afficherHoraireSelonDate() {
             var date = this.datehoraire;
             var dateHoraire = new Date(date)
@@ -108,20 +84,46 @@ export default {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({date})
+                    body: JSON.stringify({dateHoraire})
                 })
                 .then((response) => {
                     return response.json()
                 })
                 .then((data) => {
                     this.horaire = data
-                    console.log("Horaire: " + this.horaire);
+                    console.log(this.horaire)
                 })
                 .catch(error => {
                     console.log(error);
                 });
+                
             }
+             this.afficherHoraire = !this.afficherHoraire
+        },
+        afficherHoraireSelonID() {
+            alert(this.selectionne)
+            var choixsemaine = this.selectionne
+            fetch('/affichageHoraire', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({choixsemaine})
+                })
+                .then((response) => {
+                    return response.json()
+                })
+                .then((data) => {
+                    this.horaire = data
+                    console.log(this.horaire)
+                })
+                .catch(error => {
+                    console.log(error);
+            });
+            this.afficherHoraire = !this.afficherHoraire
         }
+  
     }
 }
 </script>
