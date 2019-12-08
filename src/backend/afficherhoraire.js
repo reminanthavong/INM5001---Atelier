@@ -6,7 +6,7 @@ async function afficherChoixHoraire(req, res)  {
            const choixSemaines = await Ressources.recupererListeSemaine();
 	  console.log(JSON.stringify(choixSemaines))
 		res.setHeader("content-type", "application/json")
-		res.send(JSON.stringify(choixSemaines));
+		res.send(JSON.stringify(choixSemaines.choixSemaines));
           } catch (err) {
             console.error(err);
             res.send("Erreur appel client " + err);
@@ -23,7 +23,7 @@ const afficherHoraire  = async (req, res) => {
 		const horairesRecu= await Ressources.recupererHoraire(choixsemaine,choixdate.slice(0, 10),employeur)
                 console.log(JSON.stringify(horairesRecu))
 		res.setHeader("content-type", "application/json")
-		res.send(JSON.stringify(horairesRecu));
+		res.send(JSON.stringify(horairesRecu.horaires));
              } catch (err) {
                console.error(err);
                res.send("Erreur appel client " + err);
