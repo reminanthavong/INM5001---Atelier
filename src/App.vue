@@ -8,7 +8,7 @@
       <router-link class="w3-bar-item w3-button w3-hide-small w3-hover-white" to="/gestionHoraire">Gestion Horaire</router-link> 
       <router-link class="w3-bar-item w3-button w3-hide-small w3-hover-white" to="/gestionEmployes">Gestion Employes</router-link> 
       <router-link class="w3-bar-item w3-button w3-hide-small w3-hover-white" to="/zoneEmploye">Zone Employes</router-link> 
-      <span v-if="isLoggedIn">  <a class="w3-bar-item w3-button w3-hide-small w3-hover-white" @click="logout">Déconnexion </a></span>
+      <span v-if="isLoggedIn">  <a class="w3-bar-item w3-button w3-hide-small w3-hover-white" @click="logout">Deconnexion </a></span>
       <span v-else>  <router-link class="w3-bar-item w3-button w3-hide-small w3-hover-white" to="/login">Connexion</router-link></span>
     </div>
     </div>
