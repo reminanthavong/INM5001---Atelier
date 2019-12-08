@@ -71,10 +71,6 @@ export default {
         })
     },
     methods: {
-        afficherHoraireDropdown(evt) {
-        console.log(JSON.parse(evt.target.value))
-        alert(JSON.parse(evt.target.value))
-        },
         afficherHoraireSelonDate() {
             var date = this.datehoraire;
             var dateHoraire = new Date(date)
