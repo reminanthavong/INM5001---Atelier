@@ -113,8 +113,8 @@ export default {
                     return response.json()
                 })
                 .then((data) => {
-                    this.horaire = data
-                    console.log(this.horaire);
+                    this.horaire = data.horaires
+                    alert(data);
                 })
                 .catch(error => {
                     console.log(error);
