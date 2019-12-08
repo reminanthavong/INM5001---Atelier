@@ -6,7 +6,7 @@
       <b-form @submit.prevent="login">
       <b-form-group
         id="input-group-1"
-        label="Username:"
+        label="Utilisateur:"
         label-for="username"
       >
         <b-form-input
@@ -14,13 +14,13 @@
           v-model="username"
           type="username"
           required
-          placeholder="Enter username"
+          placeholder="Veillez entrer votre nom utilisateur"
         ></b-form-input>
       </b-form-group>
       
       <b-form-group
         id="input-group-2"
-        label="Password:"
+        label="Mot de Passe:"
         label-for="password"
       >
         <b-form-input
@@ -28,11 +28,11 @@
           v-model="password"
           type="password"
           required
-          placeholder="Enter password"
+          placeholder="Veillez entrer votre mot de passe"
         ></b-form-input>
       </b-form-group>
 
-      <b-button type="submit" variant="primary">Submit</b-button>
+      <b-button type="submit" variant="primary">Soumettre</b-button>
     </b-form>
     
 	</div>
