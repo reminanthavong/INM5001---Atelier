@@ -72,7 +72,6 @@ export default {
     },
     methods: {
         afficherHoraire(idtablehoraire) {
-            alert(idtablehoraire)
             fetch('/affichageHoraire', {
                 method: 'POST',
                 headers: {
