@@ -8,7 +8,7 @@ import axios from 'axios'
       status: '',
         token: localStorage.getItem('token') || '',
         user: {},
-        isAdmin: 'false'
+        isAdmin: null
       },
       mutations: {
            auth_request(state) {
@@ -36,7 +36,6 @@ import axios from 'axios'
                 .then(resp => {
                   const token = resp.data.token
                   const user = resp.data.user
-                  alert(user)
                   const admin = user.typeutilisateur
                   var isAdmin = false
                   if (admin == 1 || admin == "1"){isAdmin=true}
