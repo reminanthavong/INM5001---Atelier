@@ -33,9 +33,7 @@
                         </tr>
                         <tr>
                                 <td>Lundi soir</td>
-                            <template  v-for="employe in horaire" v-bind:key="employe.nomemploye">
-                                <td v-if="employe.joursemaine === 'Lundi' && employe.typequart === 'Soir'">{{employe.nomemploye}}</td>
-                            </template>
+                                <td v-for="employe in horaire" v-bind:key="employe.nomemploye" v-if="employe.joursemaine === 'Lundi' && employe.typequart === 'Soir'">{{employe.nomemploye}}</td>
                         </tr>
                         <tr v-for="employe in horaire" v-bind:key="employe.nomemploye">
                             <template v-if="employe.joursemaine === 'Lundi' && employe.typequart === 'Nuit'">
