@@ -30,6 +30,9 @@ describe('test de PageEmploye', function (done) {
    });
   /**********/
  describe('afficherDisponibilites', function (done) {
+   afterEach(() => {
+        sinon.restore();
+     });
  xit('devrait retourner vrai', async function() {
     const req = mockReq();
     const res = mockRes();
