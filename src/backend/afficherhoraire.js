@@ -13,6 +13,7 @@ async function afficherChoixHoraire(req, res)  {
 
 const afficherHoraire  = async (req, res) => {
         const resp = req.body; //{$choixsemaine}
+	console.log(resp)
         const choixsemaine = resp['choixsemaine'] || '000';
         const choixdate = resp['choixdate'] || '01-01-1899';     
         const employeur = req.session.username//'Gestion3525' //'JNASH'// 
