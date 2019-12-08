@@ -12,7 +12,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <select v-model="selectionne" id="listeSemaines" @change="afficherHoraire(selectionne)">
+                            <select v-model="selectionne" id="listeSemaines" @change="afficherHoraireDropdown(selectionne)">
                                 <option v-for="nom in nomsHoraire" v-bind:value="nom.idtablehoraire" v-bind:key="nom.idtablehoraire">
                                     {{ nom.idtablehoraire }}
                                 </option>
@@ -73,7 +73,7 @@ export default {
         })
     },
     methods: {
-        afficherHoraire(idtablehoraire) {
+        afficherHoraireDropdown(idtablehoraire) {
             fetch('/affichageHoraire', {
                 method: 'POST',
                 headers: {
