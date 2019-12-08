@@ -87,12 +87,10 @@ export default {
                     body: JSON.stringify({date})
                 })
                 .then((response) => {
-                   alert(response.json())
                     return response.json()
                 })
                 .then((data) => {
                     this.horaire = data
-                    alert(this.horaire)
                 })
                 .catch(error => {
                     console.log(error);
