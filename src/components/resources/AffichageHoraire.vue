@@ -96,9 +96,10 @@ export default {
                 .catch(error => {
                     console.log(error);
                 });
-                  this.affichageHoraire = !this.affichageHoraire
+                
             }
         }
+        this.afficherHoraire = !this.afficherHoraire
     }
 }
 </script>
