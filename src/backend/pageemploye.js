@@ -6,7 +6,8 @@ var Api = new PostgREST ('http://testpostgrest-calendrier.herokuapp.com')
 const afficherDisponibilites  = async (req, res) => {
 	  var utilisateur = req.session.username;
 	  const rows = await getDisponibilites(utilisateur);
-	  res.setHeader("content-type", "application/json")
+	  //res.setHeader("content-type", "application/json")
+	  res.set({'content-type': 'application/json'});
 	  res.send(JSON.stringify(rows))
 }
 
