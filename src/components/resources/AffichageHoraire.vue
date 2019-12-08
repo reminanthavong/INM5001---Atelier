@@ -19,13 +19,13 @@
                                     {{ option.text }}
                                 </option>
                             </select>
-                            <select v-model="selected">
-                                <option v-for="nom in nomsHoraire" :value="nom">
+                            <select v-model="selectionne">
+                                <option v-for="nom in nomsHoraire" v-bind:key="nom.idtablehoraire">
                                     {{ nom.idtablehoraire }}
                                 </option>
                             </select>
-                            <select v-model="selected">
-                                <option v-for="nom in nomsHoraire" :value="nom">
+                            <select v-model="selectionne">
+                                <option v-for="nom in nomsHoraire" v-bind:key="nom">
                                     {{ nom }}
                                 </option>
                             </select>
