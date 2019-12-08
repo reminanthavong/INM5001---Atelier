@@ -23,13 +23,13 @@ describe('test de GestionEmploye', function (done) {
      afterEach(() => {
         sinon.restore();
      });
-    xit('devrait retourner le bon horaire', async () => {
+    it('devrait retourner le bon horaire', async () => {
     const req = mockReq();
     const res = mockRes();
     getEmployesSTUB = sinon.stub(GestionEmploye,'getEmployes');
     await GestionEmploye.afficherEmployes(req, res); 
-    //sinon.assert.calledOnce(res.json); //setHeader
-    //sinon.assert.calledOnce(getEmployesSTUB);
+    sinon.assert.calledOnce(res.json); //setHeader
+    sinon.assert.calledOnce(getEmployesSTUB);
        });  
    });
   /**********/
