@@ -76,7 +76,7 @@ export default {
             if(jourDeLaSemaine != 1) {
                 alert("Veuillez choisir une date correspondant à un lundi ")
             } else {
-                jsonHoraire = {}
+                var jsonHoraire = {}
                 jsonHoraire.date = dateHoraire
                 fetch('/affichageHoraire', {
                     method: 'POST',
