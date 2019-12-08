@@ -15,6 +15,12 @@
                         
                         <b-table striped hover :items="nomsHoraire">
                 </b-table>
+                
+                       <select v-model="selectionne">
+  <option v-for="option in nomsHoraire" v-bind:value="nomsHoraire">
+    {{ option.Idtablehoraire }}
+  </option>
+</select>
                         
                         </td>
                         <td>
