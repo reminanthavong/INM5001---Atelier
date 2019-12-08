@@ -8,7 +8,7 @@ async function afficherChoixHoraire(req, res)  {
 	  result = choixSemaine.choixSemaines;
 	  console.log(JSON.stringify(result))
 		res.setHeader("content-type", "application/json")
-		res.send(JSON.stringify(result));
+		res.send(JSON.stringify(choixSemaine));
           } catch (err) {
             console.error(err);
             res.send("Erreur appel client " + err);
