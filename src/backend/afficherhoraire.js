@@ -15,10 +15,10 @@ const afficherHoraire  = async (req, res) => {
         const resp = req.body; //{$choixsemaine}
 	console.log(resp)
         const choixsemaine = resp.choixsemaine || '000';
-        const choixdate = resp.choixdate || '01-01-1899';     
+        const choixdate = resp.date || '01-01-1899';     
         const employeur = req.session.idgestion //'Gestion3525' //'JNASH'// 
          try {
-		const horairesRecu= await Ressources.recupererHoraire(choixsemaine,choixdate,employeur)
+		const horairesRecu= await Ressources.recupererHoraire(choixsemaine,choixdate.slice(0, 10),employeur)
                 console.log(horairesRecu)
 		res.json( horairesRecu );
              } catch (err) {
