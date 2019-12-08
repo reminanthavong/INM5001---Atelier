@@ -17,12 +17,12 @@
                 </b-table>
                 
                        <select v-model="selectionne">
-  <option v-for="option in nomsHoraire.choixSemaines" v-bind:value="nomsHoraire.choixSemaines.idtablehoraire">
+  <option v-for="option in nomsHoraire.choixSemaines" v-bind:key="nomsHoraire.choixSemaines.idtablehoraire">
     {{ option.Idtablehoraire }}
   </option>
 </select>
                         <select v-model="selected">
-  <option v-for="option in options" v-bind:value="option.value">
+  <option v-for="option in options" v-bind:key="option.value">
     {{ option.text }}
   </option>
 </select>
