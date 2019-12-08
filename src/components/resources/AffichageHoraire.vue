@@ -13,7 +13,7 @@
                     <tr>
                         <td>
                             <select @change="afficherHoraireDropdown">
-            <option v-for="nomsHoraire", :value="JSON.stringify(nomsHoraire)"> {{ nomsHoraire.status }}</option>
+            <option v-bind :value="nomsHoraire"></option>
                             </select>
                         </td>
                         <td>
