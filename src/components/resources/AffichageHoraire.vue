@@ -12,11 +12,13 @@
                     </tr>
                     <tr>
                         <td>
-                            <select v-model="selectionne" @change="afficherHoraire(selectionne)">
-                                <option v-for="nom in nomsHoraire" v-bind:value="key" v-bind:key="nom.idtablehoraire">
-                                    {{ nom.idtablehoraire }}
-                                </option>
-                            </select>
+                          <b-table striped hover :items="nomsHoraire">
+                          </b-table>
+                          <select v-model="selected">
+                            <option v-for="option in options" v-bind:key="option.value">
+                              {{ option.text }}
+                            </option>
+                          </select>
                         </td>
                         <td>
                             <datepicker v-model="datehoraire" name="datehoraire"></datepicker>
@@ -27,12 +29,13 @@
 
                         </td>
                         <td>
-                            <button @click="afficherHoraireSelonDate" class="btn btn-primary">Afficher</button>
+    
                         </td>
                     </tr>
-                </table>
-
-                <b-table striped hover :items="horaire">
+                </table>  
+                <button @click="afficherHoraireSelonDate" class="btn btn-primary">Afficher</button>
+                <p v-if="afficherHoraire">Voici l'horaire</p>
+                <b-table striped hover :items="horaire" v-if="afficherHoraire">
                 </b-table>
 
                 <b-table striped hover :items="nomsHoraire">
@@ -54,7 +57,14 @@ export default {
             selectionne: '',
             datehoraire: null,
             nomsHoraire: null,
-            horaire: null
+            horaire: null,
+            afficherHoraire: false,
+            selected: 'A',
+    options: [
+      { text: 'One', value: 'A' },
+      { text: 'Two', value: 'B' },
+      { text: 'Three', value: 'C' }
+    ]
         }
     },
     mounted: function() {
@@ -74,27 +84,6 @@ export default {
         })
     },
     methods: {
-        afficherHoraire(idtablehoraire) {
-            alert(idtablehoraire)
-            fetch('/affichageHoraire', {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                 body: JSON.stringify({idtablehoraire})
-            })
-            .then((response) => {
-                return response.json()
-            })
-            .then((data) => {
-                this.horaire = data
-                console.log(data);
-            })
-            .catch(error => {
-                console.log(error);
-            });
-        },
         afficherHoraireSelonDate() {
             var date = this.datehoraire;
             var dateHoraire = new Date(date)
@@ -115,13 +104,15 @@ export default {
                 })
                 .then((data) => {
                     this.horaire = data
-                    console.log("Horaire: " + this.horaire);
                 })
                 .catch(error => {
                     console.log(error);
                 });
+                
             }
+             this.afficherHoraire = !this.afficherHoraire
         }
+  
     }
 }
 </script>

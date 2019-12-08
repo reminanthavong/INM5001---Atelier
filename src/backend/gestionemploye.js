@@ -14,6 +14,7 @@ const afficherEmployes  = async (req, res) => {
 	  var sessEmployeur = req.session.username;
 	  const rows = await getEmployes(sessEmployeur);
 	  res.setHeader("content-type", "application/json")
+	  console.log(JSON.stringify(rows))
 	  res.send(JSON.stringify(rows))
 }
 
@@ -180,6 +181,10 @@ const modifierEmploye   = async (req, res) => {
   afficherEmployes,
   ajouterEmploye,
   enleverEmploye,
-  modifierEmploye	  
+  modifierEmploye,
+	  
+  creerIdEmploye,
+  afficherEmployes,
+  getEmployes
 
 }
