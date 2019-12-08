@@ -13,7 +13,8 @@ function creerIdEmploye(nom, prenom) {
 const afficherEmployes  = async (req, res) => {
 	  var sessEmployeur = req.session.username;
 	  const rows = await getEmployes(sessEmployeur);
-	  res.setHeader("content-type", "application/json")
+	  //res.setHeader("content-type", "application/json")
+	  res.set({'content-type': 'application/json'});
 	  console.log(JSON.stringify(rows))
 	  res.send(JSON.stringify(rows))
 }
