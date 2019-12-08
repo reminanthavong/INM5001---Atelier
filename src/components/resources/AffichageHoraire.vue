@@ -230,12 +230,10 @@ export default {
         border: none;
         margin: 5px 0;
     }
-    th, td {
+    #horaire #horaire.th, #horaire.td {
       border-bottom: 1px solid #ddd;
       padding: 5px;
       text-align: left;
-    }
-    #horaire {
-        width: 100%;
+      width: 100%;
     }
 </style>
