@@ -23,7 +23,7 @@ describe('test de GestionEmploye', function (done) {
      afterEach(() => {
         sinon.restore();
      });
-    it('devrait retourner le bon horaire', async () => {
+    xit('devrait retourner le bon horaire', async () => {
     const req = mockReq();
     const res = mockRes();
     getEmployesSTUB = sinon.stub(GestionEmploye,'getEmployes');
