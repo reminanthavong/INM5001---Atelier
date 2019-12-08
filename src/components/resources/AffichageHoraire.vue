@@ -12,38 +12,22 @@
                     </tr>
                     <tr>
                         <td>
-                            <b-table striped hover :items="nomsHoraire">
-                            </b-table>
-                            <select v-model="selected">
-                                <option v-for="option in options" v-bind:key="option.value">
-                                    {{ option.text }}
-                                </option>
-                            </select>
                             <select v-model="selectionne">
                                 <option v-for="nom in nomsHoraire" v-bind:key="nom.idtablehoraire">
                                     {{ nom.idtablehoraire }}
                                 </option>
                             </select>
-                            <select v-model="selectionne">
-                                <option v-for="nom in nomsHoraire" v-bind:key="nom">
-                                    {{ nom }}
-                                </option>
-                            </select>
-                        </td>
-                        <td>
-                            <datepicker v-model="datehoraire" name="datehoraire"></datepicker>
                         </td>
                     </tr>
                     <tr>
                         <td>
-
+                            <datepicker v-model="datehoraire" name="datehoraire"></datepicker>
                         </td>
                         <td>
-    
+                            <button @click="afficherHoraireSelonDate" class="btn btn-primary">Afficher</button>
                         </td>
                     </tr>
-                </table>  
-                <button @click="afficherHoraireSelonDate" class="btn btn-primary">Afficher</button>
+                </table>
                 <p v-if="afficherHoraire">Voici l'horaire</p>
                 <b-table striped hover :items="horaire" v-if="afficherHoraire">
                 </b-table>
@@ -66,12 +50,6 @@ export default {
             nomsHoraire: null,
             horaire: null,
             afficherHoraire: false,
-            selected: 'A',
-    options: [
-      { text: 'One', value: 'A' },
-      { text: 'Two', value: 'B' },
-      { text: 'Three', value: 'C' }
-    ]
         }
     },
     mounted: function() {
@@ -98,19 +76,22 @@ export default {
             if(jourDeLaSemaine != 1) {
                 alert("Veuillez choisir une date correspondant à un lundi ")
             } else {
+                jsonHoraire = {}
+                jsonHoraire.date = dateHoraire
                 fetch('/affichageHoraire', {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({date})
+                    body: JSON.stringify(jsonHoraire)
                 })
                 .then((response) => {
                     return response.json()
                 })
                 .then((data) => {
                     this.horaire = data
+                    console.log(this.horaire)
                 })
                 .catch(error => {
                     console.log(error);
