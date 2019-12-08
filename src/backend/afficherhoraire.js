@@ -19,8 +19,8 @@ const afficherHoraire  = async (req, res) => {
         const employeur = req.session.idgestion //'Gestion3525' //'JNASH'// 
          try {
 		const horairesRecu= await Ressources.recupererHoraire(choixsemaine,choixdate.slice(0, 10),employeur)
-                console.log(horairesRecu)
-		res.json( horairesRecu );
+                console.log(JSON.stringify(horairesRecu))
+		res.send(JSON.stringify(horairesRecu))
              } catch (err) {
                console.error(err);
                res.send("Erreur appel client " + err);
