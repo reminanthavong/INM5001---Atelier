@@ -5,31 +5,16 @@
                 <h1 class="w3-text-teal">Affichage de L'horaire</h1>
                 <h3>Choisissez l'horaire a afficher selon :</h3>
 
-                <table id="choixpourafficherhoraire" style="width:100%">
-                    <tr>
-                        <th>Nom de l'horaire:</th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <select v-model="selectionne" @change="afficherHoraireSelonID()">
-                                <option v-for="nom in nomsHoraire" v-bind:key="nom.idtablehoraire">
-                                    {{ nom.idtablehoraire }}
-                                </option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Date de l'horaire:</th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <datepicker v-model="datehoraire" name="datehoraire"></datepicker>
-                        </td>
-                        <td>
-                            <button @click="afficherHoraireSelonDate" class="btn btn-primary">Afficher</button>
-                        </td>
-                    </tr>
-                </table>
+                <p>Nom de l'horaire:</p>
+                <select v-model="selectionne" @change="afficherHoraireSelonID()">
+                    <option v-for="nom in nomsHoraire" v-bind:key="nom.idtablehoraire">
+                        {{ nom.idtablehoraire }}
+                     </option>
+                </select>
+                <br/>
+                <datepicker v-model="datehoraire" name="datehoraire"></datepicker>
+                <button @click="afficherHoraireSelonDate" class="btn btn-primary">Afficher</button>
+
                 <br/>
                 <p v-if="afficherHoraire">Voici l'horaire</p>
                 <table id="horaire" v-if="afficherHoraire">
@@ -230,10 +215,12 @@ export default {
         border: none;
         margin: 5px 0;
     }
-    table#horaire, table#horaire.th, table#horaire.td {
+    th, td {
       border-bottom: 1px solid #ddd;
       padding: 5px;
       text-align: left;
-      width: 100%;
+    }
+    table#horaire {
+        width: 100%;
     }
 </style>
