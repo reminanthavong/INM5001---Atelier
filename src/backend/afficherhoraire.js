@@ -20,7 +20,7 @@ const afficherHoraire  = async (req, res) => {
          try {
 		const horairesRecu= await Ressources.recupererHoraire(choixsemaine,choixdate.slice(0, 10),employeur)
                 console.log(JSON.stringify(horairesRecu))
-		res.send(JSON.stringify(horairesRecu))
+		res.send(JSON.stringify(horairesRecu));
              } catch (err) {
                console.error(err);
                res.send("Erreur appel client " + err);
