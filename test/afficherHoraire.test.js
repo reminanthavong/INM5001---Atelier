@@ -8,7 +8,70 @@ const AfficherHoraire = require('../src/backend/afficherhoraire');
 const Ressources = require('../src/backend/ressources'); 
 const GenererHoraire = require('../src/backend/GenererHoraire'); 
 //***********************************************************//
-const TestScenarii = require('./TestScenarii/AfficherHoraireTests'); 
+ const Horaire00120191007Gestion3525 = { horaires:
+          [ { typequart: 'Nuit',
+              joursemaine: 'Mercredi',
+              nomemploye: 'ELAINE R BECKER' },
+            { typequart: 'Jour',
+              joursemaine: 'Jeudi',
+              nomemploye: 'JENISSA C NASHEL' },
+            { typequart: 'Soir',
+              joursemaine: 'Jeudi',
+              nomemploye: 'MASCHEAL SLATTON' },
+            { typequart: 'Nuit',
+              joursemaine: 'Jeudi',
+              nomemploye: 'DESRI M PURNELL' } ] }
+ const HoraireGenere00120191007Gestion3525 =  {horaires:
+          [ { idtablehoraire: '001',
+              dateparam: '2019-10-07',
+              idemployeur: 'Gestion3525',
+              idemploye: 'DPURN',
+              joursemaine: '4',
+              typequart: 'N',
+              selection: '1' },
+            { idtablehoraire: '001',
+              dateparam: '2019-10-07',
+              idemployeur: 'Gestion3525',
+              idemploye: 'EBECK',
+              joursemaine: '3',
+              typequart: 'S',
+              selection: '1' },
+            { idtablehoraire: '001',
+              dateparam: '2019-10-07',
+              idemployeur: 'Gestion3525',
+              idemploye: 'EBECK',
+              joursemaine: '6',
+              typequart: 'N',
+              selection: '1' },
+            { idtablehoraire: '001',
+              dateparam: '2019-10-07',
+              idemployeur: 'Gestion3525',
+              idemploye: 'EBECK',
+              joursemaine: '7',
+              typequart: 'J',
+              selection: '1' },
+            { idtablehoraire: '001',
+              dateparam: '2019-10-07',
+              idemployeur: 'Gestion3525',
+              idemploye: 'JNASH',
+              joursemaine: '4',
+              typequart: 'S',
+              selection: '1' },
+            { idtablehoraire: '001',
+              dateparam: '2019-10-07',
+              idemployeur: 'Gestion3525',
+              idemploye: 'JNASH',
+              joursemaine: '6',
+              typequart: 'S',
+              selection: '1' },
+            { idtablehoraire: '001',
+              dateparam: '2019-10-07',
+              idemployeur: 'Gestion3525',
+              idemploye: 'JNASH',
+              joursemaine: '7',
+              typequart: 'J',
+              selection: '2' } ]
+}
 //***********************************************************//
 
 describe('test de AfficherHoraire', function (done) {
@@ -44,7 +107,7 @@ describe('test de AfficherHoraire', function (done) {
     describe('recupererHoraire', function (done) {
    xit('devrait retourner le bon horaire', async () => {
          const horaire = await Ressources.recupererHoraire('001','2019-10-07','Gestion3525');
-         expect(horaire).to.deep.equal(TestScenarii.Horaire00120191007Gestion3525);
+         expect(horaire).to.deep.equal(Horaire00120191007Gestion3525);
       });
      xit('devrait retourner vrai', async function() {
     const req = mockReq({ body: {}});
@@ -60,7 +123,7 @@ describe('test de AfficherHoraire', function (done) {
      describe('recupererHoraire', function (done) {
    xit('devrait retourner le bon horaire', async () => {
          const horaire = await GenererHoraire.GenererHoraire('001','2019-10-07','Gestion3525');
-         expect(horaire).to.deep.equal(TestScenarii.HoraireGenere00120191007Gestion3525);
+         expect(horaire).to.deep.equal(HoraireGenere00120191007Gestion3525);
       });
       
      xit('devrait appeller la fonction', async function() {
