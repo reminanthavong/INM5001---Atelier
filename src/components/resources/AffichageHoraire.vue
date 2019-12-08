@@ -17,7 +17,7 @@
                 </b-table>
                 
                        <select v-model="selectionne">
-  <option v-for="option in nomsHoraire" v-bind:value="nomsHoraire">
+  <option v-for="option in nomsHoraire.choixSemaines" v-bind:value="nomsHoraire.choixSemaines.idtablehoraire">
     {{ option.Idtablehoraire }}
   </option>
 </select>
