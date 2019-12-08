@@ -20,7 +20,7 @@ describe('test de GestionEmploye', function (done) {
    });
   /**********/
     describe('afficherEmployes', function (done) {
-    it('devrait retourner le bon horaire', async () => {
+    xit('devrait retourner le bon horaire', async () => {
     const req = mockReq();
     const res = mockRes();
     getEmployesSTUB = sinon.stub(GestionEmploye,'getEmployes');
@@ -32,7 +32,6 @@ describe('test de GestionEmploye', function (done) {
   /**********/
     describe('getEmployes', function (done) {
    it('devrait retourner la liste des employes', async () => {
-    console.log(TestScenarii.EmployesDeGestion3525);
          const Employes = await GestionEmploye.getEmployes('Gestion3525');
          expect(Employes).to.deep.equal(TestScenarii.EmployesDeGestion3525);
     
