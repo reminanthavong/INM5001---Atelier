@@ -20,6 +20,7 @@ const afficherHoraire  = async (req, res) => {
          try {
 		const horairesRecu= await Ressources.recupererHoraire(choixsemaine,choixdate.slice(0, 10),employeur)
                 console.log(JSON.stringify(horairesRecu))
+		res.setHeader("content-type", "application/json")
 		res.send(JSON.stringify(horairesRecu));
              } catch (err) {
                console.error(err);
