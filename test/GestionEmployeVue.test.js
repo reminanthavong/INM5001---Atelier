@@ -1,9 +1,9 @@
-const { shallowMount } = require('@vue/test-utils')
-const GestionEmploye = require('../src/components/resources/GestionEmployes.vue')
+//const { shallowMount } = require('@vue/test-utils')
+//const GestionEmploye = require('../src/components/resources/GestionEmployes.vue')
 
-test('GestionEmploye', () => {
+//test('GestionEmploye', () => {
   // GestionEmploye a ete load
-  const wrapper = shallowMount(GestionEmploye)
+  //const wrapper = shallowMount(GestionEmploye)
 
   // should not allow for `username` less than 7 characters, excludes whitespace
   //wrapper.setData({ username: ' '.repeat(7) })
