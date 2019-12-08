@@ -66,6 +66,9 @@ import axios from 'axios'
       authStatus: state => state.status,
       userStatus: state => {
       return state.isAdmin
+    },
+      userData: state => {
+      return state.user
     }
       }
     })
