@@ -12,13 +12,23 @@
                     </tr>
                     <tr>
                         <td>
-                          <b-table striped hover :items="nomsHoraire">
-                          </b-table>
-                          <select v-model="selected">
-                            <option v-for="option in options" v-bind:key="option.value">
-                              {{ option.text }}
-                            </option>
-                          </select>
+                            <b-table striped hover :items="nomsHoraire">
+                            </b-table>
+                            <select v-model="selected">
+                                <option v-for="option in options" v-bind:key="option.value">
+                                    {{ option.text }}
+                                </option>
+                            </select>
+                            <select v-model="selected">
+                                <option v-for="nom in nomsHoraire" :value="nom">
+                                    {{ nom.idtablehoraire }}
+                                </option>
+                            </select>
+                            <select v-model="selected">
+                                <option v-for="nom in nomsHoraire" :value="nom">
+                                    {{ nom }}
+                                </option>
+                            </select>
                         </td>
                         <td>
                             <datepicker v-model="datehoraire" name="datehoraire"></datepicker>
