@@ -8,7 +8,7 @@ const pool = new Pool({
 async function recupererListeSemaine() {
             const client = await pool.connect()
             const choixSemaine = await client.query(`SELECT DISTINCT IDTableHoraire FROM TableHoraire;`);
-            const choixSemaines = { 'choixSemaines': (choixSemaine) ? choixSemaine.rows : null};
+            const choixSemaines = {(choixSemaine) ? choixSemaine.rows : null};
 	    client.release();
             //console.log(choixSemaines);
             return choixSemaines;
@@ -27,7 +27,7 @@ async function recupererHoraire(choixsemaine,choixdate,employeur) {
                                                                                                       AND (TH.IDEmployeur='${employeur}' OR TH.IDEmployeur=(SELECT DISTINCT IDEmployeur FROM TableHoraire WHERE IDEmploye = '${employeur}') )
                                                                                                     ) AS SourceTable;
                                                          `);
-             const horairesRecu = { 'horaires': (horaires) ? horaires.rows : null};
+             const horairesRecu = {(horaires) ? horaires.rows : null};
              client.release();
             return horairesRecu;
 }

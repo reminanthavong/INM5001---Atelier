@@ -12,10 +12,8 @@
                     </tr>
                     <tr>
                         <td>
-                            <select v-model="selectionne" id="listeSemaines" @change="afficherHoraireDropdown(selectionne)">
-                                <option v-for="nom in nomsHoraire" v-bind:value="nom.idtablehoraire" v-bind:key="nom.idtablehoraire">
-                                    {{ nom.idtablehoraire }}
-                                </option>
+                            <select @change="afficherHoraireDropdown">
+            <option v-for="nomsHoraire", :value="JSON.stringify(nomsHoraire)"> {{ nomsHoraire.status }}</option>
                             </select>
                         </td>
                         <td>
@@ -73,26 +71,9 @@ export default {
         })
     },
     methods: {
-        afficherHoraireDropdown(idtablehoraire) {
-            fetch('/affichageHoraire', {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                 body: JSON.stringify(idtablehoraire)
-            })
-            .then((response) => {
-                return response.json()
-            })
-            .then((data) => {
-                this.horaire = data
-                console.log(data);
-            })
-            .catch(error => {
-                console.log(error);
-            });
-           
+        afficherHoraireDropdown(evt) {
+        console.log(JSON.parse(evt.target.value))
+        alert(JSON.parse(evt.target.value))
         },
         afficherHoraireSelonDate() {
             var date = this.datehoraire;
@@ -113,8 +94,7 @@ export default {
                     return response.json()
                 })
                 .then((data) => {
-                    this.horaire = data.horaires
-                    alert(data);
+                    this.horaire = data
                 })
                 .catch(error => {
                     console.log(error);
