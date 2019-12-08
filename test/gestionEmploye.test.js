@@ -30,7 +30,7 @@ describe('test de GestionEmploye', function (done) {
     await GestionEmploye.afficherEmployes(req, res); 
     sinon.assert.calledOnce(res.send); 
     sinon.assert.calledOnce(res.set); 
-    sinon.assert.calledOnce(getEmployesSTUB);
+    //sinon.assert.calledOnce(getEmployesSTUB); //getEmployes a deplacer dans fichier ressource
        });  
    });
   /**********/
