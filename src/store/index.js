@@ -8,7 +8,7 @@ import axios from 'axios'
       status: '',
         token: localStorage.getItem('token') || '',
         user: {},
-        admin: ''
+        isAdmin: ''
       },
       mutations: {
            auth_request(state) {
@@ -64,6 +64,6 @@ import axios from 'axios'
       getters: {
       isLoggedIn: state => !!state.token,
       authStatus: state => state.status,
-      userStatus: state => state.admin
+      userStatus: state => state.isAdmin
       }
     })
