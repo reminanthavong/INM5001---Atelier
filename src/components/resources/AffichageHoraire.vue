@@ -8,37 +8,30 @@
                 <table id="choixpourafficherhoraire" style="width:100%">
                     <tr>
                         <th>Nom de l'horaire:</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select v-model="selectionne" @change="afficherHoraireSelonID()">
+                                <option v-for="nom in nomsHoraire" v-bind:key="nom.idtablehoraire">
+                                    {{ nom.idtablehoraire }}
+                                </option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
                         <th>Date de l'horaire:</th>
                     </tr>
                     <tr>
                         <td>
-                          <b-table striped hover :items="nomsHoraire">
-                          </b-table>
-                          <select v-model="selected">
-                            <option v-for="option in options" v-bind:key="option.value">
-                              {{ option.text }}
-                            </option>
-                          </select>
-                        </td>
-                        <td>
                             <datepicker v-model="datehoraire" name="datehoraire"></datepicker>
                         </td>
-                    </tr>
-                    <tr>
                         <td>
-
-                        </td>
-                        <td>
-    
+                            <button @click="afficherHoraireSelonDate" class="btn btn-primary">Afficher</button>
                         </td>
                     </tr>
-                </table>  
-                <button @click="afficherHoraireSelonDate" class="btn btn-primary">Afficher</button>
+                </table>
                 <p v-if="afficherHoraire">Voici l'horaire</p>
                 <b-table striped hover :items="horaire" v-if="afficherHoraire">
-                </b-table>
-
-                <b-table striped hover :items="nomsHoraire">
                 </b-table>
             </div>
         </div>
@@ -59,12 +52,6 @@ export default {
             nomsHoraire: null,
             horaire: null,
             afficherHoraire: false,
-            selected: 'A',
-    options: [
-      { text: 'One', value: 'A' },
-      { text: 'Two', value: 'B' },
-      { text: 'Three', value: 'C' }
-    ]
         }
     },
     mounted: function() {
@@ -77,7 +64,7 @@ export default {
         })
         .then((data) => {
             this.nomsHoraire = data
-            console.log("Liste: " + this.nomsHoraire)
+            console.log(this.nomsHoraire)
         })
         .catch(error => {
             console.log(error)
@@ -97,13 +84,14 @@ export default {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({date})
+                    body: JSON.stringify({dateHoraire})
                 })
                 .then((response) => {
                     return response.json()
                 })
                 .then((data) => {
                     this.horaire = data
+                    console.log(this.horaire)
                 })
                 .catch(error => {
                     console.log(error);
@@ -111,6 +99,29 @@ export default {
                 
             }
              this.afficherHoraire = !this.afficherHoraire
+        },
+        afficherHoraireSelonID() {
+            alert(this.selectionne)
+            var choixsemaine = this.selectionne
+            fetch('/affichageHoraire', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({choixsemaine})
+                })
+                .then((response) => {
+                    return response.json()
+                })
+                .then((data) => {
+                    this.horaire = data
+                    console.log(this.horaire)
+                })
+                .catch(error => {
+                    console.log(error);
+            });
+            this.afficherHoraire = !this.afficherHoraire
         }
   
     }
