@@ -5,12 +5,6 @@ const session = require('express-session');
 //***********************************************************//
 const { mockReq, mockRes } = require('sinon-express-mock');
 const sinon = require('sinon');
-
-//const chai = require('chai');//Pour setHeader
-//const chaiHttp = require('chai-http')//Pour setHeader
-//const server = require('./server');//Pour setHeader
-//chai.use(chaiHttp);//Pour setHeader
-
 const expect = require('chai').expect;
 const assert = require('chai').assert;
 //***********************************************************//
@@ -33,16 +27,12 @@ describe('test de PageEmploye', function (done) {
    afterEach(() => {
         sinon.restore();
      });
- xit('devrait retourner vrai', async function() {
+ it('devrait retourner vrai', async function() {
     const req = mockReq();
-    const res = mockRes();
-  
-  //chai.request(server).get('/test').buffer(true) //Pour setHeader
-  
-    getDisponibilitesSTUB = sinon.stub(PageEmploye,'getDisponibilites');
+    const res = mockRes();  getDisponibilitesSTUB = sinon.stub(PageEmploye,'getDisponibilites');
     await PageEmploye.afficherDisponibilites(req, res); 
-    //sinon.assert.calledOnce(res.send); //res.send a ete appellee une fois
-    //sinon.assert.calledOnce(res.setHeader); //res.send a ete appellee une fois
+    sinon.assert.calledOnce(res.send); //res.send a ete appellee une fois
+    sinon.assert.calledOnce(res.set); //res.send a ete appellee une fois
     sinon.assert.calledOnce(getDisponibilitesSTUB);
 
     });
