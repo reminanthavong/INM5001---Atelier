@@ -12,9 +12,9 @@
                     </tr>
                     <tr>
                         <td>
-                            <select @change="afficherHoraireDropdown">
-            <option v-bind :value="nomsHoraire"></option>
-                            </select>
+                        
+                        
+                        
                         </td>
                         <td>
                             <datepicker v-model="datehoraire" name="datehoraire"></datepicker>
