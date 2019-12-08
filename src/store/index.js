@@ -14,11 +14,10 @@ import axios from 'axios'
            auth_request(state) {
             state.status = 'loading'
           },
-          auth_success(state, token, user, admin) {
+          auth_success(state, token, user) {
             state.status = 'success'
             state.token = token
             state.user = user
-            state.isAdmin = admin
           },
           auth_error(state) {
             state.status = 'error'
@@ -37,12 +36,11 @@ import axios from 'axios'
                   const token = resp.data.token
                   const user = resp.data.user
                   alert(token + user)
-                  
-                  if (admin == 1 || admin == "1"){isAdmin=true}
+                
                   localStorage.setItem('token', token)
                   // Add the following line:
                   axios.defaults.headers.common['Authorization'] = token
-                  commit('auth_success', token, user,isAdmin)
+                  commit('auth_success', token, user)
                   resolve(resp)
                 })
                 .catch(err => {
