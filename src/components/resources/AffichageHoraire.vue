@@ -37,9 +37,6 @@
                 <p v-if="afficherHoraire">Voici l'horaire</p>
                 <b-table striped hover :items="horaire" v-if="afficherHoraire">
                 </b-table>
-
-                <b-table striped hover :items="nomsHoraire">
-                </b-table>
             </div>
         </div>
     </div>
@@ -77,7 +74,7 @@ export default {
         })
         .then((data) => {
             this.nomsHoraire = data
-            console.log("Liste: " + this.nomsHoraire)
+            console.log(this.nomsHoraire)
         })
         .catch(error => {
             console.log(error)
