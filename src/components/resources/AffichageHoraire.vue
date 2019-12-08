@@ -105,7 +105,7 @@ export default {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify(date)
+                    body: JSON.stringify({date})
                 })
                 .then((response) => {
                     return response.json()
