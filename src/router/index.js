@@ -33,8 +33,9 @@ const routes=[
     name: 'gestionEmployes',
     component: GestionEmployes,
     beforeEnter:
-             alert(localStorage.getItem('user'))
+             
             (to, from, next) => {
+                alert(localStorage.getItem('user'))
            if (localStorage.getItem('user')) {
           next()
           
@@ -51,8 +52,9 @@ const routes=[
     name: 'zoneEmploye',
     component: ZoneEmploye,
     beforeEnter:
-              alert(localStorage.getItem('user'))
+              
             (to, from, next) => {
+                alert(localStorage.getItem('user'))
            if (localStorage.getItem('user')) {
           next('/unauthorized')
           
@@ -69,8 +71,9 @@ const routes=[
     name: 'gestionHoraire',
     component: GestionHoraire,
     beforeEnter:
-             alert(localStorage.getItem('user'))
+            
             (to, from, next) => {
+                alert(localStorage.getItem('user'))
            if (localStorage.getItem('user')) {
           next()
         
