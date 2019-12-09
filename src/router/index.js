@@ -53,11 +53,11 @@ const routes=[
     beforeEnter:
 
             (to, from, next) => {
-           if (!localStorage.getItem('user')) {
-          next()
+           if (localStorage.getItem('user')) {
+          next('/unauthorized')
           
         }else {
-        next('/unauthorized')
+        next()
       }
     },    
     meta: {
