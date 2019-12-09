@@ -33,7 +33,8 @@ const routes=[
     name: 'gestionEmployes',
     component: GestionEmployes,    
     meta: {
-        requiresAuth: true
+        requiresAuth: true,
+        is_admin: true
           }
     },
     {
@@ -49,7 +50,8 @@ const routes=[
     name: 'gestionHoraire',
     component: GestionHoraire,
     meta: {
-        requiresAuth: true
+        requiresAuth: true,
+        is_admin: true
           }
 },
 {
@@ -72,17 +74,31 @@ const router=new VueRouter({
     routes
 })
 
+
 router.beforeEach((to, from, next) => {
-      if (to.matched.some(record => record.meta.requiresAuth)) {
-          alert(localStorage.getItem('user'))
-        if (localStorage.getItem('user')) {
-          next()
-          return
+    if(to.matched.some(record => record.meta.requiresAuth)) {
+        if (localStorage.getItem('token') == null) {
+            next({
+                path: '/unauthorized',
+                params: { nextUrl: to.fullPath }
+            })
+        } else {
+            let user = localStorage.getItem('user')
+            if(to.matched.some(record => record.meta.is_admin)) {
+                if(user){
+                    next()
+                }
+                else{
+                    next('/unauthorized')
+                }
+            }else {
+                next()
+            }
         }
-        next('/unauthorized')
-      } else {
-        next()
-      }
-    })
+    } else {
+        next() 
+    }
+})
+
 
 export default router
