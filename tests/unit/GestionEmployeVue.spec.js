@@ -4,11 +4,11 @@ const sinon = require('sinon')
 
 test('GestionEmploye', () => {
   //GestionEmploye a ete load
-  const wrapper = shallowMount(GestionEmploye)
+  const wrapper = shallowMount(GestionEmploye) //shallowMount(GestionEmploye)
 
   // Le bouton genere l'affichage
   expect(wrapper.find('#testbouton1').exists()).toBeTruthy
-  //wrapper.find('#testbouton1').trigger('click')
+  wrapper.find('#testbouton1').trigger('@click')
   //expect(wrapper.find('bouton-affichage').text()).toEqual("Veuillez cliquer sur un employé pour le modifier")
   //wrapper.find('#testbouton1').trigger('click')
   //expect(wrapper.find('bouton-affichage').exists()).toBeFalsy()
