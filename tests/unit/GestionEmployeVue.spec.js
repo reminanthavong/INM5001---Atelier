@@ -8,7 +8,7 @@ test('GestionEmploye', () => {
 
   // Le bouton genere l'affichage
   expect(wrapper.find('#testbouton1').exists()).toBeTruthy
-  wrapper.find('#testbouton1').trigger('@click')
+  wrapper.find("#testbouton1").trigger("click")
   //expect(wrapper.find('bouton-affichage').text()).toEqual("Veuillez cliquer sur un employé pour le modifier")
   //wrapper.find('#testbouton1').trigger('click')
   //expect(wrapper.find('bouton-affichage').exists()).toBeFalsy()
