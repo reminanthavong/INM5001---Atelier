@@ -6,7 +6,6 @@ const pool = new Pool({
 });
 var PostgREST = require('postgrest-client');
 var Api = new PostgREST ('http://testpostgrest-calendrier.herokuapp.com');
-var sess;
 
 const ajouterQuarts = async(req, res) => {
 	let result = {}
@@ -78,23 +77,23 @@ async function creationHoraire(idtablehoraire, date, sessEmployeur) {
     const client = await pool.connect()
     const horaire = await client.query(`SELECT DISTINCT '${idtablehoraire}' AS IDTableHoraire, '${date}' AS DateParam ,C.IDEmployeur,C.IDEmploye, C.JourSemaine, C.TypeQuart,c.Selection--,NBREmployes
     FROM(
-    SELECT IDEmploye,IDEmployeur,JourSemaine, TypeQuart,Selection,DateEmbauche
-    FROM (
-    SELECT
-    *,ROW_NUMBER()OVER(PARTITION BY A.IDEmploye ORDER BY A.JourSemaine ASC) AS MaxSem
-    ,ROW_NUMBER()OVER(PARTITION BY A.JourSemaine, A.TypeQuart ORDER BY A.TypeQuart ASC, A.JourSemaine ASC) AS Selection
-    FROM(
-    SELECT BQE.*, nbrQuartsmax,DateEmbauche ,ROW_NUMBER()OVER(PARTITION BY BQE.IDEmploye, BQE.JourSemaine ORDER BY BQE.TypeQuart ASC) AS MaxJOur
-    FROM basequartsemploye BQE
-    INNER JOIN baseemployes BE ON BE.IDEmploye=BQE.IDEmploye
-    AND BE.IDEmployeur='${sessEmployeur}'
-    AND Disponibilite='1'
-    AND ParamType='1'
-    LEFT JOIN Tableconges TC ON TC.IDEmploye=BQE.IDEmploye
-    AND TC.JourSemaine=BQE.JourSemaine
-    AND TC.TypeQuart=BQE.TypeQuart
-    AND TC.DateConges='${date}'
-    WHERE TC.IDEmploye IS NULL
+        SELECT IDEmploye,IDEmployeur,JourSemaine, TypeQuart,Selection,DateEmbauche
+        FROM (
+            SELECT
+            *,ROW_NUMBER()OVER(PARTITION BY A.IDEmploye ORDER BY A.JourSemaine ASC) AS MaxSem
+            ,ROW_NUMBER()OVER(PARTITION BY A.JourSemaine, A.TypeQuart ORDER BY A.TypeQuart ASC, A.JourSemaine ASC) AS Selection
+            FROM(
+                SELECT BQE.*, nbrQuartsmax,DateEmbauche ,ROW_NUMBER()OVER(PARTITION BY BQE.IDEmploye, BQE.JourSemaine ORDER BY BQE.TypeQuart ASC) AS MaxJOur
+                FROM basequartsemploye BQE
+                INNER JOIN baseemployes BE ON BE.IDEmploye=BQE.IDEmploye
+                    AND BE.IDEmployeur='${sessEmployeur}'
+                    AND Disponibilite='1'
+                    AND ParamType='1'
+                LEFT JOIN Tableconges TC ON TC.IDEmploye=BQE.IDEmploye
+                    AND TC.JourSemaine=BQE.JourSemaine
+                    AND TC.TypeQuart=BQE.TypeQuart
+                    AND TC.DateConges='${date}'
+                WHERE TC.IDEmploye IS NULL
 	    )A
 	    WHERE MaxJour=1
 	    )B
