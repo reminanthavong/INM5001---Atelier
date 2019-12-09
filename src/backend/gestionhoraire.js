@@ -1,5 +1,9 @@
 const session = require('express-session');
 const { Pool } = require('pg');
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: true
+});
 var PostgREST = require('postgrest-client');
 var Api = new PostgREST ('http://testpostgrest-calendrier.herokuapp.com');
 var sess;
@@ -105,7 +109,7 @@ async function creationHoraire(idtablehoraire, date, sessEmployeur) {
     ;`);
     const horairegenere = { 'horaires': (horaire) ? horaire.rows : null};
     client.release();
-    console.log(horairegenere);
+    console.log("Horaire: " + horairegenere);
     return horairegenere
 }
 
