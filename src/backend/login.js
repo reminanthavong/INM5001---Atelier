@@ -33,8 +33,8 @@ const loginAPI = async (request, response) => {	// Nom de la fonction
 	                        request.session.prenom = 'Administrateur'; // Valeur prenom de l'employe
 	                        request.session.typeutilisateur = checkUsername[0].typeutilisateur; // Si utilisateur est admin
 				let token = jwt.sign({ id: username }, config.secret, { expiresIn: 86400 });
-				      console.log(request.session)
-                                response.status(200).send({ auth: true, token: token, user: request.session });
+				      console.log(request.session.typeutilisateur)
+                                response.status(200).send({ auth: true, token: token, user: true});
 			      }  else {
 	                        const infoUser = await getIDgestion(username); // Allez chercher les informations du utilisateur   
 				// Ajout dans JSON Session
@@ -45,13 +45,14 @@ const loginAPI = async (request, response) => {	// Nom de la fonction
 	                        request.session.prenom = infoUser[0].prenomemploye; // Valeur prenom de l'employe
 	                        request.session.typeutilisateur = checkUsername[0].typeutilisateur; // Si utilisateur est admin
 				let token = jwt.sign({ id: username }, config.secret, { expiresIn: 86400});
-				      console.log(request.session)
-                                response.status(200).send({ auth: true, token: token, user: request.session });
+				      console.log(request.session.typeutilisateur)
+                                response.status(200).send({ auth: true, token: token, user: false});
 			      }
 	      
 			} else {
-				request.session.loggedin = false; 
-				JSAlert.alert("Mauvais Username ou Mot De Passe");
+				request.session.loggedin = false;
+              
+				alert("Mauvais Username ou Mot De Passe");
 				response.redirect('/login?error=' + encodeURIComponent('Incorrect_Credential'));
 				
 			}			
