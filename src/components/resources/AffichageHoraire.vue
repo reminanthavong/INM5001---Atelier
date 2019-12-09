@@ -173,7 +173,7 @@ export default {
                 return emp.joursemaine == "Vendredi" && emp.typequart == "Jour"
             })
         },
-        vendrediSoir function() {
+        vendrediSoir: function() {
             return this.horaire.filter(function(emp) {
                 return emp.joursemaine == "Vendredi" && emp.typequart == "Soir"
             })
