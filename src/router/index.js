@@ -32,18 +32,6 @@ const routes=[
     path: '/gestionEmployes',
     name: 'gestionEmployes',
     component: GestionEmployes,
-    beforeEnter:
-             
-            (to, from, next) => {
-            var isAdmin = localStorage.getItem('user'); 
-                alert(isAdmin)
-           if (isAdmin == "1") {
-          next()
-          
-        }else {
-        next('/unauthorized')
-      }
-    },
     meta: {
         requiresAuth: true
           }
@@ -51,19 +39,7 @@ const routes=[
     {
     path: '/zoneEmploye',
     name: 'zoneEmploye',
-    component: ZoneEmploye,
-    beforeEnter:
-              
-            (to, from, next) => {
-           var isAdmin = localStorage.getItem('user'); 
-                alert(isAdmin)
-           if (isAdmin == "0") {
-          next('/unauthorized')
-          
-        }else {
-        next()
-      }
-    },    
+    component: ZoneEmploye,  
     meta: {
         requiresAuth: true
           }
@@ -72,18 +48,6 @@ const routes=[
     path: '/gestionHoraire',
     name: 'gestionHoraire',
     component: GestionHoraire,
-    beforeEnter:
-            
-            (to, from, next) => {
-           var isAdmin = localStorage.getItem('user');   
-                alert(isAdmin)
-           if (isAdmin == "1") {
-          next()
-        
-        }else {
-        next('/unauthorized')
-      }
-    },
     meta: {
         requiresAuth: true
           }
