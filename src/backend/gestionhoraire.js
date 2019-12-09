@@ -13,18 +13,16 @@ const ajouterHoraire = async(req, res) => {
 	var date = reqjson.horairedate
 	date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
 	var idtablehoraire = "" + sessEmployeur + "-" + date.slice(0, 10);
+	console.log(date)
+	console.log(idTablehoraire)
 	var i = 1;
 	while (i < quarts.length) {
 		var x = quarts[i];
 		    try{
 		        console.log(reqjson[x])
-			    if (reqjson[x] != null){
-			        await ajoutHoraire(sessEmployeur,idtablehoraire, reqjson.horairedate, x.slice(0, 1), x.slice(1), reqjson[x]);
-		            result.success = true;
-		        }else{
-			        await ajoutHoraire(sessEmployeur, reqjson.horairedate, x.slice(0, 1), x.slice(1),"0");
-		            result.success = true;
-		        }
+			    await ajoutHoraire(sessEmployeur, idtablehoraire, reqjson.horairedate, x.slice(0, 1), x.slice(1), reqjson[x]);
+		        result.success = true;
+
 		    }catch (e) {
 		        result.success = false;
 	        }
