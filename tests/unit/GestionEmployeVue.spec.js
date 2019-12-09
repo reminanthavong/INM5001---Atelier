@@ -6,7 +6,7 @@ const sinon = require('sinon')
 const Essai = require('../../src/components/resources/essai.vue')
 
    describe('GestionEmployesVue', () => {
-         const wrapper = shallowMount(Essai) 
+         const wrapper = shallowMount(Essai); 
    it('devrait fonctionner', () => {
   //GestionEmploye a ete load
   //const wrapper = mount(GestionEmploye) //shallowMount(GestionEmploye)
@@ -15,7 +15,10 @@ const Essai = require('../../src/components/resources/essai.vue')
   //expect(wrapper.find('#testbouton1').exists()).toBeTruthy
 
 
-    console.log(wrapper.find('button').at(0))
+    console.log(wrapper.find('button').at(0));
+    console.log(wrapper.html());
+    expect(wrapper.isVueInstance).toBeTruthy();  
+      
   //wrapper.find('#testbouton1').trigger("click")
   //expect(wrapper.find('bouton-affichage').text()).toEqual("Veuillez cliquer sur un employé pour le modifier")
   //wrapper.find('#testbouton1').trigger('click')
