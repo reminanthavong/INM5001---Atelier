@@ -6,8 +6,8 @@ import axios from 'axios'
     export default new Vuex.Store({
       state: {
       status: '',
-        token: localStorage.getItem('token') || '',
-        user: localStorage.getItem('user') || '',
+      token: localStorage.getItem('token') || '',
+      user: localStorage.getItem('user') || ''
       },
       mutations: {
            auth_request(state) {
@@ -24,8 +24,7 @@ import axios from 'axios'
           logout(state) {
             state.status = ''
             state.token = ''
-            state.user = false
-            localStorage.clear()
+            state.user = ''
           }
       },
       actions: {
@@ -39,7 +38,6 @@ import axios from 'axios'
                 
                   localStorage.setItem('token', token)
                   localStorage.setItem('user', user)
-                  alert(localStorage.getItem('user'))
                   // Add the following line:
                   axios.defaults.headers.common['Authorization'] = token
                   commit('auth_success', token, user)
@@ -56,6 +54,7 @@ import axios from 'axios'
             return new Promise((resolve) => {
               commit('logout')
               localStorage.removeItem('token')
+                localStorage.removeItem('user')
               delete axios.defaults.headers.common['Authorization']
               resolve()
             })
@@ -64,6 +63,6 @@ import axios from 'axios'
       getters: {
       isLoggedIn: state => !!state.token,
       authStatus: state => state.status,
-      userData: state => state.user
+      userData: state => !!state.user
       }
     })
