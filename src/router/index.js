@@ -37,7 +37,7 @@ const routes=[
             (to, from, next) => {
             var isAdmin = JSON.parse(localStorage.getItem('user')); 
                 alert(isAdmin)
-           if (isAdmin == true) {
+           if (isAdmin == 1) {
           next()
           
         }else {
@@ -57,7 +57,7 @@ const routes=[
             (to, from, next) => {
            var isAdmin = JSON.parse(localStorage.getItem('user')); 
                 alert(isAdmin)
-           if (isAdmin == false) {
+           if (isAdmin == 0) {
           next('/unauthorized')
           
         }else {
@@ -77,7 +77,7 @@ const routes=[
             (to, from, next) => {
            var isAdmin = JSON.parse(localStorage.getItem('user'));   
                 alert(isAdmin)
-           if (isAdmin == true) {
+           if (isAdmin == 1) {
           next()
         
         }else {
