@@ -7,12 +7,12 @@
       <span v-if="isLoggedIn"><router-link class="w3-bar-item w3-button w3-hide-small w3-hover-white" to="/affichageHoraire">Afficher Horaire</router-link> </span>
       <span v-if="isAdmin"><router-link class="w3-bar-item w3-button w3-hide-small w3-hover-white" to="/gestionHoraire">Gestion Horaire</router-link> </span>
       <span v-if="isAdmin"> <router-link class="w3-bar-item w3-button w3-hide-small w3-hover-white" to="/gestionEmployes">Gestion Employes</router-link> </span>
-      <span v-if="!isAdmin"><router-link class="w3-bar-item w3-button w3-hide-small w3-hover-white" to="/zoneEmploye">Zone Employes</router-link> </span>
-      <span v-if="isLoggedIn">  <a class="w3-bar-item w3-button w3-hide-small w3-hover-white" @click="logout">Deconnexion </a></span>
+      <span v-if="isLoggedIn"> <router-link class="w3-bar-item w3-button w3-hide-small w3-hover-white" to="/zoneEmploye">Zone Employes</router-link>
+      <a class="w3-bar-item w3-button w3-hide-small w3-hover-white" @click="logout">Deconnexion </a></span>
       <span v-else>  <router-link class="w3-bar-item w3-button w3-hide-small w3-hover-white" to="/login">Connexion</router-link></span>
     </div>
     </div>
-    <router-view/>
+    <router-view><router-view/>
     </div>
 </template>
 
@@ -30,10 +30,13 @@
       },
       watch: {
          isAdmin: function() {
-          return localStorage.getItem('user');
+          this.getData()
         } 
       },
       methods: {
+        getData () {
+      return localStorage.getItem('user');
+    },
         logout: function() {
           this.$store.dispatch("logout").then(() => {
             this.$router.push("/login");
