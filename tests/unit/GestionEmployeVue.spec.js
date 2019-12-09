@@ -1,12 +1,16 @@
 const { shallowMount } = require('@vue/test-utils')
 const GestionEmploye = require('../../src/components/resources/GestionEmployes.vue')
+const sinon = require('sinon')
 
 test('GestionEmploye', () => {
   //GestionEmploye a ete load
   const wrapper = shallowMount(GestionEmploye)
 
-  // should not allow for `username` less than 7 characters, excludes whitespace
-  //wrapper.setData({ username: ' '.repeat(7) })
+  // Le bouton genere l'affichage
+  wrapper.find('button.btn-primary').trigger('click')
+  expect(wrapper.find('bouton-affichage').text()).toEqual("Veuillez cliquer sur un employé pour le modifier")
+  wrapper.find('button.btn-primary').trigger('click')
+  expect(wrapper.find('bouton-affichage').exists()).toBeFalsy()
 
   // assert the error is rendered
   //expect(wrapper.find('.error').exists()).toBe(true)
