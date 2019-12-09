@@ -35,8 +35,9 @@ const routes=[
     beforeEnter:
              
             (to, from, next) => {
-                alert(localStorage.getItem('user'))
-           if (localStorage.getItem('user') == "true") {
+            var isAdmin = JSON.parse(localStorage.getItem('user')); 
+                alert(isAdmin)
+           if (isAdmin == true) {
           next()
           
         }else {
@@ -54,8 +55,9 @@ const routes=[
     beforeEnter:
               
             (to, from, next) => {
-                alert(localStorage.getItem('user'))
-           if (localStorage.getItem('user')== "false") {
+           var isAdmin = JSON.parse(localStorage.getItem('user')); 
+                alert(isAdmin)
+           if (isAdmin == false) {
           next('/unauthorized')
           
         }else {
@@ -73,8 +75,9 @@ const routes=[
     beforeEnter:
             
             (to, from, next) => {
-                alert(localStorage.getItem('user'))
-           if (localStorage.getItem('user')== "true") {
+           var isAdmin = JSON.parse(localStorage.getItem('user'));   
+                alert(isAdmin)
+           if (isAdmin == true) {
           next()
         
         }else {
