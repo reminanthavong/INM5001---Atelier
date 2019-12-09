@@ -33,7 +33,7 @@
                         </tr>
                         <tr>
                                 <td>Lundi soir</td>
-                                <td v-for="employe in horaire" v-bind:key="employe.nomemploye" v-if="employe.joursemaine === 'Lundi' && employe.typequart === 'Soir'">{{employe.nomemploye}}</td>
+                                <td v-for="employe in lundiSoir">{{employe.nomemploye}}</td>
                         </tr>
                         <tr v-for="employe in horaire" v-bind:key="employe.nomemploye">
                             <template v-if="employe.joursemaine === 'Lundi' && employe.typequart === 'Nuit'">
@@ -134,6 +134,13 @@ export default {
             nomsHoraire: null,
             horaire: [],
             afficherHoraire: false,
+        }
+    },
+    computed: {
+        lundiSoir: function() {
+            return this.horaire.filter(function(emp) {
+                return emp.joursemaine == "Lundi" && emp.typequart == "Soir"
+            })
         }
     },
     mounted: function() {
