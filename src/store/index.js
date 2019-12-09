@@ -41,6 +41,8 @@ import axios from 'axios'
                   // Add the following line:
                   axios.defaults.headers.common['Authorization'] = token
                   commit('auth_success', token, user)
+                  alert(localStorage.getItem('user'))
+                  console.log(localStorage.getItem('user'))
                   resolve(resp)
                 })
                 .catch(err => {
