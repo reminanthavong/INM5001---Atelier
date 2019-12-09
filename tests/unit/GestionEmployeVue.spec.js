@@ -1,6 +1,6 @@
 const { shallowMount } = require('@vue/test-utils')
 //const { mount } = require('@vue/test-utils')
-const GestionEmploye = require('../../src/components/resources/GestionEmployes.vue')
+//const GestionEmploye = require('../../src/components/resources/GestionEmployes.vue')
 const sinon = require('sinon')
 
 const Essai = require('../../src/components/resources/essai.vue')
