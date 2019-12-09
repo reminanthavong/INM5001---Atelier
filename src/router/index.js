@@ -80,8 +80,9 @@ router.beforeEach((to, from, next) => {
           next()
           return
         }
+          next('/unauthorized')
       } else {
-        next('/unauthorized')
+        next()
       }
     })
 
