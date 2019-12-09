@@ -30,15 +30,11 @@ const routes=[
     },
     {
     path: '/gestionEmployes',
-    name: 'gestionEmployes',
-    beforeEnter(to, from, next) {
-    	alert(localStorage.getItem('user'))
-        if(localStorage.getItem('user')){next()}
-        else{next('/unauthorized')}
-    },    
+    name: 'gestionEmployes',   
     component: GestionEmployes,
     meta: {
-        requiresAuth: true
+        requiresAuth: true,
+        is_admin: true
           }
     },
     {
@@ -54,7 +50,8 @@ const routes=[
     name: 'gestionHoraire',
     component: GestionHoraire,
     meta: {
-        requiresAuth: true
+        requiresAuth: true,
+        is_admin: true
           }
 },
 {
@@ -78,17 +75,25 @@ const router=new VueRouter({
 })
 
 
+
 router.beforeEach((to, from, next) => {
-      if (to.matched.some(record => record.meta.requiresAuth)) {
+    if(to.matched.some(record => record.meta.requiresAuth)) {
         if (store.getters.isLoggedIn) {
-          next()
-          return
+            next()
+        } else {
+            if(to.matched.some(record => record.meta.is_admin)) {
+                if(localStorage.getItem('user')){
+                    next()
+                }
+                else{
+                    next(/'unauthorized')
+                }
+            }else {
+                next()
+            }
         }
-        next('/login')
-      } else {
-        next()
-      }
-    })
-
-
+    } else {
+        next() 
+    }
+})
 export default router
