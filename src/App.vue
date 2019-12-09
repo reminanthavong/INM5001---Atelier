@@ -25,18 +25,15 @@
           return this.$store.getters.isLoggedIn;
         },
          isAdmin: function() {
-          return this.$store.getters.userStatus;
+          return localStorage.getItem('user');
         } 
       },
       watch: {
          isAdmin: function() {
-          this.getData()
+         this.$router.push("/");
         } 
       },
       methods: {
-        getData () {
-      return this.$store.getters.userStatus;
-    },
         logout: function() {
           this.$store.dispatch("logout").then(() => {
             this.$router.push("/login");
