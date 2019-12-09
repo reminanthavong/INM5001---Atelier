@@ -11,7 +11,7 @@ const sinon = require('sinon')
   //GestionEmploye a ete load
 
   // Le bouton genere l'affichage
-  expect(wrapper.find('#testbouton1').exists()).toBeTruthy();
+  //expect(wrapper.find('#testbouton1').exists()).toBeTruthy;
     expect(wrapper.isVueInstance).toBeTruthy();  
       
   //wrapper.find('#testbouton1').trigger("click")
