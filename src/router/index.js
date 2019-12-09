@@ -31,7 +31,17 @@ const routes=[
     {
     path: '/gestionEmployes',
     name: 'gestionEmployes',
-    component: GestionEmployes,    
+    component: GestionEmployes,
+    beforeEnter:
+
+            (to, from, next) => {
+           if (localStorage.getItem('user')) {
+          next()
+          next('/unauthorized')
+        }else {
+        next()
+      }
+    },
     meta: {
         requiresAuth: true
           }
@@ -40,6 +50,16 @@ const routes=[
     path: '/zoneEmploye',
     name: 'zoneEmploye',
     component: ZoneEmploye,
+    beforeEnter:
+
+            (to, from, next) => {
+           if (!localStorage.getItem('user')) {
+          next()
+          next('/unauthorized')
+        }else {
+        next()
+      }
+    },    
     meta: {
         requiresAuth: true
           }
@@ -48,6 +68,16 @@ const routes=[
     path: '/gestionHoraire',
     name: 'gestionHoraire',
     component: GestionHoraire,
+    beforeEnter:
+
+            (to, from, next) => {
+           if (localStorage.getItem('user')) {
+          next()
+          next('/unauthorized')
+        }else {
+        next()
+      }
+    },
     meta: {
         requiresAuth: true
           }
@@ -75,12 +105,11 @@ const router=new VueRouter({
 
 router.beforeEach((to, from, next) => {
       if (to.matched.some(record => record.meta.requiresAuth)) {
-          //alert(localStorage.getItem('user'))
-        if (localStorage.getItem('user')) {
+        if (store.getters.isLoggedIn) {
           next()
           return
         }
-          next('/unauthorized')
+        next('/login')
       } else {
         next()
       }
