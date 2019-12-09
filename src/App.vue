@@ -28,6 +28,11 @@
           return localStorage.getItem('user');
         } 
       },
+      watch: {
+         isAdmin: function() {
+          return localStorage.getItem('user');
+        } 
+      },
       methods: {
         logout: function() {
           this.$store.dispatch("logout").then(() => {
