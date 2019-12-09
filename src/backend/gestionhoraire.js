@@ -83,7 +83,7 @@ async function creationHoraire(idtablehoraire, date, sessEmployeur) {
     LEFT JOIN Tableconges TC ON TC.IDEmploye=BQE.IDEmploye
     AND TC.JourSemaine=BQE.JourSemaine
     AND TC.TypeQuart=BQE.TypeQuart
-    AND TC.DateConges='${dateHoraire}'
+    AND TC.DateConges='${date}'
     WHERE TC.IDEmploye IS NULL
 	    )A
 	    WHERE MaxJour=1
@@ -108,6 +108,6 @@ async function enregistrerHoraire(){
 }
 
 module.exports = {
-  ajouterQuarts ,
+  ajouterQuarts,
   genererHoraire
 }	
