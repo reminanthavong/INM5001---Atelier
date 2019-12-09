@@ -74,8 +74,8 @@ const router=new VueRouter({
 
 router.beforeEach((to, from, next) => {
       if (to.matched.some(record => record.meta.requiresAuth)) {
-          alert(store.getters.userData)
-        if (store.getters.userData) {
+          alert(localStorage.getItem('user'))
+        if (localStorage.getItem('user')) {
           next()
           return
         }
