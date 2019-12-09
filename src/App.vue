@@ -25,7 +25,7 @@
           return this.$store.getters.isLoggedIn;
         },
          isAdmin: function() {
-          return localStorage.getItem('user');
+          return this.$store.getters.userStatus;
         } 
       },
       watch: {
@@ -35,7 +35,7 @@
       },
       methods: {
         getData () {
-      return localStorage.getItem('user');
+      return this.$store.getters.userStatus;
     },
         logout: function() {
           this.$store.dispatch("logout").then(() => {
