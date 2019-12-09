@@ -1,5 +1,5 @@
 const { shallowMount } = require('@vue/test-utils')
-const GestionEmploye = require('../../src/components/resources/GestionEmployes.vue')
+const GestionEmploye = require('../../../src/components/resources/GestionEmployes.vue')
 
 test('GestionEmploye', () => {
   //GestionEmploye a ete load
