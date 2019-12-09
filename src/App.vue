@@ -5,9 +5,9 @@
     <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
       <router-link class="w3-bar-item w3-button w3-theme-l1" to="/">Home</router-link>
       <router-link class="w3-bar-item w3-button w3-hide-small w3-hover-white" to="/affichageHoraire">Afficher Horaire</router-link>
-      <router-link class="w3-bar-item w3-button w3-hide-small w3-hover-white" @click="horaire">Gestion Horaire</router-link>
-      <router-link class="w3-bar-item w3-button w3-hide-small w3-hover-white" @click="employes">Gestion Employes</router-link>
-     <router-link class="w3-bar-item w3-button w3-hide-small w3-hover-white" @click="zone">Zone Employes</router-link>
+      <router-link class="w3-bar-item w3-button w3-hide-small w3-hover-white" to="/gestionHoraire">Gestion Horaire</router-link>
+      <router-link class="w3-bar-item w3-button w3-hide-small w3-hover-white" to="/gestionEmployes">Gestion Employes</router-link>
+     <router-link class="w3-bar-item w3-button w3-hide-small w3-hover-white" to="/zoneEmploye">Zone Employes</router-link>
      <span v-if="isLoggedIn"><a class="w3-bar-item w3-button w3-hide-small w3-hover-white" @click="logout">Deconnexion </a></span>
       <span v-else>  <router-link class="w3-bar-item w3-button w3-hide-small w3-hover-white" to="/login">Connexion</router-link></span>
     </div>
@@ -26,21 +26,6 @@
         }
       },
       methods: {
-        horaire: function() {
-         if(localStorage.getItem('user')){
-         this.$router.push("/");
-         }this.$router.push("/unauthorized");
-        }, 
-        employes: function() {
-         if(localStorage.getItem('user')){
-         this.$router.push("/");
-         }this.$router.push("/unauthorized");
-        }, 
-        zone: function() {
-         if(!localStorage.getItem('user')){
-         this.$router.push("/");
-         }this.$router.push("/unauthorized");
-        }, 
         logout: function() {
           this.$store.dispatch("logout").then(() => {
             this.$router.push("/login");
