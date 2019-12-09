@@ -15,7 +15,6 @@ const Essai = require('../../src/components/resources/essai.vue')
   //expect(wrapper.find('#testbouton1').exists()).toBeTruthy
 
 
-    console.log(wrapper.find('button').at(0));
     console.log(wrapper.html());
     expect(wrapper.isVueInstance).toBeTruthy();  
       
