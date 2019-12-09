@@ -46,7 +46,9 @@ const genererHoraire = async (req, res) => {
     var idtablehoraire = "" + sessEmployeur + "-" + date.toISOString().slice(0, 10); //Création de l'id de la table horaire
 
     try {
-        horaire = await creationHoraire(idtablehoraire, date, sessEmployeur)
+        const horaire = await creationHoraire(idtablehoraire, date, sessEmployeur)
+        console.log(horaire)
+        // await enregistrerHoraire(horaire)
         result.success = true;
     } catch (e) {
         result.success = false;
@@ -62,7 +64,7 @@ async function ajoutQuarts(sessEmployeur, idtablehoraire, quart, jour, nbemploye
       .send({idemployeur: sessEmployeur, idtablehoraire: idtablehoraire, typequart: quart, joursemaine: jour, nbremployes: nbemploye});
 }
 
-async function creationHoraire (idtablehoraire, date, sessEmployeur) {
+async function creationHoraire(idtablehoraire, date, sessEmployeur) {
     const client = await pool.connect()
     const horaire = await client.query(`SELECT DISTINCT '${idtablehoraire}' AS IDTableHoraire, '${date}' AS DateParam ,C.IDEmployeur,C.IDEmploye, C.JourSemaine, C.TypeQuart,c.Selection--,NBREmployes
     FROM(
@@ -101,7 +103,7 @@ async function creationHoraire (idtablehoraire, date, sessEmployeur) {
     return horairegenere
 }
 
-async function enregistrementHoraire(){
+async function enregistrerHoraire(){
 
 }
 
