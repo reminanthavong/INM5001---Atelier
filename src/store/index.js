@@ -7,7 +7,7 @@ import axios from 'axios'
       state: {
       status: '',
         token: localStorage.getItem('token') || '',
-        user: '',
+        user: false,
       },
       mutations: {
            auth_request(state) {
@@ -24,7 +24,7 @@ import axios from 'axios'
           logout(state) {
             state.status = ''
             state.token = ''
-            state.user = ''
+            state.user = false
           }
       },
       actions: {
@@ -62,6 +62,6 @@ import axios from 'axios'
       getters: {
       isLoggedIn: state => !!state.token,
       authStatus: state => state.status,
-      userData: state => !!state.user
+      userData: state => state.user
       }
     })
