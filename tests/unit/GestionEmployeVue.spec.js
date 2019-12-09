@@ -13,7 +13,7 @@ const Essai = require('../../src/components/resources/essai.vue')
   //expect(wrapper.find('#testbouton1').exists()).toBeTruthy
 
    const wrapper = shallowMount(Essai) 
-    console.log(wrapper.html())
+    console.log(wrapper.find('button').at(0))
   //wrapper.find('#testbouton1').trigger("click")
   //expect(wrapper.find('bouton-affichage').text()).toEqual("Veuillez cliquer sur un employé pour le modifier")
   //wrapper.find('#testbouton1').trigger('click')
