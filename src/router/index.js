@@ -37,9 +37,9 @@ const routes=[
             (to, from, next) => {
            if (localStorage.getItem('user')) {
           next()
-          next('/unauthorized')
+          
         }else {
-        next()
+        next('/unauthorized')
       }
     },
     meta: {
@@ -55,9 +55,9 @@ const routes=[
             (to, from, next) => {
            if (!localStorage.getItem('user')) {
           next()
-          next('/unauthorized')
+          
         }else {
-        next()
+        next('/unauthorized')
       }
     },    
     meta: {
@@ -73,9 +73,9 @@ const routes=[
             (to, from, next) => {
            if (localStorage.getItem('user')) {
           next()
-          next('/unauthorized')
+        
         }else {
-        next()
+        next('/unauthorized')
       }
     },
     meta: {
