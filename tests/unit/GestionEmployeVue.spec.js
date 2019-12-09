@@ -5,7 +5,8 @@ const sinon = require('sinon')
 
 const Essai = require('../../src/components/resources/essai.vue')
 
-//test('GestionEmploye', () => {
+   describe('GestionEmployesVue', function (done) {
+   it('devrait fonctionner', async () => {
   //GestionEmploye a ete load
   //const wrapper = mount(GestionEmploye) //shallowMount(GestionEmploye)
   
@@ -27,4 +28,5 @@ const Essai = require('../../src/components/resources/essai.vue')
 
   // assert the error has gone away
   //expect(wrapper.find('.error').exists()).toBe(false)
-//})
+     });
+})
