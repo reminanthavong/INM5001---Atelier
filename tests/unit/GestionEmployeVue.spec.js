@@ -8,9 +8,9 @@ test('GestionEmploye', () => {
   const wrapper = mount(GestionEmploye) //shallowMount(GestionEmploye)
 
   // Le bouton genere l'affichage
-  expect(wrapper.find('#testbouton1').exists()).toBeTruthy
+  //expect(wrapper.find('#testbouton1').exists()).toBeTruthy
 
-  const buttonWrapper = wrapper.find({ id: '#testbouton1' })
+  const buttonWrapper = wrapper.find({ name: 'testbouton1' })
     console.log(buttonWrapper)
   //wrapper.find('#testbouton1').trigger("click")
   //expect(wrapper.find('bouton-affichage').text()).toEqual("Veuillez cliquer sur un employé pour le modifier")
