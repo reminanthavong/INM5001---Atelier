@@ -28,7 +28,7 @@ const ajouterHoraire = async(req, res) => {
 		var x = quarts[i];
 		console.log(jsonResultat[i])
 		    try{
-			    await ajoutHoraire(sessEmployeur, idtablehoraire, reqjson.horairedate, x.slice(0, 1), x.slice(1), jsonResultat[i]);
+			    await ajoutHoraire(sessEmployeur, idtablehoraire, x.slice(0, 1), x.slice(1), jsonResultat[i]);
 		        result.success = true;
 
 		    }catch (e) {
