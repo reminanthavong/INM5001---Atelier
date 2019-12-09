@@ -45,7 +45,12 @@ const genererHoraire = async (req, res) => {
     date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
     var idtablehoraire = "" + sessEmployeur + "-" + date.toISOString().slice(0, 10); //Création de l'id de la table horaire
 
+    console.log(date)
+    console.log(idtablehoraire)
+    console.log(sessEmployeur)
+
     try {
+        console.log("Dans le try de genererHoraire")
         const horaire = await creationHoraire(idtablehoraire, date, sessEmployeur)
         console.log(horaire)
         // await enregistrerHoraire(horaire)
@@ -65,6 +70,7 @@ async function ajoutQuarts(sessEmployeur, idtablehoraire, quart, jour, nbemploye
 }
 
 async function creationHoraire(idtablehoraire, date, sessEmployeur) {
+    console.log("Dans la fonction creationHoraire")
     const client = await pool.connect()
     const horaire = await client.query(`SELECT DISTINCT '${idtablehoraire}' AS IDTableHoraire, '${date}' AS DateParam ,C.IDEmployeur,C.IDEmploye, C.JourSemaine, C.TypeQuart,c.Selection--,NBREmployes
     FROM(
@@ -92,7 +98,7 @@ async function creationHoraire(idtablehoraire, date, sessEmployeur) {
 	    ORDER BY B.DateEmbauche ASC, B.JourSemaine ASC, B.TypeQuart ASC
         )C
         INNER JOIN BaseQuartsEmployeur BQER ON BQER.IDEmployeur=C.IDEmployeur
-		    AND BQER.IDTableHoraire='001'
+		    AND BQER.IDTableHoraire='${idtablehoraire}'
 		    AND BQER.TypeQuart=C.TypeQuart
 		    AND BQER.JourSemaine=C.JourSemaine
 		    AND C.Selection <= BQER.NBREmployes
