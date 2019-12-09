@@ -19,14 +19,12 @@ const ajouterHoraire = async(req, res) => {
 	var sessEmployeur = req.session.idgestion;
 	var date = new Date(reqjson.horairedate)
 	date.setMinutes(date.getMinutes() + date.getTimezoneOffset()); //Ajuste la date par rapport au fuseau horaire
-	console.log(date)
-	var idtablehoraire = "" + sessEmployeur + "-" + date.toISOString().slice(0, 10);
+	var idtablehoraire = "" + sessEmployeur + "-" + date.toISOString().slice(0, 10); //Création de l'id de la table horaire
 	console.log(idtablehoraire)
 
 	var i = 1;
 	while (i < quarts.length) {
 		var x = quarts[i];
-		console.log(jsonResultat[i])
 		    try{
 			    await ajoutHoraire(sessEmployeur, idtablehoraire, x.slice(0, 1), x.slice(1), jsonResultat[i]);
 		        result.success = true;
@@ -42,17 +40,18 @@ const ajouterHoraire = async(req, res) => {
 
 const genererHoraire = async (req, res) => {
     const reqjson = req.body;
-    var sessEmployeur = req.session.username;
-    var dateHoraire = reqjson.horairedate;
-    //dateAjustee.setMinutes(dateAjustee.getMinutes() + dateAjustee.getTimezoneOffset());
-    var idTableHoraire = sessEmployeur + "-" + reqjson.horairedate.slice(0, 10);
-    console.log(reqjons + "; " + sessEmployeur + "; " + idTableHoraire)
-  try {
-            const client = await pool.connect()
-            const horaire = await client.query(`SELECT DISTINCT '${idTableHoraire}' AS IDTableHoraire, '${dateHoraire}' AS DateParam ,C.IDEmployeur,C.IDEmploye, C.JourSemaine, C.TypeQuart,c.Selection--,NBREmployes
-FROM(
-	SELECT IDEmploye,IDEmployeur,JourSemaine, TypeQuart,Selection,DateEmbauche
-	FROM (
+    var sessEmployeur = req.session.idgestion;
+
+    var date = new Date(reqjson.horairedate);
+    dateAjustee.setMinutes(date.getMinutes() + date.getTimezoneOffset());
+    var idtablehoraire = "" + sessEmployeur + "-" + date.toISOString().slice(0, 10); //Création de l'id de la table horaire
+
+    try {
+        const client = await pool.connect()
+        const horaire = await client.query(`SELECT DISTINCT '${idTableHoraire}' AS IDTableHoraire, '${dateHoraire}' AS DateParam ,C.IDEmployeur,C.IDEmploye, C.JourSemaine, C.TypeQuart,c.Selection--,NBREmployes
+        FROM(
+	    SELECT IDEmploye,IDEmployeur,JourSemaine, TypeQuart,Selection,DateEmbauche
+	    FROM (
 		SELECT
 		*,ROW_NUMBER()OVER(PARTITION BY A.IDEmploye ORDER BY A.JourSemaine ASC) AS MaxSem
 		,ROW_NUMBER()OVER(PARTITION BY A.JourSemaine, A.TypeQuart ORDER BY A.TypeQuart ASC, A.JourSemaine ASC) AS Selection
@@ -68,18 +67,18 @@ FROM(
 				AND TC.TypeQuart=BQE.TypeQuart
 				AND TC.DateConges='${dateHoraire}'
 			WHERE TC.IDEmploye IS NULL
-	)A
-	WHERE MaxJour=1
-	)B
-	WHERE MaxSem<=nbrQuartsmax
-	ORDER BY B.DateEmbauche ASC, B.JourSemaine ASC, B.TypeQuart ASC
-)C
-INNER JOIN BaseQuartsEmployeur BQER ON BQER.IDEmployeur=C.IDEmployeur
-		AND BQER.IDTableHoraire='001'
-		AND BQER.TypeQuart=C.TypeQuart
-		AND BQER.JourSemaine=C.JourSemaine
-		AND C.Selection <= BQER.NBREmployes
-;`);
+	    )A
+	    WHERE MaxJour=1
+	    )B
+	    WHERE MaxSem<=nbrQuartsmax
+	    ORDER BY B.DateEmbauche ASC, B.JourSemaine ASC, B.TypeQuart ASC
+        )C
+        INNER JOIN BaseQuartsEmployeur BQER ON BQER.IDEmployeur=C.IDEmployeur
+		    AND BQER.IDTableHoraire='001'
+		    AND BQER.TypeQuart=C.TypeQuart
+		    AND BQER.JourSemaine=C.JourSemaine
+		    AND C.Selection <= BQER.NBREmployes
+        ;`);
             res.json(horaire);
             client.release();
           } catch (err) {
