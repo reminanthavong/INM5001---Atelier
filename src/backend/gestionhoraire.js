@@ -18,7 +18,7 @@ const ajouterHoraire = async(req, res) => {
 
 	var sessEmployeur = req.session.idgestion;
 	var date = new Date(reqjson.horairedate)
-	date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
+	date.setMinutes(date.getMinutes() + date.getTimezoneOffset()); //Ajuste la date par rapport au fuseau horaire
 	console.log(date)
 	var idtablehoraire = "" + sessEmployeur + "-" + date.toISOString().slice(0, 10);
 	console.log(idtablehoraire)
@@ -26,9 +26,9 @@ const ajouterHoraire = async(req, res) => {
 	var i = 1;
 	while (i < quarts.length) {
 		var x = quarts[i];
-		console.log (jsonResultat[x])
+		console.log(jsonResultat[i])
 		    try{
-			    await ajoutHoraire(sessEmployeur, idtablehoraire, reqjson.horairedate, x.slice(0, 1), x.slice(1), jsonResultat[x]);
+			    await ajoutHoraire(sessEmployeur, idtablehoraire, reqjson.horairedate, x.slice(0, 1), x.slice(1), jsonResultat[i]);
 		        result.success = true;
 
 		    }catch (e) {
