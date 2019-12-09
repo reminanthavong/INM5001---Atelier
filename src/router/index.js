@@ -36,7 +36,7 @@ const routes=[
              
             (to, from, next) => {
                 alert(localStorage.getItem('user'))
-           if (localStorage.getItem('user') == 'true') {
+           if (localStorage.getItem('user') == "true") {
           next()
           
         }else {
@@ -55,7 +55,7 @@ const routes=[
               
             (to, from, next) => {
                 alert(localStorage.getItem('user'))
-           if (localStorage.getItem('user')== 'false') {
+           if (localStorage.getItem('user')== "false") {
           next('/unauthorized')
           
         }else {
@@ -74,7 +74,7 @@ const routes=[
             
             (to, from, next) => {
                 alert(localStorage.getItem('user'))
-           if (localStorage.getItem('user')== 'true') {
+           if (localStorage.getItem('user')== "true") {
           next()
         
         }else {
