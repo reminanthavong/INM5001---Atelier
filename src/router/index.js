@@ -35,7 +35,7 @@ const routes=[
     beforeEnter:
 
             (to, from, next) => {
-           if (localStorage.getItem('user')==true) {
+           if (localStorage.getItem('user')) {
           next()
           
         }else {
@@ -53,7 +53,7 @@ const routes=[
     beforeEnter:
 
             (to, from, next) => {
-           if (localStorage.getItem('user')==true) {
+           if (localStorage.getItem('user')) {
           next('/unauthorized')
           
         }else {
@@ -71,7 +71,7 @@ const routes=[
     beforeEnter:
 
             (to, from, next) => {
-           if (localStorage.getItem('user')==true) {
+           if (localStorage.getItem('user')) {
           next()
         
         }else {
