@@ -13,20 +13,14 @@
 
                     <h6>Lundi:</h6>
                     <b-form-group inline id="lundi">
-                        <b-col>
                         <label for="lundijour"> Jour:  </label>
                         <b-form-input id="lundijour" v-model="lundijour" pattern='[0-9]' required='required' placeholder="1-9"></b-form-input>
-                         </b-col>
 
-                        <b-col>
                         <label for="lundisoir"> Soir:  </label>
                         <b-form-input id="lundisoir" v-model="lundisoir"  pattern='[0-9]' required='required' placeholder="1-9"></b-form-input>
-                        </b-col>
 
-                        <b-col>
                         <label for="lundinuit"> Nuit:  </label>
                         <b-form-input id="lundinuit" v-model="lundinuit" pattern='[0-9]' required='required' placeholder="1-9"></b-form-input>
-                        </b-col>
                     </b-form-group>
                     <br/>
 
@@ -157,7 +151,7 @@
                         console.log(error);
                     });
                 }
-                if(jourDeLaSemaine == 2) {
+                if(jourDeLaSemaine == 1) {
                     const jsonHoraire = {}
                     jsonHoraire.horairedate = dateHoraire
                     console.log(jsonHoraire)

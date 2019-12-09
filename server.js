@@ -60,7 +60,7 @@ router.get('/choixHoraire', afficherhoraire.afficherChoixHoraire)
 router.post('/affichageHoraire',afficherhoraire.afficherHoraire)
 
 // Fonction GestionHoraire
-router.post('/Horaire', gestionhoraire.ajouterHoraire )
+router.post('/Horaire', gestionhoraire.ajouterQuarts)
 router.post('/creationHoraire', gestionhoraire.genererHoraire)
 
 // Fonction PageEmploye
