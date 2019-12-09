@@ -53,7 +53,7 @@
             let password = this.password;
             this.$store
               .dispatch("login", { username, password })
-              .then(() => redirect: '/')
+              .then(() => this.$router.push("/"))
               .catch(err => console.log(err));
           }
         }
