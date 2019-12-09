@@ -10,5 +10,8 @@
 </template>
 
 <script>
-
+    export default {
+        mounted: function() {
+        window.location.reload()}
+    }
 </script>
