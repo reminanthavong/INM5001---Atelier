@@ -19,8 +19,8 @@ const ajouterHoraire = async(req, res) => {
 	var sessEmployeur = req.session.idgestion;
 	var date = new Date(reqjson.horairedate)
 	date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
-	var idtablehoraire = "" + sessEmployeur + "-" + date.slice(0, 10);
 	console.log(date)
+	var idtablehoraire = "" + sessEmployeur + "-" + date.toISOString().slice(0, 10);
 	console.log(idTablehoraire)
 
 	var i = 1;
