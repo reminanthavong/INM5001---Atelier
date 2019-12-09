@@ -24,6 +24,7 @@ import axios from 'axios'
           logout(state) {
             state.status = ''
             state.token = ''
+            state.user: {}
           }
       },
       actions: {
@@ -34,7 +35,7 @@ import axios from 'axios'
                 .then(resp => {
                   const token = resp.data.token
                   const user = resp.data.user
-                  alert(user)
+                  //alert(user)
                 
                   localStorage.setItem('token', token)
                   // Add the following line:
@@ -61,6 +62,6 @@ import axios from 'axios'
       getters: {
       isLoggedIn: state => !!state.token,
       authStatus: state => state.status,
-      userData: state => !!state.user
+      userData: state => state.user
       }
     })
