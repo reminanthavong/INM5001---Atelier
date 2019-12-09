@@ -21,7 +21,7 @@ const ajouterHoraire = async(req, res) => {
 	date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
 	console.log(date)
 	var idtablehoraire = "" + sessEmployeur + "-" + date.toISOString().slice(0, 10);
-	console.log(idTablehoraire)
+	console.log(idtablehoraire)
 
 	var i = 1;
 	while (i < quarts.length) {
