@@ -1,21 +1,17 @@
 const { shallowMount } = require('@vue/test-utils')
 //const { mount } = require('@vue/test-utils')
-//const GestionEmploye = require('../../src/components/resources/GestionEmployes.vue')
+const GestionEmploye = require('../../src/components/resources/GestionEmployes.vue')
 const sinon = require('sinon')
 
-const Essai = require('../../src/components/resources/essai.vue')
 
    describe('GestionEmployesVue', () => {
-         const wrapper = shallowMount(Essai); 
+   const wrapper = shallowMount(GestionEmploye)
+  
    it('devrait fonctionner', () => {
   //GestionEmploye a ete load
-  //const wrapper = mount(GestionEmploye) //shallowMount(GestionEmploye)
-  
+
   // Le bouton genere l'affichage
-  //expect(wrapper.find('#testbouton1').exists()).toBeTruthy
-
-
-    //console.log(wrapper.html());
+  expect(wrapper.find('#testbouton1').exists()).toBeTruthy();
     expect(wrapper.isVueInstance).toBeTruthy();  
       
   //wrapper.find('#testbouton1').trigger("click")
