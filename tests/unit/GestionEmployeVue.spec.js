@@ -4,7 +4,7 @@ const sinon = require('sinon')
 
 test('GestionEmploye', () => {
   //GestionEmploye a ete load
-  const wrapper = shallowMount(GestionEmploye) //shallowMount(GestionEmploye)
+  const wrapper = Mount(GestionEmploye) //shallowMount(GestionEmploye)
 
   // Le bouton genere l'affichage
   expect(wrapper.find('#testbouton1').exists()).toBeTruthy
