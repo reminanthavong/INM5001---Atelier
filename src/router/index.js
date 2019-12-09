@@ -31,6 +31,11 @@ const routes=[
     {
     path: '/gestionEmployes',
     name: 'gestionEmployes',
+    beforeEnter(to, from, next) {
+    	alert(localStorage.getItem('user'))
+        if(localStorage.getItem('user')){next()}
+        else{next('/unauthorized')}
+    },    
     component: GestionEmployes,
     meta: {
         requiresAuth: true
