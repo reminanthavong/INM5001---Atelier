@@ -17,6 +17,7 @@ const ajouterHoraire = async(req, res) => {
 	while (i < quarts.length) {
 		var x = quarts[i];
 		    try{
+		        console.log(reqjson[x])
 			    if (reqjson[x] != null){
 				    //console.log("True");
 			        await ajoutHoraire(sessEmployeur,idtablehoraire, reqjson.horairedate, x.slice(0, 1), x.slice(1), reqjson[x]);
@@ -39,6 +40,7 @@ const genererHoraire = async (req, res) => {
     const reqjson = req.body;
     var sessEmployeur = req.session.username;
     var dateHoraire = reqjson.horairedate;
+    //dateAjustee.setMinutes(dateAjustee.getMinutes() + dateAjustee.getTimezoneOffset());
     var idTableHoraire = sessEmployeur + "-" + reqjson.horairedate.slice(0, 10);
     console.log(reqjons + "; " + sessEmployeur + "; " + idTableHoraire)
   try {

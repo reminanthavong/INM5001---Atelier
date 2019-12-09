@@ -72,7 +72,7 @@
                         <b-form-input id="vendredisoir" v-model="vendredisoir" pattern='[0-9]' required='required' placeholder="1-9"></b-form-input>
 
                         <label for="vendredinuit"> Nuit:  </label>
-                        <b-form-input id="vendredinuit" v-model="vendredinuitgi" pattern='[0-9]' required='required' placeholder="1-9"></b-form-input>
+                        <b-form-input id="vendredinuit" v-model="vendredinuit" pattern='[0-9]' required='required' placeholder="1-9"></b-form-input>
                     </b-form-group>
                     <br/>
                     <b-button type="submit" variant="primary">Générer l'horaire</b-button>
@@ -152,26 +152,27 @@
                     });
                 }
                 if(jourDeLaSemaine ==1) {
-                const jsonHoraire = {}
-                jsonHoraire.horairedate = dateHoraire
-                console.log(jsonHoraire)
-                fetch('/creationHoraire', {
-                    method: 'POST',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(jsonHoraire)
-                })
-                .then((response) => {
-                    return response.json()
-                })
-                 .then((data) => {
-                    console.log(data);
-                }).catch(error => {
-                    console.log(error);
-                });
-                this.$router.push("/success")
+                    const jsonHoraire = {}
+                    jsonHoraire.horairedate = dateHoraire
+                    console.log(jsonHoraire)
+                    fetch('/creationHoraire', {
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(jsonHoraire)
+                    })
+                    .then((response) => {
+                        return response.json()
+                    })
+                    .then((data) => {
+                        console.log(data);
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
+                    this.$router.push("/success")
                 }
             }
         }
