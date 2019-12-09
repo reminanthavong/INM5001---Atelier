@@ -11,13 +11,12 @@
                         {{ nom.idtablehoraire }}
                      </option>
                 </select>
-                <p></p>>
+                <p></p>
                 <p><b>Choisir par date:</b></p>
                 <datepicker v-model="datehoraire" name="datehoraire"></datepicker>
-                <br/>
                 <button @click="afficherHoraireSelonDate" class="btn btn-primary">Afficher</button>
 
-                <br/>
+                <p></p>
                 <p v-if="afficherHoraire">Voici l'horaire</p>
                 <table id="horaire" v-if="afficherHoraire">
                     <thead>
@@ -27,7 +26,7 @@
                     <tbody>
                         <tr>
                             <td>Lundi jour</td>
-                            <td v-for="employe in lundiJour" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</td>
+                            <td><p v-for="employe in lundiJour" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p></td>
                         </tr>
                         <tr>
                             <td>Lundi soir</td>
@@ -35,77 +34,55 @@
                         </tr>
                         <tr>
                             <td>Lundi nuit</td>
-                            <td v-for="employe in lundiNuit" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</td>
+                            <td><p v-for="employe in lundiNuit" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p></td>
                         </tr>
                         <tr>
                             <td>Mardi jour</td>
-                            <td v-for="employe in mardiJour" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</td>
+                            <td><p v-for="employe in mardiJour" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p></td>
                         </tr>
-                        <tr v-for="employe in horaire" v-bind:key="employe.nomemploye">
-                            <template v-if="employe.joursemaine === 'Mardi' && employe.typequart === 'Soir'">
-                                <td>Mardi soir</td>
-                                <td>{{employe.nomemploye}}</td>
-                            </template>
+                        <tr>
+                            <td>Mardi soir</td>
+                            <td><p v-for="employe in mardiSoir" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p></td>
                         </tr>
-                        <tr v-for="employe in horaire" v-bind:key="employe.nomemploye">
-                            <template v-if="employe.joursemaine === 'Mardi' && employe.typequart === 'Nuit'">
-                                <td>Mardi nuit</td>
-                                <td>{{employe.nomemploye}}</td>
-                            </template>
+                        <tr>
+                            <td>Mardi nuit</td>
+                            <td><p v-for="employe in mardiNuit" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p></td>
                         </tr>
-                        <tr v-for="employe in horaire" v-bind:key="employe.nomemploye">
-                            <template v-if="employe.joursemaine === 'Mercredi' && employe.typequart === 'Jour'">
-                                <td>Mercredi jour</td>
-                                <td>{{employe.nomemploye}}</td>
-                            </template>
+                        <tr>
+                            <td>Mercredi jour</td>
+                            <td><p v-for="employe in mercrediJour" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p></td>
                         </tr>
-                        <tr v-for="employe in horaire" v-bind:key="employe.nomemploye">
-                            <template v-if="employe.joursemaine === 'Mercredi' && employe.typequart === 'Soir'">
-                                <td>Mercredi soir</td>
-                                <td>{{employe.nomemploye}}</td>
-                            </template>
+                        <tr>
+                            <td>Mercredi soir</td>
+                            <td><p v-for="employe in mercrediSoir" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p></td>
                         </tr>
-                        <tr v-for="employe in horaire" v-bind:key="employe.nomemploye">
-                            <template v-if="employe.joursemaine === 'Mercredi' && employe.typequart === 'Nuit'">
-                                <td>Mercredi nuit</td>
-                                <td>{{employe.nomemploye}}</td>
-                            </template>
+                        <tr>
+                            <td>Mercredi nuit</td>
+                            <td><p v-for="employe in mercrediNuit" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p></td>
                         </tr>
-                        <tr v-for="employe in horaire" v-bind:key="employe.nomemploye">
-                            <template v-if="employe.joursemaine === 'Jeudi' && employe.typequart === 'Jour'">
-                                <td>Jeudi jour</td>
-                                <td>{{employe.nomemploye}}</td>
-                            </template>
+                        <tr>
+                            <td>Jeudi jour</td>
+                            <td><p v-for="employe in jeudiJour" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p></td>
                         </tr>
-                        <tr v-for="employe in horaire" v-bind:key="employe.nomemploye">
-                            <template v-if="employe.joursemaine === 'Jeudi' && employe.typequart === 'Soir'">
-                                <td>Jour soir</td>
-                                <td>{{employe.nomemploye}}</td>
-                            </template>
+                        <tr>
+                            <td>Jeudi soir</td>
+                            <td><p v-for="employe in jeudiSoir" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p></td>
                         </tr>
-                        <tr v-for="employe in horaire" v-bind:key="employe.nomemploye">
-                            <template v-if="employe.joursemaine === 'Jeudi' && employe.typequart === 'Nuit'">
-                                <td>Jeudi nuit</td>
-                                <td>{{employe.nomemploye}}</td>
-                            </template>
+                        <tr>
+                            <td>Jeudi nuit</td>
+                            <td><p v-for="employe in jeudiNuit" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p></td>>
                         </tr>
-                        <tr v-for="employe in horaire" v-bind:key="employe.nomemploye">
-                            <template v-if="employe.joursemaine === 'Vendredi' && employe.typequart === 'Jour'">
-                                <td>Vendredi jour</td>
-                                <td>{{employe.nomemploye}}</td>
-                            </template>
+                        <tr>
+                            <td>Vendredi jour</td>
+                            <td><p v-for="employe in vendrediJour" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p></td>
                         </tr>
-                        <tr v-for="employe in horaire" v-bind:key="employe.nomemploye">
-                            <template v-if="employe.joursemaine === 'Vendredi' && employe.typequart === 'Soir'">
-                                <td>Vendredi soir</td>
-                                <td>{{employe.nomemploye}}</td>
-                            </template>
+                        <tr>
+                            <td>Vendredi soir</td>
+                            <td><p v-for="employe in vendrediSoir" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p></td>
                         </tr>
-                        <tr v-for="employe in horaire" v-bind:key="employe.nomemploye">
-                            <template v-if="employe.joursemaine === 'Vendredi' && employe.typequart === 'Nuit'">
-                                <td>Vendredi nuit</td>
-                                <td>{{employe.nomemploye}}</td>
-                            </template>
+                        <tr>
+                            <td>Vendredi nuit</td>
+                            <td><p v-for="employe in vendrediNuit" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p></td>
                         </tr>
                     </tbody>
                 </table>
@@ -149,6 +126,61 @@ export default {
         mardiJour: function() {
             return this.horaire.filter(function(emp) {
                 return emp.joursemaine == "Mardi" && emp.typequart == "Jour"
+            })
+        },
+        mardiSoir: function() {
+            return this.horaire.filter(function(emp) {
+                return emp.joursemaine == "Mardi" && emp.typequart == "Soir"
+            })
+        },
+        mardiNuit: function() {
+            return this.horaire.filter(function(emp) {
+                return emp.joursemaine == "Mardi" && emp.typequart == "Nuit"
+            })
+        } ,
+        mercrediJour: function() {
+            return this.horaire.filter(function(emp) {
+                return emp.joursemaine == "Mercredi" && emp.typequart == "Jour"
+            })
+        },
+        mercrediSoir: function() {
+            return this.horaire.filter(function(emp) {
+                return emp.joursemaine == "Mercredi" && emp.typequart == "Soir"
+            })
+        },
+        mercrediNuit: function() {
+            return this.horaire.filter(function(emp) {
+                return emp.joursemaine == "Mercredi" && emp.typequart == "Nuit"
+            })
+        },
+        jeudiJour: function() {
+            return this.horaire.filter(function(emp) {
+                return emp.joursemaine == "Jeudi" && emp.typequart == "Jour"
+            })
+        },
+        jeudiSoir: function() {
+            return this.horaire.filter(function(emp) {
+                return emp.joursemaine == "Jeudi" && emp.typequart == "Soir"
+            })
+        },
+        jeudiNuit: function() {
+            return this.horaire.filter(function(emp) {
+                return emp.joursemaine == "Jeudi" && emp.typequart == "Nuit"
+            })
+        },
+        vendrediJour: function() {
+            return this.horaire.filter(function(emp) {
+                return emp.joursemaine == "Vendredi" && emp.typequart == "Jour"
+            })
+        },
+        vendrediSoir function() {
+            return this.horaire.filter(function(emp) {
+                return emp.joursemaine == "Vendredi" && emp.typequart == "Soir"
+            })
+        },
+        vendrediNuit: function() {
+            return this.horaire.filter(function(emp) {
+                return emp.joursemaine == "Vendredi" && emp.typequart == "Nuit"
             })
         }
     },
