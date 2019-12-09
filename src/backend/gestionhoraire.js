@@ -46,7 +46,7 @@ const genererHoraire = async (req, res) => {
 
     var date = '2019-08-05';
     //date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
-    var idtablehoraire = "" + sessEmployeur + "-" + date.toISOString().slice(0, 10); //Création de l'id de la table horaire
+    var idtablehoraire = "" + sessEmployeur + "-" + date; //Création de l'id de la table horaire
 
     console.log(date)
     console.log(idtablehoraire)
