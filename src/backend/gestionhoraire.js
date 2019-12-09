@@ -9,15 +9,15 @@ const ajouterHoraire = async(req, res) => {
 	var quarts = ["","J1", "N1", "S1","J2", "S2", "N2","J3", "S3", "N3","J4", "S4", "N4","J5", "S5", "N5"];
 	const reqjson = req.body;
 
-	//Transforme le json reçu en un tableau
+	//Transforme le json reçu en un tableau en ne gardant que les valeurs number
 	var jsonResultat = [];
 	for (var i in reqjson) {
-	    jsonResultat.push([i, reqjson[i]])
+	    jsonResultat.push(reqjson[i])
 	}
 	console.log(jsonResultat)
 
 	var sessEmployeur = req.session.idgestion;
-	var date = reqjson.horairedate
+	var date = new Date(reqjson.horairedate)
 	date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
 	var idtablehoraire = "" + sessEmployeur + "-" + date.slice(0, 10);
 	console.log(date)

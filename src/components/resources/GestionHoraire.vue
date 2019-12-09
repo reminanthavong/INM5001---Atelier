@@ -151,7 +151,7 @@
                         console.log(error);
                     });
                 }
-                if(jourDeLaSemaine ==1) {
+                if(jourDeLaSemaine == 2) {
                     const jsonHoraire = {}
                     jsonHoraire.horairedate = dateHoraire
                     console.log(jsonHoraire)
