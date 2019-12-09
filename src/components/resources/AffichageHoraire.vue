@@ -70,7 +70,7 @@
                         </tr>
                         <tr>
                             <td>Jeudi nuit</td>
-                            <td><p v-for="employe in jeudiNuit" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p></td>>
+                            <td><p v-for="employe in jeudiNuit" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p></td>
                         </tr>
                         <tr>
                             <td>Vendredi jour</td>
