@@ -25,7 +25,7 @@
           return this.$store.getters.isLoggedIn;
         },
          isAdmin: function() {
-          return this.$store.getters.userData;
+          return localStorage.getItem('user');
         }
       },
       methods: {
