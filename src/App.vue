@@ -25,6 +25,7 @@
           return this.$store.getters.isLoggedIn;
         },
         isAdmin: function() {
+          alert(this.$store.getters.userData)
           return this.$store.getters.userData;
         }
       },
