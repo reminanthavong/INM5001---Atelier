@@ -79,7 +79,7 @@ router.beforeEach((to, from, next) => {
            return
         }
         
-        
+        else{
         if (to.matched.some(record => record.meta.isUser)) {
           //alert(localStorage.getItem('user'))
          // console.log(store.getters.userData)
@@ -89,6 +89,7 @@ router.beforeEach((to, from, next) => {
            return
         }
       } 
+        }
         
         
        // alert('Condition fail')  
