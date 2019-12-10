@@ -65,6 +65,6 @@ import axios from 'axios'
       getters: {
       isLoggedIn: state => !!state.token,
       authStatus: state => state.status,
-      userData: state => {return state.user}
+      userData: state => state.user
       }
     })
