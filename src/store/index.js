@@ -39,8 +39,8 @@ import axios from 'axios'
                   alert(resp.data.user)
                   console.log(resp.data.user)
                   const token = resp.data.token
-                  const tadmin = resp.data.user.admin
-                  const tuser = resp.data.user.user
+                  const tadmin = JSON.parse(resp.data.user.admin)
+                  const tuser = JSON.parse(resp.data.user.user)
                   localStorage.setItem('token', token)
                   localStorage.setItem('user', tuser)
                   localStorage.setItem('admin', tadmin)
@@ -70,7 +70,7 @@ import axios from 'axios'
       getters: {
       isLoggedIn: state => !!state.token,
       authStatus: state => state.status,
-      isAdmin: state => {return JSON.parse(state.admin)},
-      isUser: state => {return JSON.parse(state.user)}
+      isAdmin: state => state.admin,
+      isUser: state => state.user}
       }
     })
