@@ -40,6 +40,9 @@ const routes=[
     path: '/zoneEmploye',
     name: 'zoneEmploye',
     component: ZoneEmploye,
+    meta: {
+        isUser: true
+          }    
     },
 {
     path: '/gestionHoraire',
