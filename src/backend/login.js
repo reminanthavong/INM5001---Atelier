@@ -25,12 +25,11 @@ const loginAPI = async (request, response) => {	// Nom de la fonction
       if ( checkUsername.length > 0 && checkUsername[0].motdepasse == password ) {
 	                      if (checkUsername[0].typeutilisateur == 1){
 			        // Ajout dans JSON Session
-	      			request.session.loggedin = true; // Utilisateur est logger
 				request.session.username = username; // Valeur utilisateur
 	      			request.session.idgestion = username; // Valeur IDgestion
 	                        request.session.nom = username; // Valeur nom de l'employe
 	                        request.session.prenom = 'Administrateur'; // Valeur prenom de l'employe
-	                        request.session.admin = true; // Si utilisateur est admin
+	                        request.session.admin = 'true'; // Si utilisateur est admin
 				request.session.user = ''; // Si utilisateur est admin      
 				let token = jwt.sign({ id: username }, config.secret, { expiresIn: 86400 });
 				     
@@ -38,13 +37,12 @@ const loginAPI = async (request, response) => {	// Nom de la fonction
 			      }  else {
 	                        const infoUser = await getIDgestion(username); // Allez chercher les informations du utilisateur   
 				// Ajout dans JSON Session
-	      			request.session.loggedin = true; // Utilisateur est logger
 				request.session.username = username; // Valeur utilisateur
 	      			request.session.idgestion = infoUser[0].idemployeur; // Valeur IDgestion
 	                        request.session.nom = infoUser[0].nomemploye; // Valeur nom de l'employe
 	                        request.session.prenom = infoUser[0].prenomemploye; // Valeur prenom de l'employe
 	                        request.session.admin = ''; // Si utilisateur est admin
-				request.session.user = true; // Si utilisateur est admin   
+				request.session.user = 'true'; // Si utilisateur est admin   
 				let token = jwt.sign({ id: username }, config.secret, { expiresIn: 86400});
 				     
                                 response.status(200).send({ auth: true, token: token, user: JSON.stringify(request.session)});
