@@ -52,10 +52,7 @@ const routes=[
 {
     path: '/affichageHoraire',
     name: 'affichageHoraire',
-    component: AffichageHoraire,
-    meta: {
-        requiresAuth: true
-          }
+    component: AffichageHoraire
 },
 {
     path: '/success',
