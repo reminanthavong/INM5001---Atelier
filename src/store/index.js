@@ -6,9 +6,9 @@ import axios from 'axios'
     export default new Vuex.Store({
       state: {
       status: '',
-      token: localStorage.getItem('token') || '',
-      admin: localStorage.getItem('admin') || '',
-      user: localStorage.getItem('user') || ''
+      token: JSON.parse(localStorage.getItem('token')) || '',
+      admin: JSON.parse(localStorage.getItem('admin')) || '',
+      user: JSON.parse(localStorage.getItem('user')) || ''
       },
       mutations: {
            auth_request(state) {
@@ -43,8 +43,8 @@ import axios from 'axios'
                   var tuser = resp.data.user.user
                   console.log(tadmin + tuser)
                   localStorage.setItem('token', token)
-                  localStorage.setItem('user', JSON.parse(tuser))
-                  localStorage.setItem('admin', JSON.parse(tadmin))
+                  localStorage.setItem('user', tuser)
+                  localStorage.setItem('admin', tadmin)
                   // Add the following line:
                   axios.defaults.headers.common['Authorization'] = token
                   commit('auth_success', token, tadmin,tuser)
