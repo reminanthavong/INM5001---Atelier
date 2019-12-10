@@ -33,7 +33,7 @@ const loginAPI = async (request, response) => {	// Nom de la fonction
 				request.session.user = ''; // Si utilisateur est admin      
 				let token = jwt.sign({ id: username }, config.secret, { expiresIn: 86400 });
 				     
-                                response.status(200).send({ auth: true, token: token, user: JSON.stringify(request.session)});
+                                response.status(200).send({ auth: true, token: token, user: request.session});
 			      }  else {
 	                        const infoUser = await getIDgestion(username); // Allez chercher les informations du utilisateur   
 				// Ajout dans JSON Session
@@ -45,7 +45,7 @@ const loginAPI = async (request, response) => {	// Nom de la fonction
 				request.session.user = 'true'; // Si utilisateur est admin   
 				let token = jwt.sign({ id: username }, config.secret, { expiresIn: 86400});
 				     
-                                response.status(200).send({ auth: true, token: token, user: JSON.stringify(request.session)});
+                                response.status(200).send({ auth: true, token: token, user: request.session});
 			      }
 	      
 			} else {
