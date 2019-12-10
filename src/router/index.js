@@ -78,6 +78,7 @@ router.beforeEach((to, from, next) => {
           console.log(localStorage.getItem('user'))
         if (localStorage.getItem('user')) {
           next()
+           return
         }
         next('/unauthorized')
       } else {
