@@ -4,7 +4,6 @@
 //const bodyParser = require('body-parser')
 const jwt = require('jsonwebtoken');
 const config = require('../config');
-var JSAlert = require("js-alert");
 var PostgREST = require('postgrest-client')
 var Api = new PostgREST ('http://testpostgrest-calendrier.herokuapp.com')
 
