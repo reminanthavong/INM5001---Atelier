@@ -25,7 +25,7 @@
           return this.$store.getters.isLoggedIn;
         },
         isUser: function() {
-        JSON.parse(localStorage.getItem('user'))
+        return JSON.parse(localStorage.getItem('user'))
         }
       },
       methods: {
