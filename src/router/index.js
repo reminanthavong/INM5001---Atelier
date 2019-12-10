@@ -75,6 +75,19 @@ router.beforeEach((to, from, next) => {
           next()
            return
         }
+        
+        
+        if (to.matched.some(record => record.meta.isUser)) {
+          //alert(localStorage.getItem('user'))
+         // console.log(store.getters.userData)
+        if (localStorage.getItem('user') == 'false') {
+            //alert('Condition passer')
+          next()
+           return
+        }
+      } 
+        
+        
        // alert('Condition fail')  
           next('/unauthorized')   
       } else {
@@ -82,5 +95,4 @@ router.beforeEach((to, from, next) => {
         next()
       }
     })
-
 export default router
