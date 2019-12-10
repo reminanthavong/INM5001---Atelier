@@ -64,11 +64,15 @@ const ajouterConge = async (req, res) => {
     let result = {}
     const reqJson = req.body;
     var utilisateur = req.session.username;
+
+    var date = new Date(reqJson.dateconge)
+    date.setMinutes(date.getMinutes() + date.getTimezoneOffset()); //Ajuste la date par rapport au fuseau horaire
+
     var i = 0;
     while (i < reqJson.dispo.length) {
         console.log(reqJson.dispo[i])
         try{
-            await ajoutConge(utilisateur, reqJson.dateconge, reqJson.joursemaine, reqJson.dispo[i]);
+            await ajoutConge(utilisateur, date, reqJson.joursemaine, reqJson.dispo[i]);
             result.success = true;
         }catch (e){
             result.success = false;

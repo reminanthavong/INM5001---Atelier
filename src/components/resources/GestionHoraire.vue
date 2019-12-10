@@ -91,21 +91,21 @@
         data: function() {
             return {
                 datehoraire: null,
-                lundijour: null,
-                lundisoir: null,
-                lundinuit: null,
-                mardijour: null,
-                mardisoir: null,
-                mardinuit: null,
-                mercredijour: null,
-                mercredisoir: null,
-                mercredinuit: null,
-                jeudijour: null,
-                jeudisoir: null,
-                jeudinuit: null,
-                vendredijour: null,
-                vendredisoir: null,
-                vendredinuit: null
+                lundijour: 0,
+                lundisoir: 0,
+                lundinuit: 0,
+                mardijour: 0,
+                mardisoir: 0,
+                mardinuit: 0,
+                mercredijour: 0,
+                mercredisoir: 0,
+                mercredinuit: 0,
+                jeudijour: 0,
+                jeudisoir: 0,
+                jeudinuit: 0,
+                vendredijour: 0,
+                vendredisoir: 0,
+                vendredinuit: 0
             }
         },
         methods: {
@@ -151,7 +151,7 @@
                         console.log(error);
                     });
                 }
-                if(jourDeLaSemaine ==1) {
+                if(jourDeLaSemaine == 1) {
                     const jsonHoraire = {}
                     jsonHoraire.horairedate = dateHoraire
                     console.log(jsonHoraire)
