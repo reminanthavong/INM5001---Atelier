@@ -71,6 +71,6 @@ import axios from 'axios'
       isLoggedIn: state => !!state.token,
       authStatus: state => state.status,
       isAdmin: state => state.admin,
-      isUser: state => state.user}
+      isUser: state => state.user
       }
     })
