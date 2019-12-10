@@ -4,7 +4,6 @@
 //const bodyParser = require('body-parser')
 const jwt = require('jsonwebtoken');
 const config = require('../config');
-var JSAlert = require("js-alert");
 var PostgREST = require('postgrest-client')
 var Api = new PostgREST ('http://testpostgrest-calendrier.herokuapp.com')
 
@@ -31,10 +30,11 @@ const loginAPI = async (request, response) => {	// Nom de la fonction
 	      			request.session.idgestion = username; // Valeur IDgestion
 	                        request.session.nom = username; // Valeur nom de l'employe
 	                        request.session.prenom = 'Administrateur'; // Valeur prenom de l'employe
-	                        request.session.typeutilisateur = checkUsername[0].typeutilisateur; // Si utilisateur est admin
+	                        request.session.admin = true; // Si utilisateur est admin
+				request.session.user = ''; // Si utilisateur est admin      
 				let token = jwt.sign({ id: username }, config.secret, { expiresIn: 86400 });
 				     
-                                response.status(200).send({ auth: true, token: token, user: true});
+                                response.status(200).send({ auth: true, token: token, user: JSON.stringify(request.session)});
 			      }  else {
 	                        const infoUser = await getIDgestion(username); // Allez chercher les informations du utilisateur   
 				// Ajout dans JSON Session
@@ -43,10 +43,11 @@ const loginAPI = async (request, response) => {	// Nom de la fonction
 	      			request.session.idgestion = infoUser[0].idemployeur; // Valeur IDgestion
 	                        request.session.nom = infoUser[0].nomemploye; // Valeur nom de l'employe
 	                        request.session.prenom = infoUser[0].prenomemploye; // Valeur prenom de l'employe
-	                        request.session.typeutilisateur = checkUsername[0].typeutilisateur; // Si utilisateur est admin
+	                        request.session.admin = ''; // Si utilisateur est admin
+				request.session.user = true; // Si utilisateur est admin   
 				let token = jwt.sign({ id: username }, config.secret, { expiresIn: 86400});
 				     
-                                response.status(200).send({ auth: true, token: token, user: false});
+                                response.status(200).send({ auth: true, token: token, user: JSON.stringify(request.session)});
 			      }
 	      
 			} else {

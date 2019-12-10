@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-//import store from '../store/index.js'
+import store from '../store/index.js'
 import Login from '../components/auth/Login.vue'
 import GestionEmployes from '../components/resources/GestionEmployes.vue'
 import ZoneEmploye from '../components/resources/ZoneEmploye.vue'
@@ -39,10 +39,7 @@ const routes=[
     {
     path: '/zoneEmploye',
     name: 'zoneEmploye',
-    component: ZoneEmploye,
-    meta: {
-        isUser: true
-          }    
+    component: ZoneEmploye  
     },
 {
     path: '/gestionHoraire',
@@ -73,7 +70,7 @@ router.beforeEach((to, from, next) => {
       if (to.matched.some(record => record.meta.requiresAuth)) {
           //alert(localStorage.getItem('user'))
          // console.log(store.getters.userData)
-        if (localStorage.getItem('user') == 'true') {
+        if (store.getters.isAdmin) {
             //alert('Condition passer')
           next()
            return
