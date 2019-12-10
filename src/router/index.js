@@ -41,7 +41,7 @@ const routes=[
     name: 'zoneEmploye',
     component: ZoneEmploye,
     meta: {
-        isUser: true
+        requiresAuth: true
           }
     },
 {
@@ -82,11 +82,6 @@ router.beforeEach((to, from, next) => {
            return
         }
        // alert('Condition fail')  
-        else if(to.matched.some(record => record.meta.isUser)) {
-        if((store.getters.userData) == 'false'){
-            next()
-            return
-        }
           next('/unauthorized')   
       } else {
         //  alert('Condition bypasser')
