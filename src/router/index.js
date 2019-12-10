@@ -41,7 +41,7 @@ const routes=[
     name: 'zoneEmploye',
     component: ZoneEmploye,
     meta: {
-        requiresAuth: true
+        isUser: true
           }
     },
 {
@@ -75,16 +75,21 @@ const router=new VueRouter({
 router.beforeEach((to, from, next) => {
       if (to.matched.some(record => record.meta.requiresAuth)) {
           //alert(localStorage.getItem('user'))
-          console.log(store.getters.userData)
+         // console.log(store.getters.userData)
         if ((store.getters.userData) == 'true') {
-            alert('Condition passer')
+            //alert('Condition passer')
           next()
            return
         }
-        alert('Condition fail')  
-        next('/unauthorized')
+       // alert('Condition fail')  
+        else if(to.matched.some(record => record.meta.isUser)) {
+        if((store.getters.userData) == 'false'){
+            next()
+            return
+        }
+          next('/unauthorized')   
       } else {
-          alert('Condition bypasser')
+        //  alert('Condition bypasser')
         next()
       }
     })
