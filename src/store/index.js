@@ -36,14 +36,15 @@ import axios from 'axios'
               commit('auth_request')
               axios({ url: '/login', data: user, method: 'POST' })
                 .then(resp => {
-                  alert(resp.data.user)
-                  console.log(resp.data.user)
+                  //alert(resp.data.user)
+                  
                   const token = resp.data.token
-                  const tadmin = resp.data.user.admin
-                  const tuser = resp.data.user.user
+                  var tadmin = resp.data.user.admin
+                  var tuser = resp.data.user.user
+                  console.log(tadmin + tuser)
                   localStorage.setItem('token', token)
-                  localStorage.setItem('user', tuser)
-                  localStorage.setItem('admin', tadmin)
+                  localStorage.setItem('user', JSON.parse(tuser))
+                  localStorage.setItem('admin', JSON.parse(tadmin))
                   // Add the following line:
                   axios.defaults.headers.common['Authorization'] = token
                   commit('auth_success', token, tadmin,tuser)

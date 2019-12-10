@@ -71,8 +71,7 @@ router.beforeEach((to, from, next) => {
           //alert(localStorage.getItem('user'))
          console.log(store.getters.isAdmin)
           alert(store.getters.isAdmin)
-        var status = JSON.parse(store.getters.isAdmin)
-        if (status) {
+        if (store.getters.isAdmin) {
             //alert('Condition passer')
           next()
            return
