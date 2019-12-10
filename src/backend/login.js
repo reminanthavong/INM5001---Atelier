@@ -52,7 +52,7 @@ const loginAPI = async (request, response) => {	// Nom de la fonction
 			} else {
 				request.session.loggedin = false;
               
-				alert("Mauvais Username ou Mot De Passe");
+				
 				response.redirect('/login?error=' + encodeURIComponent('Incorrect_Credential'));
 				
 			}			
