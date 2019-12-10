@@ -46,7 +46,7 @@ import axios from 'axios'
                 })
                 .catch(err => {
                   commit('auth_error')
-                  alert("Mauvais Username ou Mot De Passe");
+                  alert("Mauvais utilisateur ou mot de passe.");
                   localStorage.removeItem('token')
                   reject(err)
                 })
