@@ -41,7 +41,7 @@ import axios from 'axios'
                   // Add the following line:
                   axios.defaults.headers.common['Authorization'] = token
                   commit('auth_success', token, user)
-                  alert(state.user)
+                  alert(this.state.user)
                   resolve(resp)
                 })
                 .catch(err => {
