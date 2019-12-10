@@ -69,7 +69,8 @@ const router=new VueRouter({
 router.beforeEach((to, from, next) => {
       if (to.matched.some(record => record.meta.requiresAuth)) {
           //alert(localStorage.getItem('user'))
-         // console.log(store.getters.userData)
+         console.log(store.getters.isAdmin)
+          alert(store.getters.isAdmin)
         if (store.getters.isAdmin) {
             //alert('Condition passer')
           next()
