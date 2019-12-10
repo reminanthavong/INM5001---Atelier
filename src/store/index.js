@@ -7,15 +7,17 @@ import axios from 'axios'
       state: {
       status: '',
       token: localStorage.getItem('token') || '',
+      admin: localStorage.getItem('admin') || '',
       user: localStorage.getItem('user') || ''
       },
       mutations: {
            auth_request(state) {
             state.status = 'loading'
           },
-          auth_success(state, token, user) {
+          auth_success(state, token, admin,user) {
             state.status = 'success'
             state.token = token
+            state.admin = admin
             state.user = user
           },
           auth_error(state) {
@@ -25,6 +27,7 @@ import axios from 'axios'
             state.status = ''
             state.token = ''
             state.user = ''
+            state.admin = ''
           }
       },
       actions: {
@@ -34,13 +37,14 @@ import axios from 'axios'
               axios({ url: '/login', data: user, method: 'POST' })
                 .then(resp => {
                   const token = resp.data.token
-                  const user = resp.data.user
-                
+                  const admin = resp.data.user.admin
+                  const user = resp.data.user.user
                   localStorage.setItem('token', token)
                   localStorage.setItem('user', user)
+                  localStorage.setItem('admin', admin)
                   // Add the following line:
                   axios.defaults.headers.common['Authorization'] = token
-                  commit('auth_success', token, user)
+                  commit('auth_success', token, admin,user)
                   resolve(resp)
                 })
                 .catch(err => {
@@ -64,6 +68,7 @@ import axios from 'axios'
       getters: {
       isLoggedIn: state => !!state.token,
       authStatus: state => state.status,
-      userData: state => {return state.user}
+      isAdmin: state => {return state.user},
+      isUser: state => {return state.admin}
       }
     })
