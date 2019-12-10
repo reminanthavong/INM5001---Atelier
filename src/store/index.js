@@ -6,7 +6,7 @@ import axios from 'axios'
     export default new Vuex.Store({
       state: {
       status: '',
-      token: JSON.parse(localStorage.getItem('token')) || '',
+      token: localStorage.getItem('token') || '',
       admin: JSON.parse(localStorage.getItem('admin')) || '',
       user: JSON.parse(localStorage.getItem('user')) || ''
       },
