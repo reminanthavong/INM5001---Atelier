@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import store from '../store/index.js'
+//import store from '../store/index.js'
 import Login from '../components/auth/Login.vue'
 import GestionEmployes from '../components/resources/GestionEmployes.vue'
 import ZoneEmploye from '../components/resources/ZoneEmploye.vue'
@@ -76,7 +76,7 @@ router.beforeEach((to, from, next) => {
       if (to.matched.some(record => record.meta.requiresAuth)) {
           //alert(localStorage.getItem('user'))
          // console.log(store.getters.userData)
-        if ((store.getters.userData) == 'true') {
+        if (localStorage.getItem('user') == 'true') {
             //alert('Condition passer')
           next()
            return
