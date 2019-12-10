@@ -9,6 +9,8 @@ const gestionhoraire = require('./src/backend/gestionhoraire')
 const bodyParser = require('body-parser');
 const app = express();
 const router = express.Router();
+
+/*
 router.use(bodyParser.urlencoded({
     extended: false
 }));
@@ -18,6 +20,8 @@ router.use(session({
     resave: true,
     saveUninitialized: true
 }))
+*/
+
 app.use(bodyParser.json())
 app.use(bodyParser.text())
 app.use(
