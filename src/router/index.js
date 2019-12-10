@@ -31,15 +31,7 @@ const routes=[
     {
     path: '/gestionEmployes',
     name: 'gestionEmployes',
-    component: GestionEmployes,
-    beforeRouteEnter (to, from, next) {
-    alert(store.getters.userData)
-    if (store.getters.userData) {
-          next()
-        }else{ 
-	next('/unauthorized')	
-	}
-    },    
+    component: GestionEmployes,  
     meta: {
         requiresAuth: true
           }
@@ -82,11 +74,10 @@ const router=new VueRouter({
 
 router.beforeEach((to, from, next) => {
       if (to.matched.some(record => record.meta.requiresAuth)) {
-        if (store.getters.isLoggedIn) {
+        if (store.getters.userData) {
           next()
-          return
         }
-        next('/login')
+        next('/unauthorized')
       } else {
         next()
       }
