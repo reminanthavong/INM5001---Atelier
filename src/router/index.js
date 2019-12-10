@@ -76,12 +76,15 @@ router.beforeEach((to, from, next) => {
       if (to.matched.some(record => record.meta.requiresAuth)) {
           alert(localStorage.getItem('user'))
           console.log(localStorage.getItem('user'))
-        if (localStorage.getItem('user')) {
+        if (localStorage.getItem('user') == 'true') {
+            alert('Condition passer')
           next()
            return
         }
+        alert('Condition fail')  
         next('/unauthorized')
       } else {
+          alert('Condition bypasser')
         next()
       }
     })
