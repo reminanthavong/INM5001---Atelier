@@ -36,6 +36,7 @@ import axios from 'axios'
               commit('auth_request')
               axios({ url: '/login', data: user, method: 'POST' })
                 .then(resp => {
+                  alert(resp.data.user)
                   const token = resp.data.token
                   const admin = resp.data.user.admin
                   const user = resp.data.user.user
