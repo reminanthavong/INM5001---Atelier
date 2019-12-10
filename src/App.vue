@@ -7,7 +7,7 @@
       <span v-if="isLoggedIn"><router-link class="w3-bar-item w3-button w3-hide-small w3-hover-white" to="/affichageHoraire">Afficher Horaire</router-link></span>
       <span v-if="isLoggedIn"><router-link class="w3-bar-item w3-button w3-hide-small w3-hover-white" to="/gestionHoraire">Gestion Horaire</router-link></span>
       <span v-if="isLoggedIn"><router-link class="w3-bar-item w3-button w3-hide-small w3-hover-white" to="/gestionEmployes">Gestion Employes</router-link></span>
-     <span v-if="isUser"><router-link class="w3-bar-item w3-button w3-hide-small w3-hover-white" to="/zoneEmploye">Zone Employes</router-link></span>
+     <span v-if="isLoggedIn"><router-link class="w3-bar-item w3-button w3-hide-small w3-hover-white" to="/zoneEmploye">Zone Employes</router-link></span>
      <span v-if="isLoggedIn"><a class="w3-bar-item w3-button w3-hide-small w3-hover-white" @click="logout">Deconnexion </a></span>
       <span v-else>  <router-link class="w3-bar-item w3-button w3-hide-small w3-hover-white" to="/login">Connexion</router-link></span>
     </div>
@@ -23,9 +23,6 @@
       computed: {
         isLoggedIn: function() {
           return this.$store.getters.isLoggedIn;
-        },
-        isUser: function() {
-        return JSON.parse(localStorage.getItem('user'))
         }
       },
       methods: {
