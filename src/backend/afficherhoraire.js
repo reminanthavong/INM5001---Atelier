@@ -42,5 +42,4 @@ const afficherHoraire  = async (req, res) => {
 module.exports = {
 	afficherChoixHoraire,
   	afficherHoraire,
-	GenererHoraireReponse
 }
