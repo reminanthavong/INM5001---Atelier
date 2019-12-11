@@ -27,8 +27,6 @@ const loginAPI = async (request, response) => {	// Nom de la fonction
 			        // Ajout dans JSON Session
 				request.session.username = username; // Valeur utilisateur
 	      			request.session.idgestion = username; // Valeur IDgestion
-                                localStorage.setItem('nom', request.session.nom)
-                                localStorage.setItem('prenom', trequest.session.prenom)
 	                        request.session.nom = username; // Valeur nom de l'employe
 	                        request.session.prenom = 'Administrateur'; // Valeur prenom de l'employe
 	                        request.session.admin = 'true'; // Si utilisateur est admin
@@ -43,8 +41,7 @@ const loginAPI = async (request, response) => {	// Nom de la fonction
 	      			request.session.idgestion = infoUser[0].idemployeur; // Valeur IDgestion
 	                        request.session.nom = infoUser[0].nomemploye; // Valeur nom de l'employe
 	                        request.session.prenom = infoUser[0].prenomemploye; // Valeur prenom de l'employe
-                                localStorage.setItem('nom', request.session.nom)
-                                localStorage.setItem('prenom', trequest.session.prenom)
+
 	                        request.session.admin = 'false'; // Si utilisateur est admin
 				request.session.user = 'true'; // Si utilisateur est admin   
 				let token = jwt.sign({ id: username }, config.secret, { expiresIn: 86400});

@@ -45,6 +45,8 @@ import axios from 'axios'
                   localStorage.setItem('token', token)
                   localStorage.setItem('user', tuser)
                   localStorage.setItem('admin', tadmin)
+                  localStorage.setItem('nom', resp.data.user.nom)
+                  localStorage.setItem('prenom', resp.data.user.prenom)
                   // Add the following line:
                   axios.defaults.headers.common['Authorization'] = token
                   commit('auth_success', token, tadmin,tuser)
