@@ -57,11 +57,20 @@ const genererHoraire = async (req, res) => {
         var compteur = 0;
         console.log(compteur);
         while (compteur < horaire.length()) {
+            console.log(horaire[compteur]);
+
             var id = horaire[compteur].idtablehoraire;
             var dateparam = horaire[compteur].dateparam;
             var idemploye = horaire[compteur].idemploye;
             var jour = horaire[compteur].joursemaine;
             var quart = horaire[compteur].typequart;
+
+            console.log(id);
+            console.log(dateparam);
+            console.log(idemploye);
+            console.log(jour);
+            console.log(quart);
+
             await enregistrerHoraire(id, dateparam, sessEmployeur, idemploye, jour, quart);
             console.log(compteur);
             compteur++;
