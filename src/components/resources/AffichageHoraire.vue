@@ -17,7 +17,7 @@
                 <button @click="afficherHoraireSelonDate" class="btn btn-primary">Afficher</button>
 
                 <p></p>
-                <p v-if="afficherHoraire">Voici l'horaire</p>
+                <p>Voici l'horaire</p>
                 <table id="horaire">
                     <thead>
                         <th>Type de quart de travail</th>
