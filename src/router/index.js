@@ -51,11 +51,7 @@ const routes=[
         }       
        // alert('Condition fail')  
           next('/unauthorized')   
-       else {
-        //  alert('Condition bypasser')
-        next()
-      }
-    }        
+       }        
     },
 {
     path: '/gestionHoraire',
