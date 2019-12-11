@@ -18,7 +18,7 @@
 
                 <p></p>
                 <p v-if="afficherHoraire">Voici l'horaire</p>
-                <table id="horaire" v-if="afficherHoraire">
+                <table id="horaire">
                     <thead>
                         <th>Type de quart de travail</th>
                         <th>Employés</th>
@@ -149,7 +149,6 @@ export default {
             datehoraire: null,
             nomsHoraire: null,
             horaire: [],
-            afficherHoraire: false,
             exigencesEmployeur: []
         }
     },
@@ -352,7 +351,6 @@ export default {
                     console.log(error);
                 });
             }
-             this.afficherHoraire = !this.afficherHoraire
         },
         afficherHoraireSelonID() {
             var choixsemaine = this.selectionne
@@ -392,7 +390,6 @@ export default {
                 .catch(error => {
                     console.log(error);
             });
-            this.afficherHoraire = !this.afficherHoraire
         }
   
     }
