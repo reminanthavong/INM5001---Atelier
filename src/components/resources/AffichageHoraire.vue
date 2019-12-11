@@ -255,7 +255,7 @@ export default {
                     console.log(error);
             });
             fetch('/exigencesEmployeur', {
-                method: 'GET',
+                method: 'POST',
                 headers: {
                      'Accept': 'application/json',
                     'Content-Type': 'application/json'
