@@ -17,8 +17,8 @@
                 <button @click="afficherHoraireSelonDate" class="btn btn-primary">Afficher</button>
 
                 <p></p>
-                <p>Voici l'horaire</p>
-                <table id="horaire">
+                <p v-if="afficherHoraire">Voici l'horaire</p>
+                <table id="horaire" v-if="afficherHoraire">
                     <thead>
                         <th>Type de quart de travail</th>
                         <th>Employés</th>
@@ -149,6 +149,7 @@ export default {
             datehoraire: null,
             nomsHoraire: null,
             horaire: [],
+            afficherHoraire: false,
             exigencesEmployeur: []
         }
     },
@@ -351,6 +352,7 @@ export default {
                     console.log(error);
                 });
             }
+             this.afficherHoraire = !this.afficherHoraire
         },
         afficherHoraireSelonID() {
             var choixsemaine = this.selectionne
@@ -390,6 +392,7 @@ export default {
                 .catch(error => {
                     console.log(error);
             });
+            this.afficherHoraire = !this.afficherHoraire
         }
   
     }
