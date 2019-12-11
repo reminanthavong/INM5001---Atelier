@@ -55,7 +55,7 @@ const routes=[
         //  alert('Condition bypasser')
         next()
       }
-                
+    }        
     },
 {
     path: '/gestionHoraire',
