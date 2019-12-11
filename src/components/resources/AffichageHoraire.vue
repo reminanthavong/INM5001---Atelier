@@ -244,7 +244,7 @@ export default {
                          'Accept': 'application/json',
                         'Content-Type': 'application/json'
                     },
-                     body: JSON.stringify({choixsemaine})
+                     body: JSON.stringify({dateHoraire})
                     })
                     .then((response) => {
                         return response.json()

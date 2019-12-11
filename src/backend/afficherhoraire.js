@@ -36,10 +36,11 @@ const afficherHoraire  = async (req, res) => {
 
 const afficherExigencesEmployeur = async (req,res) => {
     const employeur = req.session.idgestion
-    var id = req.body.choixsemaine;
+    var id = req.body.choixsemaine || '000';
+    var choixDate = req.body.dateHoraire || '01-01-1899'
     console.log(id);
 
-    if (id.length != 22) {
+    if (id.equals('000')) {
       var date = new Date(id)
       date.setMinutes(date.getMinutes() + date.getTimezoneOffset()); //Ajuste la date par rapport au fuseau horaire
       id = "" + employeur + "-" + date.toISOString().slice(0, 10);
