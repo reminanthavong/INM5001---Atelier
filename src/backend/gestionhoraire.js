@@ -63,6 +63,7 @@ const genererHoraire = async (req, res) => {
             var quart = horaire[compteur].typequart;
             await enregistrerHoraire(id, dateparam, sessEmployeur, idemploye, jour, quart);
             console.log(compteur);
+            compteur++;
         }
         result.success = true;
     } catch (e) {
