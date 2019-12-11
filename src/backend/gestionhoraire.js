@@ -53,7 +53,7 @@ const genererHoraire = async (req, res) => {
 
     try {
         const horaire = await GenererHoraire.GenererHoraire(idtablehoraire, dateHoraire, sessEmployeur)
-        console.log(horaire)
+        //console.log(horaire)
         var compteur = 0;
         while (compteur < horaire.length()) {
             var id = horaire[compteur].idtablehoraire;
