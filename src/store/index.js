@@ -7,8 +7,8 @@ import axios from 'axios'
       state: {
       status: '',
       token: localStorage.getItem('token') || '',
-      admin: JSON.parse(localStorage.getItem('admin')) || '',
-      user: JSON.parse(localStorage.getItem('user')) || ''
+      admin: localStorage.getItem('admin') || '',
+      user: localStorage.getItem('user') || ''
       },
       mutations: {
            auth_request(state) {
@@ -54,6 +54,8 @@ import axios from 'axios'
                   commit('auth_error')
                   alert("Mauvais utilisateur ou mot de passe.");
                   localStorage.removeItem('token')
+                  localStorage.removeItem('user')
+                  localStorage.removeItem('admin')
                   reject(err)
                 })
             })
@@ -63,6 +65,7 @@ import axios from 'axios'
               commit('logout')
               localStorage.removeItem('token')
                 localStorage.removeItem('user')
+                localStorage.removeItem('admin')
               delete axios.defaults.headers.common['Authorization']
               resolve()
             })
@@ -71,7 +74,7 @@ import axios from 'axios'
       getters: {
       isLoggedIn: state => !!state.token,
       authStatus: state => state.status,
-      isAdmin: state => {return state.admin},
-      isUser: state => {return state.user}
+      isAdmin: state => {if (state.admin == 'true'){ return true}},
+      isUser: state => {if (state.user == 'true'){ return true}}
       }
     })
