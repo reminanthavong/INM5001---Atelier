@@ -51,7 +51,7 @@ const routes=[
         }       
        // alert('Condition fail')  
           next('/unauthorized')   
-      } else {
+       else {
         //  alert('Condition bypasser')
         next()
       }
