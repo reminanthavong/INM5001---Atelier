@@ -52,7 +52,7 @@
                             <td>Mercredi jour</td>
                             <td>
                             <p v-for="employe in mercrediJour" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p>
-                            <p v-if="J3Manquants !== 0">{{J3Manquants}}</p>
+                            <p v-if="J3Manquants !== 0" class="manquant">ATTENTION! Il manque {{J3Manquants}} employés pour combler ce quart de travail.</p>
                             </td>
                         </tr>
                         <tr>
@@ -318,5 +318,8 @@ export default {
     }
     table#horaire {
         width: 100%;
+    }
+    p.manquant {
+        color: red
     }
 </style>
