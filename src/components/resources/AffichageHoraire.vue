@@ -28,112 +28,109 @@
                             <td>Lundi jour</td>
                             <td>
                                 <p v-for="employe in lundiJour" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p>
-                                <p v-if="J1Manquants !== 0" class="manquant">ATTENTION! Il manque {{J1Manquants}} employés pour combler ce quart de travail.</p>
+                                <p v-if="J1Manquants !== 0" class="manquant">ATTENTION! Il manque {{J1Manquants}} employé(s) pour combler ce quart de travail.</p>
                             </td>
                         </tr>
                         <tr>
                             <td>Lundi soir</td>
                             <td>
                                 <p v-for="employe in lundiSoir" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p>
-                                <p v-if="S1Manquants !== 0" class="manquant">ATTENTION! Il manque {{S1Manquants}} employés pour combler ce quart de travail.</p>
+                                <p v-if="S1Manquants !== 0" class="manquant">ATTENTION! Il manque {{S1Manquants}} employé(s) pour combler ce quart de travail.</p>
                             </td>
                         </tr>
                         <tr>
                             <td>Lundi nuit</td>
                             <td>
                                 <p v-for="employe in lundiNuit" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p>
-                                <p v-if="N1Manquants !== 0" class="manquant">ATTENTION! Il manque {{N1Manquants}} employés pour combler ce quart de travail.</p>
+                                <p v-if="N1Manquants !== 0" class="manquant">ATTENTION! Il manque {{N1Manquants}} employé(s) pour combler ce quart de travail.</p>
                             </td>
                         </tr>
                         <tr>
                             <td>Mardi jour</td>
                             <td>
                                 <p v-for="employe in mardiJour" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p>
-                                <p v-if="J2Manquants !== 0" class="manquant">ATTENTION! Il manque {{J2Manquants}} employés pour combler ce quart de travail.</p>
+                                <p v-if="J2Manquants !== 0" class="manquant">ATTENTION! Il manque {{J2Manquants}} employé(s) pour combler ce quart de travail.</p>
                             </td>
                         </tr>
                         <tr>
                             <td>Mardi soir</td>
                             <td>
                                 <p v-for="employe in mardiSoir" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p>
-                                <p v-if="S2Manquants !== 0" class="manquant">ATTENTION! Il manque {{S2Manquants}} employés pour combler ce quart de travail.</p>
+                                <p v-if="S2Manquants !== 0" class="manquant">ATTENTION! Il manque {{S2Manquants}} employé(s) pour combler ce quart de travail.</p>
                             </td>
                         </tr>
                         <tr>
                             <td>Mardi nuit</td>
                             <td>
                                 <p v-for="employe in mardiNuit" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p>
-                                <p v-if="N2Manquants !== 0" class="manquant">ATTENTION! Il manque {{N2Manquants}} employés pour combler ce quart de travail.</p>
+                                <p v-if="N2Manquants !== 0" class="manquant">ATTENTION! Il manque {{N2Manquants}} employé(s) pour combler ce quart de travail.</p>
                             </td>
                         </tr>
                         <tr>
                             <td>Mercredi jour</td>
                             <td>
                                 <p v-for="employe in mercrediJour" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p>
-                                <p v-if="J3Manquants !== 0" class="manquant">ATTENTION! Il manque {{J3Manquants}} employés pour combler ce quart de travail.</p>
+                                <p v-if="J3Manquants !== 0" class="manquant">ATTENTION! Il manque {{J3Manquants}} employé(s) pour combler ce quart de travail.</p>
                             </td>
                         </tr>
                         <tr>
                             <td>Mercredi soir</td>
                             <td>
                                 <p v-for="employe in mercrediSoir" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p>
-                                <p v-if="S3Manquants !== 0" class="manquant">ATTENTION! Il manque {{S3Manquants}} employés pour combler ce quart de travail.</p>
+                                <p v-if="S3Manquants !== 0" class="manquant">ATTENTION! Il manque {{S3Manquants}} employé(s) pour combler ce quart de travail.</p>
                             </td>
                         </tr>
                         <tr>
                             <td>Mercredi nuit</td>
                             <td>
                                 <p v-for="employe in mercrediNuit" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p>
-                                <p v-if="N3Manquants !== 0" class="manquant">ATTENTION! Il manque {{N3Manquants}} employés pour combler ce quart de travail.</p>
+                                <p v-if="N3Manquants !== 0" class="manquant">ATTENTION! Il manque {{N3Manquants}} employé(s) pour combler ce quart de travail.</p>
                             </td>
                         </tr>
                         <tr>
                             <td>Jeudi jour</td>
                             <td>
                                 <p v-for="employe in jeudiJour" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p>
-                                <p v-if="J4Manquants !== 0" class="manquant">ATTENTION! Il manque {{J4Manquants}} employés pour combler ce quart de travail.</p>
+                                <p v-if="J4Manquants !== 0" class="manquant">ATTENTION! Il manque {{J4Manquants}} employé(s) pour combler ce quart de travail.</p>
                             </td>
                         </tr>
                         <tr>
                             <td>Jeudi soir</td>
                             <td>
                                 <p v-for="employe in jeudiSoir" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p>
-                                <p v-if="S4Manquants !== 0" class="manquant">ATTENTION! Il manque {{S4Manquants}} employés pour combler ce quart de travail.</p>
+                                <p v-if="S4Manquants !== 0" class="manquant">ATTENTION! Il manque {{S4Manquants}} employé(s) pour combler ce quart de travail.</p>
                             </td>
                         </tr>
                         <tr>
                             <td>Jeudi nuit</td>
                             <td>
                                 <p v-for="employe in jeudiNuit" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p>
-                                <p v-if="N4Manquants !== 0" class="manquant">ATTENTION! Il manque {{N4Manquants}} employés pour combler ce quart de travail.</p>
+                                <p v-if="N4Manquants !== 0" class="manquant">ATTENTION! Il manque {{N4Manquants}} employé(s) pour combler ce quart de travail.</p>
                             </td>
                         </tr>
                         <tr>
                             <td>Vendredi jour</td>
                             <td>
                                 <p v-for="employe in vendrediJour" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p>
-                                <p v-if="J5Manquants !== 0" class="manquant">ATTENTION! Il manque {{J5Manquants}} employés pour combler ce quart de travail.</p>
+                                <p v-if="J5Manquants !== 0" class="manquant">ATTENTION! Il manque {{J5Manquants}} employé(s) pour combler ce quart de travail.</p>
                             </td>
                         </tr>
                         <tr>
                             <td>Vendredi soir</td>
                             <td>
                                 <p v-for="employe in vendrediSoir" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p>
-                                <p v-if="S5Manquants !== 0" class="manquant">ATTENTION! Il manque {{S5Manquants}} employés pour combler ce quart de travail.</p>
+                                <p v-if="S5Manquants !== 0" class="manquant">ATTENTION! Il manque {{S5Manquants}} employé(s) pour combler ce quart de travail.</p>
                             </td>
                         </tr>
                         <tr>
                             <td>Vendredi nuit</td>
                             <td>
                                 <p v-for="employe in vendrediNuit" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p>
-                                <p v-if="N5Manquants !== 0" class="manquant">ATTENTION! Il manque {{N5Manquants}} employés pour combler ce quart de travail.</p>
+                                <p v-if="N5Manquants !== 0" class="manquant">ATTENTION! Il manque {{N5Manquants}} employé(s) pour combler ce quart de travail.</p>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-
-                <b-table striped hover :items="exigencesEmployeur" v-if="afficherHoraire">
-                </b-table>
             </div>
         </div>
     </div>
@@ -233,7 +230,6 @@ export default {
             })
         },
         J1Manquants : function () {
-            alert(this.exigencesEmployeur[0].nbremployes)
             return this.exigencesEmployeur[0].nbremployes
                  - (this.horaire.filter(function(emp) {return emp.joursemaine == "Lundi" && emp.typequart == "Jour"})).length
         },
@@ -318,25 +314,6 @@ export default {
             if(jourDeLaSemaine != 1) {
                 alert("Veuillez choisir une date correspondant à un lundi ")
             } else {
-                fetch('/affichageHoraire', {
-                    method: 'POST',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({dateHoraire})
-                })
-                .then((response) => {
-                    return response.json()
-                })
-                .then((data) => {
-                    this.horaire = data
-                    console.log(this.horaire)
-                })
-                .catch(error => {
-                    console.log(error);
-                });
-
                 fetch('/exigencesEmployeur', {
                     method: 'POST',
                     headers: {
@@ -355,19 +332,14 @@ export default {
                     .catch(error => {
                         console.log(error);
                 });
-                
-            }
-             this.afficherHoraire = !this.afficherHoraire
-        },
-        afficherHoraireSelonID() {
-            var choixsemaine = this.selectionne
-            fetch('/affichageHoraire', {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({choixsemaine})
+
+                fetch('/affichageHoraire', {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({dateHoraire})
                 })
                 .then((response) => {
                     return response.json()
@@ -378,7 +350,12 @@ export default {
                 })
                 .catch(error => {
                     console.log(error);
-            });
+                });
+            }
+             this.afficherHoraire = !this.afficherHoraire
+        },
+        afficherHoraireSelonID() {
+            var choixsemaine = this.selectionne
             fetch('/exigencesEmployeur', {
                 method: 'POST',
                 headers: {
@@ -393,6 +370,24 @@ export default {
                 .then((data) => {
                     this.exigencesEmployeur = data
                     console.log(this.exigencesEmployeur)
+                })
+                .catch(error => {
+                    console.log(error);
+            });
+            fetch('/affichageHoraire', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({choixsemaine})
+                })
+                .then((response) => {
+                    return response.json()
+                })
+                .then((data) => {
+                    this.horaire = data
+                    console.log(this.horaire)
                 })
                 .catch(error => {
                     console.log(error);
