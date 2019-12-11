@@ -55,6 +55,7 @@ const genererHoraire = async (req, res) => {
         const horaire = await GenererHoraire.GenererHoraire(idtablehoraire, dateHoraire, sessEmployeur)
         //console.log(horaire)
         var compteur = 0;
+        console.log(compteur);
         while (compteur < horaire.length()) {
             var id = horaire[compteur].idtablehoraire;
             var dateparam = horaire[compteur].dateparam;
@@ -81,8 +82,9 @@ async function ajoutQuarts(sessEmployeur, idtablehoraire, quart, jour, nbemploye
 }
 
 async function enregistrerHoraire(id, date, gestionnaire, idemploye, jour, quart){
+    console.log('Dans la fonction enregistrerHoraire');
     await Api
-        .port('/tablehoraire')
+        .post('/tablehoraire')
         .send({idtablehoraire: id, dateparam: date, idemployeur: gestionnaire, idemploye: idemploye, joursemaine: jour, typequart: quart});
 
 }
