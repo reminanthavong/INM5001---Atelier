@@ -39,7 +39,23 @@ const routes=[
     {
     path: '/zoneEmploye',
     name: 'zoneEmploye',
-    component: ZoneEmploye  
+    component: ZoneEmploye,
+    beforeRouteEnter (to, from, next) {
+          //alert(localStorage.getItem('user'))
+         //console.log(store.getters.isAdmin)
+         // alert(store.getters.isAdmin)
+        if (JSON.parse(localStorage.getItem('user'))) {
+            //alert('Condition passer')
+          next()
+           return
+        }       
+       // alert('Condition fail')  
+          next('/unauthorized')   
+      } else {
+        //  alert('Condition bypasser')
+        next()
+      }
+                
     },
 {
     path: '/gestionHoraire',
