@@ -36,19 +36,16 @@ const afficherHoraire  = async (req, res) => {
 
 const afficherExigencesEmployeur = async (req,res) => {
     const employeur = req.session.idgestion
-    var id = req.body;
-    console.log("dans afficherExigencesEmployeur");
+    var id = req.body.choixsemaine;
     console.log(id);
 
-    //const reponse = req.body
-    //if (id.length != bbla) {
-    //  var date = new Date(id)
-    //  date.setMinutes(date.getMinutes() + date.getTimezoneOffset()); //Ajuste la date par rapport au fuseau horaire
-    //  id = "" + employeur + "-" + date.toISOString().slice(0, 10);
-    //}
+    if (id.length != 22) {
+      var date = new Date(id)
+      date.setMinutes(date.getMinutes() + date.getTimezoneOffset()); //Ajuste la date par rapport au fuseau horaire
+      id = "" + employeur + "-" + date.toISOString().slice(0, 10);
+    }
 
     try {
-        console.log("dans le try catch");
         const exigences = await getExigences(id);
         res.set({'content-type': 'application/json'});
         res.send(JSON.stringify(exigences))
@@ -58,7 +55,6 @@ const afficherExigencesEmployeur = async (req,res) => {
 }
 
 async function getExigences(id) {
-    console.log("dans getExigences");
     return await Api.get('/basequartsemployeur').eq('idtablehoraire', id);
 }
 
