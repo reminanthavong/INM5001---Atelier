@@ -50,7 +50,10 @@
                         </tr>
                         <tr>
                             <td>Mercredi jour</td>
-                            <td><p v-for="employe in mercrediJour" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p></td>
+                            <td>
+                            <p v-for="employe in mercrediJour" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p>
+                            <p v-if="J3Manquants !== 0">{{J3Manquants}}</p>
+                            </td>
                         </tr>
                         <tr>
                             <td>Mercredi soir</td>
@@ -186,6 +189,10 @@ export default {
             return this.horaire.filter(function(emp) {
                 return emp.joursemaine == "Vendredi" && emp.typequart == "Nuit"
             })
+        },
+        J3Manquants : function () {
+            return (this.exigencesEmployeur.filter(function(exigences) {exigences.typequart == "J" && exigences.joursemaine == "3"})).length
+                - (this.horaire.filter(function(emp) {return emp.joursemaine == "Mercredi" && emp.typequart == "Jour"})).length
         }
     },
     mounted: function() {
@@ -229,6 +236,25 @@ export default {
                 })
                 .catch(error => {
                     console.log(error);
+                });
+
+                fetch('/exigencesEmployeur', {
+                    method: 'POST',
+                    headers: {
+                         'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                     body: JSON.stringify({choixsemaine})
+                    })
+                    .then((response) => {
+                        return response.json()
+                    })
+                    .then((data) => {
+                        this.exigencesEmployeur = data
+                        console.log(this.exigencesEmployeur)
+                    })
+                    .catch(error => {
+                        console.log(error);
                 });
                 
             }

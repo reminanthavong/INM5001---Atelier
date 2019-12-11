@@ -43,6 +43,7 @@ const afficherExigencesEmployeur = async (req,res) => {
       var date = new Date(id)
       date.setMinutes(date.getMinutes() + date.getTimezoneOffset()); //Ajuste la date par rapport au fuseau horaire
       id = "" + employeur + "-" + date.toISOString().slice(0, 10);
+      console.log(id);
     }
 
     try {
