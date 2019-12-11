@@ -40,18 +40,9 @@ const routes=[
     path: '/zoneEmploye',
     name: 'zoneEmploye',
     component: ZoneEmploye,
-    beforeRouteEnter (to, from, next) {
-          alert(localStorage.getItem('user'))
-         //console.log(store.getters.isAdmin)
-         // alert(store.getters.isAdmin)
-        if (JSON.parse(localStorage.getItem('user'))) {
-            alert('Condition passer')
-          next()
-           return
-        }       
-       alert('Condition fail')  
-          next('/unauthorized')   
-       }        
+    meta: {
+        isUser: true
+          }  
     },
 {
     path: '/gestionHoraire',
@@ -90,9 +81,16 @@ router.beforeEach((to, from, next) => {
         }       
        // alert('Condition fail')  
           next('/unauthorized')   
-      } else {
+      } else if (to.matched.some(record => record.meta.isUser)){
+           if (JSON.parse(localStorage.getItem('user'))) {
+            //alert('Condition passer')
+          next()
+           return
+        }       
         //  alert('Condition bypasser')
-        next()
+        next('/unauthorized')
+      } else {
+      next()
       }
     })
 export default router
