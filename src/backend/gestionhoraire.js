@@ -1,4 +1,5 @@
 const session = require('express-session');
+const GenererHoraire = require('./GenererHoraire')
 const { Pool } = require('pg');
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
@@ -44,19 +45,23 @@ const genererHoraire = async (req, res) => {
     const reqjson = req.body;
     var sessEmployeur = req.session.idgestion;
 
-    var date = '2019-08-05';
-    //date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
-    var idtablehoraire = "" + sessEmployeur + "-" + date; //Création de l'id de la table horaire
-
-    console.log(date)
-    console.log(idtablehoraire)
-    console.log(sessEmployeur)
+    var date = new Date(reqjson.horairedate);
+    date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
+    var dateHoraire = date.toISOString().slice(0,10)
+    console.log(dateHoraire)
+    var idtablehoraire = "" + sessEmployeur + "-" + dateHoraire; //Création de l'id de la table horaire
 
     try {
-        console.log("Dans le try de genererHoraire")
-        const horaire = await creationHoraire(idtablehoraire, date, sessEmployeur)
+        const horaire = await GenererHoraire.GenererHoraire(idtablehoraire, dateHoraire, sessEmployeur)
         console.log(horaire)
-        // await enregistrerHoraire(horaire)
+        for (i in horaire) {
+            var id = horaire.idtablehoraire;
+            var dateparam = horaire.dateparam;
+            var idemploye = horaire.idemploye;
+            var jour = horaire.joursemaine;
+            var quart = horaire.typequart;
+            await enregistrerHoraire(id, dateparam, sessEmployeur, idemploye, jour, quart);
+        }
         result.success = true;
     } catch (e) {
         result.success = false;
@@ -72,47 +77,10 @@ async function ajoutQuarts(sessEmployeur, idtablehoraire, quart, jour, nbemploye
       .send({idemployeur: sessEmployeur, idtablehoraire: idtablehoraire, typequart: quart, joursemaine: jour, nbremployes: nbemploye});
 }
 
-async function creationHoraire(idtablehoraire, date, sessEmployeur) {
-    console.log("Dans la fonction creationHoraire")
-    const client = await pool.connect()
-    const horaire = await client.query(`SELECT DISTINCT '${idtablehoraire}' AS IDTableHoraire, '${date}' AS DateParam ,C.IDEmployeur,C.IDEmploye, C.JourSemaine, C.TypeQuart,c.Selection--,NBREmployes
-    FROM(
-        SELECT IDEmploye,IDEmployeur,JourSemaine, TypeQuart,Selection,DateEmbauche
-        FROM (
-            SELECT
-            *,ROW_NUMBER()OVER(PARTITION BY A.IDEmploye ORDER BY A.JourSemaine ASC) AS MaxSem
-            ,ROW_NUMBER()OVER(PARTITION BY A.JourSemaine, A.TypeQuart ORDER BY A.TypeQuart ASC, A.JourSemaine ASC) AS Selection
-            FROM(
-                SELECT BQE.*, nbrQuartsmax,DateEmbauche ,ROW_NUMBER()OVER(PARTITION BY BQE.IDEmploye, BQE.JourSemaine ORDER BY BQE.TypeQuart ASC) AS MaxJOur
-                FROM basequartsemploye BQE
-                INNER JOIN baseemployes BE ON BE.IDEmploye=BQE.IDEmploye
-                    AND BE.IDEmployeur='${sessEmployeur}'
-                    AND Disponibilite='1'
-                    AND ParamType='1'
-                LEFT JOIN Tableconges TC ON TC.IDEmploye=BQE.IDEmploye
-                    AND TC.JourSemaine=BQE.JourSemaine
-                    AND TC.TypeQuart=BQE.TypeQuart
-                    AND TC.DateConges='${date}'
-                WHERE TC.IDEmploye IS NULL
-	    )A
-	    WHERE MaxJour=1
-	    )B
-	    WHERE MaxSem<=nbrQuartsmax
-	    ORDER BY B.DateEmbauche ASC, B.JourSemaine ASC, B.TypeQuart ASC
-        )C
-        INNER JOIN BaseQuartsEmployeur BQER ON BQER.IDEmployeur=C.IDEmployeur
-		    AND BQER.IDTableHoraire='${idtablehoraire}'
-		    AND BQER.TypeQuart=C.TypeQuart
-		    AND BQER.JourSemaine=C.JourSemaine
-		    AND C.Selection <= BQER.NBREmployes
-    ;`);
-    const horairegenere = { 'horaires': (horaire) ? horaire.rows : null};
-    client.release();
-    console.log("Horaire: " + horairegenere);
-    return horairegenere
-}
-
-async function enregistrerHoraire(){
+async function enregistrerHoraire(id, date, gestionnaire, idemploye, jour, quart){
+    await Api
+        .port('/tablehoraire')
+        .send(idtablehoraire: id, dateparam: date, idemployeur: gestionnaire, idemploye: idemploye, joursemaine: jour, typequart: quart);
 
 }
 
