@@ -233,6 +233,7 @@ export default {
             })
         },
         J1Manquants : function () {
+            alert(this.exigencesEmployeur[0].nbremployes)
             return this.exigencesEmployeur[0].nbremployes
                  - (this.horaire.filter(function(emp) {return emp.joursemaine == "Lundi" && emp.typequart == "Jour"})).length
         },

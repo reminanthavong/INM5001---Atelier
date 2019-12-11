@@ -40,6 +40,7 @@ const afficherExigencesEmployeur = async (req,res) => {
     var choixDate = req.body.dateHoraire || '01-01-1899'
     console.log(id);
 
+    //Permet de savoir si la requete a été envoyé avec le idtablehoraire ou avec une date
     if (id == '000') {
       var date = new Date(choixDate)
       date.setMinutes(date.getMinutes() + date.getTimezoneOffset()); //Ajuste la date par rapport au fuseau horaire
