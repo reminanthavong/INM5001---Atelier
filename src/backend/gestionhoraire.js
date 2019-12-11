@@ -56,15 +56,15 @@ const genererHoraire = async (req, res) => {
         console.log(horaire)
         var compteur = 0;
         console.log(compteur);
-        console.log(horaire.length)
-        while (compteur < horaire.length) {
-            console.log(horaire[compteur]);
+        console.log(horaire.horaires.length)
+        while (compteur < horaire.horaires.length) {
+            console.log(horaire.horaires[compteur]);
 
-            var id = horaire[compteur].idtablehoraire;
-            var dateparam = horaire[compteur].dateparam;
-            var idemploye = horaire[compteur].idemploye;
-            var jour = horaire[compteur].joursemaine;
-            var quart = horaire[compteur].typequart;
+            var id = horaire.horaires[compteur].idtablehoraire;
+            var dateparam = horaire.horaires[compteur].dateparam;
+            var idemploye = horaire.horaires[compteur].idemploye;
+            var jour = horaire.horaires[compteur].joursemaine;
+            var quart = horaire.horaires[compteur].typequart;
 
             console.log(id);
             console.log(dateparam);
