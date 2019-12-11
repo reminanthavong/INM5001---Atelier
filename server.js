@@ -62,6 +62,7 @@ router.delete('/Employe', gestionemploye.enleverEmploye)
 // Fonction AfficherHoraire
 router.get('/choixHoraire', afficherhoraire.afficherChoixHoraire)
 router.post('/affichageHoraire',afficherhoraire.afficherHoraire)
+router.get('/exigencesEmployeur', afficherhoraire.afficherExigencesEmployeur)
 
 // Fonction GestionHoraire
 router.post('/Horaire', gestionhoraire.ajouterQuarts)

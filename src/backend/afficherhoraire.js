@@ -1,4 +1,6 @@
 const Ressources = require('./ressources')
+var PostgREST = require('postgrest-client');
+var Api = new PostgREST ('http://testpostgrest-calendrier.herokuapp.com');
 
 async function afficherChoixHoraire(req, res)  {
     try {
@@ -37,9 +39,23 @@ const afficherHoraire  = async (req, res) => {
     }
 }
 
+const afficherExigencesEmployeur = async (req,res) => {
+    const employeur = req.session.idgestion
+    const id = req.body;
+    const exigences = await getExigences(id);
+    res.set({'content-type': 'application/json'});
+    res.send(JSON.stringify(exigences))
+
+}
+
+async function getExigences(id) {
+    return await Api.get('/basequartsemployeur').eq('idtablehoraire', id)
+}
+
 
 //---------------------------------------------------------------------------------------------------------------------------------//
 module.exports = {
 	afficherChoixHoraire,
   	afficherHoraire,
+  	afficherExigencesEmployeur
 }

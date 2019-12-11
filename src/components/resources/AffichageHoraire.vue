@@ -86,6 +86,9 @@
                         </tr>
                     </tbody>
                 </table>
+
+                <b-table striped hover :items="exigencesEmployeur" v-if="afficherHoraire">
+                </b-table>
             </div>
         </div>
     </div>
@@ -105,6 +108,7 @@ export default {
             nomsHoraire: null,
             horaire: [],
             afficherHoraire: false,
+            exigencesEmployeur: []
         }
     },
     computed: {
@@ -246,6 +250,24 @@ export default {
                 .then((data) => {
                     this.horaire = data
                     console.log(this.horaire)
+                })
+                .catch(error => {
+                    console.log(error);
+            });
+            fetch('/exigencesEmployeur', {
+                method: 'GET',
+                headers: {
+                     'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                 body: JSON.stringify({choixsemaine})
+                })
+                .then((response) => {
+                    return response.json()
+                })
+                .then((data) => {
+                    this.exigencesEmployeur = data
+                    console.log(this.exigencesEmployeur)
                 })
                 .catch(error => {
                     console.log(error);
