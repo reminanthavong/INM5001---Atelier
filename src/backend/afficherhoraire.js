@@ -42,14 +42,19 @@ const afficherHoraire  = async (req, res) => {
 const afficherExigencesEmployeur = async (req,res) => {
     const employeur = req.session.idgestion
     const id = req.body;
-    const exigences = await getExigences(id);
-    res.set({'content-type': 'application/json'});
-    res.send(JSON.stringify(exigences))
-
+    console.log(id);
+    try {
+        const exigences = await getExigences(id);
+        res.set({'content-type': 'application/json'});
+        res.send(JSON.stringify(exigences))
+    } catch (e) {
+        console.error(e);
+    }
 }
 
 async function getExigences(id) {
-    return await Api.get('/basequartsemployeur').eq('idtablehoraire', id)
+    console.log("dans getExigences");
+    return await Api.get('/basequartsemployeur').eq('idtablehoraire', id);
 }
 
 
