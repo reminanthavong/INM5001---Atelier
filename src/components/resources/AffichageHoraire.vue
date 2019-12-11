@@ -291,7 +291,7 @@ export default {
         N5Manquants : function () {
             return this.exigencesEmployeur[14].nbremployes
                 - (this.horaire.filter(function(emp) {return emp.joursemaine == "Vendredi" && emp.typequart == "Nuit"})).length
-        },
+        }
     },
     mounted: function() {
         fetch('/choixHoraire', {

@@ -49,6 +49,7 @@ const afficherExigencesEmployeur = async (req,res) => {
 
     try {
         const exigences = await getExigences(id);
+        console.log(exigences);
         res.set({'content-type': 'application/json'});
         res.send(JSON.stringify(exigences))
     } catch (e) {
