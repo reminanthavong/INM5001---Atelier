@@ -191,7 +191,7 @@ export default {
             })
         },
         J3Manquants : function () {
-            return (this.exigencesEmployeur.filter(function(exigences) {exigences.typequart == "J" && exigences.joursemaine == "3"})).nbremployes
+            return this.exigencesEmployeur[6].nbremployes
                 - (this.horaire.filter(function(emp) {return emp.joursemaine == "Mercredi" && emp.typequart == "Jour"})).length
         }
     },
