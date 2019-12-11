@@ -26,66 +26,108 @@
                     <tbody>
                         <tr>
                             <td>Lundi jour</td>
-                            <td><p v-for="employe in lundiJour" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p></td>
+                            <td>
+                                <p v-for="employe in lundiJour" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p>
+                                <p v-if="J1Manquants !== 0" class="manquant">ATTENTION! Il manque {{J1Manquants}} employés pour combler ce quart de travail.</p>
+                            </td>
                         </tr>
                         <tr>
                             <td>Lundi soir</td>
-                            <td><p v-for="employe in lundiSoir" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p></td>
+                            <td>
+                                <p v-for="employe in lundiSoir" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p>
+                                <p v-if="S1Manquants !== 0" class="manquant">ATTENTION! Il manque {{S1Manquants}} employés pour combler ce quart de travail.</p>
+                            </td>
                         </tr>
                         <tr>
                             <td>Lundi nuit</td>
-                            <td><p v-for="employe in lundiNuit" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p></td>
+                            <td>
+                                <p v-for="employe in lundiNuit" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p>
+                                <p v-if="N1Manquants !== 0" class="manquant">ATTENTION! Il manque {{N1Manquants}} employés pour combler ce quart de travail.</p>
+                            </td>
                         </tr>
                         <tr>
                             <td>Mardi jour</td>
-                            <td><p v-for="employe in mardiJour" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p></td>
+                            <td>
+                                <p v-for="employe in mardiJour" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p>
+                                <p v-if="J2Manquants !== 0" class="manquant">ATTENTION! Il manque {{J2Manquants}} employés pour combler ce quart de travail.</p>
+                            </td>
                         </tr>
                         <tr>
                             <td>Mardi soir</td>
-                            <td><p v-for="employe in mardiSoir" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p></td>
+                            <td>
+                                <p v-for="employe in mardiSoir" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p>
+                                <p v-if="S2Manquants !== 0" class="manquant">ATTENTION! Il manque {{S2Manquants}} employés pour combler ce quart de travail.</p>
+                            </td>
                         </tr>
                         <tr>
                             <td>Mardi nuit</td>
-                            <td><p v-for="employe in mardiNuit" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p></td>
+                            <td>
+                                <p v-for="employe in mardiNuit" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p>
+                                <p v-if="N2Manquants !== 0" class="manquant">ATTENTION! Il manque {{N2Manquants}} employés pour combler ce quart de travail.</p>
+                            </td>
                         </tr>
                         <tr>
                             <td>Mercredi jour</td>
                             <td>
-                            <p v-for="employe in mercrediJour" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p>
-                            <p v-if="J3Manquants !== 0" class="manquant">ATTENTION! Il manque {{J3Manquants}} employés pour combler ce quart de travail.</p>
+                                <p v-for="employe in mercrediJour" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p>
+                                <p v-if="J3Manquants !== 0" class="manquant">ATTENTION! Il manque {{J3Manquants}} employés pour combler ce quart de travail.</p>
                             </td>
                         </tr>
                         <tr>
                             <td>Mercredi soir</td>
-                            <td><p v-for="employe in mercrediSoir" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p></td>
+                            <td>
+                                <p v-for="employe in mercrediSoir" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p>
+                                <p v-if="S3Manquants !== 0" class="manquant">ATTENTION! Il manque {{S3Manquants}} employés pour combler ce quart de travail.</p>
+                            </td>
                         </tr>
                         <tr>
                             <td>Mercredi nuit</td>
-                            <td><p v-for="employe in mercrediNuit" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p></td>
+                            <td>
+                                <p v-for="employe in mercrediNuit" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p>
+                                <p v-if="N3Manquants !== 0" class="manquant">ATTENTION! Il manque {{N3Manquants}} employés pour combler ce quart de travail.</p>
+                            </td>
                         </tr>
                         <tr>
                             <td>Jeudi jour</td>
-                            <td><p v-for="employe in jeudiJour" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p></td>
+                            <td>
+                                <p v-for="employe in jeudiJour" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p>
+                                <p v-if="J4Manquants !== 0" class="manquant">ATTENTION! Il manque {{J4Manquants}} employés pour combler ce quart de travail.</p>
+                            </td>
                         </tr>
                         <tr>
                             <td>Jeudi soir</td>
-                            <td><p v-for="employe in jeudiSoir" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p></td>
+                            <td>
+                                <p v-for="employe in jeudiSoir" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p>
+                                <p v-if="S4Manquants !== 0" class="manquant">ATTENTION! Il manque {{S4Manquants}} employés pour combler ce quart de travail.</p>
+                            </td>
                         </tr>
                         <tr>
                             <td>Jeudi nuit</td>
-                            <td><p v-for="employe in jeudiNuit" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p></td>
+                            <td>
+                                <p v-for="employe in jeudiNuit" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p>
+                                <p v-if="N4Manquants !== 0" class="manquant">ATTENTION! Il manque {{N4Manquants}} employés pour combler ce quart de travail.</p>
+                            </td>
                         </tr>
                         <tr>
                             <td>Vendredi jour</td>
-                            <td><p v-for="employe in vendrediJour" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p></td>
+                            <td>
+                                <p v-for="employe in vendrediJour" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p>
+                                <p v-if="J5Manquants !== 0" class="manquant">ATTENTION! Il manque {{J5Manquants}} employés pour combler ce quart de travail.</p>
+                            </td>
                         </tr>
                         <tr>
                             <td>Vendredi soir</td>
-                            <td><p v-for="employe in vendrediSoir" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p></td>
+                            <td>
+                                <p v-for="employe in vendrediSoir" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p>
+                                <p v-if="S5Manquants !== 0" class="manquant">ATTENTION! Il manque {{S5Manquants}} employés pour combler ce quart de travail.</p>
+                            </td>
                         </tr>
                         <tr>
                             <td>Vendredi nuit</td>
-                            <td><p v-for="employe in vendrediNuit" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p></td>
+                            <td>
+                                <p v-for="employe in vendrediNuit" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p>
+                                <p v-if="N5Manquants !== 0" class="manquant">ATTENTION! Il manque {{N5Manquants}} employés pour combler ce quart de travail.</p>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -190,10 +232,66 @@ export default {
                 return emp.joursemaine == "Vendredi" && emp.typequart == "Nuit"
             })
         },
+        J1Manquants : function () {
+            return this.exigencesEmployeur[0].nbremployes
+                 - (this.horaire.filter(function(emp) {return emp.joursemaine == "Lundi" && emp.typequart == "Jour"})).length
+        },
+        S1Manquants : function () {
+            return this.exigencesEmployeur[1].nbremployes
+                 - (this.horaire.filter(function(emp) {return emp.joursemaine == "Lundi" && emp.typequart == "Soir"})).length
+        },
+        N1Manquants : function () {
+            return this.exigencesEmployeur[2].nbremployes
+                 - (this.horaire.filter(function(emp) {return emp.joursemaine == "Lundi" && emp.typequart == "Nuit"})).length
+        },
+        J2Manquants : function () {
+            return this.exigencesEmployeur[3].nbremployes
+                 - (this.horaire.filter(function(emp) {return emp.joursemaine == "Mardi" && emp.typequart == "Jour"})).length
+        },
+        S2Manquants : function () {
+            return this.exigencesEmployeur[4].nbremployes
+                 - (this.horaire.filter(function(emp) {return emp.joursemaine == "Mardi" && emp.typequart == "Soir"})).length
+        },
+        N2Manquants : function () {
+            return this.exigencesEmployeur[5].nbremployes
+                 - (this.horaire.filter(function(emp) {return emp.joursemaine == "Mardi" && emp.typequart == "Nuit"})).length
+        },
         J3Manquants : function () {
             return this.exigencesEmployeur[6].nbremployes
                 - (this.horaire.filter(function(emp) {return emp.joursemaine == "Mercredi" && emp.typequart == "Jour"})).length
-        }
+        },
+        S3Manquants : function () {
+            return this.exigencesEmployeur[7].nbremployes
+                - (this.horaire.filter(function(emp) {return emp.joursemaine == "Mercredi" && emp.typequart == "Soir"})).length
+        },
+        N3Manquants : function () {
+            return this.exigencesEmployeur[8].nbremployes
+                - (this.horaire.filter(function(emp) {return emp.joursemaine == "Mercredi" && emp.typequart == "Nuit"})).length
+        },
+        J4Manquants : function () {
+            return this.exigencesEmployeur[9].nbremployes
+                - (this.horaire.filter(function(emp) {return emp.joursemaine == "Jeudi" && emp.typequart == "Jour"})).length
+        },
+        S4Manquants : function () {
+            return this.exigencesEmployeur[10].nbremployes
+                - (this.horaire.filter(function(emp) {return emp.joursemaine == "Jeudi" && emp.typequart == "Soir"})).length
+        },
+        N4Manquants : function () {
+            return this.exigencesEmployeur[11].nbremployes
+                - (this.horaire.filter(function(emp) {return emp.joursemaine == "Jeudi" && emp.typequart == "Nuit"})).length
+        },
+        J5Manquants : function () {
+            return this.exigencesEmployeur[12].nbremployes
+                - (this.horaire.filter(function(emp) {return emp.joursemaine == "Vendredi" && emp.typequart == "Jour"})).length
+        },
+        S5Manquants : function () {
+            return this.exigencesEmployeur[13].nbremployes
+                - (this.horaire.filter(function(emp) {return emp.joursemaine == "Vendredi" && emp.typequart == "Nuit"})).length
+        },
+        N5Manquants : function () {
+            return this.exigencesEmployeur[14].nbremployes
+                - (this.horaire.filter(function(emp) {return emp.joursemaine == "Vendredi" && emp.typequart == "Nuit"})).length
+        },
     },
     mounted: function() {
         fetch('/choixHoraire', {
@@ -320,6 +418,6 @@ export default {
         width: 100%;
     }
     p.manquant {
-        color: red
+        color: red;
     }
 </style>
