@@ -1,8 +1,8 @@
-<template>
+﻿<template>
 <div class="w3-main" style="margin-left:250px">
   <div class="w3-row w3-padding-64">
     <div class="w3-twothird w3-container">
-      <h1 class="w3-text-teal">Bienvenue! {{ prenom }} {{ nom }}</h1>
+      <h1 class="w3-text-teal">Bienvenue {{ prenom }} {{ nom }}!</h1>
       <p>Veuillez vous référer aux onglets ci-dessus pour naviguer dans le site.</p>
     </div>
   </div>
@@ -14,7 +14,7 @@ export default {
         data() {
           return {
             nom: '',
-            prenom: ''
+            prenom: 'Visiteur'
           };
         },
         mounted() {

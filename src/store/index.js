@@ -53,9 +53,7 @@ import axios from 'axios'
                 .catch(err => {
                   commit('auth_error')
                   alert("Mauvais utilisateur ou mot de passe.");
-                  localStorage.removeItem('token')
-                  localStorage.removeItem('user')
-                  localStorage.removeItem('admin')
+                  localStorage.clear()
                   reject(err)
                 })
             })
@@ -63,9 +61,7 @@ import axios from 'axios'
           logout({ commit }) {
             return new Promise((resolve) => {
               commit('logout')
-              localStorage.removeItem('token')
-                localStorage.removeItem('user')
-                localStorage.removeItem('admin')
+              localStorage.clear()
               delete axios.defaults.headers.common['Authorization']
               resolve()
             })
