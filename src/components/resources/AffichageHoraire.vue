@@ -15,10 +15,10 @@
                 <p><b>Choisir par date:</b></p>
                 <datepicker v-model="datehoraire" @selected="afficherHoraireSelonDate" name="datehoraire"></datepicker>
                 
-                <button v-on:click.self="changerAfficher()" class="btn btn-primary">Afficher</button>
+                <button @change="afficherHoraireSelonDate" class="btn btn-primary">Soumettre</button>
                 <p></p>
-                <p v-if="afficherHoraire">Voici l'horaire</p>
-                <table id="horaire" v-if="afficherHoraire">
+                <p>Voici l'horaire</p>
+                <table id="horaire">
                     <thead>
                         <th>Type de quart de travail</th>
                         <th>Employés</th>
