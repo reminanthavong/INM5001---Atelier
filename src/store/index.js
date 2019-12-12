@@ -36,12 +36,9 @@ import axios from 'axios'
               commit('auth_request')
               axios({ url: '/login', data: user, method: 'POST' })
                 .then(resp => {
-                  //alert(resp.data.user)
-                  
                   const token = resp.data.token
                   var unAdmin = resp.data.user.admin
                   var unUser = resp.data.user.user
-                  console.log(tadmin + tuser)
                   localStorage.setItem('token', token)
                   localStorage.setItem('user', unUser)
                   localStorage.setItem('admin', unAdmin)
