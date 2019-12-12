@@ -2,13 +2,13 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import home from '../components/home.vue'
 //import store from '../store/index.js'
-import login from '../components/auth/Login.vue'
+import login from '../components/auth/login.vue'
 import gestionEmployes from '../components/resources/GestionEmployes.vue'
 import zoneEmploye from '../components/resources/ZoneEmploye.vue'
 import affichageHoraire from '../components/resources/AffichageHoraire.vue'
 import gestionHoraire from '../components/resources/GestionHoraire.vue'
-import success from '../components/auth/Success.vue'
-import unauthorized from '../components/auth/Unauthorized.vue'
+import success from '../components/auth/success.vue'
+import unauthorized from '../components/auth/unauthorized.vue'
 
 Vue.use(VueRouter)
 
