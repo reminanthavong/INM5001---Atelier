@@ -149,7 +149,6 @@ export default {
             datehoraire: null,
             nomsHoraire: null,
             horaire: [],
-            afficherHoraire: false,
             exigencesEmployeur: []
         }
     },
@@ -307,9 +306,6 @@ export default {
         })
     },
     methods: {
-        changeAfficher(){
-           this.afficherHoraire = !this.afficherHoraire
-        },
         afficherHoraireSelonDate() {
             var date = this.datehoraire;
             var dateHoraire = new Date(date)
@@ -355,7 +351,7 @@ export default {
                     console.log(error);
                 });
             }
-             //this.afficherHoraire = !this.afficherHoraire
+           
         },
         afficherHoraireSelonID() {
             var choixsemaine = this.selectionne
@@ -395,7 +391,7 @@ export default {
                 .catch(error => {
                     console.log(error);
             });
-           // this.afficherHoraire = !this.afficherHoraire
+    
         }
   
     }
