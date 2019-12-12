@@ -10,18 +10,6 @@ const bodyParser = require('body-parser');
 const app = express();
 const router = express.Router();
 
-/*
-router.use(bodyParser.urlencoded({
-    extended: false
-}));
-router.use(bodyParser.json());
-router.use(session({
-    secret: 'secret',
-    resave: true,
-    saveUninitialized: true
-}))
-*/
-
 app.use(bodyParser.json())
 app.use(bodyParser.text())
 app.use(
@@ -51,7 +39,6 @@ app.use(enableCrossDomain)
 
 // Fonction Login
 router.post('/login', login.loginAPI)
-router.get('/userStatus', login.userStatus)
 
 // Fonction gestionEmploye
 router.get('/Employe', gestionEmploye.afficherEmployes)
