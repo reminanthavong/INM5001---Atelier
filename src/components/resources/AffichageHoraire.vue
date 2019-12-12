@@ -328,6 +328,7 @@ export default {
     },
     methods: {
         afficherHoraireSelonDate() {
+            this.afficherHoraire = false;
             var date = this.datehoraire;
             var dateHoraire = new Date(date)
             var jourDeLaSemaine = dateHoraire.getDay();
@@ -377,6 +378,7 @@ export default {
            this.afficherHoraire = !this.afficherHoraire
         },
         afficherHoraireSelonID() {
+            this.afficherHoraire = false;
             var choixsemaine = this.selectionne
             fetch('/exigencesEmployeur', {
                 method: 'POST',
