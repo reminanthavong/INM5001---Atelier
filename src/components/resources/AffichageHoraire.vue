@@ -306,14 +306,14 @@ export default {
         .catch(error => {
             console.log(error)
         })
-        
+            var default = 'default'
             fetch('/exigencesEmployeur', {
                 method: 'POST',
                 headers: {
                      'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
-                 body: JSON.stringify({'default'})
+                 body: JSON.stringify({default})
                 })
                 .then((response) => {
                     return response.json()
