@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/home.vue'
+import Home from '../component/home.vue'
 //import store from '../store/index.js'
 import Login from '../components/auth/login.vue'
 import GestionEmployes from '../components/resources/GestionEmployes.vue'
