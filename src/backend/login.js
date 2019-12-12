@@ -1,8 +1,8 @@
 // login.js
 const jwt = require('jsonwebtoken');
 const config = require('../config');
-var postgREST = require('postgrest-client')
-var api = new postgREST ('http://testpostgrest-calendrier.herokuapp.com')
+var postgREST = require('postgrest-client');
+var api = new postgREST ('http://testpostgrest-calendrier.herokuapp.com');
 
 
 // Fonction pour verifier si les valeurs entrez dans le formulaire login est valides.
