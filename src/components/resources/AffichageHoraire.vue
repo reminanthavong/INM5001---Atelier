@@ -6,16 +6,17 @@
                 <h3>Choisissez l'horaire a afficher selon :</h3>
 
                 <p><b>Choisir par nom:</b></p>
-                <select v-model="selectionne" @change="afficherHoraireSelonID()">
+                <select v-model="selectionne">
                     <option v-for="nom in nomsHoraire" v-bind:key="nom.idtablehoraire">
                         {{ nom.idtablehoraire }}
                      </option>
                 </select>
+                <button @click="afficherHoraireSelonID" class="btn btn-primary">Afficher</button>
                 <p></p>
                 <p><b>Choisir par date:</b></p>
                 <datepicker v-model="datehoraire" name="datehoraire"></datepicker>
                 
-                <button @click="afficherHoraireSelonDate()" class="btn btn-primary">Afficher</button>
+                <button @click="afficherHoraireSelonDate" class="btn btn-primary">Afficher</button>
                 <p></p>
                 <p v-if="afficherHoraire">Voici l'horaire</p>
                 <table id="horaire" v-if="afficherHoraire">
