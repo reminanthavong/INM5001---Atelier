@@ -15,7 +15,7 @@
                 <p><b>Choisir par date:</b></p>
                 <datepicker v-model="datehoraire" name="datehoraire"></datepicker>
                 
-                <button @change="afficherHoraireSelonDate" class="btn btn-primary">Afficher</button>
+                <button @change="afficherHoraireSelonDate()" class="btn btn-primary">Afficher</button>
                 <p></p>
                 <p v-if="afficherHoraire">Voici l'horaire</p>
                 <table id="horaire" v-if="afficherHoraire">
@@ -394,9 +394,9 @@ export default {
                 .catch(error => {
                     console.log(error);
             });
-           this.afficherHoraire = !this.afficherHoraire
+           
         }
-  
+      this.afficherHoraire = !this.afficherHoraire
     }
 }
 </script>
