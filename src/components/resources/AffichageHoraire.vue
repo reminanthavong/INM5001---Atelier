@@ -316,7 +316,7 @@ export default {
                 alert("Veuillez choisir une date correspondant à un lundi ")
             } else {
                 fetch('/exigencesEmployeur', {
-                    method: 'POST',
+                    method: 'GET',
                     headers: {
                          'Accept': 'application/json',
                         'Content-Type': 'application/json'
@@ -360,7 +360,7 @@ export default {
         afficherHoraireSelonID() {
             var choixsemaine = this.selectionne
             fetch('/exigencesEmployeur', {
-                method: 'POST',
+                method: 'GET',
                 headers: {
                      'Accept': 'application/json',
                     'Content-Type': 'application/json'
