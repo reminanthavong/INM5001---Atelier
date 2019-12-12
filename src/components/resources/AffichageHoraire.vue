@@ -394,9 +394,9 @@ export default {
                 .catch(error => {
                     console.log(error);
             });
-           
+           this.afficherHoraire = !this.afficherHoraire
         }
-      this.afficherHoraire = !this.afficherHoraire
+      
     }
 }
 </script>
