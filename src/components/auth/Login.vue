@@ -24,7 +24,7 @@
         label-for="password"
       >
         <b-form-input
-          id="input-1"
+          id="input-2"
           v-model="password"
           type="password"
           required
