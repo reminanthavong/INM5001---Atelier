@@ -14,8 +14,9 @@
     
     </div>
 
-  
+    <div>
 <router-view><router-view/>
+  </div>
 </template>
 
 <style src="./assets/w3.css"></style>
