@@ -8,7 +8,7 @@ async function afficherChoixHoraire(req, res)  {
         let choixSemaine = await Ressources.recupererListeSemaine(employeur);
 	    let result = {};
 	    result = choixSemaine.choixSemaines;
-	    console.log(JSON.stringify(result))
+	    console.log('choixSemaine.choixSemaines: ' + JSON.stringify(result))
 		res.setHeader("content-type", "application/json")
 		res.send(JSON.stringify(result));
     }catch (err) {
@@ -26,6 +26,7 @@ const afficherHoraire  = async (req, res) => {
 		let horairesRecu = await Ressources.recupererHoraire(choixsemaine,choixdate.slice(0, 10),employeur)
 		let result = {};
 		result = horairesRecu.horaires
+	        console.log('horairesRecu.horaires: ' + result)
 		res.setHeader("content-type", "application/json")
 		res.send(JSON.stringify(result));
     } catch (err) {
@@ -38,19 +39,19 @@ const afficherExigencesEmployeur = async (req,res) => {
     const employeur = req.session.idgestion
     var id = req.body.choixsemaine || '000';
     var choixDate = req.body.dateHoraire || '01-01-1899'
-    console.log(id);
+    console.log('req.body.choixsemaine 1: ' + id);
 
     //Permet de savoir si la requete a été envoyé avec le idtablehoraire ou avec une date
     if (id == '000') {
       var date = new Date(choixDate)
       date.setMinutes(date.getMinutes() + date.getTimezoneOffset()); //Ajuste la date par rapport au fuseau horaire
       id = "" + employeur + "-" + date.toISOString().slice(0, 10);
-      console.log(id);
+      console.log('req.body.choixsemaine 2: ' + id);
     }
 
     try {
         const exigences = await getExigences(id);
-        console.log(exigences);
+        console.log('exigence: 'exigences);
         res.set({'content-type': 'application/json'});
         res.send(JSON.stringify(exigences))
     } catch (e) {
