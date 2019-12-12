@@ -26,6 +26,12 @@ const afficherHoraire  = async (req, res) => {
 		let horairesRecu = await Ressources.recupererHoraire(choixsemaine,choixdate.slice(0, 10),employeur)
 		let result = {};
 		result = horairesRecu.horaires
+	        if(result.length() = 0){
+		
+		horairesRecu = await Ressources.recupererHoraire('999','2019-01-01','default')
+		result = horairesRecu.horaires
+			
+		}
 	        console.log('horairesRecu.horaires: ' + result)
 		res.setHeader("content-type", "application/json")
 		res.send(JSON.stringify(result));
@@ -51,6 +57,9 @@ const afficherExigencesEmployeur = async (req,res) => {
 
     try {
         const exigences = await getExigences(id);
+	    if (exigences.length() = 0){
+	       exigences = await getExigences('default');
+	    }
         console.log('exigence: ' + exigences);
         res.set({'content-type': 'application/json'});
         res.send(JSON.stringify(exigences))
