@@ -15,7 +15,7 @@
                 <p><b>Choisir par date:</b></p>
                 <datepicker v-model="datehoraire" @selected="afficherHoraireSelonDate" name="datehoraire"></datepicker>
                 
-
+                <button @click="changerAfficher" class="btn btn-primary">Afficher</button>
                 <p></p>
                 <p v-if="afficherHoraire">Voici l'horaire</p>
                 <table id="horaire" v-if="afficherHoraire">
@@ -307,8 +307,10 @@ export default {
         })
     },
     methods: {
+        changeAfficher(){
+           this.afficherHoraire = !this.afficherHoraire
+        },
         afficherHoraireSelonDate() {
-            this.afficherHoraire = false
             var date = this.datehoraire;
             var dateHoraire = new Date(date)
             var jourDeLaSemaine = dateHoraire.getDay();
@@ -353,11 +355,9 @@ export default {
                     console.log(error);
                 });
             }
-             this.afficherHoraire = !this.afficherHoraire
-             this.$router.push("/affichageHoraire")
+             //this.afficherHoraire = !this.afficherHoraire
         },
         afficherHoraireSelonID() {
-           this.afficherHoraire = false
             var choixsemaine = this.selectionne
             fetch('/exigencesEmployeur', {
                 method: 'POST',
@@ -395,8 +395,7 @@ export default {
                 .catch(error => {
                     console.log(error);
             });
-            this.afficherHoraire = !this.afficherHoraire
-            this.$router.push("/affichageHoraire")
+           // this.afficherHoraire = !this.afficherHoraire
         }
   
     }
