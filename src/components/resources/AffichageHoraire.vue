@@ -13,7 +13,7 @@
                 </select>
                 <p></p>
                 <p><b>Choisir par date:</b></p>
-                <datepicker v-model="datehoraire" @selected="afficherHoraireSelonDate" name="datehoraire"></datepicker>
+                <datepicker v-model="datehoraire" name="datehoraire"></datepicker>
                 
                 <button @change="afficherHoraireSelonDate" class="btn btn-primary">Soumettre</button>
                 <p></p>
