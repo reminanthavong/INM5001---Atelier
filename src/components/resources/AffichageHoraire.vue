@@ -15,10 +15,10 @@
                 <p><b>Choisir par date:</b></p>
                 <datepicker v-model="datehoraire" name="datehoraire"></datepicker>
                 
-                <button @change="afficherHoraireSelonDate" class="btn btn-primary">Soumettre</button>
+                <button @change="afficherHoraireSelonDate" class="btn btn-primary">Afficher</button>
                 <p></p>
-                <p>Voici l'horaire</p>
-                <table id="horaire">
+                <p v-if="afficherHoraire">Voici l'horaire</p>
+                <table id="horaire" v-if="afficherHoraire">
                     <thead>
                         <th>Type de quart de travail</th>
                         <th>Employés</th>
@@ -149,6 +149,7 @@ export default {
             datehoraire: null,
             nomsHoraire: null,
             horaire: [],
+            afficherHoraire: false,
             exigencesEmployeur: []
         }
     },
@@ -326,10 +327,12 @@ export default {
                     })
                     .then((data) => {
                         this.exigencesEmployeur = data
+                        
                         console.log(this.exigencesEmployeur)
                     })
                     .catch(error => {
                         console.log(error);
+                    
                 });
 
                 fetch('/affichageHoraire', {
@@ -351,7 +354,7 @@ export default {
                     console.log(error);
                 });
             }
-           
+           this.afficherHoraire = !this.afficherHoraire
         },
         afficherHoraireSelonID() {
             var choixsemaine = this.selectionne
@@ -391,7 +394,7 @@ export default {
                 .catch(error => {
                     console.log(error);
             });
-    
+           this.afficherHoraire = !this.afficherHoraire
         }
   
     }
