@@ -306,6 +306,25 @@ export default {
         .catch(error => {
             console.log(error)
         })
+        
+            fetch('/exigencesEmployeur', {
+                method: 'POST',
+                headers: {
+                     'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                 body: JSON.stringify({'default'})
+                })
+                .then((response) => {
+                    return response.json()
+                })
+                .then((data) => {
+                    this.exigencesEmployeur = data
+                    console.log(this.exigencesEmployeur)
+                })
+                .catch(error => {
+                    console.log(error);
+            });
     },
     methods: {
         afficherHoraireSelonDate() {
