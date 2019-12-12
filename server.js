@@ -2,10 +2,10 @@
 const express = require('express');
 const session = require('express-session');
 const login = require('./src/backend/login')
-const gestionemploye = require('./src/backend/gestionemploye')
-const afficherhoraire = require('./src/backend/afficherhoraire')
-const pageemploye = require('./src/backend/pageemploye')
-const gestionhoraire = require('./src/backend/gestionhoraire')
+const gestionEmploye = require('./src/backend/gestionemploye')
+const afficherHoraire = require('./src/backend/afficherhoraire')
+const pageEmploye = require('./src/backend/pageemploye')
+const gestionHoraire = require('./src/backend/gestionhoraire')
 const bodyParser = require('body-parser');
 const app = express();
 const router = express.Router();
@@ -53,26 +53,26 @@ app.use(enableCrossDomain)
 router.post('/login', login.loginAPI)
 router.get('/userStatus', login.userStatus)
 
-// Fonction GestionEmploye
-router.get('/Employe', gestionemploye.afficherEmployes)
-router.post('/Employe', gestionemploye.ajouterEmploye)
-router.patch('/Employe', gestionemploye.modifierEmploye)
-router.delete('/Employe', gestionemploye.enleverEmploye)
+// Fonction gestionEmploye
+router.get('/Employe', gestionEmploye.afficherEmployes)
+router.post('/Employe', gestionEmploye.ajouterEmploye)
+router.patch('/Employe', gestionEmploye.modifierEmploye)
+router.delete('/Employe', gestionEmploye.enleverEmploye)
 
-// Fonction AfficherHoraire
-router.get('/choixHoraire', afficherhoraire.afficherChoixHoraire)
-router.post('/affichageHoraire',afficherhoraire.afficherHoraire)
-router.post('/exigencesEmployeur', afficherhoraire.afficherExigencesEmployeur)
-router.get('/exigencesEmployeur', afficherhoraire.afficherExigencesEmployeur)
+// Fonction afficherHoraire
+router.get('/choixHoraire', afficherHoraire.afficherChoixHoraire)
+router.post('/affichageHoraire',afficherHoraire.afficherHoraire)
+router.post('/exigencesEmployeur', afficherHoraire.afficherExigencesEmployeur)
+router.get('/exigencesEmployeur', afficherHoraire.afficherExigencesEmployeur)
 
-// Fonction GestionHoraire
-router.post('/Horaire', gestionhoraire.ajouterQuarts)
-router.post('/creationHoraire', gestionhoraire.genererHoraire)
+// Fonction gestionHoraire
+router.post('/Horaire', gestionHoraire.ajouterQuarts)
+router.post('/creationHoraire', gestionHoraire.genererHoraire)
 
-// Fonction PageEmploye
-router.get('/DispoEmploye',pageemploye.afficherDisponibilites)
-router.post('/DispoEmploye',pageemploye.ajouterDisponibilites)
-router.post('/Conge', pageemploye.ajouterConge)
+// Fonction pageEmploye
+router.get('/DispoEmploye',pageEmploye.afficherDisponibilites)
+router.post('/DispoEmploye',pageEmploye.ajouterDisponibilites)
+router.post('/Conge', pageEmploye.ajouterConge)
 
 app.use(router)
 var port = process.env.PORT || 5000;

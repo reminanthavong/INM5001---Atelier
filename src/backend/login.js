@@ -1,49 +1,41 @@
-// Module ou Variable requis pour le fonctionnement des fonctions
-//var data = require('request');
-//const session = require('express-session');	
-//const bodyParser = require('body-parser')
+// login.js
 const jwt = require('jsonwebtoken');
 const config = require('../config');
-var PostgREST = require('postgrest-client')
-var Api = new PostgREST ('http://testpostgrest-calendrier.herokuapp.com')
-
-const userStatus = async (request, response) => {
-	console.log(request.session.typeutilisateur)
-        response.send(request.session.typeutilisateur)	
-}
+var postgREST = require('postgrest-client')
+var api = new postgREST ('http://testpostgrest-calendrier.herokuapp.com')
 
 
 // Fonction pour verifier si les valeurs entrez dans le formulaire login est valides.
-const loginAPI = async (request, response) => {	// Nom de la fonction
-	const username = request.body.username; // Input username dans login.html
-	const password = request.body.password; // Input password dans login.html
+const loginAPI = async (request, response) => {	
+	const username = request.body.username; 
+	const password = request.body.password; 
 	
 	 try {
-      const checkUsername = await verifierUser(username); // Allez chercher le JSON dans la fonction verifierUser
+      const checkUsername = await verifierUser(username); 
 		 
-		 // Si le JSON n'est pas vide et le mot de passe est valide
+		 
       if ( checkUsername.length > 0 && checkUsername[0].motdepasse == password ) {
 	                      if (checkUsername[0].typeutilisateur == 1){
-			        // Ajout dans JSON Session
-				request.session.username = username; // Valeur utilisateur
-	      			request.session.idgestion = username; // Valeur IDgestion
-	                        request.session.nom = username; // Valeur nom de l'employe
-	                        request.session.prenom = 'Administrateur'; // Valeur prenom de l'employe
-	                        request.session.admin = 'true'; // Si utilisateur est admin
-				request.session.user = 'false'; // Si utilisateur est admin      
+		
+				request.session.username = username;
+	      			request.session.idgestion = username; 
+	                        request.session.nom = username; 
+	                        request.session.prenom = 'Administrateur'; 
+	                        request.session.admin = 'true'; 
+				request.session.user = 'false'; 
 				let token = jwt.sign({ id: username }, config.secret, { expiresIn: 86400 });
 				     
                                 response.status(200).send({ auth: true, token: token, user: request.session});
 			      }  else {
-	                        const infoUser = await getIDgestion(username); // Allez chercher les informations du utilisateur   
-				// Ajout dans JSON Session
-				request.session.username = username; // Valeur utilisateur
-	      			request.session.idgestion = infoUser[0].idemployeur; // Valeur IDgestion
-	                        request.session.nom = infoUser[0].nomemploye; // Valeur nom de l'employe
-	                        request.session.prenom = infoUser[0].prenomemploye; // Valeur prenom de l'employe
+	                        const infoUser = await getIDgestion(username); 
+				
+				request.session.username = username; 
+	      			request.session.idgestion = infoUser[0].idemployeur; 
+	                        request.session.nom = infoUser[0].nomemploye; 
+	                        request.session.prenom = infoUser[0].prenomemploye; 
 
-	                        request.session.admin = 'false'; // Si utilisateur est admin
-				request.session.user = 'true'; // Si utilisateur est admin   
+	                        request.session.admin = 'false'; 
+				request.session.user = 'true';    
 				let token = jwt.sign({ id: username }, config.secret, { expiresIn: 86400});
 				     
                                 response.status(200).send({ auth: true, token: token, user: request.session});
@@ -56,8 +48,8 @@ const loginAPI = async (request, response) => {	// Nom de la fonction
 				response.redirect('/login?error=' + encodeURIComponent('Incorrect_Credential'));
 				
 			}			
-			//response.end(); // Fin de la fonction
-    } catch (err) { // Si erreur essaye de l'attraper
+			
+    } catch (err) { 
       console.error(err);
       response.send(err);
     }
@@ -66,38 +58,36 @@ const loginAPI = async (request, response) => {	// Nom de la fonction
 
 // Fonction qui fait une requete vers API pour chercher utlisateur
 async function verifierUser(user) {
- return await Api.get('/baseidentification').eq('idutilisateur', user)
+ return await api.get('/baseidentification').eq('idutilisateur', user)
 }
 
 // Fonction qui fait une requete vers API pour chercher IDgestion
 async function getIDgestion(user) {
 	const checkUsername = await verifierUser(user);
 	var typeUtilisateur = null;
-	// Verifie si utilisateur existe et allez chercher typeUtilisateur
 	if ( checkUsername.length > 0 ){
 		
 	typeUtilisateur = checkUsername[0].typeutilisateur
 		
 	}
-	// Sinon
+	
 	else {
 	
 		return null
 	}
-	// Si utilisateur est un gestionnaire, alors son IDgestion = Utilisateur dans table BaseIdentification
+	
 	if (typeUtilisateur == 1){
 	
 		return user
 		}
-	else {  //Sinon faire request table baseEmployes
-		return await Api.get('/baseemployes').eq('idemploye', user)
+	else {  
+		return await api.get('/baseemployes').eq('idemploye', user)
 		
 		}
 	
 }
 
-// Pour lier a index.js
+
 module.exports = {
   loginAPI,
-  userStatus
 }

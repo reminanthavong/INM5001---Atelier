@@ -39,17 +39,17 @@ import axios from 'axios'
                   //alert(resp.data.user)
                   
                   const token = resp.data.token
-                  var tadmin = resp.data.user.admin
-                  var tuser = resp.data.user.user
+                  var unAdmin = resp.data.user.admin
+                  var unUser = resp.data.user.user
                   console.log(tadmin + tuser)
                   localStorage.setItem('token', token)
-                  localStorage.setItem('user', tuser)
-                  localStorage.setItem('admin', tadmin)
+                  localStorage.setItem('user', unUser)
+                  localStorage.setItem('admin', unAdmin)
                   localStorage.setItem('nom', resp.data.user.nom)
                   localStorage.setItem('prenom', resp.data.user.prenom)
                   // Add the following line:
                   axios.defaults.headers.common['Authorization'] = token
-                  commit('auth_success', token, tadmin,tuser)
+                  commit('auth_success', token, unAdmin,unUser)
                   resolve(resp)
                 })
                 .catch(err => {

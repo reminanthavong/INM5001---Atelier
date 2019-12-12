@@ -1,14 +1,14 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import home from '../components/home.vue'
 //import store from '../store/index.js'
-import Login from '../components/auth/Login.vue'
-import GestionEmployes from '../components/resources/GestionEmployes.vue'
-import ZoneEmploye from '../components/resources/ZoneEmploye.vue'
-import AffichageHoraire from '../components/resources/AffichageHoraire.vue'
-import GestionHoraire from '../components/resources/GestionHoraire.vue'
-import Success from '../components/auth/Success.vue'
-import Unauthorized from '../components/auth/Unauthorized.vue'
+import login from '../components/auth/login.vue'
+import gestionEmployes from '../components/resources/GestionEmployes.vue'
+import zoneEmploye from '../components/resources/ZoneEmploye.vue'
+import affichageHoraire from '../components/resources/AffichageHoraire.vue'
+import gestionHoraire from '../components/resources/GestionHoraire.vue'
+import success from '../components/auth/success.vue'
+import unauthorized from '../components/auth/unauthorized.vue'
 
 Vue.use(VueRouter)
 
@@ -16,22 +16,22 @@ const routes=[
     {
     path: '/',
     name: 'home',
-    component: Home
+    component: home
     },
     {
     path: '/login',
     name: 'login',
-    component: Login   
+    component: login   
     },
     {
     path: '/unauthorized',
     name: 'unauthorized',
-    component: Unauthorized
+    component: unauthorized
     },
     {
     path: '/gestionEmployes',
     name: 'gestionEmployes',
-    component: GestionEmployes,  
+    component: gestionEmployes,  
     meta: {
         requiresAuth: true
           }
@@ -39,7 +39,7 @@ const routes=[
     {
     path: '/zoneEmploye',
     name: 'zoneEmploye',
-    component: ZoneEmploye,
+    component: zoneEmploye,
     meta: {
         isUser: true
           }  
@@ -47,7 +47,7 @@ const routes=[
 {
     path: '/gestionHoraire',
     name: 'gestionHoraire',
-    component: GestionHoraire,
+    component: gestionHoraire,
     meta: {
         requiresAuth: true
           }
@@ -55,12 +55,12 @@ const routes=[
 {
     path: '/affichageHoraire',
     name: 'affichageHoraire',
-    component: AffichageHoraire
+    component: affichageHoraire
 },
 {
     path: '/success',
     name: 'success',
-    component: Success
+    component: success
 }] 
 
 const router=new VueRouter({
