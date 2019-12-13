@@ -1,5 +1,5 @@
 const session = require('express-session');
-const genererHoraire = require('./genererHoraire');
+const creationHoraire = require('./genererHoraire');
 const { Pool } = require('pg');
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
@@ -50,7 +50,7 @@ const genererHoraire = async (req, res) => {
     var idtablehoraire = "" + sessEmployeur + "-" + dateHoraire; //Création de l'id de la table horaire
 
     try {
-        const horaire = await genererHoraire.genererHoraire(idtablehoraire, dateHoraire, sessEmployeur);
+        const horaire = await creationHoraire.genererHoraire(idtablehoraire, dateHoraire, sessEmployeur);
         var compteur = 0;
         while (compteur < horaire.horaires.length) {
             var id = horaire.horaires[compteur].idtablehoraire;
