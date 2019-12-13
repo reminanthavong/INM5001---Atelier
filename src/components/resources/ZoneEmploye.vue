@@ -8,7 +8,7 @@
                 <button @click="toggleAfficherDispos" class="btn btn-primary">Afficher mes disponibilités</button>
                 <b-table :fields="fields" :items="dispos" v-if="afficherDispos"></b-table>
 
-                <table>
+                <table v-if="afficherDispos">
                     <thead>
                         <th>Type de quart de travail</th>
                         <th>Jour</th>
