@@ -125,8 +125,6 @@
         },
         computed: {
             dispoJ1: function() {
-                console.log((this.dispos.filter(function(dispo) {return dispo.joursemaine == 1 && dispo.typequart == "J"}))[0].disponibilite)
-                console.log((this.dispos.filter(function(dispo) {return dispo.joursemaine == 1 && dispo.typequart == "J"})))
                 return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 1 && dispo.typequart == "J"}))[0].disponibilite
             },
             dispoS1: function() {
@@ -175,17 +173,16 @@
         mounted: function() {
             fetch('/DispoEmploye', {
                     method: 'GET'
-                })
-                .then((response) => {
-                    return response.json()
-                })
-                .then((data) => {
-                    this.dispos = data
-                    console.log(this.dispos)
-                })
-                .catch(error => {
-                    console.log(error);
-                });
+            })
+            .then((response) => {
+                return response.json()
+            })
+            .then((data) => {
+                this.dispos = data
+            })
+            .catch(error => {
+                console.log(error);
+            });
         },
         methods: {
             changerDispos() {
@@ -199,16 +196,16 @@
                     },
                     body: JSON.stringify(jsonEmp)
                 })
-                    .then((response) => {
-                        return response.json()
-                    })
-                    .then((data) => {
-                        console.log(data);
-                    }).catch(error => {
-                        console.log(error);
-                    });
+                .then((response) => {
+                    return response.json()
+                })
+                .then((data) => {
+                    console.log(data);
+                }).catch(error => {
+                    console.log(error);
+                });
                 this.$router.push("/success")
-                },
+            },
             demanderConge() {
                 var date = this.dateconge;
                 var dateConge = new Date(date);
@@ -234,22 +231,22 @@
                     jsonEmp.joursemaine = jourDeLaSemaine;
                     jsonEmp.dispo = this.formDataConge.checked;
                     fetch('/Conge', {
-                            method: 'POST',
-                            headers: {
-                                'Accept': 'application/json',
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify(jsonEmp)
-                        })
-                        .then((response) => {
-                            return response.json()
-                        })
-                        .then((data) => {
-                            console.log(data);
-                        }).catch(error => {
-                            console.log(error);
-                        });
-                        this.$router.push("/success")
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(jsonEmp)
+                    })
+                    .then((response) => {
+                        return response.json()
+                    })
+                    .then((data) => {
+                        console.log(data);
+                    }).catch(error => {
+                        console.log(error);
+                    });
+                    this.$router.push("/success")
                 }
             },
             toggleAfficherDispos() {

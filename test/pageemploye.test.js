@@ -30,7 +30,7 @@ describe('test de ZoneEmploye', function (done) {
  it('devrait retourner vrai', async function() {
     const req = mockReq();
     const res = mockRes();  
-  getDisponibilitesSTUB = sinon.stub(PageEmploye,'getDisponibilites');
+  getDisponibilitesSTUB = sinon.stub(ZoneEmploye,'getDisponibilites');
     await ZoneEmploye.afficherDisponibilites(req, res);
     sinon.assert.calledOnce(res.send); //res.send a ete appellee une fois
     sinon.assert.calledOnce(res.set); //res.send a ete appellee une fois
