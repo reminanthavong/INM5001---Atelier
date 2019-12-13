@@ -8,6 +8,47 @@
                 <button @click="toggleAfficherDispos" class="btn btn-primary">Afficher mes disponibilités</button>
                 <b-table :fields="fields" :items="dispos" v-if="afficherDispos"></b-table>
 
+                <table>
+                    <thead>
+                        <th>Type de quart de travail</th>
+                        <th>Jour</th>
+                        <th>Soir</th>
+                        <th>Nuit</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="journee">Lundi</td>
+                            <td> <p v-if="dispoJ1 === 1">Oui</p> <p v-else>Non</p> </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="journee">Mardi</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="journee">Mercredi</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="journee">Jeudi</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="journee">Vendredi</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+
                 <h1 class="w3-text-teal">Modifier mes disponibilités</h1>
                 <b-form @submit.prevent="changerDispos">
                     <b-form-group id="dispo" label="Veuillez cocher vos nouvelles disponibilités:">
@@ -84,6 +125,13 @@
                     {key: 'disponibilite', label: 'Disponibilité', sortable: true}
                 ]
             }
+        },
+        computed: {
+            dispoJ1: function() {
+                return this.dispos.filter(function(dispo) {
+                    return (dispo.joursemaine == "1" && emp.typequart == "J").disponibilite
+            })
+        },
         },
         mounted: function() {
             fetch('/DispoEmploye', {
