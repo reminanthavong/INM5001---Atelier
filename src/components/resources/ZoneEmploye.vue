@@ -129,6 +129,7 @@
         computed: {
             dispoJ1: function() {
                 console.log((this.dispos.filter(function(dispo) {return dispo.joursemaine == 1 && dispo.typequart == "J"}))[0].disponibilite)
+                console.log((this.dispos.filter(function(dispo) {return dispo.joursemaine == 1 && dispo.typequart == "J"})))
                 return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 1 && dispo.typequart == "J"}))[0].disponibilite
             },
             dispoS1: function() {
