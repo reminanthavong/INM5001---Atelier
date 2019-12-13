@@ -14,70 +14,86 @@
                     <h6>Lundi:</h6>
                     <b-form-row inline id="lundi">
                         <b-col>
-                        <label for="lundijour"> Jour:  </label>
-                        <b-form-input inline id="lundijour" v-model="lundijour" pattern='[0-9]' required='required' placeholder="1-9"></b-form-input>
+                            <label for="lundijour"> Jour:  </label>
+                            <b-form-input inline id="lundijour" v-model="lundijour" pattern='[0-9]' required='required' placeholder="1-9"></b-form-input>
                         </b-col>
                         <b-col>
-                        <label for="lundisoir"> Soir:  </label>
-                        <b-form-input inline id="lundisoir" v-model="lundisoir"  pattern='[0-9]' required='required' placeholder="1-9"></b-form-input>
+                            <label for="lundisoir"> Soir:  </label>
+                            <b-form-input inline id="lundisoir" v-model="lundisoir"  pattern='[0-9]' required='required' placeholder="1-9"></b-form-input>
                         </b-col>
                         <b-col>
-                        <label for="lundinuit"> Nuit:  </label>
-                        <b-form-input inline id="lundinuit" v-model="lundinuit" pattern='[0-9]' required='required' placeholder="1-9"></b-form-input>
+                            <label for="lundinuit"> Nuit:  </label>
+                            <b-form-input inline id="lundinuit" v-model="lundinuit" pattern='[0-9]' required='required' placeholder="1-9"></b-form-input>
                         </b-col>
                     </b-form-row>
                     <br/>
 
                     <h6>Mardi:</h6>
-                    <b-form-group inline id="mardi">
-                        <label for="mardijour"> Jour:  </label>
-                        <b-form-input id="mardijour" v-model="mardijour" pattern='[0-9]' required='required' placeholder="1-9"></b-form-input>
-
-                        <label for="mardisoir"> Soir:  </label>
-                        <b-form-input id="mardisoir" v-model="mardisoir" pattern='[0-9]' required='required' placeholder="1-9"></b-form-input>
-
-                        <label for="mardinuit"> Nuit:  </label>
-                        <b-form-input id="mardinuit" v-model="mardinuit" pattern='[0-9]' required='required' placeholder="1-9"></b-form-input>
-                    </b-form-group>
+                    <b-form-row inline id="mardi">
+                        <b-col>
+                            <label for="mardijour"> Jour:  </label>
+                            <b-form-input id="mardijour" v-model="mardijour" pattern='[0-9]' required='required' placeholder="1-9"></b-form-input>
+                        </b-col>
+                        <b-col>
+                            <label for="mardisoir"> Soir:  </label>
+                            <b-form-input id="mardisoir" v-model="mardisoir" pattern='[0-9]' required='required' placeholder="1-9"></b-form-input>
+                        </b-col>
+                        <b-col>
+                            <label for="mardinuit"> Nuit:  </label>
+                            <b-form-input id="mardinuit" v-model="mardinuit" pattern='[0-9]' required='required' placeholder="1-9"></b-form-input>
+                        </b-col>
+                    </b-form-row>
                     <br/>
 
                     <h6>Mercredi:</h6>
-                    <b-form-group inline id="mercredi">
-                        <label for="mercredijour"> Jour:  </label>
-                        <b-form-input id="mercredijour" v-model="mercredijour" pattern='[0-9]' required='required' placeholder="1-9"></b-form-input>
-
-                        <label for="mercredisoir"> Soir:  </label>
-                        <b-form-input id="mercredisoir" v-model="mercredisoir" pattern='[0-9]' required='required' placeholder="1-9"></b-form-input>
-
-                        <label for="mercredinuit"> Nuit:  </label>
-                        <b-form-input id="mercredinuit" v-model="mercredinuit" pattern='[0-9]' required='required' placeholder="1-9"></b-form-input>
-                    </b-form-group>
+                    <b-form-row inline id="mercredi">
+                        <b-col>
+                            <label for="mercredijour"> Jour:  </label>
+                            <b-form-input id="mercredijour" v-model="mercredijour" pattern='[0-9]' required='required' placeholder="1-9"></b-form-input>
+                        </b-col>
+                        <b-col>
+                            <label for="mercredisoir"> Soir:  </label>
+                            <b-form-input id="mercredisoir" v-model="mercredisoir" pattern='[0-9]' required='required' placeholder="1-9"></b-form-input>
+                        </b-col>
+                        <b-col>
+                            <label for="mercredinuit"> Nuit:  </label>
+                            <b-form-input id="mercredinuit" v-model="mercredinuit" pattern='[0-9]' required='required' placeholder="1-9"></b-form-input>
+                        </b-col>
+                    </b-form-row>
                     <br/>
 
                     <h6>Jeudi:</h6>
-                    <b-form-group inline id="jeudi">
-                        <label for="jeudijour"> Jour:  </label>
-                        <b-form-input id="jeudijour" v-model="jeudijour" pattern='[0-9]' required='required' placeholder="1-9"></b-form-input>
-
-                        <label for="jeudisoir"> Soir:  </label>
-                        <b-form-input id="jeudisoir" v-model="jeudisoir" pattern='[0-9]' required='required' placeholder="1-9"></b-form-input>
-
-                        <label for="jeudinuit"> Nuit:  </label>
-                        <b-form-input id="jeudinuit" v-model="jeudinuit" pattern='[0-9]' required='required' placeholder="1-9"></b-form-input>
-                    </b-form-group>
+                    <b-form-row inline id="jeudi">
+                        <b-col>
+                            <label for="jeudijour"> Jour:  </label>
+                            <b-form-input id="jeudijour" v-model="jeudijour" pattern='[0-9]' required='required' placeholder="1-9"></b-form-input>
+                        </b-col>
+                        <b-col>
+                            <label for="jeudisoir"> Soir:  </label>
+                            <b-form-input id="jeudisoir" v-model="jeudisoir" pattern='[0-9]' required='required' placeholder="1-9"></b-form-input>
+                        </b-col>
+                        <b-col>
+                            <label for="jeudinuit"> Nuit:  </label>
+                            <b-form-input id="jeudinuit" v-model="jeudinuit" pattern='[0-9]' required='required' placeholder="1-9"></b-form-input>
+                        </b-col>
+                    </b-form-row>
                     <br/>
 
                     <h6>Vendredi:</h6>
-                    <b-form-group inline id="vendredi">
-                        <label for="vendredijour"> Jour:  </label>
-                        <b-form-input id="vendredijour" v-model="vendredijour" pattern='[0-9]' required='required' placeholder="1-9"></b-form-input>
-
-                        <label for="vendredisoir"> Soir:  </label>
-                        <b-form-input id="vendredisoir" v-model="vendredisoir" pattern='[0-9]' required='required' placeholder="1-9"></b-form-input>
-
-                        <label for="vendredinuit"> Nuit:  </label>
-                        <b-form-input id="vendredinuit" v-model="vendredinuit" pattern='[0-9]' required='required' placeholder="1-9"></b-form-input>
-                    </b-form-group>
+                    <b-form-row inline id="vendredi">
+                        <b-col>
+                            <label for="vendredijour"> Jour:  </label>
+                            <b-form-input id="vendredijour" v-model="vendredijour" pattern='[0-9]' required='required' placeholder="1-9"></b-form-input>
+                        </b-col>
+                        <b-col>
+                            <label for="vendredisoir"> Soir:  </label>
+                            <b-form-input id="vendredisoir" v-model="vendredisoir" pattern='[0-9]' required='required' placeholder="1-9"></b-form-input>
+                        </b-col>
+                        <b-col>
+                            <label for="vendredinuit"> Nuit:  </label>
+                            <b-form-input id="vendredinuit" v-model="vendredinuit" pattern='[0-9]' required='required' placeholder="1-9"></b-form-input>
+                        </b-col>
+                    </b-form-row>
                     <br/>
                     <b-button type="submit" variant="primary">Générer l'horaire</b-button>
                 </b-form>
