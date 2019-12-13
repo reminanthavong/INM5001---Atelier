@@ -5,7 +5,7 @@
                 <br/>
                 <br/>
                 <h4 class="w3-text-teal">Entrer le nombre d'employé nécessaire par quart de travail: </h4>
-                <b-form inline @submit.prevent="genererHoraire">
+                <b-form @submit.prevent="genererHoraire">
                     <b-form-group id="datehoraire" label="Date du lundi de la semaine:">
                         <datepicker v-model="datehoraire" name="datehoraire"></datepicker>
                     </b-form-group>
@@ -14,13 +14,13 @@
                     <h6>Lundi:</h6>
                     <b-form-group inline id="lundi">
                         <label for="lundijour"> Jour:  </label>
-                        <b-form-input id="lundijour" v-model="lundijour" pattern='[0-9]' required='required' placeholder="1-9"></b-form-input>
+                        <b-form-input inline id="lundijour" v-model="lundijour" pattern='[0-9]' required='required' placeholder="1-9"></b-form-input>
 
                         <label for="lundisoir"> Soir:  </label>
-                        <b-form-input id="lundisoir" v-model="lundisoir"  pattern='[0-9]' required='required' placeholder="1-9"></b-form-input>
+                        <b-form-input inline id="lundisoir" v-model="lundisoir"  pattern='[0-9]' required='required' placeholder="1-9"></b-form-input>
 
                         <label for="lundinuit"> Nuit:  </label>
-                        <b-form-input id="lundinuit" v-model="lundinuit" pattern='[0-9]' required='required' placeholder="1-9"></b-form-input>
+                        <b-form-input inline id="lundinuit" v-model="lundinuit" pattern='[0-9]' required='required' placeholder="1-9"></b-form-input>
                     </b-form-group>
                     <br/>
 
