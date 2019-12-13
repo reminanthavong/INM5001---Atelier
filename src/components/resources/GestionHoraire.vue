@@ -2,7 +2,7 @@
     <div class="w3-main" style="margin-left:250px">
         <div class="w3-row w3-padding-64">
             <div class="w3-twothird w3-container">
-                <h1 class="w3-text-teal">Création d'un horaire</h1
+                <h1 class="w3-text-teal">Création d'un horaire</h1>
                 <br/>
                 <br/>
                 <h4 class="w3-text-teal">Entrez le nombre d'employés nécessaire par quart de travail: </h4>
