@@ -4,7 +4,7 @@ const session = require('express-session');
 const login = require('./src/backend/login')
 const gestionEmploye = require('./src/backend/gestionemploye')
 const afficherHoraire = require('./src/backend/afficherhoraire')
-const pageEmploye = require('./src/backend/pageemploye')
+const zoneEmploye = require('./src/backend/zoneemploye')
 const gestionHoraire = require('./src/backend/gestionhoraire')
 const bodyParser = require('body-parser');
 const app = express();
@@ -57,9 +57,9 @@ router.post('/Horaire', gestionHoraire.ajouterQuarts)
 router.post('/creationHoraire', gestionHoraire.genererHoraire)
 
 // Fonction pageEmploye
-router.get('/DispoEmploye',pageEmploye.afficherDisponibilites)
-router.post('/DispoEmploye',pageEmploye.ajouterDisponibilites)
-router.post('/Conge', pageEmploye.ajouterConge)
+router.get('/DispoEmploye',zoneEmploye.afficherDisponibilites)
+router.post('/DispoEmploye',zoneEmploye.ajouterDisponibilites)
+router.post('/Conge', zoneEmploye.ajouterConge)
 
 app.use(router)
 var port = process.env.PORT || 5000;
