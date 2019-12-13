@@ -67,6 +67,7 @@ const ajouterConge = async (req, res) => {
 
     var date = new Date(reqJson.dateconge)
     date.setMinutes(date.getMinutes() + date.getTimezoneOffset()); //Ajuste la date par rapport au fuseau horaire
+    console.log(date);
 
     var i = 0;
     while (i < reqJson.dispo.length) {

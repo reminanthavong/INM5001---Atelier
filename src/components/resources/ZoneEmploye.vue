@@ -18,13 +18,13 @@
                     <tbody>
                         <tr>
                             <td class="journee">Lundi</td>
-                            <td> <p v-if="dispoJ1 === 1">Oui</p> <p v-else>Non</p> </td>
-                            <td> <p v-if="dispoS1 === 1">Oui</p> <p v-else>Non</p> </td>
-                            <td> <p v-if="dispoN1 === 1">Oui</p> <p v-else>Non</p> </td>
+                            <td> <p v-if="dispoJ1 === '1'">Oui</p> <p v-else>Non</p> </td>
+                            <td> <p v-if="dispoS1 === '1'">Oui</p> <p v-else>Non</p> </td>
+                            <td> <p v-if="dispoN1 === '1'">Oui</p> <p v-else>Non</p> </td>
                         </tr>
                         <tr>
                             <td class="journee">Mardi</td>
-                            <td> <p v-if="dispoJ2 === 1">Oui</p> <p v-else>Non</p> </td>
+                            <td> <p v-if="dispoJ2 === '1'">Oui</p> <p v-else>Non</p> </td>
                             <td> <p v-if="dispoS2 === 1">Oui</p> <p v-else>Non</p> </td>
                             <td> <p v-if="dispoN2 === 1">Oui</p> <p v-else>Non</p> </td>
                         </tr>
