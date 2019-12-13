@@ -1,5 +1,5 @@
 const session = require('express-session');
-const GenererHoraire = require('./GenererHoraire')
+const genererHoraire = require('./genererHoraire');
 const { Pool } = require('pg');
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
@@ -27,17 +27,16 @@ const ajouterQuarts = async(req, res) => {
 	var i = 1;
 	while (i < quarts.length) {
 		var x = quarts[i];
-		    try{
-			    await ajoutQuarts(sessEmployeur, idtablehoraire, x.slice(0, 1), x.slice(1), jsonResultat[i]);
-		        result.success = true;
-
-		    }catch (e) {
-		        result.success = false;
-	        }
+	    try{
+		    await ajoutQuarts(sessEmployeur, idtablehoraire, x.slice(0, 1), x.slice(1), jsonResultat[i]);
+		    result.success = true;
+	    }catch (e){
+		    result.success = false;
+	    }
   		i++;
   	}
-    res.setHeader("content-type", "application/json")
-    res.send(JSON.stringify(result))
+    res.setHeader("content-type", "application/json");
+    res.send(JSON.stringify(result));
 }
 
 const genererHoraire = async (req, res) => {
@@ -47,12 +46,11 @@ const genererHoraire = async (req, res) => {
 
     var date = new Date(reqjson.horairedate);
     date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
-    var dateHoraire = date.toISOString().slice(0,10)
-    console.log(dateHoraire)
+    var dateHoraire = date.toISOString().slice(0,10);
     var idtablehoraire = "" + sessEmployeur + "-" + dateHoraire; //Création de l'id de la table horaire
 
     try {
-        const horaire = await GenererHoraire.GenererHoraire(idtablehoraire, dateHoraire, sessEmployeur)
+        const horaire = await genererHoraire.genererHoraire(idtablehoraire, dateHoraire, sessEmployeur);
         var compteur = 0;
         while (compteur < horaire.horaires.length) {
             var id = horaire.horaires[compteur].idtablehoraire;
@@ -64,11 +62,11 @@ const genererHoraire = async (req, res) => {
             compteur++;
         }
         result.success = true;
-    } catch (e) {
+    }catch (e){
         result.success = false;
     }
-    res.setHeader("content-type", "application/json")
-    res.send(JSON.stringify(result))
+    res.setHeader("content-type", "application/json");
+    res.send(JSON.stringify(result));
 }
 
 async function ajoutQuarts(sessEmployeur, idtablehoraire, quart, jour, nbemploye) {

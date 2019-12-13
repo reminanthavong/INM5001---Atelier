@@ -4,7 +4,7 @@ const pool = new Pool({
   ssl: true
 });
 //---------------------------------------------------------------------------------------------------------------------------------//
-async function GenererHoraire(choixsemaine,choixdate,employeur) {
+async function genererHoraire(choixsemaine,choixdate,employeur) {
 	const client = await pool.connect()
 	const horaire = await client.query(`SELECT DISTINCT '${choixsemaine}' AS IDTableHoraire, '${choixdate}' AS DateParam ,C.IDEmployeur,C.IDEmploye, C.JourSemaine, C.TypeQuart,c.Selection--,NBREmployes
 	FROM(
@@ -39,13 +39,9 @@ INNER JOIN BaseQuartsEmployeur BQER ON BQER.IDEmployeur=C.IDEmployeur
 ;`);
 	const horairegenere = { 'horaires': (horaire) ? horaire.rows : null};
 	client.release();
-	//console.log(horaire);
 	return horairegenere
 }
-//---------------------------------------------------------------------------------------------------------------------------------//
-
-//---------------------------------------------------------------------------------------------------------------------------------//
 
 module.exports = {
-GenererHoraire,
+    genererHoraire,
 }

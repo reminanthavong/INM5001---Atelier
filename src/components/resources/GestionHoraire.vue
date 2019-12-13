@@ -133,9 +133,9 @@
             genererHoraire() {
                 var date = this.datehoraire;
                 var dateHoraire = new Date(date);
-                var jourDeLaSemaine = dateHoraire.getDay()
+                var jourDeLaSemaine = dateHoraire.getDay();
                 if(jourDeLaSemaine != 1) {
-                    alert("Veuillez choisir une date correspondant à un lundi ")
+                    alert("Veuillez choisir une date correspondant à un lundi ");
                 }else{
                     const jsonExigences = {};
                     jsonExigences.horairedate = dateHoraire
@@ -173,9 +173,8 @@
                     });
                 }
                 if(jourDeLaSemaine == 1) {
-                    const jsonHoraire = {}
-                    jsonHoraire.horairedate = dateHoraire
-                    console.log(jsonHoraire)
+                    const jsonHoraire = {};
+                    jsonHoraire.horairedate = dateHoraire;
                     fetch('/creationHoraire', {
                         method: 'POST',
                         headers: {
@@ -193,7 +192,7 @@
                     .catch(error => {
                         console.log(error);
                     });
-                    this.$router.push("/success")
+                    this.$router.push("/success");
                 }
             }
         }

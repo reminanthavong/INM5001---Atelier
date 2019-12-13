@@ -64,6 +64,6 @@ var HoraireGenere00120191007Gestion3525 =  {horaires:
 }
 
 module.exports = {
-Horaire00120191007Gestion3525,
-HoraireGenere00120191007Gestion3525
+    Horaire00120191007Gestion3525,
+    HoraireGenere00120191007Gestion3525
 }
