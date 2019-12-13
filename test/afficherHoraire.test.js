@@ -42,7 +42,7 @@ describe('test de AfficherHoraire', function (done) {
 
   /**********/
     describe('recupererHoraire', function (done) {
-   xit('devrait retourner le bon horaire', async () => {
+   it('devrait retourner le bon horaire', async () => {
          const horaire = await Ressources.recupererHoraire('001','2019-10-07','Gestion3525');
          expect(horaire).to.deep.equal(TestScenarii.Horaire00120191007Gestion3525);
       });
@@ -65,8 +65,8 @@ describe('recupererHoraire', function (done) {
       
     xit('devrait appeller la fonction', async function() {
         const req = mockReq({ body: {}});
-        var res = mockRes();
-        var GenererHoraireSTUB = sinon.stub(GenererHoraire,'genererHoraire');
+        const res = mockRes();
+        GenererHoraireSTUB = sinon.stub(GenererHoraire,'genererHoraire');
         await GenererHoraire.genererHoraireReponse(req, res);
         sinon.assert.calledOnce(res.json); //res.json a ete appellee une fois
         sinon.assert.calledOnce(GenererHoraireSTUB);
