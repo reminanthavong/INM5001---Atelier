@@ -128,9 +128,7 @@
         },
         computed: {
             dispoJ1: function() {
-                return this.dispos.filter(function(dispo) {
-                    return (dispo.joursemaine == "1" && dispo.typequart == "J").disponibilite
-            })
+                return (dispo.joursemaine == "1" && dispo.typequart == "J").disponibilite
         },
         },
         mounted: function() {
@@ -142,6 +140,7 @@
                 })
                 .then((data) => {
                     this.dispos = data
+                    console.log(dispos);
                 })
                 .catch(error => {
                     console.log(error);
