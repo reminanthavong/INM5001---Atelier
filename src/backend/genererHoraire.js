@@ -48,7 +48,7 @@ const genererHoraireReponse = async (req, res) => {
         const choixdate = resp['choixdate'] || '01-01-1899';
         const employeur = req.session.username
 try {
-	const horaire =await GenererHoraire.GenererHoraire(choixsemaine,choixdate,employeur);
+	const horaire =await genererHoraire(choixsemaine,choixdate,employeur);
 	res.json(horaire);
  } catch (err) {
 	console.error(err);
