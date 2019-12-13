@@ -5,7 +5,7 @@
                 <br/>
                 <br/>
                 <h4 class="w3-text-teal">Entrer le nombre d'employé nécessaire par quart de travail: </h4>
-                <b-form @submit.prevent="genererHoraire">
+                <b-form inline @submit.prevent="genererHoraire">
                     <b-form-group id="datehoraire" label="Date du lundi de la semaine:">
                         <datepicker v-model="datehoraire" name="datehoraire"></datepicker>
                     </b-form-group>
