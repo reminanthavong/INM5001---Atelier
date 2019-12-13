@@ -19,32 +19,32 @@
                         <tr>
                             <td class="journee">Lundi</td>
                             <td> <p v-if="dispoJ1 === 1">Oui</p> <p v-else>Non</p> </td>
-                            <td></td>
-                            <td></td>
+                            <td> <p v-if="dispoS1 === 1">Oui</p> <p v-else>Non</p> </td>
+                            <td> <p v-if="dispoN1 === 1">Oui</p> <p v-else>Non</p> </td>
                         </tr>
                         <tr>
                             <td class="journee">Mardi</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td> <p v-if="dispoJ2 === 1">Oui</p> <p v-else>Non</p> </td>
+                            <td> <p v-if="dispoS2 === 1">Oui</p> <p v-else>Non</p> </td>
+                            <td> <p v-if="dispoN2 === 1">Oui</p> <p v-else>Non</p> </td>
                         </tr>
                         <tr>
                             <td class="journee">Mercredi</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td> <p v-if="dispoJ3 === 1">Oui</p> <p v-else>Non</p> </td>
+                            <td> <p v-if="dispoS3 === 1">Oui</p> <p v-else>Non</p> </td>
+                            <td> <p v-if="dispoN3 === 1">Oui</p> <p v-else>Non</p> </td>
                         </tr>
                         <tr>
                             <td class="journee">Jeudi</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td> <p v-if="dispoJ4 === 1">Oui</p> <p v-else>Non</p> </td>
+                            <td> <p v-if="dispoS4 === 1">Oui</p> <p v-else>Non</p> </td>
+                            <td> <p v-if="dispoN4 === 1">Oui</p> <p v-else>Non</p> </td>
                         </tr>
                         <tr>
                             <td class="journee">Vendredi</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td> <p v-if="dispoJ5 === 1">Oui</p> <p v-else>Non</p> </td>
+                            <td> <p v-if="dispoS5 === 1">Oui</p> <p v-else>Non</p> </td>
+                            <td> <p v-if="dispoN5 === 1">Oui</p> <p v-else>Non</p> </td>
                         </tr>
                     </tbody>
                 </table>
@@ -128,7 +128,50 @@
         },
         computed: {
             dispoJ1: function() {
+                console.log((this.dispos.filter(function(dispo) {return dispo.joursemaine == 1 && dispo.typequart == "J"})).disponibilite)
                 return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 1 && dispo.typequart == "J"})).disponibilite
+            },
+            dispoS1: function() {
+                return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 1 && dispo.typequart == "S"})).disponibilite
+            },
+            dispoN1: function() {
+                return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 1 && dispo.typequart == "N"})).disponibilite
+            },
+            dispoJ2: function() {
+                return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 2 && dispo.typequart == "J"})).disponibilite
+            },
+            dispoS2: function() {
+                return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 2 && dispo.typequart == "S"})).disponibilite
+            },
+            dispoN2: function() {
+                return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 2 && dispo.typequart == "N"})).disponibilite
+            },
+            dispoJ3: function() {
+                return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 3 && dispo.typequart == "J"})).disponibilite
+            },
+            dispoS3: function() {
+                return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 3 && dispo.typequart == "s"})).disponibilite
+            },
+             dispoN3: function() {
+                 return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 3 && dispo.typequart == "N"})).disponibilite
+             },
+            dispoJ4: function() {
+                return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 4 && dispo.typequart == "J"})).disponibilite
+            },
+            dispoS4: function() {
+                return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 4 && dispo.typequart == "S"})).disponibilite
+            },
+            dispoN4: function() {
+                return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 4 && dispo.typequart == "N"})).disponibilite
+            },
+            dispoJ5: function() {
+                return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 5 && dispo.typequart == "J"})).disponibilite
+            },
+            dispoS5: function() {
+                return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 5 && dispo.typequart == "S"})).disponibilite
+            },
+            dispoN5: function() {
+                return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 5 && dispo.typequart == "N"})).disponibilite
             }
         },
         mounted: function() {
@@ -223,5 +266,13 @@
         background-color: grey;
         border: none;
         margin: 5px 0;
+    }
+    th, td {
+      border-bottom: 1px solid #ddd;
+      padding: 5px;
+      text-align: left;
+    }
+    table {
+        width: 100%;
     }
 </style>
