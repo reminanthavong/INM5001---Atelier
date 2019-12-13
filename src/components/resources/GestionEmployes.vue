@@ -123,10 +123,10 @@
                 }).catch(error => {
                     console.log(error);
                 });
-                this.afficherEmployes = !this.afficherEmployes
+                this.afficherEmployes = !this.afficherEmployes;
             },
             congedierEmploye() {
-                const jsonRequest = {}
+                const jsonRequest = {};
                 jsonRequest.idemploye = this.formDataCongediement.toUpperCase();
                 fetch('/Employe', {
                     method: 'DELETE',
@@ -145,7 +145,7 @@
                 .catch(error => {
                     console.log(error);
                 });
-                 this.$router.push("/success")
+                this.$router.push("/success");
             },
                 ajouterEmploye() {
                     var date = this.dateembauche;
@@ -174,10 +174,10 @@
                         }).catch(error => {
                             console.log(error);
                         });
-                        this.$router.push("/success")
+                        this.$router.push("/success");
                 },
                 modifierEmploye() {
-                    alert("Fonctionnalité en cours de dévelopement")
+                    alert("Fonctionnalité en cours de dévelopement");
                 }
         }
     }

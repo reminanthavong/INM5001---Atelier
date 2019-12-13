@@ -5,6 +5,7 @@
                 <br/>
                 <h1 class="w3-text-teal">Disponibilités</h1>
 
+                <button @click="toggleAfficherDispos" class="btn btn-primary">Afficher mes disponibilités</button>
                 <table v-if="afficherDispos">
                     <thead>
                         <th>Type de quart de travail</th>
