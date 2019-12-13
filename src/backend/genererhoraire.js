@@ -4,7 +4,7 @@ const pool = new Pool({
   ssl: true
 });
 //---------------------------------------------------------------------------------------------------------------------------------//
-async function genererHoraire(choixsemaine,choixdate,employeur) {
+async function genererHoraire(choixsemaine, choixdate, employeur) {
 	const client = await pool.connect()
 	const horaire = await client.query(`SELECT DISTINCT '${choixsemaine}' AS IDTableHoraire, '${choixdate}' AS DateParam ,C.IDEmployeur,C.IDEmploye, C.JourSemaine, C.TypeQuart,c.Selection--,NBREmployes
 	FROM(
