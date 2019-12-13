@@ -131,7 +131,6 @@
                 return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 1 && dispo.typequart == "J"})).disponibilite
             }
         },
-        },
         mounted: function() {
             fetch('/DispoEmploye', {
                     method: 'GET'
