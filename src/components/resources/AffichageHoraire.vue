@@ -157,138 +157,138 @@ export default {
     computed: {
         lundiJour: function() {
             return this.horaire.filter(function(emp) {
-                return emp.joursemaine == "Lundi" && emp.typequart == "Jour"
-            })
+                return emp.joursemaine == "Lundi" && emp.typequart == "Jour";
+            });
         },
         lundiSoir: function() {
             return this.horaire.filter(function(emp) {
-                return emp.joursemaine == "Lundi" && emp.typequart == "Soir"
-            })
+                return emp.joursemaine == "Lundi" && emp.typequart == "Soir";
+            });
         },
         lundiNuit: function() {
             return this.horaire.filter(function(emp) {
-                return emp.joursemaine == "Lundi" && emp.typequart == "Nuit"
-            })
+                return emp.joursemaine == "Lundi" && emp.typequart == "Nuit";
+            });
         },
         mardiJour: function() {
             return this.horaire.filter(function(emp) {
-                return emp.joursemaine == "Mardi" && emp.typequart == "Jour"
-            })
+                return emp.joursemaine == "Mardi" && emp.typequart == "Jour";
+            });
         },
         mardiSoir: function() {
             return this.horaire.filter(function(emp) {
-                return emp.joursemaine == "Mardi" && emp.typequart == "Soir"
-            })
+                return emp.joursemaine == "Mardi" && emp.typequart == "Soir";
+            });
         },
         mardiNuit: function() {
             return this.horaire.filter(function(emp) {
-                return emp.joursemaine == "Mardi" && emp.typequart == "Nuit"
-            })
+                return emp.joursemaine == "Mardi" && emp.typequart == "Nuit";
+            });
         } ,
         mercrediJour: function() {
             return this.horaire.filter(function(emp) {
-                return emp.joursemaine == "Mercredi" && emp.typequart == "Jour"
-            })
+                return emp.joursemaine == "Mercredi" && emp.typequart == "Jour";
+            });
         },
         mercrediSoir: function() {
             return this.horaire.filter(function(emp) {
-                return emp.joursemaine == "Mercredi" && emp.typequart == "Soir"
-            })
+                return emp.joursemaine == "Mercredi" && emp.typequart == "Soir";
+            });
         },
         mercrediNuit: function() {
             return this.horaire.filter(function(emp) {
-                return emp.joursemaine == "Mercredi" && emp.typequart == "Nuit"
-            })
+                return emp.joursemaine == "Mercredi" && emp.typequart == "Nuit";
+            });
         },
         jeudiJour: function() {
             return this.horaire.filter(function(emp) {
-                return emp.joursemaine == "Jeudi" && emp.typequart == "Jour"
-            })
+                return emp.joursemaine == "Jeudi" && emp.typequart == "Jour";
+            });
         },
         jeudiSoir: function() {
             return this.horaire.filter(function(emp) {
-                return emp.joursemaine == "Jeudi" && emp.typequart == "Soir"
-            })
+                return emp.joursemaine == "Jeudi" && emp.typequart == "Soir";
+            });
         },
         jeudiNuit: function() {
             return this.horaire.filter(function(emp) {
-                return emp.joursemaine == "Jeudi" && emp.typequart == "Nuit"
-            })
+                return emp.joursemaine == "Jeudi" && emp.typequart == "Nuit";
+            });
         },
         vendrediJour: function() {
             return this.horaire.filter(function(emp) {
-                return emp.joursemaine == "Vendredi" && emp.typequart == "Jour"
-            })
+                return emp.joursemaine == "Vendredi" && emp.typequart == "Jour";
+            });
         },
         vendrediSoir: function() {
             return this.horaire.filter(function(emp) {
-                return emp.joursemaine == "Vendredi" && emp.typequart == "Soir"
-            })
+                return emp.joursemaine == "Vendredi" && emp.typequart == "Soir";
+            });
         },
         vendrediNuit: function() {
             return this.horaire.filter(function(emp) {
-                return emp.joursemaine == "Vendredi" && emp.typequart == "Nuit"
-            })
+                return emp.joursemaine == "Vendredi" && emp.typequart == "Nuit";
+            });
         },
         J1Manquants : function () {
             return this.exigencesEmployeur[0].nbremployes
-                 - (this.horaire.filter(function(emp) {return emp.joursemaine == "Lundi" && emp.typequart == "Jour"})).length
+                 - (this.horaire.filter(function(emp) {return emp.joursemaine == "Lundi" && emp.typequart == "Jour"})).length;
         },
         S1Manquants : function () {
             return this.exigencesEmployeur[1].nbremployes
-                 - (this.horaire.filter(function(emp) {return emp.joursemaine == "Lundi" && emp.typequart == "Soir"})).length
+                 - (this.horaire.filter(function(emp) {return emp.joursemaine == "Lundi" && emp.typequart == "Soir"})).length;
         },
         N1Manquants : function () {
             return this.exigencesEmployeur[2].nbremployes
-                 - (this.horaire.filter(function(emp) {return emp.joursemaine == "Lundi" && emp.typequart == "Nuit"})).length
+                 - (this.horaire.filter(function(emp) {return emp.joursemaine == "Lundi" && emp.typequart == "Nuit"})).length;
         },
         J2Manquants : function () {
             return this.exigencesEmployeur[3].nbremployes
-                 - (this.horaire.filter(function(emp) {return emp.joursemaine == "Mardi" && emp.typequart == "Jour"})).length
+                 - (this.horaire.filter(function(emp) {return emp.joursemaine == "Mardi" && emp.typequart == "Jour"})).length;
         },
         S2Manquants : function () {
             return this.exigencesEmployeur[4].nbremployes
-                 - (this.horaire.filter(function(emp) {return emp.joursemaine == "Mardi" && emp.typequart == "Soir"})).length
+                 - (this.horaire.filter(function(emp) {return emp.joursemaine == "Mardi" && emp.typequart == "Soir"})).length;
         },
         N2Manquants : function () {
             return this.exigencesEmployeur[5].nbremployes
-                 - (this.horaire.filter(function(emp) {return emp.joursemaine == "Mardi" && emp.typequart == "Nuit"})).length
+                 - (this.horaire.filter(function(emp) {return emp.joursemaine == "Mardi" && emp.typequart == "Nuit"})).length;
         },
         J3Manquants : function () {
             return this.exigencesEmployeur[6].nbremployes
-                - (this.horaire.filter(function(emp) {return emp.joursemaine == "Mercredi" && emp.typequart == "Jour"})).length
+                - (this.horaire.filter(function(emp) {return emp.joursemaine == "Mercredi" && emp.typequart == "Jour"})).length;
         },
         S3Manquants : function () {
             return this.exigencesEmployeur[7].nbremployes
-                - (this.horaire.filter(function(emp) {return emp.joursemaine == "Mercredi" && emp.typequart == "Soir"})).length
+                - (this.horaire.filter(function(emp) {return emp.joursemaine == "Mercredi" && emp.typequart == "Soir"})).length;
         },
         N3Manquants : function () {
             return this.exigencesEmployeur[8].nbremployes
-                - (this.horaire.filter(function(emp) {return emp.joursemaine == "Mercredi" && emp.typequart == "Nuit"})).length
+                - (this.horaire.filter(function(emp) {return emp.joursemaine == "Mercredi" && emp.typequart == "Nuit"})).length;
         },
         J4Manquants : function () {
             return this.exigencesEmployeur[9].nbremployes
-                - (this.horaire.filter(function(emp) {return emp.joursemaine == "Jeudi" && emp.typequart == "Jour"})).length
+                - (this.horaire.filter(function(emp) {return emp.joursemaine == "Jeudi" && emp.typequart == "Jour"})).length;
         },
         S4Manquants : function () {
             return this.exigencesEmployeur[10].nbremployes
-                - (this.horaire.filter(function(emp) {return emp.joursemaine == "Jeudi" && emp.typequart == "Soir"})).length
+                - (this.horaire.filter(function(emp) {return emp.joursemaine == "Jeudi" && emp.typequart == "Soir"})).length;
         },
         N4Manquants : function () {
             return this.exigencesEmployeur[11].nbremployes
-                - (this.horaire.filter(function(emp) {return emp.joursemaine == "Jeudi" && emp.typequart == "Nuit"})).length
+                - (this.horaire.filter(function(emp) {return emp.joursemaine == "Jeudi" && emp.typequart == "Nuit"})).length;
         },
         J5Manquants : function () {
             return this.exigencesEmployeur[12].nbremployes
-                - (this.horaire.filter(function(emp) {return emp.joursemaine == "Vendredi" && emp.typequart == "Jour"})).length
+                - (this.horaire.filter(function(emp) {return emp.joursemaine == "Vendredi" && emp.typequart == "Jour"})).length;
         },
         S5Manquants : function () {
             return this.exigencesEmployeur[13].nbremployes
-                - (this.horaire.filter(function(emp) {return emp.joursemaine == "Vendredi" && emp.typequart == "Nuit"})).length
+                - (this.horaire.filter(function(emp) {return emp.joursemaine == "Vendredi" && emp.typequart == "Nuit"})).length;
         },
         N5Manquants : function () {
             return this.exigencesEmployeur[14].nbremployes
-                - (this.horaire.filter(function(emp) {return emp.joursemaine == "Vendredi" && emp.typequart == "Nuit"})).length
+                - (this.horaire.filter(function(emp) {return emp.joursemaine == "Vendredi" && emp.typequart == "Nuit"})).length;
         }
     },
     mounted: function() {
@@ -301,30 +301,28 @@ export default {
         })
         .then((data) => {
             this.nomsHoraire = data
-            console.log(this.nomsHoraire)
         })
         .catch(error => {
             console.log(error)
+        });
+        var choixsemaine = 'default'
+        fetch('/exigencesEmployeur', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({choixsemaine})
         })
-            var choixsemaine = 'default'
-            fetch('/exigencesEmployeur', {
-                method: 'POST',
-                headers: {
-                     'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                 body: JSON.stringify({choixsemaine})
-                })
-                .then((response) => {
-                    return response.json()
-                })
-                .then((data) => {
-                    this.exigencesEmployeur = data
-                    console.log(this.exigencesEmployeur)
-                })
-                .catch(error => {
-                    console.log(error);
-            });
+        .then((response) => {
+            return response.json()
+        })
+        .then((data) => {
+            this.exigencesEmployeur = data
+        })
+        .catch(error => {
+            console.log(error);
+        });
     },
     methods: {
         afficherHoraireSelonDate() {
@@ -338,22 +336,19 @@ export default {
                 fetch('/exigencesEmployeur', {
                     method: 'POST',
                     headers: {
-                         'Accept': 'application/json',
+                        'Accept': 'application/json',
                         'Content-Type': 'application/json'
                     },
-                     body: JSON.stringify({dateHoraire})
-                    })
-                    .then((response) => {
-                        return response.json()
-                    })
-                    .then((data) => {
-                        this.exigencesEmployeur = data
-                        
-                        console.log(this.exigencesEmployeur)
-                    })
-                    .catch(error => {
-                        console.log(error);
-                    
+                    body: JSON.stringify({dateHoraire})
+                })
+                .then((response) => {
+                    return response.json()
+                })
+                .then((data) => {
+                    this.exigencesEmployeur = data
+                })
+                .catch(error => {
+                    console.log(error);
                 });
 
                 fetch('/affichageHoraire', {
@@ -375,28 +370,27 @@ export default {
                     console.log(error);
                 });
             }
-           this.afficherHoraire = !this.afficherHoraire
+           this.afficherHoraire = !this.afficherHoraire;
         },
         afficherHoraireSelonID() {
             this.afficherHoraire = false;
-            var choixsemaine = this.selectionne
+            var choixsemaine = this.selectionne;
             fetch('/exigencesEmployeur', {
                 method: 'POST',
                 headers: {
                      'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
-                 body: JSON.stringify({choixsemaine})
-                })
-                .then((response) => {
-                    return response.json()
-                })
-                .then((data) => {
-                    this.exigencesEmployeur = data
-                    console.log(this.exigencesEmployeur)
-                })
-                .catch(error => {
-                    console.log(error);
+                body: JSON.stringify({choixsemaine})
+            })
+            .then((response) => {
+                return response.json()
+            })
+            .then((data) => {
+                this.exigencesEmployeur = data
+            })
+            .catch(error => {
+                console.log(error);
             });
             fetch('/affichageHoraire', {
                 method: 'POST',
@@ -405,18 +399,17 @@ export default {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({choixsemaine})
-                })
-                .then((response) => {
-                    return response.json()
-                })
-                .then((data) => {
-                    this.horaire = data
-                    console.log(this.horaire)
-                })
-                .catch(error => {
-                    console.log(error);
+            })
+            .then((response) => {
+                return response.json()
+            })
+            .then((data) => {
+                this.horaire = data
+            })
+            .catch(error => {
+                console.log(error);
             });
-           this.afficherHoraire = !this.afficherHoraire
+           this.afficherHoraire = !this.afficherHoraire;
         }
       
     }
