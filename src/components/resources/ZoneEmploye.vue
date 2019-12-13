@@ -140,7 +140,7 @@
                 })
                 .then((data) => {
                     this.dispos = data
-                    console.log(dispos)
+                    console.log(this.dispos)
                 })
                 .catch(error => {
                     console.log(error);
