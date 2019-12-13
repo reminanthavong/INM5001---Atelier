@@ -5,9 +5,6 @@
                 <br/>
                 <h1 class="w3-text-teal">Disponibilités</h1>
 
-                <button @click="toggleAfficherDispos" class="btn btn-primary">Afficher mes disponibilités</button>
-                <b-table :fields="fields" :items="dispos" v-if="afficherDispos"></b-table>
-
                 <table v-if="afficherDispos">
                     <thead>
                         <th>Type de quart de travail</th>
@@ -25,26 +22,26 @@
                         <tr>
                             <td class="journee">Mardi</td>
                             <td> <p v-if="dispoJ2 === '1'">Oui</p> <p v-else>Non</p> </td>
-                            <td> <p v-if="dispoS2 === 1">Oui</p> <p v-else>Non</p> </td>
-                            <td> <p v-if="dispoN2 === 1">Oui</p> <p v-else>Non</p> </td>
+                            <td> <p v-if="dispoS2 === '1'">Oui</p> <p v-else>Non</p> </td>
+                            <td> <p v-if="dispoN2 === '1'">Oui</p> <p v-else>Non</p> </td>
                         </tr>
                         <tr>
                             <td class="journee">Mercredi</td>
-                            <td> <p v-if="dispoJ3 === 1">Oui</p> <p v-else>Non</p> </td>
-                            <td> <p v-if="dispoS3 === 1">Oui</p> <p v-else>Non</p> </td>
-                            <td> <p v-if="dispoN3 === 1">Oui</p> <p v-else>Non</p> </td>
+                            <td> <p v-if="dispoJ3 === '1'">Oui</p> <p v-else>Non</p> </td>
+                            <td> <p v-if="dispoS3 === '1'">Oui</p> <p v-else>Non</p> </td>
+                            <td> <p v-if="dispoN3 === '1'">Oui</p> <p v-else>Non</p> </td>
                         </tr>
                         <tr>
                             <td class="journee">Jeudi</td>
-                            <td> <p v-if="dispoJ4 === 1">Oui</p> <p v-else>Non</p> </td>
-                            <td> <p v-if="dispoS4 === 1">Oui</p> <p v-else>Non</p> </td>
-                            <td> <p v-if="dispoN4 === 1">Oui</p> <p v-else>Non</p> </td>
+                            <td> <p v-if="dispoJ4 === '1'">Oui</p> <p v-else>Non</p> </td>
+                            <td> <p v-if="dispoS4 === '1'">Oui</p> <p v-else>Non</p> </td>
+                            <td> <p v-if="dispoN4 === '1'">Oui</p> <p v-else>Non</p> </td>
                         </tr>
                         <tr>
                             <td class="journee">Vendredi</td>
-                            <td> <p v-if="dispoJ5 === 1">Oui</p> <p v-else>Non</p> </td>
-                            <td> <p v-if="dispoS5 === 1">Oui</p> <p v-else>Non</p> </td>
-                            <td> <p v-if="dispoN5 === 1">Oui</p> <p v-else>Non</p> </td>
+                            <td> <p v-if="dispoJ5 === '1'">Oui</p> <p v-else>Non</p> </td>
+                            <td> <p v-if="dispoS5 === '1'">Oui</p> <p v-else>Non</p> </td>
+                            <td> <p v-if="dispoN5 === '1'">Oui</p> <p v-else>Non</p> </td>
                         </tr>
                     </tbody>
                 </table>
