@@ -63,7 +63,7 @@ describe('recupererHoraire', function (done) {
         expect(horaire).to.deep.equal(TestScenarii.HoraireGenere00120191007Gestion3525);
     });
       
-    it('devrait appeller la fonction', async function() {
+    xit('devrait appeller la fonction', async function() {
         const req = mockReq({ body: {}});
         var res = mockRes();
         var GenererHoraireSTUB = sinon.stub(GenererHoraire,'genererHoraire');
