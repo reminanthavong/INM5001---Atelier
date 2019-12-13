@@ -125,49 +125,49 @@
         },
         computed: {
             dispoJ1: function() {
-                return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 1 && dispo.typequart == "J"}))[0].disponibilite
+                return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 1 && dispo.typequart == "J"}))[0].disponibilite;
             },
             dispoS1: function() {
-                return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 1 && dispo.typequart == "S"}))[0].disponibilite
+                return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 1 && dispo.typequart == "S"}))[0].disponibilite;
             },
             dispoN1: function() {
-                return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 1 && dispo.typequart == "N"}))[0].disponibilite
+                return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 1 && dispo.typequart == "N"}))[0].disponibilite;
             },
             dispoJ2: function() {
-                return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 2 && dispo.typequart == "J"}))[0].disponibilite
+                return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 2 && dispo.typequart == "J"}))[0].disponibilite;
             },
             dispoS2: function() {
-                return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 2 && dispo.typequart == "S"}))[0].disponibilite
+                return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 2 && dispo.typequart == "S"}))[0].disponibilite;
             },
             dispoN2: function() {
-                return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 2 && dispo.typequart == "N"}))[0].disponibilite
+                return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 2 && dispo.typequart == "N"}))[0].disponibilite;
             },
             dispoJ3: function() {
-                return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 3 && dispo.typequart == "J"}))[0].disponibilite
+                return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 3 && dispo.typequart == "J"}))[0].disponibilite;
             },
             dispoS3: function() {
-                return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 3 && dispo.typequart == "S"}))[0].disponibilite
+                return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 3 && dispo.typequart == "S"}))[0].disponibilite;
             },
              dispoN3: function() {
-                 return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 3 && dispo.typequart == "N"}))[0].disponibilite
+                 return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 3 && dispo.typequart == "N"}))[0].disponibilite;
              },
             dispoJ4: function() {
-                return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 4 && dispo.typequart == "J"}))[0].disponibilite
+                return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 4 && dispo.typequart == "J"}))[0].disponibilite;
             },
             dispoS4: function() {
-                return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 4 && dispo.typequart == "S"}))[0].disponibilite
+                return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 4 && dispo.typequart == "S"}))[0].disponibilite;
             },
             dispoN4: function() {
-                return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 4 && dispo.typequart == "N"}))[0].disponibilite
+                return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 4 && dispo.typequart == "N"}))[0].disponibilite;
             },
             dispoJ5: function() {
-                return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 5 && dispo.typequart == "J"}))[0].disponibilite
+                return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 5 && dispo.typequart == "J"}))[0].disponibilite;
             },
             dispoS5: function() {
-                return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 5 && dispo.typequart == "S"}))[0].disponibilite
+                return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 5 && dispo.typequart == "S"}))[0].disponibilite;
             },
             dispoN5: function() {
-                return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 5 && dispo.typequart == "N"}))[0].disponibilite
+                return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 5 && dispo.typequart == "N"}))[0].disponibilite;
             }
         },
         mounted: function() {
@@ -204,7 +204,7 @@
                 }).catch(error => {
                     console.log(error);
                 });
-                this.$router.push("/success")
+                this.$router.push("/success");
             },
             demanderConge() {
                 var date = this.dateconge;
@@ -212,19 +212,19 @@
                 var jourDeLaSemaine = dateConge.getDay();
                 if(jourDeLaSemaine == 0 || jourDeLaSemaine == 6){
                     alert("Impossible de demander un congé pour un jour de fin de semaine");
-                    dateConge = null
+                    dateConge = null;
                 }else {
                     if(jourDeLaSemaine == 2) {
-                        dateConge.setDate(dateConge.getDate() - 1) //La date enregistré est toujours le lundi de cette semaine là
+                        dateConge.setDate(dateConge.getDate() - 1); //La date enregistré est toujours le lundi de cette semaine là
                     }else if(jourDeLaSemaine == 3) {
-                        dateConge.setDate(dateConge.getDate() - 2) //La date enregistré est toujours le lundi de cette semaine là
+                        dateConge.setDate(dateConge.getDate() - 2); //La date enregistré est toujours le lundi de cette semaine là
                     }else if(jourDeLaSemaine == 4) {
-                        dateConge.setDate(dateConge.getDate() - 3) //La date enregistré est toujours le lundi de cette semaine là
+                        dateConge.setDate(dateConge.getDate() - 3); //La date enregistré est toujours le lundi de cette semaine là
                     }else if(jourDeLaSemaine == 5) {
-                        dateConge.setDate(dateConge.getDate() - 4) //La date enregistré est toujours le lundi de cette semaine là
+                        dateConge.setDate(dateConge.getDate() - 4); //La date enregistré est toujours le lundi de cette semaine là
                     }
                 }
-                console.log(dateConge + ", " + dateConge.getDay())
+                console.log(dateConge + ", " + dateConge.getDay());
                 if(dateConge != null) {
                     const jsonEmp = {};
                     jsonEmp.dateconge = dateConge;
@@ -246,11 +246,11 @@
                     }).catch(error => {
                         console.log(error);
                     });
-                    this.$router.push("/success")
+                    this.$router.push("/success");
                 }
             },
             toggleAfficherDispos() {
-                this.afficherDispos = !this.afficherDispos
+                this.afficherDispos = !this.afficherDispos;
             }
         }
     }

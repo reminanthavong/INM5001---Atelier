@@ -7,7 +7,7 @@ const afficherDisponibilites  = async (req, res) => {
 	  var utilisateur = req.session.username;
 	  const rows = await getDisponibilites(utilisateur);
 	  res.set({'content-type': 'application/json'});
-	  res.send(JSON.stringify(rows))
+	  res.send(JSON.stringify(rows));
 }
 
 const ajouterDisponibilites   = async (req, res) => {
@@ -50,12 +50,12 @@ const ajouterDisponibilites   = async (req, res) => {
 	    }
   		i++;
 		}
-    res.setHeader("content-type", "application/json")
-    res.send(JSON.stringify(result))
+    res.setHeader("content-type", "application/json");
+    res.send(JSON.stringify(result));
 }
 
 const ajouterConge = async (req, res) => {
-    let result = {}
+    let result = {};
     const reqJson = req.body;
     var utilisateur = req.session.username;
     var date = new Date(reqJson.dateconge)
@@ -63,28 +63,28 @@ const ajouterConge = async (req, res) => {
 
     var i = 0;
     while (i < reqJson.dispo.length) {
-        console.log(reqJson.dispo[i])
+        console.log(reqJson.dispo[i]);
         try{
             await ajoutConge(utilisateur, date, reqJson.joursemaine, reqJson.dispo[i]);
             result.success = true;
         }catch (e){
             result.success = false;
         }
-        console.log(result.success)
+        console.log(result.success);
         i++;
     }
-    res.setHeader("content-type", "application/json")
-    res.send(JSON.stringify(result))
+    res.setHeader("content-type", "application/json");
+    res.send(JSON.stringify(result));
 }
 
 async function getDisponibilites(utilisateur) {
-	return await Api.get('/basequartsemploye').eq('idemploye', utilisateur)
+	return await Api.get('/basequartsemploye').eq('idemploye', utilisateur);
 }
 
 async function ajoutDispo(gestionnaire, utilisateur, typequart, joursemaine, disponibilite) {		
 	await Api
 	    .post('/basequartsemploye')
-	    .send({idemployeur: gestionnaire, idemploye: utilisateur, idtablehoraire: '000', typequart: typequart, joursemaine: joursemaine, disponibilite: disponibilite, paramtype: '1'})
+	    .send({idemployeur: gestionnaire, idemploye: utilisateur, idtablehoraire: '000', typequart: typequart, joursemaine: joursemaine, disponibilite: disponibilite, paramtype: '1'});
 }
 
 async function ajoutConge(utilisateur, dateconges, joursemaine, typequart){
@@ -97,7 +97,7 @@ async function supprimerDispo(utilisateur) {
 	await Api
 	    .delete('/basequartsemploye')
 	    .eq('idemploye', utilisateur)
-	    .eq('paramtype', '1')
+	    .eq('paramtype', '1');
 }
 
 async function patchDispo(idemployeur, idemploye, typequart, joursemaine, disponibilite) {	
