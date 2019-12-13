@@ -151,7 +151,7 @@
                 return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 3 && dispo.typequart == "J"}))[0].disponibilite
             },
             dispoS3: function() {
-                return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 3 && dispo.typequart == "s"}))[0].disponibilite
+                return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 3 && dispo.typequart == "S"}))[0].disponibilite
             },
              dispoN3: function() {
                  return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 3 && dispo.typequart == "N"}))[0].disponibilite
