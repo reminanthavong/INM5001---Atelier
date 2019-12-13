@@ -6,7 +6,7 @@ const expect = require('chai').expect;
 //***********************************************************//
 const AfficherHoraire = require('../src/backend/afficherhoraire'); 
 const Ressources = require('../src/backend/ressources'); 
-const GenererHoraire = require('../src/backend/genererHoraire');
+const GenererHoraire = require('../src/backend/genererhoraire');
 //***********************************************************//
 const TestScenarii = require('./TestScenarii/AfficherHoraireTests'); 
 //***********************************************************//

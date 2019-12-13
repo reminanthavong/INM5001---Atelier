@@ -1,5 +1,5 @@
 const session = require('express-session');
-const creationHoraire = require('./genererHoraire');
+const creationHoraire = require('./genererhoraire');
 const { Pool } = require('pg');
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
