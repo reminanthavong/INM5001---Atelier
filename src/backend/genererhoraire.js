@@ -6,27 +6,30 @@ const pool = new Pool({
 //---------------------------------------------------------------------------------------------------------------------------------//
 async function genererHoraire(choixsemaine, choixdate, employeur) {
     console.log("Dans generer horaire")
-	const client = await pool.connect()
+    console.log(choixsemaine)
+    console.log(choixdate)
+    console.log(employeur)
+    const client = await pool.connect()
 	const horaire = await client.query(`SELECT DISTINCT '${choixsemaine}' AS IDTableHoraire, '${choixdate}' AS DateParam ,C.IDEmployeur,C.IDEmploye, C.JourSemaine, C.TypeQuart,c.Selection--,NBREmployes
 	FROM(
 	SELECT IDEmploye,IDEmployeur,JourSemaine, TypeQuart,Selection,DateEmbauche
 	FROM (
-		SELECT 
+		SELECT
 		*,ROW_NUMBER()OVER(PARTITION BY A.IDEmploye ORDER BY A.JourSemaine ASC) AS MaxSem
 		,ROW_NUMBER()OVER(PARTITION BY A.JourSemaine, A.TypeQuart ORDER BY A.TypeQuart ASC, A.JourSemaine ASC) AS Selection
 		FROM(
 			SELECT BQE.*, nbrQuartsmax,DateEmbauche ,ROW_NUMBER()OVER(PARTITION BY BQE.IDEmploye, BQE.JourSemaine ORDER BY BQE.TypeQuart ASC) AS MaxJOur
 			FROM basequartsemploye BQE
-			INNER JOIN baseemployes BE ON BE.IDEmploye=BQE.IDEmploye 
+			INNER JOIN baseemployes BE ON BE.IDEmploye=BQE.IDEmploye
 				AND BE.IDEmployeur='${employeur}'
   				AND Disponibilite='1'
   				AND ParamType='1'
-			LEFT JOIN Tableconges TC ON TC.IDEmploye=BQE.IDEmploye 
-				AND TC.JourSemaine=BQE.JourSemaine 
+			LEFT JOIN Tableconges TC ON TC.IDEmploye=BQE.IDEmploye
+				AND TC.JourSemaine=BQE.JourSemaine
 				AND TC.TypeQuart=BQE.TypeQuart
 				AND TC.DateConges='${choixdate}'
-			WHERE TC.IDEmploye IS NULL 
-	)A	
+			WHERE TC.IDEmploye IS NULL
+	)A
 	WHERE MaxJour=1
 	)B
 	WHERE MaxSem<=nbrQuartsmax
@@ -37,10 +40,10 @@ async function genererHoraire(choixsemaine, choixdate, employeur) {
 		AND BQER.TypeQuart=C.TypeQuart
 		AND BQER.JourSemaine=C.JourSemaine
 		AND C.Selection <= BQER.NBREmployes
-    ;`);
-    console.log(horaire)
+;`);
 	const horairegenere = { 'horaires': (horaire) ? horaire.rows : null};
 	client.release();
+	console.log(horaire);
 	return horairegenere
 }
 
