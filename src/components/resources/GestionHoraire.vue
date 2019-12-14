@@ -165,7 +165,7 @@
                     })
                     .then((response) => {
                         return response.json()
-                        console.log(response.json)
+                        console.log(response.json())
                     })
                     .then((data) => {
                         console.log(data);
