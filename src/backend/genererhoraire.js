@@ -40,7 +40,7 @@ async function genererHoraire(choixsemaine, choixdate, employeur) {
 		AND BQER.TypeQuart=C.TypeQuart
 		AND BQER.JourSemaine=C.JourSemaine
 		AND C.Selection <= BQER.NBREmployes
-;`);
+    ;`);
 	const horairegenere = { 'horaires': (horaire) ? horaire.rows : null};
 	client.release();
 	console.log(horaire);
