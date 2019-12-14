@@ -171,27 +171,6 @@
                     }).catch(error => {
                         console.log(error);
                     });
-                }
-                if(jourDeLaSemaine == 1) {
-                    const jsonHoraire = {};
-                    jsonHoraire.horairedate = dateHoraire;
-                    fetch('/creationHoraire', {
-                        method: 'POST',
-                        headers: {
-                            'Accept': 'application/json',
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(jsonHoraire)
-                    })
-                    .then((response) => {
-                        return response.json()
-                    })
-                    .then((data) => {
-                        console.log(data);
-                    })
-                    .catch(error => {
-                        console.log(error);
-                    });
                     this.$router.push("/success");
                 }
             }

@@ -35,11 +35,19 @@ const ajouterQuarts = async(req, res) => {
 	    }
   		i++;
   	}
+
+    console.log(date)
+    console.log(idtablehoraire)
+    console.log(sessEmployeur)
+
+  	creationHoraire(idtablehoraire, date, sessEmployeur)
+
     res.setHeader("content-type", "application/json");
     res.send(JSON.stringify(result));
 }
 
 const genererHoraire = async (req, res) => {
+/*
     let result = {}
     const reqjson = req.body;
     var sessEmployeur = req.session.idgestion;
@@ -71,6 +79,27 @@ const genererHoraire = async (req, res) => {
     }
     res.setHeader("content-type", "application/json");
     res.send(JSON.stringify(result));
+   */
+}
+
+async function creationHoraire(idtablehoraire, dateHoraire, sessEmployeur){
+    try {
+        const horaire = await creationHoraire.genererHoraire(idtablehoraire, dateHoraire, sessEmployeur);
+        console.log(horaire);
+        var compteur = 0;
+        while (compteur < horaire.horaires.length) {
+            var id = horaire.horaires[compteur].idtablehoraire;
+            var dateparam = horaire.horaires[compteur].dateparam;
+            var idemploye = horaire.horaires[compteur].idemploye;
+            var jour = horaire.horaires[compteur].joursemaine;
+            var quart = horaire.horaires[compteur].typequart;
+            await enregistrerHoraire(id, dateparam, sessEmployeur, idemploye, jour, quart);
+            compteur++;
+        }
+        result.success = true;
+    }catch (e){
+        result.success = false;
+    }
 }
 
 async function ajoutQuarts(sessEmployeur, idtablehoraire, quart, jour, nbemploye) {
