@@ -31,13 +31,14 @@ async function genererHoraire(choixsemaine, choixdate, employeur) {
 	)B
 	WHERE MaxSem<=nbrQuartsmax
 	ORDER BY B.DateEmbauche ASC, B.JourSemaine ASC, B.TypeQuart ASC
-)C
-INNER JOIN BaseQuartsEmployeur BQER ON BQER.IDEmployeur=C.IDEmployeur
+    )C
+    INNER JOIN BaseQuartsEmployeur BQER ON BQER.IDEmployeur=C.IDEmployeur
 		AND BQER.IDTableHoraire='${choixsemaine}'
 		AND BQER.TypeQuart=C.TypeQuart
 		AND BQER.JourSemaine=C.JourSemaine
 		AND C.Selection <= BQER.NBREmployes
-;`);
+    ;`);
+    console.log(horaire)
 	const horairegenere = { 'horaires': (horaire) ? horaire.rows : null};
 	client.release();
 	return horairegenere
