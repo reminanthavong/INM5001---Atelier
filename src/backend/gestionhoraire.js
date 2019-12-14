@@ -21,7 +21,7 @@ const ajouterQuarts = async(req, res) => {
 
 	var sessEmployeur = req.session.idgestion;
 	var date = new Date(reqjson.horairedate)
-	//date.setMinutes(date.getMinutes() + date.getTimezoneOffset()); //Ajuste la date par rapport au fuseau horaire
+	date.setMinutes(date.getMinutes() + date.getTimezoneOffset()); //Ajuste la date par rapport au fuseau horaire
 	var idtablehoraire = "" + sessEmployeur + "-" + date.toISOString().slice(0, 10); //Création de l'id de la table horaire
 
 	var i = 1;
