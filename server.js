@@ -54,7 +54,6 @@ router.get('/exigencesEmployeur', afficherHoraire.afficherExigencesEmployeur)
 
 // Fonction gestionHoraire
 router.post('/Horaire', gestionHoraire.ajouterQuarts)
-router.post('/creationHoraire', gestionHoraire.genererHoraire)
 
 // Fonction pageEmploye
 router.get('/DispoEmploye',zoneEmploye.afficherDisponibilites)

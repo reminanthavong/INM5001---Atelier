@@ -36,50 +36,10 @@ const ajouterQuarts = async(req, res) => {
   		i++;
   	}
 
-    console.log(date)
-    console.log(idtablehoraire)
-    console.log(sessEmployeur)
-
   	await creerHoraire(idtablehoraire, date.toISOString().slice(0, 10), sessEmployeur)
 
     res.setHeader("content-type", "application/json");
     res.send(JSON.stringify(result));
-}
-
-const genererHoraire = async (req, res) => {
-/*
-    let result = {}
-    const reqjson = req.body;
-    var sessEmployeur = req.session.idgestion;
-
-    var date = new Date(reqjson.horairedate);
-    date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
-    var dateHoraire = date.toISOString().slice(0,10);
-    var idtablehoraire = "" + sessEmployeur + "-" + dateHoraire; //Création de l'id de la table horaire
-    console.log(dateHoraire)
-    console.log(idtablehoraire)
-    console.log(sessEmployeur)
-
-    try {
-        const horaire = await creationHoraire.genererHoraire(idtablehoraire, dateHoraire, sessEmployeur);
-        console.log(horaire);
-        var compteur = 0;
-        while (compteur < horaire.horaires.length) {
-            var id = horaire.horaires[compteur].idtablehoraire;
-            var dateparam = horaire.horaires[compteur].dateparam;
-            var idemploye = horaire.horaires[compteur].idemploye;
-            var jour = horaire.horaires[compteur].joursemaine;
-            var quart = horaire.horaires[compteur].typequart;
-            await enregistrerHoraire(id, dateparam, sessEmployeur, idemploye, jour, quart);
-            compteur++;
-        }
-        result.success = true;
-    }catch (e){
-        result.success = false;
-    }
-    res.setHeader("content-type", "application/json");
-    res.send(JSON.stringify(result));
-   */
 }
 
 async function creerHoraire(idtablehoraire, dateHoraire, sessEmployeur){
@@ -118,5 +78,4 @@ async function enregistrerHoraire(id, date, gestionnaire, idemploye, jour, quart
 
 module.exports = {
   ajouterQuarts,
-  genererHoraire
 }	
