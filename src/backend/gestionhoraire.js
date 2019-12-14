@@ -40,7 +40,7 @@ const ajouterQuarts = async(req, res) => {
     console.log(idtablehoraire)
     console.log(sessEmployeur)
 
-  	await creerHoraire(idtablehoraire, date, sessEmployeur)
+  	await creerHoraire(idtablehoraire, date.toISOString().slice(0, 10), sessEmployeur)
 
     res.setHeader("content-type", "application/json");
     res.send(JSON.stringify(result));
