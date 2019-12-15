@@ -10,7 +10,7 @@ const afficherDisponibilites  = async (req, res) => {
 	  res.send(JSON.stringify(rows));
 }
 
-const afficherHeureMax  = async (req, res) => {
+const afficherHeuresMax  = async (req, res) => {
 	  var utilisateur = req.session.username;
 	  const rows = await getHeuresMax(utilisateur);
 	  res.set({'content-type': 'application/json'});
@@ -88,7 +88,7 @@ async function getDisponibilites(utilisateur) {
 	return await Api.get('/basequartsemploye').eq('idemploye', utilisateur);
 }
 
-async function getHeureMax(utilisateur) {
+async function getHeuresMax(utilisateur) {
 	return await Api.get('/basequartsemploye')
                         .select('nbrquartsmax')
                         .eq('idemploye', utilisateur);
@@ -129,5 +129,5 @@ module.exports = {
     ajouterConge,
     getDisponibilites,
     afficherDisponibilites,
-    afficherHeureMax
+    afficherHeuresMax
 }
