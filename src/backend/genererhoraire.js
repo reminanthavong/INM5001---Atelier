@@ -6,6 +6,7 @@ const pool = new Pool({
 //---------------------------------------------------------------------------------------------------------------------------------//
 async function genererHoraire(choixsemaine, choixdate, employeur) {
     const client = await pool.connect()
+    try{
 	const horaire = await client.query(`SELECT DISTINCT '${choixsemaine}' AS IDTableHoraire, '${choixdate}' AS DateParam ,C.IDEmployeur,C.IDEmploye, C.JourSemaine, C.TypeQuart,c.Selection--,NBREmployes
 	FROM(
 	SELECT IDEmploye,IDEmployeur,JourSemaine, TypeQuart,Selection,DateEmbauche
@@ -37,8 +38,12 @@ async function genererHoraire(choixsemaine, choixdate, employeur) {
 		AND BQER.JourSemaine=C.JourSemaine
 		AND C.Selection <= BQER.NBREmployes
     ;`);
+	    }catch (e){
+		    console.log(e);
+	    }
 	const horairegenere = { 'horaires': (horaire) ? horaire.rows : null};
 	client.release();
+	console.log('genererhoraire.js' + horairegenere);
 	return horairegenere
 }
 
