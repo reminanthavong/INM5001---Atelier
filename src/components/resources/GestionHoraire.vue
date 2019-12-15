@@ -138,7 +138,7 @@
                     alert("Veuillez choisir une date correspondant à un lundi ");
                 }else{
                     const jsonExigences = {};
-                    jsonExigences.horairedate = dateHoraire
+                    jsonExigences.horairedate = dateHoraire;
                     jsonExigences.lundijour = this.lundijour;
                     jsonExigences.lundisoir = this.lundisoir;
                     jsonExigences.lundinuit = this.lundinuit;
@@ -148,11 +148,11 @@
                     jsonExigences.mercredijour = this.mercredijour;
                     jsonExigences.mercredisoir = this.mercredisoir;
                     jsonExigences.mercredinuit = this.mercredinuit;
-                    jsonExigences.jeudijour = this.jeudijour
-                    jsonExigences.jeudisoir = this.jeudisoir
+                    jsonExigences.jeudijour = this.jeudijour;
+                    jsonExigences.jeudisoir = this.jeudisoir;
                     jsonExigences.jeudinuit = this.jeudinuit;
-                    jsonExigences.vendredijour = this.vendredijour
-                    jsonExigences.vendredisoir = this.vendredisoir
+                    jsonExigences.vendredijour = this.vendredijour;
+                    jsonExigences.vendredisoir = this.vendredisoir;
                     jsonExigences.vendredinuit = this.vendredinuit;
                     console.log(jsonExigences)
                     fetch('/Horaire', {
