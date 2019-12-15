@@ -1,4 +1,4 @@
-const session = require('express-session');
+﻿const session = require('express-session');
 const creationHoraire = require('./genererhoraire');
 const { Pool } = require('pg');
 const pool = new Pool({
@@ -72,9 +72,6 @@ async function creerHoraire(idtablehoraire, dateHoraire, sessEmployeur){
 
 async function ajoutQuarts(sessEmployeur, idtablehoraire, quart, jour, nbemploye) {
     await Api
-      .delete('/basequartsemployeur')
-      .eq('idemployeur', sessEmployeur)
-      .eq('idtablehoraire', idtablehoraire)
       .post('/basequartsemployeur')
       .send({idemployeur: sessEmployeur, idtablehoraire: idtablehoraire, typequart: quart, joursemaine: jour, nbremployes: nbemploye});
 }
