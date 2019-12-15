@@ -190,7 +190,7 @@
         },
         methods: {
             avoirHeuresMax() {
-            var nbHeuresMax: {};
+            var nbHeuresMax
 		fetch('/HeureEmploye', {
                     method: 'GET'
             })
