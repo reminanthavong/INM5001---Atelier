@@ -89,7 +89,7 @@ async function getDisponibilites(utilisateur) {
 }
 
 async function getHeuresMax(utilisateur) {
-	return await Api.get('/basequartsemploye')
+	return await Api.get('/baseemployes')
                         .select('nbrquartsmax')
                         .eq('idemploye', utilisateur);
 }
