@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div class="w3-main" style="margin-left:250px">
         <div class="w3-row w3-padding-64">
             <div class="w3-twothird w3-container">
@@ -46,7 +46,7 @@
                         </tr>
                     </tbody>
                 </table>
-
+                <b-table striped hover :items="heuresmax" v-if="afficherDispos"></b-table>
                 <h1 class="w3-text-teal">Modifier mes disponibilités</h1>
                 <b-form @submit.prevent="changerDispos">
                     <b-form-group id="dispo" label="Veuillez cocher vos nouvelles disponibilités:">
@@ -125,6 +125,9 @@
             }
         },
         computed: {
+            heuresmax: function(){
+		return avoirHeuresMax();
+	},
             dispoJ1: function() {
                 return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 1 && dispo.typequart == "J"}))[0].disponibilite;
             },
@@ -186,6 +189,22 @@
             });
         },
         methods: {
+            avoirHeuresMax() {
+            var nbHeuresMax: {};
+		fetch('/HeureEmploye', {
+                    method: 'GET'
+            })
+            .then((response) => {
+                return response.json()
+            })
+            .then((data) => {
+                nbHeuresMax = data
+            })
+            .catch(error => {
+                console.log(error);
+            });
+		return nbHeuresMax;
+},
             changerDispos() {
                 const jsonEmp = {};
                 jsonEmp.dispo = this.formDataDispos.checked;

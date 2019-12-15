@@ -57,6 +57,7 @@ router.post('/Horaire', gestionHoraire.ajouterQuarts)
 
 // Fonction pageEmploye
 router.get('/DispoEmploye',zoneEmploye.afficherDisponibilites)
+router.get('/HeureEmploye',zoneEmploye.afficherHeuresMax)
 router.post('/DispoEmploye',zoneEmploye.ajouterDisponibilites)
 router.post('/Conge', zoneEmploye.ajouterConge)
 
