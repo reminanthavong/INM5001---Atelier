@@ -25,6 +25,7 @@ const ajouterQuarts = async(req, res) => {
 	var idtablehoraire = "" + sessEmployeur + "-" + date.toISOString().slice(0, 10); //Création de l'id de la table horaire
 
 	var i = 1;
+	await enleverQuarts(sessEmployeur, idtablehoraire);
 	while (i < quarts.length) {
 		var x = quarts[i];
 	    try{
@@ -51,8 +52,9 @@ const ajouterQuarts = async(req, res) => {
 
 async function creerHoraire(idtablehoraire, dateHoraire, sessEmployeur){
     let result = {}
+   const horaire = await enleverHoraire.genererHoraire(idtablehoraire,sessEmployeur);
     try {
-        const horaire = await creationHoraire.genererHoraire(idtablehoraire, dateHoraire, sessEmployeur);
+        horaire = await creationHoraire.genererHoraire(idtablehoraire, dateHoraire, sessEmployeur);
         console.log(horaire);
         var compteur = 0;
         while (compteur < horaire.horaires.length) {
@@ -76,11 +78,32 @@ async function ajoutQuarts(sessEmployeur, idtablehoraire, quart, jour, nbemploye
       .send({idemployeur: sessEmployeur, idtablehoraire: idtablehoraire, typequart: quart, joursemaine: jour, nbremployes: nbemploye});
 }
 
+async function avoirQuarts(sessEmployeur, idtablehoraire) {
+    await Api
+      .get('/basequartsemployeur')
+      .eq('idemployeur', sessEmployeur)
+       .eq('idtablehoraire',idtablehoraire)
+}
+
+async function enleverQuarts(sessEmployeur, idtablehoraire) {
+    await Api
+      .delete('/basequartsemployeur')
+      .eq('idemployeur', sessEmployeur)
+       .eq('idtablehoraire',idtablehoraire)
+}
+
 async function enregistrerHoraire(id, date, gestionnaire, idemploye, jour, quart){
     await Api
         .post('/tablehoraire')
         .send({idtablehoraire: id, dateparam: date, idemployeur: gestionnaire, idemploye: idemploye, joursemaine: jour, typequart: quart});
 
+}
+
+async function enleverHoraire(id,gestionnaire){
+    await Api
+        .delete('/tablehoraire')
+        .eq('idemployeur', gestionnaire)
+	.eq('idtablehoraire',id)
 }
 
 module.exports = {
