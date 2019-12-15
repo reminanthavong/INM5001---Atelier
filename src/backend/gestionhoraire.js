@@ -30,13 +30,20 @@ const ajouterQuarts = async(req, res) => {
 	    try{
 		    await ajoutQuarts(sessEmployeur, idtablehoraire, x.slice(0, 1), x.slice(1), jsonResultat[i]);
 		    result.success = true;
+		    console.log('Ajout Quarts Success')
 	    }catch (e){
 		    result.success = false;
 	    }
   		i++;
   	}
-
-  	await creerHoraire(idtablehoraire, date.toISOString().slice(0, 10), sessEmployeur)
+	 try{
+		    await creerHoraire(idtablehoraire, date.toISOString().slice(0, 10), sessEmployeur)
+		    result.success = true;
+		    console.log('Generer Horaire Success')
+	    }catch (e){
+		    result.success = false;
+	    }
+  	
 
     res.setHeader("content-type", "application/json");
     res.send(JSON.stringify(result));
