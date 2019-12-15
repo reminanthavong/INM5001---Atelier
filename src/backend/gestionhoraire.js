@@ -52,7 +52,7 @@ const ajouterQuarts = async(req, res) => {
 
 async function creerHoraire(idtablehoraire, dateHoraire, sessEmployeur){
     let result = {}
-   const horaire = await enleverHoraire.genererHoraire(idtablehoraire,sessEmployeur);
+    await enleverHoraire(idtablehoraire,sessEmployeur);
     try {
         horaire = await creationHoraire.genererHoraire(idtablehoraire, dateHoraire, sessEmployeur);
         console.log(horaire);
