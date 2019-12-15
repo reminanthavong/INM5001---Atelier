@@ -15,7 +15,7 @@ describe('test de AfficherHoraire', function (done) {
  /**********/
    describe('recupererListeSemaine', function (done) {
    it('devrait retourner 001', async () => {
-         const listeSemaine = await Ressources.recupererListeSemaine();
+         const listeSemaine = await Ressources.recupererListeSemaine('Gestion3525');
     console.log(listeSemaine);
          expect(listeSemaine).to.deep.equal({choixSemaines: [{ idtablehoraire: '001' }]});
       });
