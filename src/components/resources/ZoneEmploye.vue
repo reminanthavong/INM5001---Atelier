@@ -109,6 +109,7 @@
         data() {
             return {
                 afficherDispos: false,
+                heuresmax: avoirHeuresMax(),
                 dispos: null,
                 dateconge: null,
                 formDataDispos: {
@@ -125,9 +126,6 @@
             }
         },
         computed: {
-            heuresmax: function(){
-		return avoirHeuresMax();
-	},
             dispoJ1: function() {
                 return (this.dispos.filter(function(dispo) {return dispo.joursemaine == 1 && dispo.typequart == "J"}))[0].disponibilite;
             },
@@ -190,7 +188,6 @@
         },
         methods: {
             avoirHeuresMax() {
-            var nbHeuresMax
 		fetch('/HeureEmploye', {
                     method: 'GET'
             })
@@ -198,12 +195,11 @@
                 return response.json()
             })
             .then((data) => {
-                nbHeuresMax = data
+                console.log(data)
             })
             .catch(error => {
                 console.log(error);
             });
-		return nbHeuresMax;
 },
             changerDispos() {
                 const jsonEmp = {};
