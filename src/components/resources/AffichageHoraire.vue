@@ -19,10 +19,10 @@
                 <button @click="afficherHoraireSelonDate" class="btn btn-primary">Afficher</button>
                 <p></p>
                 <p v-if="afficherHoraire">Voici l'horaire</p>
-                <b-table striped hover :items="horaire" v-if="afficherHoraire">
+                <table id="horaire" v-if="afficherHoraire">
                     <thead>
                         <th>Type de quart de travail</th>
-                        <th>Employés</th>
+                        <th bgcolor="GRAY">Employés</th>
                     </thead>
                     <tbody>
                         <tr>
@@ -131,7 +131,7 @@
                             </td>
                         </tr>
                     </tbody>
-                </b-table>
+                </table>
             </div>
         </div>
     </div>
