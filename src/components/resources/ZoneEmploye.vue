@@ -109,7 +109,7 @@
         data() {
             return {
                 afficherDispos: false,
-                heuresmax: avoirHeuresMax(),
+                heuresmax: null,
                 dispos: null,
                 dateconge: null,
                 formDataDispos: {
@@ -185,23 +185,21 @@
             .catch(error => {
                 console.log(error);
             });
-        },
-        methods: {
-            avoirHeuresMax() {
-		fetch('/HeureEmploye', {
+            fetch('/HeureEmploye', {
                     method: 'GET'
             })
             .then((response) => {
                 return response.json()
             })
             .then((data) => {
-                console.log(data)
+                this.heuresmax = data
             })
             .catch(error => {
                 console.log(error);
             });
-},
-            changerDispos() {
+        },
+        methods: {
+              changerDispos() {
                 const jsonEmp = {};
                 jsonEmp.dispo = this.formDataDispos.checked;
                 fetch('/DispoEmploye', {
