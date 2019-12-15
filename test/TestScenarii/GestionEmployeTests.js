@@ -5,7 +5,7 @@ var EmployesDeGestion3525 = [
            idemploye: 'EBECK',
            nomemploye: 'ELAINE R',
            prenomemploye: 'BECKER',
-           nbrquartsmax: 40,
+           nbrquartsmax: 5,
            dateembauche: '1970-04-07'
          },
          {
@@ -13,7 +13,7 @@ var EmployesDeGestion3525 = [
            idemploye: 'JNASH',
            nomemploye: 'JENISSA C',
            prenomemploye: 'NASHEL',
-           nbrquartsmax: 40,
+           nbrquartsmax: 5,
            dateembauche: '1979-04-16'
          },
          {
@@ -21,7 +21,7 @@ var EmployesDeGestion3525 = [
            idemploye: 'MSLAT',
            nomemploye: 'MASCHEAL',
            prenomemploye: 'SLATTON',
-           nbrquartsmax: 40,
+           nbrquartsmax: 5,
            dateembauche: '2000-04-17'
          },
          {
@@ -29,7 +29,7 @@ var EmployesDeGestion3525 = [
            idemploye: 'DPURN',
            nomemploye: 'DESRI M',
            prenomemploye: 'PURNELL',
-           nbrquartsmax: 40,
+           nbrquartsmax: 5,
            dateembauche: '1984-10-16'
          }
        ]
