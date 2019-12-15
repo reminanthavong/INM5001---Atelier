@@ -26,105 +26,105 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td bgcolor="YELLOW">Lundi jour</td>
+                            <td>Lundi jour</td>
                             <td bgcolor="LIGHTGRAY">
                                 <p v-for="employe in lundiJour" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p>
                                 <p v-if="J1Manquants !== 0" class="manquant">ATTENTION! Il manque {{J1Manquants}} employé(s) pour combler ce quart de travail.</p>
                             </td>
                         </tr>
                         <tr>
-                            <td bgcolor="DARKORANGE">Lundi soir</td>
+                            <td>Lundi soir</td>
                             <td bgcolor="LIGHTGRAY">
                                 <p v-for="employe in lundiSoir" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p>
                                 <p v-if="S1Manquants !== 0" class="manquant">ATTENTION! Il manque {{S1Manquants}} employé(s) pour combler ce quart de travail.</p>
                             </td>
                         </tr>
                         <tr>
-                            <td bgcolor="BLUE">Lundi nuit</td>
+                            <td>Lundi nuit</td>
                             <td bgcolor="LIGHTGRAY">
                                 <p v-for="employe in lundiNuit" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p>
                                 <p v-if="N1Manquants !== 0" class="manquant">ATTENTION! Il manque {{N1Manquants}} employé(s) pour combler ce quart de travail.</p>
                             </td>
                         </tr>
                         <tr>
-                            <td bgcolor="YELLOW">Mardi jour</td>
+                            <td>Mardi jour</td>
                             <td bgcolor="LIGHTGRAY">
                                 <p v-for="employe in mardiJour" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p>
                                 <p v-if="J2Manquants !== 0" class="manquant">ATTENTION! Il manque {{J2Manquants}} employé(s) pour combler ce quart de travail.</p>
                             </td>
                         </tr>
                         <tr>
-                            <td bgcolor="DARKORANGE">Mardi soir</td>
+                            <td>Mardi soir</td>
                             <td bgcolor="LIGHTGRAY">
                                 <p v-for="employe in mardiSoir" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p>
                                 <p v-if="S2Manquants !== 0" class="manquant">ATTENTION! Il manque {{S2Manquants}} employé(s) pour combler ce quart de travail.</p>
                             </td>
                         </tr>
                         <tr>
-                            <td bgcolor="BLUE">Mardi nuit</td>
+                            <td>Mardi nuit</td>
                             <td bgcolor="LIGHTGRAY">
                                 <p v-for="employe in mardiNuit" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p>
                                 <p v-if="N2Manquants !== 0" class="manquant">ATTENTION! Il manque {{N2Manquants}} employé(s) pour combler ce quart de travail.</p>
                             </td>
                         </tr>
                         <tr>
-                            <td bgcolor="YELLOW">Mercredi jour</td>
+                            <td>Mercredi jour</td>
                             <td bgcolor="LIGHTGRAY">
                                 <p v-for="employe in mercrediJour" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p>
                                 <p v-if="J3Manquants !== 0" class="manquant">ATTENTION! Il manque {{J3Manquants}} employé(s) pour combler ce quart de travail.</p>
                             </td>
                         </tr>
                         <tr>
-                            <td bgcolor="DARKORANGE">Mercredi soir</td>
+                            <td>Mercredi soir</td>
                             <td bgcolor="LIGHTGRAY">
                                 <p v-for="employe in mercrediSoir" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p>
                                 <p v-if="S3Manquants !== 0" class="manquant">ATTENTION! Il manque {{S3Manquants}} employé(s) pour combler ce quart de travail.</p>
                             </td>
                         </tr>
                         <tr>
-                            <td bgcolor="BLUE">Mercredi nuit</td>
+                            <td>Mercredi nuit</td>
                             <td bgcolor="LIGHTGRAY">
                                 <p v-for="employe in mercrediNuit" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p>
                                 <p v-if="N3Manquants !== 0" class="manquant">ATTENTION! Il manque {{N3Manquants}} employé(s) pour combler ce quart de travail.</p>
                             </td>
                         </tr>
                         <tr>
-                            <td bgcolor="YELLOW">Jeudi jour</td>
+                            <td>Jeudi jour</td>
                             <td bgcolor="LIGHTGRAY">
                                 <p v-for="employe in jeudiJour" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p>
                                 <p v-if="J4Manquants !== 0" class="manquant">ATTENTION! Il manque {{J4Manquants}} employé(s) pour combler ce quart de travail.</p>
                             </td>
                         </tr>
                         <tr>
-                            <td bgcolor="DARKORANGE">Jeudi soir</td>
+                            <td>Jeudi soir</td>
                             <td bgcolor="LIGHTGRAY">
                                 <p v-for="employe in jeudiSoir" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p>
                                 <p v-if="S4Manquants !== 0" class="manquant">ATTENTION! Il manque {{S4Manquants}} employé(s) pour combler ce quart de travail.</p>
                             </td>
                         </tr>
                         <tr>
-                            <td bgcolor="BLUE">Jeudi nuit</td>
+                            <td>Jeudi nuit</td>
                             <td bgcolor="LIGHTGRAY">
                                 <p v-for="employe in jeudiNuit" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p>
                                 <p v-if="N4Manquants !== 0" class="manquant">ATTENTION! Il manque {{N4Manquants}} employé(s) pour combler ce quart de travail.</p>
                             </td>
                         </tr>
                         <tr>
-                            <td bgcolor="YELLOW">Vendredi jour</td>
+                            <td>Vendredi jour</td>
                             <td bgcolor="LIGHTGRAY">
                                 <p v-for="employe in vendrediJour" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p>
                                 <p v-if="J5Manquants !== 0" class="manquant">ATTENTION! Il manque {{J5Manquants}} employé(s) pour combler ce quart de travail.</p>
                             </td>
                         </tr>
                         <tr>
-                            <td bgcolor="DARKORANGE">Vendredi soir</td>
+                            <td>Vendredi soir</td>
                             <td bgcolor="LIGHTGRAY">
                                 <p v-for="employe in vendrediSoir" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p>
                                 <p v-if="S5Manquants !== 0" class="manquant">ATTENTION! Il manque {{S5Manquants}} employé(s) pour combler ce quart de travail.</p>
                             </td>
                         </tr>
                         <tr>
-                            <td bgcolor="BLUE">Vendredi nuit</td>
+                            <td>Vendredi nuit</td>
                             <td bgcolor="LIGHTGRAY">
                                 <p v-for="employe in vendrediNuit" v-bind:key="employe.nomemploye">{{employe.nomemploye}}</p>
                                 <p v-if="N5Manquants !== 0" class="manquant">ATTENTION! Il manque {{N5Manquants}} employé(s) pour combler ce quart de travail.</p>
