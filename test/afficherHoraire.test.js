@@ -16,7 +16,6 @@ describe('test de AfficherHoraire', function (done) {
    describe('recupererListeSemaine', function (done) {
    it('devrait retourner 001', async () => {
          const listeSemaine = await Ressources.recupererListeSemaine('Gestion3525');
-    console.log(listeSemaine);
          expect(listeSemaine).to.deep.equal({choixSemaines: [{ idtablehoraire: '001' }]});
       });
    });
@@ -31,7 +30,7 @@ describe('test de AfficherHoraire', function (done) {
      afterEach(() => {
         sinon.restore();
      });
-    xit('devrait retourner vrai', async function() {
+    it('devrait retourner vrai', async function() {
     const req = mockReq();
     const res = mockRes();
     await AfficherHoraire.afficherChoixHoraire(req, res); 
@@ -43,7 +42,7 @@ describe('test de AfficherHoraire', function (done) {
 
   /**********/
     describe('recupererHoraire', function (done) {
-   xit('devrait retourner le bon horaire', async () => {
+   it('devrait retourner le bon horaire', async () => {
          const horaire = await Ressources.recupererHoraire('001','2019-10-07','Gestion3525');
          expect(horaire).to.deep.equal(TestScenarii.Horaire00120191007Gestion3525);
       });
@@ -59,12 +58,12 @@ describe('test de AfficherHoraire', function (done) {
  });
  /**********/
 describe('GenererHoraire', function (done) {
-    xit('devrait retourner le bon horaire', async () => {
+    it('devrait retourner le bon horaire', async () => {
         const horaire = await GenererHoraire.genererHoraire('001','2019-10-07','Gestion3525');
         expect(horaire).to.deep.equal(TestScenarii.HoraireGenere00120191007Gestion3525);
     });
       
-    xit('devrait appeller la fonction', async function() {
+    it('devrait appeller la fonction', async function() {
         const req = mockReq({ body: {}});
         const res = mockRes();
         GenererHoraireSTUB = sinon.stub(GenererHoraire,'genererHoraire');
