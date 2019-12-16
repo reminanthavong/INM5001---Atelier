@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 var PostgREST = require('postgrest-client')
 var Api = new PostgREST ('http://testpostgrest-calendrier.herokuapp.com')
 const bodyParser = require('body-parser')
@@ -84,4 +83,3 @@ describe('test de ZoneEmploye', function (done) {
    });
    /**********/
 });
->>>>>>> master

@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-
 var EmployesDeGestion3525 = [
          {
            idemployeur: 'Gestion3525',
@@ -96,4 +94,3 @@ var EmployesDeGestion3525 = [
 module.exports = {
 EmployesDeGestion3525
 }
->>>>>>> master

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 var Horaire00120191007Gestion3525 = { horaires:
           [ { typequart: 'Nuit',
               joursemaine: 'Mercredi',
@@ -138,4 +137,3 @@ module.exports = {
     Horaire00120191007Gestion3525,
     HoraireGenere00120191007Gestion3525
 }
->>>>>>> master
