@@ -6,7 +6,7 @@
                 <br/>
                 <h1 class="w3-text-teal">Rechercher des employés</h1>
 
-                <button @click="toggleAfficherEmployes" class="btn btn-primary" name="testbouton1">Afficher tous les employés</button>
+                <button @click="toggleAfficherEmployes" class="btn btn-primary" id="testbouton1">Afficher tous les employés</button>
                 <p class="bouton-affichage" v-if="afficherEmployes">Veuillez cliquer sur un employé pour le modifier</p>
                 <b-table striped hover :items="employes" :fields="fields" v-if="afficherEmployes" @row-clicked="modifierEmploye" selectable>
                 </b-table>
