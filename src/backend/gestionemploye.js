@@ -1,7 +1,7 @@
 const session = require('express-session');
 const bodyParser = require('body-parser')
 var PostgREST = require('postgrest-client')
-var Api = new PostgREST ('http://testpostgrest-calendrier.herokuapp.com')
+var Api = new PostgREST ('http://prodpostgrest-calendrier.herokuapp.com')
 
 function creerIdEmploye(nom, prenom) {
     let nomUn = nom.charAt(0);

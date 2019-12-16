@@ -1,5 +1,5 @@
 var PostgREST = require('postgrest-client')
-var Api = new PostgREST ('http://testpostgrest-calendrier.herokuapp.com')
+var Api = new PostgREST ('http://prodpostgrest-calendrier.herokuapp.com')
 const bodyParser = require('body-parser')
 const session = require('express-session');
 //***********************************************************//
