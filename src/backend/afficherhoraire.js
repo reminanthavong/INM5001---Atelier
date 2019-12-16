@@ -54,7 +54,7 @@ const afficherExigencesEmployeur = async (req,res) => {
         var exigences = await getExigences(id);
         console.log(exigences)
 	    if (exigences.length == 0){
-	       id = '999';
+	       id = 'default';
 	       exigences = await getExigences(id);
 	    }
         res.set({'content-type': 'application/json'});
