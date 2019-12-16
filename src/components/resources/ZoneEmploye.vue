@@ -250,7 +250,7 @@
                     });
                     this.$router.push("/success");
                 }
-            }
+            },
             demanderConge() {
                 var date = this.dateconge;
                 var dateConge = new Date(date);
