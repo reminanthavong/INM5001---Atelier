@@ -62,6 +62,9 @@ describe('GenererHoraire', function (done) {
         const horaire = await GenererHoraire.genererHoraire('001','2019-10-07','Gestion3525');
         expect(horaire).to.deep.equal(TestScenarii.HoraireGenere00120191007Gestion3525);
     });
+      afterEach(() => {
+        sinon.restore();
+     });
       
     it('devrait appeller la fonction', async function() {
         const req = mockReq({ body: {}});
