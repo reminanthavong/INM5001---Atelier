@@ -34,7 +34,7 @@ describe('test de AfficherHoraire', function (done) {
     const req = mockReq();
     const res = mockRes();
     await AfficherHoraire.afficherChoixHoraire(req, res); 
-    sinon.assert.calledOnce(res.json); //res.json a ete appellee une fois
+    sinon.assert.calledOnce(res.send); //res.json a ete appellee une fois
     sinon.assert.calledOnce(recupererListeSemaineSTUB);
     });
     
