@@ -8,8 +8,9 @@ async function afficherChoixHoraire(req, res)  {
         let choixSemaine = await Ressources.recupererListeSemaine(employeur);
 	    let result = {};
 	    result = choixSemaine.choixSemaines;
-		res.setHeader("content-type", "application/json");
-		res.send(JSON.stringify(result));
+	            res.set({'content-type': 'application/json'});
+                    res.send(JSON.stringify(exigences));
+
     }catch (err) {
         console.error(err);
         res.send("Erreur appel client " + err);
