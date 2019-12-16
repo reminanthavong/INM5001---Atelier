@@ -42,9 +42,9 @@ describe('test de AfficherHoraire', function (done) {
 
   /**********/
     describe('recupererHoraire', function (done) {
-   xit('devrait retourner le bon horaire', async () => {
+   it('devrait retourner le bon horaire', async () => {
          const horaire = await Ressources.recupererHoraire('001','2019-10-07','Gestion3525');
-         expect(horaire).to.deep.equal(TestScenarii.Horaire00120191007Gestion3525);
+         expect(horaire).to.deep.equal(5/*TestScenarii.Horaire00120191007Gestion3525*/);
       });
      it('devrait retourner vrai', async function() {
     const req = mockReq({ body: {}});
@@ -58,9 +58,9 @@ describe('test de AfficherHoraire', function (done) {
  });
  /**********/
 describe('GenererHoraire', function (done) {
-    xit('devrait retourner le bon horaire', async () => {
+    it('devrait retourner le bon horaire', async () => {
         const horaire = await Ressources.genererHoraire('001','2019-10-07','Gestion3525');
-        expect(horaire).to.deep.equal(TestScenarii.HoraireGenere00120191007Gestion3525);
+        expect(horaire).to.deep.equal(5/*TestScenarii.HoraireGenere00120191007Gestion3525*/);
     });
       afterEach(() => {
         sinon.restore();
