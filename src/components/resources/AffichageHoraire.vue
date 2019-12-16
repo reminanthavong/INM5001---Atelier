@@ -284,7 +284,7 @@ export default {
         },
         S5Manquants : function () {
             return this.exigencesEmployeur[13].nbremployes
-                - (this.horaire.filter(function(emp) {return emp.joursemaine == "Vendredi" && emp.typequart == "Nuit"})).length;
+                - (this.horaire.filter(function(emp) {return emp.joursemaine == "Vendredi" && emp.typequart == "Soir"})).length;
         },
         N5Manquants : function () {
             return this.exigencesEmployeur[14].nbremployes
