@@ -25,7 +25,7 @@ describe('test de AfficherHoraire', function (done) {
      //Pour reinitilialiser le stub
      let recupererListeSemaineSTUB;
      beforeEach(() => {
-      recupererListeSemaineSTUB = sinon.stub(Ressources,'recupererListeSemaine');
+      recupererListeSemaineSTUB = sinon.stub(Ressources,'recupererListeSemaine').returns({choixSemaines: [{ idtablehoraire: '001' }]});
      })
      afterEach(() => {
         sinon.restore();
