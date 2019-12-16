@@ -3,7 +3,7 @@ import AffichageHoraire from "../../src/components/resources/AffichageHoraire.vu
 import sinon from "sinon";
 
 describe("AffichageHoraire", () => {
-  it("Appelle afficherHoraireSelonDate quand le bouton est clique", () => {
+  xit("Appelle afficherHoraireSelonDate quand le bouton est clique", () => {
     sinon.stub(AffichageHoraire.mounted);
     const spyAffichageEmployes = sinon.spy(
       AffichageHoraire.methods,
