@@ -35,7 +35,7 @@ describe('test de GestionEmploye', function (done) {
    });
   /**********/
     describe('getEmployes', function (done) {
-   xit('devrait retourner la liste des employes', async () => {
+   it('devrait retourner la liste des employes', async () => {
          const Employes = await GestionEmploye.getEmployes('Gestion3525');
          expect(Employes).to.deep.equal(TestScenarii.EmployesDeGestion3525);
     
