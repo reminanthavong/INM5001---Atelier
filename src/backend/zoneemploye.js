@@ -104,7 +104,7 @@ async function getHeuresMax(utilisateur) {
 }
 
 async function patchHeuresMax(idemployeur, idemploye,quartsmax) {
-    const information = await Api.get('/baseemployes').eq('idemploye', utilisateur).eq('idemployeur', idemployeur)
+    const information = await Api.get('/baseemployes').eq('idemploye', idemploye).eq('idemployeur', idemployeur)
 	
     await Api
 	    .patch('/baseemployes')
