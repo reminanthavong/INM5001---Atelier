@@ -59,5 +59,6 @@ const genererHoraireReponse = async (req, res) => {
 }
 
 module.exports = {
-    genererHoraireReponse
+    genererHoraireReponse,
+    genererHoraire
 }
