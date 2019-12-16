@@ -17,7 +17,7 @@ async function recupererHoraire(choixsemaine,choixdate,employeur) {
     const client = await pool.connect();
     const horaires = await client.query(`SELECT *
         FROM
-        (SELECT TC2.Valeur AS TypeQuart, TC3.Valeur AS JourSemaine, CONCAT(BE.NomEmploye,' ',BE.PrenomEmploye) AS NomEmploye
+        (SELECT DISTINCT TC2.Valeur AS TypeQuart, TC3.Valeur AS JourSemaine, CONCAT(BE.NomEmploye,' ',BE.PrenomEmploye) AS NomEmploye
             FROM TableHoraire TH
             LEFT JOIN BaseEmployes BE ON BE.IDEmploye=TH.IDEmploye
             LEFT JOIN TableCodes TC2 ON (TC2.Label='TypeQuart' AND TH.TypeQuart=TC2.Code)
@@ -40,7 +40,7 @@ async function genererHoraire(choixsemaine, choixdate, employeur) {
 	FROM (
 		SELECT
 		*,ROW_NUMBER()OVER(PARTITION BY A.IDEmploye ORDER BY A.JourSemaine ASC) AS MaxSem
-		,ROW_NUMBER()OVER(PARTITION BY A.JourSemaine, A.TypeQuart ORDER BY A.TypeQuart ASC, A.JourSemaine ASC) AS Selection
+		,ROW_NUMBER()OVER(PARTITION BY A.IDEmploye,A.JourSemaine, A.TypeQuart ORDER BY A.TypeQuart ASC, A.JourSemaine ASC) AS Selection
 		FROM(
 			SELECT BQE.*, nbrQuartsmax,DateEmbauche ,ROW_NUMBER()OVER(PARTITION BY BQE.IDEmploye, BQE.JourSemaine ORDER BY BQE.TypeQuart ASC) AS MaxJOur
 			FROM basequartsemploye BQE

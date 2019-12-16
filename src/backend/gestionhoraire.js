@@ -106,5 +106,5 @@ async function enleverHoraire(id,gestionnaire){
 }
 
 module.exports = {
-  ajouterQuarts,
+  ajouterQuarts
 }	

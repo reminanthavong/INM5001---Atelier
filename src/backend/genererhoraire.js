@@ -5,7 +5,6 @@ const pool = new Pool({
   ssl: true
 });
 
-
 const genererHoraireReponse = async (req, res) => {
 	const resp = req.body;
 	const choixsemaine = resp['choixsemaine'] || '000';

@@ -60,7 +60,7 @@ var HoraireGenere00120191007Gestion3525 =  {horaires:
               idemploye: 'JNASH',
               joursemaine: '7',
               typequart: 'J',
-              selection: '2' } ]
+              selection: '1' } ]
 }
 
 module.exports = {
