@@ -17,6 +17,15 @@ const afficherHeuresMax  = async (req, res) => {
 	  res.send(JSON.stringify(rows));
 }
 
+const modifierHeuresMax  = async (req, res) => {
+	  var utilisateur = req.session.username;
+          var gestionnaire = req.session.idgestion;
+          var quartsmax = reqjson.quartsmax;
+	  const rows = await patchHeuresMax(gestionnaire,utilisateur,quartsmax);
+	  res.set({'content-type': 'application/json'});
+	  res.send(JSON.stringify(rows));
+}
+
 const ajouterDisponibilites   = async (req, res) => {
 	let result = {}
 	var jours = ["1", "1", "1","2", "2", "2","3", "3", "3","4", "4", "4","5", "5", "5"];
@@ -94,6 +103,16 @@ async function getHeuresMax(utilisateur) {
                         .eq('idemploye', utilisateur);
 }
 
+async function patchHeuresMax(idemployeur, idemploye,quartsmax) {
+    const information = await Api.get('/baseemployes').eq('idemploye', utilisateur).eq('idemployeur', idemployeur)
+	
+    await Api
+	    .patch('/baseemployes')
+	    .eq('idemploye', idemploye)
+	    .eq('idemployeur', idemployeur)
+	    .send({idemployeur: information.idemployeur, idemploye: information.idemploye, nomemploye: information.nomemploye, prenomemploye: information.prenomemploye, nbrquartsmax: quartsmax, dateembauche: information.dateembauche});
+	}
+
 async function ajoutDispo(gestionnaire, utilisateur, typequart, joursemaine, disponibilite) {		
 	await Api
 	    .post('/basequartsemploye')
@@ -129,5 +148,6 @@ module.exports = {
     ajouterConge,
     getDisponibilites,
     afficherDisponibilites,
-    afficherHeuresMax
+    afficherHeuresMax,
+    modifierHeuresMax
 }

@@ -81,6 +81,12 @@
                     <b-button type="submit" variant="primary">Modifier</b-button>
                 </b-form>
 
+<h1 class="w3-text-teal">Changer quarts de travaille maximum</h1>
+                <b-form @submit.prevent="changerQuarts">
+          <b-form-group id="nbrquartsmax" label="Nombre de quarts de travail maximum par semaine:" label-for="quarts">
+                    <b-button type="submit" variant="primary">Faire le changement</b-button>
+                </b-form>
+
                 <h1 class="w3-text-teal">Demander un congé</h1>
                 <b-form @submit.prevent="demanderConge">
                     <b-form-group id="dateconge" label="Date du congé:">
@@ -112,6 +118,7 @@
                 heuresmax: null,
                 dispos: null,
                 dateconge: null,
+                nbrquartsmax: null,
                 formDataDispos: {
                     checked: []
                 },
@@ -220,6 +227,30 @@
                 });
                 this.$router.push("/success");
             },
+                changerQuarts() {
+                var quartsmax = this.nbrquartsmax
+                if(quartsmax  != null) {
+                    const jsonEmp = {};
+                    jsonEmp.quartsmax = quartsmax;
+                    fetch('/HeureEmploye', {
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(jsonEmp)
+                    })
+                    .then((response) => {
+                        return response.json()
+                    })
+                    .then((data) => {
+                        console.log(data);
+                    }).catch(error => {
+                        console.log(error);
+                    });
+                    this.$router.push("/success");
+                }
+            }
             demanderConge() {
                 var date = this.dateconge;
                 var dateConge = new Date(date);
