@@ -25,7 +25,7 @@ describe("GestionEmploye", () => {
     sinon.assert.calledOnce(spyToggleAfficherEmployes);
   });
 
-  it("Appelle AjouteEmploye quand le bouton est clique", () => {
+  xit("Appelle AjouteEmploye quand le bouton est clique", () => {
     const spyAjouteEmploye = sinon.spy(
       GestionEmploye.methods,
       "ajouterEmploye"
