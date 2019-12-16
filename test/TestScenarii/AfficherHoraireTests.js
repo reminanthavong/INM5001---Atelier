@@ -39,7 +39,7 @@ var HoraireGenere00120191007Gestion3525 =  {horaires:
               idemploye: 'EBECK',
               joursemaine: '7',
               typequart: 'J',
-              selection: '1' },
+              selection: '2' },
             { idtablehoraire: '001',
               dateparam: '2019-10-07',
               idemployeur: 'Gestion3525',
@@ -60,7 +60,7 @@ var HoraireGenere00120191007Gestion3525 =  {horaires:
               idemploye: 'JNASH',
               joursemaine: '7',
               typequart: 'J',
-              selection: '2' } ]
+              selection: '1' } ]
 }
 
 module.exports = {
