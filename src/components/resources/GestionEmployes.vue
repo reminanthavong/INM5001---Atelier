@@ -63,7 +63,7 @@
                         </b-form-checkbox-group>
                     </b-form-group>
 
-                    <b-button type="submit" "testbouton2" variant="primary">Ajouter</b-button>
+                    <b-button type="submit" id="testbouton2" variant="primary">Ajouter</b-button>
                 </b-form>
 
                 <h1 class="w3-text-teal">Congédier un employé</h1>
