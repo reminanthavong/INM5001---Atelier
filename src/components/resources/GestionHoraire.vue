@@ -96,7 +96,7 @@
                         </b-col>
                     </b-form-row>
                     <br/>
-                    <b-button type="submit" variant="primary">Générer l'horaire</b-button>
+                    <b-button type="submit" id="test-bouton-submit" variant="primary">Générer l'horaire</b-button>
                 </b-form>
             </div>
         </div>
