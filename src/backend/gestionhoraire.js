@@ -1,5 +1,5 @@
 ﻿const session = require('express-session');
-const creationHoraire = require('./genererhoraire');
+const creationHoraire = require('./ressources');
 const { Pool } = require('pg');
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
@@ -107,5 +107,5 @@ async function enleverHoraire(id,gestionnaire){
 }
 
 module.exports = {
-  ajouterQuarts,
+  ajouterQuarts
 }	
