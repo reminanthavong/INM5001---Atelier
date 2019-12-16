@@ -30,8 +30,8 @@ const afficherHoraire  = async (req, res) => {
 		    horairesRecu = await Ressources.recupererHoraire('999','2019-01-01','default');
 		    result = horairesRecu.horaires	;
 		}
-		res.setHeader("content-type", "application/json");
-		res.send(JSON.stringify(result));
+	            res.set({'content-type': 'application/json'});
+                    res.send(JSON.stringify(result));
     }catch (err){
         console.error(err);
         res.send("Erreur appel client " + err);
