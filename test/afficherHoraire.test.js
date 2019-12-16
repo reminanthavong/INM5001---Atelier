@@ -51,7 +51,7 @@ describe('test de AfficherHoraire', function (done) {
     const res = mockRes();
     recupererHoraireSTUB = sinon.stub(Ressources,'recupererHoraire').returns(TestScenarii.Horaire00120191007Gestion3525);
     await AfficherHoraire.afficherHoraire(req, res); 
-    sinon.assert.calledOnce(res.json); //res.json a ete appellee une fois
+    sinon.assert.calledOnce(res.send); //res.json a ete appellee une fois
     sinon.assert.calledOnce(recupererHoraireSTUB);
     sinon.assert.calledWithExactly(recupererHoraireSTUB, '000', '01-01-1899', undefined);
    });   
