@@ -17,7 +17,7 @@ async function recupererHoraire(choixsemaine,choixdate,employeur) {
     const client = await pool.connect();
     const horaires = await client.query(`SELECT *
         FROM
-        (SELECT TC2.Valeur AS TypeQuart, TC3.Valeur AS JourSemaine, CONCAT(BE.NomEmploye,' ',BE.PrenomEmploye) AS NomEmploye
+        (SELECT DISTINCT TC2.Valeur AS TypeQuart, TC3.Valeur AS JourSemaine, CONCAT(BE.NomEmploye,' ',BE.PrenomEmploye) AS NomEmploye
             FROM TableHoraire TH
             LEFT JOIN BaseEmployes BE ON BE.IDEmploye=TH.IDEmploye
             LEFT JOIN TableCodes TC2 ON (TC2.Label='TypeQuart' AND TH.TypeQuart=TC2.Code)
