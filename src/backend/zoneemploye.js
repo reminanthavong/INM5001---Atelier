@@ -20,7 +20,7 @@ const afficherHeuresMax  = async (req, res) => {
 const modifierHeuresMax  = async (req, res) => {
 	  var utilisateur = req.session.username;
           var gestionnaire = req.session.idgestion;
-          var quartsmax = reqjson.quartsmax;
+          var quartsmax = req.body.quartsmax;
 	  const rows = await patchHeuresMax(gestionnaire,utilisateur,quartsmax);
 	  res.set({'content-type': 'application/json'});
 	  res.send(JSON.stringify(rows));
