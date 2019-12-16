@@ -1,4 +1,4 @@
-const creationHoraire = require('./ressource');
+const creationHoraire = require('./ressources');
 const { Pool } = require('pg');
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
