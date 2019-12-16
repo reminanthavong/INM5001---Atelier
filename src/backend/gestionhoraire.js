@@ -54,7 +54,7 @@ async function creerHoraire(idtablehoraire, dateHoraire, sessEmployeur){
     let result = {}
     await enleverHoraire(idtablehoraire,sessEmployeur);
     try {
-        horaire = await creationHoraire.genererHoraire(idtablehoraire, dateHoraire, sessEmployeur);
+        horaire = await creationHoraire.genererHoraireReponse(idtablehoraire, dateHoraire, sessEmployeur);
         console.log(horaire);
         var compteur = 0;
         while (compteur < horaire.horaires.length) {
