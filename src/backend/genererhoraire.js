@@ -22,6 +22,5 @@ const genererHoraireReponse = async (req, res) => {
 }
 
 module.exports = {
-    genererHoraire,
     genererHoraireReponse
 }
