@@ -3,7 +3,7 @@ import GestionHoraire from "../../src/components/resources/GestionHoraire.vue";
 import sinon from "sinon";
 
 describe("GestionHoraire", () => {
-  it("Appelle afficherHoraireSelonDate quand le bouton est clique", () => {
+  it("Appelle genererHoraire quand le bouton est clique", () => {
     const spyGenererHoraire = sinon.spy(
       GestionHoraire.methods,
       "genererHoraire"
