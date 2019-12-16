@@ -84,6 +84,8 @@
 <h1 class="w3-text-teal">Changer quarts de travaille maximum</h1>
                 <b-form @submit.prevent="changerQuarts">
           <b-form-group id="nbrquartsmax" label="Nombre de quarts de travail maximum par semaine:" label-for="quarts">
+                        <b-form-input id="nbrquartsmax" v-model="nbrquartsmax" required pattern='[0-9]{1,2}' placeholder="Un nombre entre 1 et 15" />
+                    </b-form-group>
                     <b-button type="submit" variant="primary">Faire le changement</b-button>
                 </b-form>
 
