@@ -31,8 +31,17 @@ var EmployesDeGestion3525 = [
            prenomemploye: 'PURNELL',
            nbrquartsmax: 5,
            dateembauche: '1984-10-16'
-         }
+         },
+         {
+           idemployeur: 'Gestion3525',
+           idemploye: 'LMOUR',
+           nomemploye: 'LATOUI',
+           prenomemploye: 'MOURAD',
+           nbrquartsmax: 3,
+           dateembauche: '1970-01-01'
+         }         
        ]
+
 
 module.exports = {
 EmployesDeGestion3525
