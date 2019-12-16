@@ -66,7 +66,7 @@ describe('GenererHoraire', function (done) {
     it('devrait appeller la fonction', async function() {
         const req = mockReq({ body: {}});
         const res = mockRes();
-        GenererHoraireSTUB = sinon.stub(GenererHoraire,'genererHoraire');
+        GenererHoraireSTUB = sinon.stub(GenererHoraire,'genererHoraire').returns(TestScenarii.HoraireGenere00120191007Gestion3525);
         await GenererHoraire.genererHoraireReponse(req, res);
         sinon.assert.calledOnce(res.json); //res.json a ete appellee une fois
         sinon.assert.calledOnce(GenererHoraireSTUB);
