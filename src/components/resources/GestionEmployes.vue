@@ -71,7 +71,7 @@
                     <b-form-group id="congedierEmploye" label="Identifiant de l'employé à congédier:" label-for="congedier">
                         <b-form-input id="identifiant" v-model="formDataCongediement" required placeholder="Identifiant à 5 lettres" />
                     </b-form-group>
-                    <b-button type="submit" id="#testbouton2" variant="primary">Congédier</b-button>
+                    <b-button type="submit" id="testbouton2" variant="primary">Congédier</b-button>
                 </b-form>
 
             </div>
