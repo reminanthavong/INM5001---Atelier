@@ -46,7 +46,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <b-table striped hover :items="heuresmax" :fields="fields" v-if="afficherDispos"></b-table>
+                <b-table striped hover :items="heuresmax" :fields="fields2" v-if="afficherDispos"></b-table>
                 <h1 class="w3-text-teal">Modifier mes disponibilités</h1>
                 <b-form @submit.prevent="changerDispos">
                     <b-form-group id="dispo" label="Veuillez cocher vos nouvelles disponibilités:">
@@ -131,7 +131,9 @@
                     {key: 'joursemaine', label: 'Jour de la semaine', sortable: true},
                     {key: 'typequart', label: 'Type de quart', sortable: true},
                     {key: 'disponibilite', label: 'Disponibilité', sortable: true},
-                    {key: 'nbrquartsmax', label: 'Nombre de quarts de travail'},
+                ],
+                fields2: [
+                    {key: 'nbrquartsmax', label: 'Nombre de quarts de travail'}
                 ]
             }
         },
