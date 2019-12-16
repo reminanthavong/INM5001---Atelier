@@ -1,5 +1,5 @@
 var PostgREST = require('postgrest-client')
-var Api = new PostgREST ('http://testpostgrest-calendrier.herokuapp.com')
+var Api = new PostgREST ('http://prodpostgrest-calendrier.herokuapp.com')
 //***********************************************************//
 const { mockReq, mockRes } = require('sinon-express-mock');
 const sinon = require('sinon');

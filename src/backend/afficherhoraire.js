@@ -1,6 +1,6 @@
-const Ressources = require('./ressources')
+﻿const Ressources = require('./ressources')
 var PostgREST = require('postgrest-client');
-var Api = new PostgREST ('http://testpostgrest-calendrier.herokuapp.com');
+var Api = new PostgREST ('http://prodpostgrest-calendrier.herokuapp.com');
 
 async function afficherChoixHoraire(req, res)  {
     try {

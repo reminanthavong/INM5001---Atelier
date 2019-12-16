@@ -6,7 +6,7 @@ const pool = new Pool({
   ssl: true
 });
 var PostgREST = require('postgrest-client');
-var Api = new PostgREST ('http://testpostgrest-calendrier.herokuapp.com');
+var Api = new PostgREST ('http://prodpostgrest-calendrier.herokuapp.com');
 
 const ajouterQuarts = async(req, res) => {
 	let result = {}
