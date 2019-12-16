@@ -1,31 +1,40 @@
-const { shallowMount } = require('@vue/test-utils')
-//const { mount } = require('@vue/test-utils')
-const GestionEmploye = require('../../src/components/resources/GestionEmployes.vue')
-const sinon = require('sinon')
+import { shallowMount, mount } from "@vue/test-utils";
+import GestionEmploye from "../../src/components/resources/GestionEmployes.vue";
+import sinon from "sinon";
 
+describe("GestionEmploye", () => {
+  it("Affiche correctement le composant", () => {
+    const wrapper = shallowMount(GestionEmploye);
+    expect(wrapper.isVueInstance).toBeTruthy();
+  });
 
-   describe('GestionEmployesVue', () => {
-   const wrapper = shallowMount(GestionEmploye)
-  
-   it('devrait fonctionner', () => {
-  //GestionEmploye a ete load
+  it("Affiche correctement le bouton Afficher employes", () => {
+    const wrapper = mount(GestionEmploye);
+    expect(wrapper.contains("button")).toBe(true);
+  });
 
-  // Le bouton genere l'affichage
-  //expect(wrapper.find('#testbouton1').exists()).toBeTruthy;
-    expect(wrapper.isVueInstance).toBeTruthy();  
-      
-  //wrapper.find('#testbouton1').trigger("click")
-  //expect(wrapper.find('bouton-affichage').text()).toEqual("Veuillez cliquer sur un employé pour le modifier")
-  //wrapper.find('#testbouton1').trigger('click')
-  //expect(wrapper.find('bouton-affichage').exists()).toBeFalsy()
+  it("Appelle toggleAfficherEmployes quand le bouton est clique", () => {
+    const spyToggleAfficherEmployes = sinon.spy(
+      GestionEmploye.methods,
+      "toggleAfficherEmployes"
+    );
+    const wrapper = mount(GestionEmploye);
+    const button = wrapper.find("#testbouton1");
+    button.trigger("click");
 
-  // assert the error is rendered
-  //expect(wrapper.find('.error').exists()).toBe(true)
+    sinon.assert.calledOnce(spyToggleAfficherEmployes);
+  });
 
-  // update the name to be long enough
-  //wrapper.setData({ username: 'Lachlan' })
+  it("Appelle AjouteEmploye quand le bouton est clique", () => {
+    const spyAjouteEmploye = sinon.spy(
+      GestionEmploye.methods,
+      "ajouterEmploye"
+    );
+    const wrapper = mount(GestionEmploye);
+    const button = wrapper.find("#testbouton2");
 
-  // assert the error has gone away
-  //expect(wrapper.find('.error').exists()).toBe(false)
-     });
-})
+    button.trigger("submit");
+
+    sinon.assert.calledOnce(spyAjouteEmploye);
+  });
+});
