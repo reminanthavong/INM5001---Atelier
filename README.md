@@ -73,3 +73,17 @@ Exemple d'un usager Employé:
 Username: LKAYL et Password: ABC123
 
 Les employés ont accès aux pages Zone Employé et Affichage Horaire.
+
+## Preview
+
+### Zone de gestion des employés
+
+![alt text](https://github.com/reminanthavong/INM5001---Atelier/blob/master/Screenshots/Capture%20d%E2%80%99%C3%A9cran%20gestion%20employes.png)
+
+### Zone de création des horaires
+
+![alt text](https://github.com/reminanthavong/INM5001---Atelier/blob/master/Screenshots/Capture%20d%E2%80%99%C3%A9cran%20gestion%20horaire.png)
+
+### Zone d'affichage des horaire
+
+![alt text](https://github.com/reminanthavong/INM5001---Atelier/blob/master/Screenshots/Capture%20d%E2%80%99%C3%A9cran%20affichage%20horaire.png)
